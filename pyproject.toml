@@ -24,7 +24,7 @@ dependencies = [
 [project.urls]
 "Homepage" = "https://github.com/godhiraj-code/vandal"
 "Bug Tracker" = "https://github.com/godhiraj-code/vandal/issues"
-"Dhiraj Das | Automation Architect" = "https://www.dhirajdas.dev"
+"Author Website" = "https://www.dhirajdas.dev"
 
 [tool.setuptools]
 packages = ["vandal"]

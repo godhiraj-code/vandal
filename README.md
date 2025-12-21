@@ -27,12 +27,15 @@ Project Vandal is a lightweight, non-LLM UI mutation testing engine integrated w
 Ensure you have Playwright installed:
 
 ```bash
-# Clone the repository
+# Install the engine from PyPI
+pip install project-vandal
+
+# Or clone for local development
 git clone https://github.com/godhiraj-code/vandal.git
 cd vandal
+pip install .
 
-# Install dependencies
-pip install playwright
+# Setup Playwright
 playwright install chromium
 ```
 
