@@ -1,5 +1,19 @@
 # Automation Tester's Guide to Project Vandal
 
+The easiest way to get started is via PyPI:
+
+```bash
+pip install project-vandal
+```
+
+### Manual Installation (Development)
+If you want to contribute or customize the engine:
+```bash
+git clone https://github.com/godhiraj-code/vandal.git
+cd vandal
+pip install .
+```
+
 Welcome to the advanced guide for Project Vandal. This document explains how to integrate, customize, and master UI mutation testing in your automation framework.
 
 ---

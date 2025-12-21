@@ -18,6 +18,7 @@ Project Vandal is a runtime UI mutation testing engine built with Python and Pla
 
 ## Technical Background
 - **Engine:** Playwright (Python wrapper).
+- **Distribution:** Hosted on PyPI as `project-vandal`.
 - **Core logic:** Async JavaScript injection via the Chrome DevTools Protocol (CDP) bridge.
 - **Key Techniques:** Deep `MutationObserver` for persistence, monkey-patching `attachShadow` for Web Components, and data-attribute caching for non-destructive reverts.
 

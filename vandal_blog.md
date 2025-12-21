@@ -44,6 +44,14 @@ Vandal comes with high-impact strategies designed to mimic real-world regression
 *   **Slow Load:** Simulates a 5-second UI hang by hiding elements temporarily. Does your test wait properly, or does it time out?
 *   **Data Sabotage:** Replaces critical labels and input values with junk data to verify your data-validation logic.
 
+### 1. Installation
+```bash
+pip install project-vandal
+```
+
+### 2. Basic Usage
+Integrating Vandal into your existing Playwright tests is as simple as using it as an async context manager. (Note: Even though the package is `project-vandal`, you still import it as `vandal`).
+
 ---
 
 ## Pro Usage: The Resilience Fixture
