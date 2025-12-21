@@ -1,5 +1,7 @@
 # Project Vandal: UI Mutation Testing Engine
 
+[![Project Vandal CI](https://github.com/godhiraj-code/vandal/actions/workflows/vandal-ci.yml/badge.svg)](https://github.com/godhiraj-code/vandal/actions/workflows/vandal-ci.yml)
+
 Project Vandal is a lightweight, non-LLM UI mutation testing engine integrated with Playwright. It allows you to sabotage your UI in subtle ways to verify if your end-to-end tests are resilient and capable of detecting regressions.
 
 ## Features
@@ -25,6 +27,11 @@ Project Vandal is a lightweight, non-LLM UI mutation testing engine integrated w
 Ensure you have Playwright installed:
 
 ```bash
+# Clone the repository
+git clone https://github.com/godhiraj-code/vandal.git
+cd vandal
+
+# Install dependencies
 pip install playwright
 playwright install chromium
 ```
