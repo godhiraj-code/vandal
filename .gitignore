@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE files
+.vscode/
+.idea/
+
+# Playwright artifacts
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Vandal Reports
+vandal_report.json
+vandal_report.html
+*_vandal_report.json
+*_vandal_report.html

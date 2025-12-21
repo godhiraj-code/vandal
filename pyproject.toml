@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "project-vandal"
+version = "0.2.0"
+authors = [
+  { name="Dhiraj Das", email="dhirajdas.666@gmail.com" },
+]
+description = "A deterministic UI mutation testing engine for Playwright"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Testing",
+]
+dependencies = [
+    "playwright>=1.30.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/godhiraj-code/vandal"
+"Bug Tracker" = "https://github.com/godhiraj-code/vandal/issues"
+"Dhiraj Das | Automation Architect" = "https://www.dhirajdas.dev"
+
+[tool.setuptools]
+packages = ["vandal"]
+package-dir = {"vandal" = "."}
