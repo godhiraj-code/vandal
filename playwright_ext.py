@@ -2,6 +2,7 @@ from .core import VandalEngine, MutationResult
 import uuid
 import json
 import os
+from html import escape
 from typing import List, Optional
 
 class Vandal:
@@ -37,8 +38,8 @@ class Vandal:
         # Persistence logic: Deep Mutation Monitoring
         observer_script = f"""
             (() => {{
-                const mutationType = '{mutation_type}';
-                const selector = '{selector}';
+                const mutationType = {json.dumps(mutation_type)};
+                const selector = {json.dumps(selector)};
                 const mutationScript = {script_template};
                 
                 const apply = () => {{
@@ -118,13 +119,13 @@ class Vandal:
         ]
         # Save JSON
         json_path = file_path if file_path.endswith(".json") else file_path + ".json"
-        with open(json_path, "w") as f:
+        with open(json_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4)
         
         # Save HTML
-        html_path = json_path.replace(".json", ".html")
+        html_path = os.path.splitext(json_path)[0] + ".html"
         html_content = self._generate_html_report(data)
-        with open(html_path, "w") as f:
+        with open(html_path, "w", encoding="utf-8") as f:
             f.write(html_content)
             
         print(f"Reports saved to {json_path} and {html_path}")
@@ -132,13 +133,14 @@ class Vandal:
     def _generate_html_report(self, data):
         rows = "".join([
             f"""<tr class="{'killed' if m['killed'] else 'survived'}">
-                <td>{m['id']}</td><td>{m['type']}</td><td><code>{m['selector']}</code></td>
-                <td>{'💀 KILLED' if m['killed'] else '🧟 SURVIVED'}</td><td>{m['details']}</td>
+                <td>{escape(str(m['id']))}</td><td>{escape(str(m['type']))}</td><td><code>{escape(str(m['selector']))}</code></td>
+                <td>{'💀 KILLED' if m['killed'] else '🧟 SURVIVED'}</td><td>{escape(str(m['details']))}</td>
             </tr>""" for m in data
         ])
         return f"""
         <html>
         <head>
+            <meta charset="utf-8">
             <title>Vandal Mutation Report</title>
             <style>
                 body {{ font-family: sans-serif; margin: 40px; background: #f4f4f9; }}
