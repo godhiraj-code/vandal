@@ -50,6 +50,7 @@ Documentation = "https://github.com/godhiraj-code/vandal/blob/main/TESTER_GUIDE.
 Repository = "https://github.com/godhiraj-code/vandal"
 Issues = "https://github.com/godhiraj-code/vandal/issues"
 Blog = "https://www.dhirajdas.dev/blog/project-vandal-ui-mutation-testing"
+X = "https://x.com/dkkkkd"
 
 [tool.setuptools]
 packages = ["vandal"]

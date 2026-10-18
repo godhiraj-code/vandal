@@ -9,7 +9,7 @@
 
 Project Vandal is a lightweight, non-LLM UI mutation testing engine integrated with Playwright. It allows you to sabotage your UI in subtle ways to verify if your end-to-end tests are resilient and capable of detecting regressions.
 
-**Learn more:** [Project Vandal: UI mutation testing](https://www.dhirajdas.dev/blog/project-vandal-ui-mutation-testing) · [Project page](https://www.dhirajdas.dev/project/project-vandal) · [Tester's Guide](https://github.com/godhiraj-code/vandal/blob/main/TESTER_GUIDE.md)
+**Learn more:** [Project Vandal: UI mutation testing](https://www.dhirajdas.dev/blog/project-vandal-ui-mutation-testing) · [Project page](https://www.dhirajdas.dev/project/project-vandal) · [Tester's Guide](https://github.com/godhiraj-code/vandal/blob/main/TESTER_GUIDE.md) · [Follow @dkkkkd on X](https://x.com/dkkkkd)
 
 ## Installation
 
