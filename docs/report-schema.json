@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Vandal automatic runner report v1",
+  "type": "object",
+  "required": ["schema_version", "summary", "tests"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "summary": {"$ref": "#/$defs/summary"},
+    "execution": {
+      "type": "object",
+      "required": ["exit_code"],
+      "properties": {"exit_code": {"type": "integer"}}
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["nodeid", "baseline", "targets", "mutants", "summary"],
+        "properties": {
+          "nodeid": {"type": "string"},
+          "baseline": {"enum": ["passed", "baseline failing", "skipped"]},
+          "targets": {"type": "array", "items": {"type": "string"}},
+          "summary": {"$ref": "#/$defs/summary"},
+          "mutants": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["strategy", "selector", "status", "hint", "details"],
+              "properties": {
+                "strategy": {"type": "string"},
+                "selector": {"type": "string"},
+                "status": {"enum": ["killed", "survived", "error", "not_applied", "skipped"]},
+                "hint": {"type": "string"},
+                "details": {"type": "string"},
+                "controls": {
+                  "type": "object",
+                  "required": ["before", "after"],
+                  "properties": {
+                    "before": {"enum": ["passed", "error"]},
+                    "after": {"enum": ["passed", "error", "not_run"]}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "summary": {
+      "type": "object",
+      "required": ["killed", "survived", "error", "not_applied", "skipped", "score"],
+      "properties": {
+        "killed": {"type": "integer", "minimum": 0},
+        "survived": {"type": "integer", "minimum": 0},
+        "error": {"type": "integer", "minimum": 0},
+        "not_applied": {"type": "integer", "minimum": 0},
+        "skipped": {"type": "integer", "minimum": 0},
+        "score": {"type": ["number", "null"], "minimum": 0, "maximum": 100}
+      }
+    }
+  }
+}

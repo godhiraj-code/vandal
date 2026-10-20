@@ -1,13 +1,106 @@
-# Project Vandal: UI Mutation Testing Engine
+# Project Vandal
 
 [![PyPI version](https://img.shields.io/pypi/v/project-vandal.svg)](https://pypi.org/project/project-vandal/)
 [![Python versions](https://img.shields.io/pypi/pyversions/project-vandal.svg)](https://pypi.org/project/project-vandal/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/godhiraj-code/vandal/blob/main/LICENSE)
 [![Project Vandal CI](https://github.com/godhiraj-code/vandal/actions/workflows/vandal-ci.yml/badge.svg)](https://github.com/godhiraj-code/vandal/actions/workflows/vandal-ci.yml)
 
-**Your E2E suite is green, but would it catch a broken button?** Vandal injects realistic UI faults (unclickable buttons, hidden elements, junk data, swallowed click handlers) into a live Playwright page and reports which "mutants" your tests failed to kill.
+**Proof that your AI written end to end tests actually catch bugs.**
 
-Project Vandal is a lightweight, non-LLM UI mutation testing engine integrated with Playwright. It allows you to sabotage your UI in subtle ways to verify if your end-to-end tests are resilient and capable of detecting regressions.
+Vandal runs your pytest + Playwright tests against injected UI faults and measures
+which faults trigger assertions. Passing tests can still miss broken behavior.
+Vandal gives you a strength score and candidates for better assertions, including
+reports that coding agents can read. A score describes the mutations exercised;
+it is not a guarantee that a test catches every bug.
+
+## Two minute quick start
+
+In your existing Python test project:
+
+```bash
+pip install project-vandal pytest-playwright
+playwright install chromium
+pytest --vandal
+```
+
+The `page` fixture from pytest-playwright works with the sync API. Custom sync and
+async Playwright tests work too; async tests need their usual async pytest plugin.
+Normal `pytest` runs are unchanged when `--vandal` is absent.
+
+Vandal first runs the selected tests without mutations. For each passing baseline,
+it reruns the test in a fresh pytest process for each selected mutant, up to 20 per
+test by default. It writes `vandal_report.json` and `vandal_report.html`, and prints
+survivors and review hints.
+Each candidate also requires a passing unmutated replay before injection.
+Potential kills require another passing control afterward. Failed controls are
+reported as errors and excluded from strength. Controls cannot prove causality:
+intermittent external-state failures can still be mistaken for mutation kills.
+Use repeatable fixtures and isolated application state.
+
+```bash
+pytest tests/test_login.py --vandal --vandal-strategies=logic_sabotage,data_sabotage --vandal-max-mutants=10 --vandal-timeout=60
+pytest -k login --vandal --vandal-min-score=80
+```
+
+Strength is `100 * killed / (killed + survived)`, overall and per test. Only
+assertion failures after a confirmed mutation count as killed. Baseline failures,
+setup/teardown errors, non-assertion exceptions, timeouts, skipped tests, and
+unapplied mutations do not raise the score. Errors fail the command. No scored
+mutants means `null` in JSON and `N/A` in the terminal; a minimum score gate fails
+in that case, including a gate of zero.
+
+Targets are discovered from observed clicks, fills, reads, Locator assertions,
+and locator construction.
+For focused runs, specify targets with normal Playwright selectors:
+
+```python
+import pytest
+
+@pytest.mark.vandal(targets=["#login-btn"])
+def test_login(page):
+    page.goto("http://localhost:8000")
+    page.locator("#login-btn").click()
+    assert page.locator("#message").inner_text() == "Logged in"
+```
+
+The marker supplies targets; use normal pytest paths, `-k`, or `-m vandal` to select
+tests. See [limits and outcome rules](TESTER_GUIDE.md) before treating a survivor
+as a missing assertion.
+
+## See a weak and strong test
+
+From this repository after `pip install -e ".[test]"`:
+
+```bash
+pytest examples/test_strength.py --vandal --vandal-strategies=logic_sabotage
+```
+
+Both tests click the same button in a local HTML app. The weak test only clicks.
+The strong test asserts the resulting message, so it detects the swallowed click.
+Use the generated report to compare their measured scores.
+
+## Coding agents and MCP
+
+On Python 3.10 or newer:
+
+```bash
+pip install "project-vandal[mcp]"
+vandal-mcp
+```
+
+Configure your MCP client to launch `vandal-mcp` with the trusted test repository
+as its working directory. The stdio server exposes:
+
+- `run_vandal(test_path, strategies, max_mutants)`: runs pytest and returns the JSON
+  report, with a 600 second overall deadline, 30 seconds per mutant, and a maximum
+  of 100 mutants per test.
+- `get_surviving_mutants(report_path)`: reads survivors and review hints from a
+  report inside that working directory.
+
+Tests and conftest files execute project code. Run the server only in trusted
+checkouts, against isolated test data. Paths cannot escape the working directory;
+commands use argument arrays without shell interpolation. See the
+[agent skill](skills/vandal/SKILL.md) and [versioned report schema](docs/report-schema.md).
 
 **Learn more:** [Project Vandal: UI mutation testing](https://www.dhirajdas.dev/blog/project-vandal-ui-mutation-testing) · [Project page](https://www.dhirajdas.dev/project/project-vandal) · [Tester's Guide](https://github.com/godhiraj-code/vandal/blob/main/TESTER_GUIDE.md) · [Follow @dkkkkd on X](https://x.com/dkkkkd)
 
@@ -103,10 +196,13 @@ Vandal is not a good fit if you use Selenium or Cypress (only Playwright for Pyt
 ## FAQ and Troubleshooting
 
 **Does it work with pytest?**
-Yes, with an async Playwright setup (for example `pytest-asyncio`). The [Tester's Guide](https://github.com/godhiraj-code/vandal/blob/main/TESTER_GUIDE.md) has a fixture pattern.
+Yes. Install the package and use `pytest --vandal` for automatic baseline and
+mutation runs. Normal pytest selection still applies.
 
 **Does it support Playwright's sync API?**
-No. `Vandal` is an async context manager and `apply_mutation()` is a coroutine, so use `playwright.async_api`.
+The automatic pytest plugin supports sync and async Playwright, including the
+pytest-playwright `page` fixture. The existing manual `Vandal` context manager
+remains async and fully compatible with its previous API.
 
 **Why did my test raise an exception when the mutant was killed?**
 Vandal records the result but does not swallow the exception: a killed mutant means your test failed, and the failure propagates. Catch it around the `async with` block if you want the run to continue, as `demo_vandal.py` does.
@@ -115,7 +211,9 @@ Vandal records the result but does not swallow the exception: a killed mutant me
 The selector matched nothing on the current page when the mutation was applied. On the current page a mutation is applied once, immediately, so wait for the element first (`await page.wait_for_selector(selector)`). Alternatively, apply the mutation before `page.goto()`: persistent mutations then watch the new page and also hit elements that appear later.
 
 **My mutant survived but the UI was clearly broken.**
-Check for `force=True` on clicks. Playwright's actionability checks would otherwise catch `stealth_disable` and `ghost_element`.
+Check the hint, `force=True`, and assertions about the visible outcome. A survivor
+is a candidate for review, not proof that an assertion is missing. The automatic
+runner reports actionability timeouts as errors rather than assertion kills.
 
 **Can I undo a mutation?**
 `revert_mutation()` reverts `stealth_disable`, `ghost_element`, `data_sabotage` and `ui_shift` on the current page. `logic_sabotage` and `slow_load` have no revert script. Persistent mutations are registered with `page.add_init_script()`, which Playwright can't remove, so use a fresh page or context for the next test.
