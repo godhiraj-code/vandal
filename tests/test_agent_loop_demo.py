@@ -1,7 +1,10 @@
 """The demo must fail closed rather than present a partial score as improvement."""
 import importlib.util
+import io
 import json
+import os
 from pathlib import Path
+import sys
 
 import pytest
 
@@ -59,3 +62,39 @@ def test_improvement_requires_same_candidates(tmp_path, monkeypatch, fixed, cand
     measurements = iter([(0, {("logic_sabotage", "#checkout")}), (fixed, candidates)])
     monkeypatch.setattr(demo, "measure", lambda *args: next(measurements))
     assert demo.main() == expected
+
+
+def test_live_stream_preserves_log_and_exit_code(tmp_path, capsys):
+    """The child cannot finish until its first line has reached the log sink."""
+    acknowledgement = tmp_path / "streamed"
+
+    class Log(io.StringIO):
+        def flush(self):
+            if self.getvalue():
+                acknowledgement.touch()
+            super().flush()
+
+    script = """
+import pathlib, sys, time
+print('. [100%]Vandal: test_cart.py::test_checkout | custom_strategy | [data-label="a | b"]', flush=True)
+deadline = time.monotonic() + 10
+while not pathlib.Path(sys.argv[1]).exists():
+    if time.monotonic() >= deadline:
+        raise SystemExit(99)
+    time.sleep(0.01)
+print('diagnostic from stderr', file=sys.stderr, flush=True)
+print('Vandal: unsupported target', flush=True)
+raise SystemExit(7)
+"""
+    log = Log()
+    code = demo.stream_pytest([sys.executable, "-u", "-c", script, str(acknowledgement)],
+                             dict(os.environ), log)
+    assert code == 7
+    output = capsys.readouterr().out
+    assert output.startswith('. [100%]\n  mutating')
+    assert 'mutating [data-label="a | b"] with custom_strategy...' in output
+    assert "diagnostic from stderr" in output
+    assert "Vandal: unsupported target" in output
+    assert log.getvalue().startswith(". [100%]Vandal: test_cart.py::test_checkout | custom_strategy | ")
+    assert "diagnostic from stderr" in log.getvalue()
+    assert "mutating" not in log.getvalue()

@@ -12,6 +12,28 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 
 
+def stream_pytest(command, env, log):
+    """Tee live pytest output, shortening only the plugin's mutant-start lines."""
+    with subprocess.Popen(command, cwd=ROOT, env=env, stdout=subprocess.PIPE,
+                          stderr=subprocess.STDOUT, text=True, encoding="utf-8",
+                          errors="replace", bufsize=1) as process:
+        for line in process.stdout:
+            log.write(line)
+            log.flush()
+            # Pytest can leave its baseline progress on the same line as the
+            # first mutant. Preserve that prefix and still announce the mutant.
+            prefix, marker, message = line.rstrip("\r\n").partition("Vandal: ")
+            parts = message.split(" | ", 2)
+            if marker and len(parts) == 3:
+                if prefix:
+                    print(prefix, flush=True)
+                _, strategy, selector = parts
+                print(f"  mutating {selector} with {strategy}...", flush=True)
+            else:
+                print(line, end="", flush=True)
+        return process.wait()
+
+
 def read_measurement(path):
     report = json.loads(path.read_text(encoding="utf-8"))
     if report.get("schema_version") != 1 or report.get("timed_out"):
@@ -44,14 +66,14 @@ def measure(label, test_file, destination):
     if label == "Fixed":
         command.append("--vandal-min-score=100")
     # Keep unrelated installed plugins and user addopts out of this reproducible run.
-    env = dict(os.environ, PYTEST_DISABLE_PLUGIN_AUTOLOAD="1", PYTEST_ADDOPTS="")
+    env = dict(os.environ, PYTEST_DISABLE_PLUGIN_AUTOLOAD="1", PYTEST_ADDOPTS="",
+               PYTHONUNBUFFERED="1", PYTHONIOENCODING="utf-8")
     print(f"\n{label}: pytest --vandal {test_file}", flush=True)
     started = time.perf_counter()
     with (destination / "pytest.log").open("w", encoding="utf-8") as log:
-        result = subprocess.run(command, cwd=ROOT, env=env, stdout=log,
-                                stderr=subprocess.STDOUT, check=False)
-    if result.returncode:
-        raise RuntimeError(f"pytest exited {result.returncode}; see {destination / 'pytest.log'}")
+        returncode = stream_pytest(command, env, log)
+    if returncode:
+        raise RuntimeError(f"pytest exited {returncode}; see {destination / 'pytest.log'}")
     score, mutants = read_measurement(report_path)
     killed = sum(m["status"] == "killed" for m in mutants)
     print(f"Strength: {score:.1f}% ({killed}/{len(mutants)} killed)", flush=True)

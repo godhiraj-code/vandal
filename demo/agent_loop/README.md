@@ -1,7 +1,7 @@
 # A measured agent-loop example
 
 An intentionally weak checkout test fills an input, clicks **Place order**, and
-reads the result, but only asserts the page title. Vandal exposes surviving
+only checks that the status is visible and the page title is correct. Vandal exposes surviving
 faults. The fixed test asserts the pickup name and order confirmation.
 
 **This is a scripted before/after example using two prewritten test files. No
@@ -28,6 +28,9 @@ requests. It uses headless Chromium and requires no service or credentials.
 
 Each run writes separate `weak/vandal_report.json`, `fixed/vandal_report.json`,
 HTML reports and pytest logs under the printed `artifacts/run-*` directory.
+Pytest output streams live while the complete original output is also written to
+`pytest.log`. Mutant-start lines from the plugin are displayed as short
+`mutating <selector> with <strategy>...` progress messages.
 Scores, survivors and elapsed times come from the actual run, never constants.
 The runner exits nonzero on pytest failures, incomplete/unscored/error results,
 different mutation candidates, or a fixed score no higher than the weak score.
@@ -59,14 +62,18 @@ vhs demo.tape
 ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 demo.mp4
 ```
 
-The tape produces `demo.mp4` and `demo.gif` at 1600 × 1000 with large text. It
-targets a roughly 60-second social video, waits for measured completion, then
-holds the final output for six seconds. It does not truncate a slower run or
-invent a 60-second runtime. Measure the output with `ffprobe` before publishing;
-adjust the final hold for your machine if needed. The recording tools are
+The tape produces `demo.mp4` and `demo.gif` at 1600 × 900 with 38px text and a
+clean shell prompt. It opens with a question, waits for measured completion,
+then shows the weak/fixed test diff. The rendered video takes about 45 to 60
+seconds depending on machine speed; this is an estimate, not a verified render
+duration. It does not truncate or pad the measured run to a target length.
+Measure the output with `ffprobe` before publishing. Use a shell providing
+`clear` and `diff` (for example Bash). The recording tools are
 optional and are not project dependencies. Generated videos and reports are
 git-ignored; do not commit them.
 
 The CI job runs the headless demo and enforces the improvement check. The wheel
 uses the existing explicit `packages = ["vandal"]` allowlist, so this entire demo
-folder is excluded from the installed package.
+folder is excluded from the installed package. `MANIFEST.in` also excludes the
+checkout-only `tests/test_agent_loop_demo.py` from the source distribution, so
+its tests do not import a demo folder that is absent from that archive.

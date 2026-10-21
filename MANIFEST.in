@@ -1,0 +1,2 @@
+# This checkout-only test imports the demo, which is not shipped in distributions.
+exclude tests/test_agent_loop_demo.py
