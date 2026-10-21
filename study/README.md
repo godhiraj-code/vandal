@@ -37,9 +37,14 @@ python -m study.run_study --image sha256:REPLACE_WITH_INSPECTED_ID --wheelhouse 
 python -m study.summarize
 ```
 
-Record the build log and image ID; the upstream base tag and unconstrained package
-dependencies can change between builds. For reproducibility retain the immutable
-image and dependency wheels, not merely the Dockerfile. The worker pins Playwright
+Record the build log and image ID. The base is digest-pinned; `harness_lock.py`
+records 21 reviewed Linux wheel filenames, versions, licenses and SHA256 values.
+Both image provisioning and fresh-venv provisioning require hashes. The owned
+checkout wheel is built without dependency resolution/build isolation and its
+actual hash is appended to the exported `harness.lock`. No apt update/install is
+needed: locked virtualenv creates the fresh environment without downloading seeds.
+Retain the immutable image and dependency wheels; this does not promise byte-identical
+image or owned-wheel rebuilds. The worker pins Playwright
 1.64.0/pytest-playwright 0.10.0 to its browser image; it installs Vandal from this
 checkout's wheel, never an independently published release.
 
@@ -51,8 +56,17 @@ code, and this change does not dispatch the pilot.
 
 Source acquisition uses a bounded bare Git fetch of the exact SHA in a temporary
 directory, with global/system configuration and credentials disabled; no checkout,
-hooks, filters or submodules execute. Archive extraction rejects links, devices,
+hooks, filters or submodules execute. Archive extraction rejects devices, hardlinks,
 path escapes, duplicates and oversized trees. The source hash is retained.
+
+**Symlink policy requires Dhiraj's review:** recipe extraction skips only inert
+documentation links (AGENTS.md/CLAUDE.md or docs/ Markdown, text and reStructuredText)
+whose resolved targets are also documentation outside test/source scope. Every
+omission is recorded in `skipped_links`; no link is materialized. Test/source links,
+unknown runtime scope, escapes, missing targets, cycles and link traversal still
+fail closed. Recipes may declare additional `source_paths` to protect. Export
+extraction remains strict and rejects every link. A skipped document can still
+affect a project's behavior; this deviation must be reviewed before a future run.
 
 Install and tests run in a fresh venv inside the container, entirely offline. Supply
 reviewed, platform-compatible dependency wheels (including project build backends
@@ -63,7 +77,7 @@ honest installation exclusion. No dependency/download fallback enables networkin
 
 Resource policy: unprivileged UID, read-only root, no capabilities or privilege
 escalation, no network, no host IPC/PID sharing, no Docker socket, two CPUs, 4 GiB
-RAM/no additional swap, 256 PIDs, 3 GiB work tmpfs, 256 MiB temporary tmpfs and shared
+RAM/no additional swap, 1024 PIDs, 3 GiB work tmpfs, 256 MiB temporary tmpfs and shared
 memory, file-size/descriptor limits, bounded logs and per-repository deadline.
 Only read-only source/recipe and dependency inputs are mounted. No host credentials
 or `GITHUB_TOKEN` enter a container, and no candidate output is written through a
@@ -73,6 +87,13 @@ remain in status/logs, exclude the result and stop subsequent repositories until
 operator attention. Explicit empty proxy environment flags override Docker CLI
 [automatic proxy injection](https://docs.docker.com/engine/cli/proxy/), which could
 otherwise copy host-configured proxy credentials into a container.
+
+The study-only mutation launcher adopts orphaned descendants on Linux and counts
+processes before each mutant, before cleanup and after bounded terminate/kill/reap.
+It preserves pre-existing processes and records each census in `resources.jsonl`.
+Remaining new descendants abort the session, excluding any partial report.
+Actual error text containing pthread_create or Resource temporarily unavailable
+is labelled `resource_exhausted`; that classification alone does not prove a leak.
 
 The standalone baseline disables Vandal. Both phases clear repository `addopts`,
 use identical reviewed `-m`/`-k` selection, and pass only explicit test files.
@@ -122,8 +143,8 @@ Docker CLI processes retain DOCKER_HOST, DOCKER_CONTEXT, DOCKER_CONFIG and HOME
 for client routing/configuration only. Candidate processes receive none of these
 host values; the worker supplies its own HOME. Proxy defaults are explicitly emptied.
 The work tmpfs permits execution for the fresh venv; the temporary tmpfs retains
-noexec, nosuid and nodev. The image includes the matching Python venv package.
+noexec, nosuid and nodev. The image includes hash-locked virtualenv.
 Venv creation, installation, baseline and mutation are bounded and logged.
 
-Single-repository IQR is N/A. Strategy rates are explicitly pooled by mutant with
+Median, IQR and strategy rates are N/A below two valid repositories. Runs with more than 10% mutant errors are invalid and excluded from strength aggregates. Strategy rates are explicitly pooled by mutant with
 both n_repos and n_mutants; larger suites therefore carry greater weight.

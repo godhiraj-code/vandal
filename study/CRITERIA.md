@@ -6,7 +6,7 @@ involvement, not exclusive authorship of every selected line.
 
 A person reviews candidates.csv before approving rows in repos.csv. Discovery never
 approves inclusion. repos.proposed.csv is an unapproved review proposal; repos.csv
-contains only the two snapshots explicitly approved by Dhiraj; no public execution has occurred. Execution also requires action-time approval of the frozen manifest and recipes.
+contains only the two snapshots explicitly approved by Dhiraj; a failed pilot is retained as diagnostic evidence only. Execution also requires action-time approval of the frozen manifest and recipes.
 The manual workflow human gate reviews the checkout/Dockerfile and dependency lock;
 it records the freshly built immutable image ID before execution, without claiming
 that a person reviewed that newly generated ID beforehand.
@@ -60,10 +60,10 @@ observed baseline failure.
 ## Analysis and limits
 
 Use one preregistered complete scored run per repository. Strength is
-100 * killed / (killed + survived); a zero denominator is N/A. Errors, not_applied and
+100 * killed / (killed + survived); a zero denominator is N/A. A run is invalid when errors exceed 10% of all mutants; its strength and strategy observations are excluded. Errors, not_applied and
 skipped outcomes never count as kills. Report unsupported targets, cap omissions and
 action_failed kills separately. Show repository/test/mutant sample sizes, a
-repository-weighted median, inclusive-quartile IQR and min-max. IQR is N/A for n<2.
+repository-weighted median, inclusive-quartile IQR and min-max. Median, IQR and strategy rates are N/A for fewer than two valid repositories.
 Strategy survival is pooled by mutant with n_repos and n_mutants; larger suites carry
 more weight. No human comparison is calculated.
 

@@ -1,6 +1,6 @@
-# Manual public pilot: prepared, not executed
+# Manual public pilot: future execution requires fresh approval
 
-No public repository has run. The two rows in repos.csv record Dhiraj Das's explicit
+The failed pilot from run 39615267652 is retained under results/diagnostic/ and is not study results. No public repository is rerun by this follow-up. The two rows in repos.csv record Dhiraj Das's explicit
 review at 2026-10-21T12:20:00Z: contrail 2465e368b7658bd23f0d41f1473c114db3573005
 and Platelet-Movie 14664611814b126289f291ad24ee294102efb07c. This inclusion approval
 does not dispatch or authorize an unattended run now. Talkvote remains unapproved.
@@ -56,7 +56,8 @@ requires resolving and reviewing a new lock, not accepting a new hash at runtime
 
 Platelet-Movie's remote TMDB logo at site/index.html:142 is a known offline deviation:
 network-none blocks it. It is neither stubbed nor vendored. Its effect on baseline
-success remains unobserved. See [OFFLINE.md](recipes/OFFLINE.md).
+success was not isolated experimentally; the archived pilot baseline passed despite
+this known deviation. See [OFFLINE.md](recipes/OFFLINE.md).
 
 ## Dispatch only after explicit execution approval
 
@@ -72,6 +73,9 @@ ID.
 The base image is pinned to the digest resolved by [the prior Docker CI job](https://github.com/godhiraj-code/vandal/actions/runs/39603296307/job/119232982704):
 `sha256:684df257a1fa0ef3fa288239819984008f560e8f8db5b635ee9e2a50cbcd2e23`.
 The digest, rather than the moving tag, determines the base even with `--pull`.
+Harness wheels are hash-locked in `harness_lock.py`; the emitted `harness.lock`,
+including the built owned package hash, is retained with each repository's artifacts.
+Review the documentation-symlink omission policy in README.md before any future run.
 Host acquisition uses bare pinned Git fetch/archive with no candidate checkout,
 imports, installation, hooks or submodules. Dependency downloads are wheels only.
 Candidate installation and tests run exclusively in the existing bounded container

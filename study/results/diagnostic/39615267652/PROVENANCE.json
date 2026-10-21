@@ -1,0 +1,203 @@
+{
+  "label": "failed pilot, not results",
+  "workflow_run": 39615267652,
+  "artifact_id": 12352279295,
+  "source_commit": "9303d11b9c21f6db09a11a3af81334a97d3b3a3a",
+  "source_url": "https://github.com/godhiraj-code/vandal/actions/runs/39615267652",
+  "archive_sha256": "2e8c0d361f83b429e0e4c54dbf1ca0d365296d2b4750958fae73d6b3daec3cd8",
+  "original_integrity_maps_verified": true,
+  "entries": [
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/acquire-0.log",
+      "original_sha256": "85aceac4e541385b5154d22adc475a44a33ca7c9b971ba9801f18622c820219a",
+      "retained_sha256": "85aceac4e541385b5154d22adc475a44a33ca7c9b971ba9801f18622c820219a",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/acquire-1.log",
+      "original_sha256": "c6687744c695d81b055bd2196a5dfc7a6f6a43022cf4b78255b516c566b35633",
+      "retained_sha256": "c6687744c695d81b055bd2196a5dfc7a6f6a43022cf4b78255b516c566b35633",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/acquire-2.log",
+      "original_sha256": "c7d1a91c50d4ab44f308cd42caf11776afdbabe6ccd763f6b103c80d0a7d3b45",
+      "retained_sha256": "c7d1a91c50d4ab44f308cd42caf11776afdbabe6ccd763f6b103c80d0a7d3b45",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/acquire-3.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/acquisition.json",
+      "original_sha256": "e718c7f02b13a901ea1e25cfe5fd982ee637c7cb11c74050af64f8d07a00d277",
+      "retained_sha256": "e718c7f02b13a901ea1e25cfe5fd982ee637c7cb11c74050af64f8d07a00d277",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/cleanup.log",
+      "original_sha256": "7d6230792dc2e70fd97cb6a0a169c0f1865ca8b1452c4972d6ffdec11d7510c7",
+      "retained_sha256": "7d6230792dc2e70fd97cb6a0a169c0f1865ca8b1452c4972d6ffdec11d7510c7",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/container.log",
+      "original_sha256": "49cb8a632676f30b86bd9bfb85836501f6eaa6ad2698a3499034fb609ef138ba",
+      "retained_sha256": "49cb8a632676f30b86bd9bfb85836501f6eaa6ad2698a3499034fb609ef138ba",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/status.json",
+      "original_sha256": "8238563bc7558563b337d2ce9d5f9853379b14950e66eab007dd3c1f2e402527",
+      "retained_sha256": "8238563bc7558563b337d2ce9d5f9853379b14950e66eab007dd3c1f2e402527",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/worker-console.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/worker-status.json",
+      "original_sha256": "263573dd520a3f7858babe93de774a91b9d06d665774d223d792824974cfd964",
+      "retained_sha256": "263573dd520a3f7858babe93de774a91b9d06d665774d223d792824974cfd964",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/acquire-0.log",
+      "original_sha256": "6e6bb0845fab8b39146b8a00bb6620591533a6fc8788a2687cd5486d16a38e1e",
+      "retained_sha256": "6e6bb0845fab8b39146b8a00bb6620591533a6fc8788a2687cd5486d16a38e1e",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/acquire-1.log",
+      "original_sha256": "203bde2836d93e3a865defb8e80a9d894b9709902c66fa4f22ba0d1f47f7f4e0",
+      "retained_sha256": "203bde2836d93e3a865defb8e80a9d894b9709902c66fa4f22ba0d1f47f7f4e0",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/acquire-2.log",
+      "original_sha256": "e11e2cf3cff770a1630023a25d7e77cc645d2c326d8e8615294e66baf0ded07e",
+      "retained_sha256": "e11e2cf3cff770a1630023a25d7e77cc645d2c326d8e8615294e66baf0ded07e",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/acquire-3.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/acquisition.json",
+      "original_sha256": "edbb3265d66c41c4541159428723296802f67d080a9617f2479440c8247b5bf7",
+      "retained_sha256": "edbb3265d66c41c4541159428723296802f67d080a9617f2479440c8247b5bf7",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/baseline.log",
+      "original_sha256": "960025d60d5a1491ff897911ed999e260fd04453a39a7e2e96691c51f17e706e",
+      "retained_sha256": "960025d60d5a1491ff897911ed999e260fd04453a39a7e2e96691c51f17e706e",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/baseline.xml",
+      "original_sha256": "581b55dd99330242f5ee8fb15bd8d088eabb710c1c27b66d4d87c83d3edf3b34",
+      "retained_sha256": "581b55dd99330242f5ee8fb15bd8d088eabb710c1c27b66d4d87c83d3edf3b34",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/cleanup.log",
+      "original_sha256": "1c107e5723f79892f299b039a7fd8886fb8f724d8db189962c6e07861380cd20",
+      "retained_sha256": "1c107e5723f79892f299b039a7fd8886fb8f724d8db189962c6e07861380cd20",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/container.log",
+      "original_sha256": "ef6f43bfea345a8fcf771cd28473bf7d29d4a0e236a2c44f5603b605c9d3e8d9",
+      "retained_sha256": "ef6f43bfea345a8fcf771cd28473bf7d29d4a0e236a2c44f5603b605c9d3e8d9",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/environment.txt",
+      "original_sha256": "9e68ff934cca72d4cb8ff4a72f90072c04ea47ad62f52b7b03fddf8762d93ba5",
+      "retained_sha256": "9e68ff934cca72d4cb8ff4a72f90072c04ea47ad62f52b7b03fddf8762d93ba5",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/install.log",
+      "original_sha256": "88d57b3712548b61514fc6ceab93dd6ee3061a124392ab1afe62d141f2389578",
+      "retained_sha256": "88d57b3712548b61514fc6ceab93dd6ee3061a124392ab1afe62d141f2389578",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/mutation.log",
+      "original_sha256": "b6ffbca13c1cc2aabd46fc1752dba25403c05aa9f4a33990aad1cd95979b43a0",
+      "retained_sha256": "b6ffbca13c1cc2aabd46fc1752dba25403c05aa9f4a33990aad1cd95979b43a0",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/status.json",
+      "original_sha256": "b956793fc6be7b20ebe856b772be6e2e99e7ae4c40c2d13848928f1c95088d77",
+      "retained_sha256": "b956793fc6be7b20ebe856b772be6e2e99e7ae4c40c2d13848928f1c95088d77",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/vandal_report.json",
+      "original_sha256": "f4d56f80f25893a978738a349bd0bfc49d89f797ce3611ea5a2c214e6b671fab",
+      "retained_sha256": "f4d56f80f25893a978738a349bd0bfc49d89f797ce3611ea5a2c214e6b671fab",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/venv.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/worker-console.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redacted": false
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/worker-status.json",
+      "original_sha256": "f2fcb0deb72da747c38e3bffee4564b79b4bb74fcd37df0108ee629447b2bb26",
+      "retained_sha256": "f2fcb0deb72da747c38e3bffee4564b79b4bb74fcd37df0108ee629447b2bb26",
+      "redacted": false
+    },
+    {
+      "path": "study/results/summary.csv",
+      "original_sha256": "cfc98818d18b79381a41ea4530a3805e8b6c8fbbffc2d28d3fdc9e6ea5245213",
+      "retained_sha256": "cfc98818d18b79381a41ea4530a3805e8b6c8fbbffc2d28d3fdc9e6ea5245213",
+      "redacted": false
+    },
+    {
+      "path": "wheelhouse/MANIFEST.csv",
+      "original_sha256": "308ed87e3f898803c028fab5d7ab1fa6176e4fb16d543b227ec27ab529341f5d",
+      "retained_sha256": "308ed87e3f898803c028fab5d7ab1fa6176e4fb16d543b227ec27ab529341f5d",
+      "redacted": false
+    },
+    {
+      "path": "study/pilot-image-id.txt",
+      "original_sha256": "5da32c6f03a15f0ef1f42110774b35183ffbbee154f9fc4cf67725ed24132abd",
+      "retained_sha256": "5da32c6f03a15f0ef1f42110774b35183ffbbee154f9fc4cf67725ed24132abd",
+      "redacted": false
+    },
+    {
+      "path": "study/REPORT.md",
+      "original_sha256": "1c5e2db0d0933b1b1dc1cb3a5941ba259aa9d1fbf1245b6e9b488a9c91a1314a",
+      "retained_sha256": "1c5e2db0d0933b1b1dc1cb3a5941ba259aa9d1fbf1245b6e9b488a9c91a1314a",
+      "redacted": false
+    },
+    {
+      "path": "study/PILOT_SUMMARY.md",
+      "original_sha256": "0c9f498b78708693b5493f886142bfd3768974c3fddde2365c77f18572fc34eb",
+      "retained_sha256": "0c9f498b78708693b5493f886142bfd3768974c3fddde2365c77f18572fc34eb",
+      "redacted": false
+    }
+  ]
+}

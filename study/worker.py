@@ -5,6 +5,8 @@ import os
 import tarfile
 import time
 import sys
+import posixpath
+import shutil
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -12,20 +14,55 @@ from study.common import safe_path, write_json
 from study.process import clean_env, run
 
 
-def extract_source(archive, destination):
-    """No symlinks, hardlinks, devices, traversal, duplicate members or oversized trees."""
+def extract_source(archive, destination, recipe=None):
+    """Skip only inert documentation links in recipe mode; never materialize links."""
     with tarfile.open(archive) as tar:
         members = tar.getmembers()
         if len(members) > 20000 or sum(m.size for m in members) > 128 * 1024 * 1024:
             raise ValueError("source archive exceeds limits")
-        seen = set()
+        seen, links, skipped = set(), {}, []
+        protected = [] if recipe is None else recipe['test_paths'] + recipe.get('requirements', [])
+        protected += [] if recipe is None else recipe.get('source_paths', [])
+        def runtime(path):
+            parts = Path(path).parts
+            return (parts[0] in {'src', 'site', 'static', 'templates', 'tests', 'test'} or
+                    any(path == p or path.startswith(p.rstrip('/') + '/') or
+                        (str(Path(p).parent) != '.' and path.startswith(Path(p).parent.as_posix() + '/'))
+                        for p in protected) or
+                    (recipe.get('install_project', False) and Path(path).name.lower().startswith(('readme', 'license'))))
+        def documentation(path):
+            return (Path(path).suffix.lower() in {'.md', '.rst', '.txt'} and
+                    (path.split('/')[0] == 'docs' or Path(path).name in {'CLAUDE.md', 'AGENTS.md'}))
         for m in members:
             name = m.name.rstrip("/")
             safe_path(name)
-            if name in seen or not (m.isfile() or m.isdir()):
+            if name in seen or not (m.isfile() or m.isdir() or (recipe is not None and m.issym())):
                 raise ValueError("archive contains duplicate or nonregular entry")
             seen.add(name)
+            if m.issym():
+                target = m.linkname
+                if not target or target.startswith('/') or any(c in target for c in '\\:\x00\r\n'):
+                    raise ValueError('symlink escapes archive or has unsafe target: ' + name)
+                target = posixpath.normpath(posixpath.join(posixpath.dirname(name), target))
+                safe_path(target)
+                links[name] = target
+        for name, target in links.items():
+            visited = {name}
+            while target in links:
+                if target in visited:
+                    raise ValueError('symlink cycle: ' + name)
+                visited.add(target)
+                target = links[target]
+            if target not in seen or any(part in links for part in (p.as_posix() for p in Path(target).parents)):
+                raise ValueError('symlink target missing or traverses a link: ' + name)
+            if runtime(name) or runtime(target) or not (documentation(name) and documentation(target)):
+                raise ValueError('symlink intersects test/source or unknown runtime scope: ' + name)
+            skipped.append({'path': name, 'target': links[name], 'reason': 'documentation outside recipe runtime scope'})
+        if any(any(p.as_posix() in links for p in Path(m.name).parents) for m in members):
+            raise ValueError('archive member traverses symlink')
         for m in members:
+            if m.issym():
+                continue
             target = destination / m.name
             if m.isdir():
                 target.mkdir(parents=True, exist_ok=True)
@@ -34,18 +71,19 @@ def extract_source(archive, destination):
                 with tar.extractfile(m) as src, target.open("xb") as dst:
                     while chunk := src.read(65536):
                         dst.write(chunk)
+        return skipped
 
 
 def validate_recipe(recipe):
-    allowed = {"test_paths", "requirements", "install_project", "extras", "pytest_args"}
+    allowed = {"test_paths", "source_paths", "requirements", "install_project", "extras", "pytest_args"}
     if set(recipe) - allowed:
         raise ValueError("unsupported recipe key")
-    for key in ("test_paths", "requirements", "extras", "pytest_args"):
+    for key in ("test_paths", "source_paths", "requirements", "extras", "pytest_args"):
         if not isinstance(recipe.get(key, []), list) or any(not isinstance(x, str) for x in recipe.get(key, [])):
             raise ValueError("recipe fields must be lists of strings")
     if not recipe.get("test_paths") or len(recipe["test_paths"]) > 100:
         raise ValueError("recipe requires bounded test selection")
-    for path in recipe["test_paths"] + recipe.get("requirements", []):
+    for path in recipe["test_paths"] + recipe.get("requirements", []) + recipe.get('source_paths', []):
         safe_path(path)
     if type(recipe.get("install_project", False)) is not bool:
         raise ValueError("install_project must be boolean")
@@ -81,6 +119,19 @@ def baseline_reason(result, junit):
     return None
 
 
+def classify_failed_run(status, output):
+    if status.get('status') != 'completed':
+        text = status.get('reason', '')
+        for name in ('baseline.log', 'mutation.log', 'install.log', 'venv.log', 'harness-install.log'):
+            path = output / name
+            if path.is_file() and not path.is_symlink():
+                with path.open('r', encoding='utf-8', errors='replace') as stream:
+                    text += stream.read(8 * 1024 * 1024)
+        if any(token in text.lower() for token in ('pthread_create', 'resource temporarily unavailable')):
+            status['error_class'] = 'resource_exhausted'
+    return status
+
+
 def execute(source, output, recipe, python, seconds, env=None):
     """Shared real baseline/mutation pipeline; fixture runner supplies its own venv."""
     output.mkdir(parents=True, exist_ok=True)
@@ -98,9 +149,11 @@ def execute(source, output, recipe, python, seconds, env=None):
     reason = baseline_reason(baseline, output / "baseline.xml")
     if reason:
         status["reason"] = reason
-        return status
-    mutation = run(base + ["--vandal", "--vandal-report=" + str(output / "vandal_report.json")] + selected,
-                   source, output / "mutation.log", max(0.1, deadline - time.monotonic()), env)
+        return classify_failed_run(status, output)
+    guarded = [str(python), str(Path(__file__).with_name('pytest_entry.py'))] + base[3:]
+    guarded_env = dict(env or clean_env(), STUDY_RESOURCE_LOG=str(output / 'resources.jsonl'))
+    mutation = run(guarded + ["--vandal", "--vandal-report=" + str(output / "vandal_report.json")] + selected,
+                   source, output / "mutation.log", max(0.1, deadline - time.monotonic()), guarded_env)
     status["mutation"] = mutation
     report = output / "vandal_report.json"
     if mutation["timed_out"] or mutation["log_limited"]:
@@ -109,7 +162,7 @@ def execute(source, output, recipe, python, seconds, env=None):
         status.update(reason="mutation failed or did not produce report; see mutation.log")
     else:
         status.update(status="completed", reason="")
-    return status
+    return classify_failed_run(status, output)
 
 
 def main():
@@ -121,23 +174,28 @@ def main():
     output.mkdir(parents=True)
     started = time.monotonic()
     status = {"status": "skipped", "reason": "worker did not complete"}
+    skipped_links = []
     try:
+        shutil.copyfile('/opt/harness.lock', output / 'harness.lock')
         recipe = validate_recipe(json.loads(Path("/input/recipe.json").read_text()))
-        extract_source("/input/source.tar", source)
+        skipped_links = extract_source("/input/source.tar", source, recipe)
         env = clean_env()
         env.update(HOME="/work/home", TMPDIR="/tmp", PLAYWRIGHT_BROWSERS_PATH="/ms-playwright",
                    PIP_NO_INDEX="1", PIP_FIND_LINKS="/deps")
         Path(env["HOME"]).mkdir()
-        creation = run([sys.executable, "-m", "venv", "/work/venv"], source, output / "venv.log",
+        creation = run([sys.executable, "-m", "virtualenv", "--no-download", "--no-seed", "/work/venv"], source, output / "venv.log",
                        max(0.1, args.seconds - (time.monotonic() - started)), env)
         if creation["exit_code"] or creation["timed_out"] or creation["log_limited"]:
             raise RuntimeError("fresh venv creation failed or exceeded bounds; see venv.log")
         python = Path("/work/venv/bin/python")
-        cmd = [str(python), "-m", "pip", "install", "--no-index", "--find-links=/deps",
-               "/opt/study/vandal.whl"]
-        # The image preserves the actual valid wheel filename in this list.
-        cmd[-1:] = [str(x) for x in Path("/opt/wheels").glob("*.whl")]
-        cmd += ["pytest-playwright==0.10.0", "playwright==1.64.0"]
+        harness_install = run([sys.executable, '-m', 'pip', '--python', str(python), 'install',
+                              '--no-index', '--find-links=/opt/wheels', '--require-hashes', '-r', '/opt/harness.lock'],
+                             source, output / 'harness-install.log',
+                             max(0.1, args.seconds - (time.monotonic() - started)), env)
+        if harness_install['exit_code'] or harness_install['timed_out'] or harness_install['log_limited']:
+            raise RuntimeError('hash-locked harness installation failed; see harness-install.log')
+        # Owned package and dependencies are already hash-installed.
+        cmd = [str(python), "-m", "pip", "install", "--no-index", "--find-links=/deps"]
         for req in recipe.get("requirements", []):
             cmd += ["-r", str(source / req)]
         if recipe.get("install_project"):
@@ -145,7 +203,7 @@ def main():
             if recipe.get("extras"):
                 project += "[" + ",".join(recipe["extras"]) + "]"
             cmd += [project]
-        installation = run(cmd, source, output / "install.log",
+        installation = run(cmd if len(cmd) > 6 else [str(python), '-m', 'pip', 'check'], source, output / "install.log",
                            max(0.1, args.seconds - (time.monotonic() - started)), env)
         if installation["exit_code"] or installation["timed_out"] or installation["log_limited"]:
             status["reason"] = "offline installation failed or exceeded limit; see install.log"
@@ -156,6 +214,8 @@ def main():
         status["installation"] = installation
     except Exception as exc:
         status.update(status="skipped", reason=f"{type(exc).__name__}: {exc}")
+    status['skipped_links'] = skipped_links
+    classify_failed_run(status, output)
     write_json(output / "worker-status.json", status)
     # Keep tmpfs alive for bounded host export, never wait indefinitely.
     Path("/work/done").touch()
