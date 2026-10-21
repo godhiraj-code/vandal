@@ -210,12 +210,18 @@ def test_guard_launcher_preserves_baseline_root_helper_imports(tmp_path):
 def test_guard_launcher_matches_baseline_sys_path_and_repo_common(tmp_path, import_mode, inject_bootstrap_paths):
     from study.process import clean_env
     (tmp_path / 'common.py').write_text('OWNED_PROBE = True\n')
+    (tmp_path / 'study').mkdir()
+    (tmp_path / 'study/__init__.py').write_text('OWNED_PACKAGE = True\n')
+    (tmp_path / 'study/models.py').write_text('OWNED_MODEL = True\n')
     (tmp_path / 'tests').mkdir()
     (tmp_path / 'tests/test_probe.py').write_text(
-        'import json, sys\nfrom pathlib import Path\nimport common\n'
+        'import json, sys\nfrom pathlib import Path\nimport common\nimport study.models\n'
         'def test_probe():\n'
         '    assert common.OWNED_PROBE\n'
-        '    Path("probe.json").write_text(json.dumps({"path": sys.path, "common": common.__file__}))\n')
+        '    assert study.OWNED_PACKAGE and study.models.OWNED_MODEL\n'
+        '    assert "study.resources" not in sys.modules\n'
+        '    Path("probe.json").write_text(json.dumps({"path": sys.path, "common": common.__file__, '
+        '"study": study.__file__, "models": study.models.__file__}))\n')
     env = clean_env()
     env['STUDY_RESOURCE_LOG'] = str(tmp_path / 'resources.jsonl')
     if inject_bootstrap_paths:
@@ -232,3 +238,51 @@ def test_guard_launcher_matches_baseline_sys_path_and_repo_common(tmp_path, impo
     assert guarded['path'] == [p for p in baseline['path'] if Path(p).resolve() not in removed]
     assert not any(Path(p).resolve() in removed for p in guarded['path'])
     assert Path(guarded['common']).resolve() == Path(baseline['common']).resolve() == tmp_path / 'common.py'
+    assert Path(guarded['study']).resolve() == Path(baseline['study']).resolve() == tmp_path / 'study/__init__.py'
+    assert Path(guarded['models']).resolve() == Path(baseline['models']).resolve() == tmp_path / 'study/models.py'
+
+
+def test_private_launcher_guard_reaps_owned_process_and_clears_stale_study_modules(tmp_path):
+    from study.process import clean_env
+    (tmp_path / 'study').mkdir()
+    (tmp_path / 'study/__init__.py').write_text('OWNED_PACKAGE = True\n')
+    (tmp_path / 'study/models.py').write_text('OWNED_MODEL = True\n')
+    (tmp_path / 'test_reaping.py').write_text('''import json, subprocess, sys
+from pathlib import Path
+import study.models
+from vandal.pytest_plugin import VandalPlugin
+
+def test_private_reaping():
+    assert study.OWNED_PACKAGE and study.models.OWNED_MODEL
+    assert "study.stale" not in sys.modules
+    guard = sys.modules['_vandal_study_resources']
+    assert guard.__name__ == '_vandal_study_resources'
+    assert VandalPlugin.run_mutant.__module__ == guard.__name__
+    children = []
+    def call():
+        children.append(subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(30)']))
+        return {'status': 'survived'}
+    try:
+        result = guard.monitor(call, 'private-reaping.jsonl', {'nodeid': 'owned::probe'}, subreaper=False)
+        assert result['resources']['cleanup_attempted'] == 1
+        assert result['resources']['reaped'] and result['resources']['remaining_new'] == 0
+        assert result['resources']['before'] == result['resources']['after']
+        assert children[0].poll() is not None
+        assert json.loads(Path('private-reaping.jsonl').read_text())['reaped']
+    finally:
+        for process in children:
+            if process.poll() is None: process.kill()
+            process.wait(timeout=5)
+''')
+    # An owned bootstrap simulates pre-existing package entries without importing
+    # the harness package; the launcher must clear them before pytest collection.
+    bootstrap = ("import runpy,sys,types; "
+                 "sys.modules['study']=types.ModuleType('study'); "
+                 "sys.modules['study.stale']=types.ModuleType('study.stale'); "
+                 "sys.argv=sys.argv[1:]; runpy.run_path(sys.argv[0],run_name='__main__')")
+    env = clean_env()
+    env['STUDY_RESOURCE_LOG'] = str(tmp_path / 'resources.jsonl')
+    result = subprocess.run([sys.executable, '-c', bootstrap, str(ROOT / 'study/pytest_entry.py'),
+                             '-q', '-p', 'no:vandal', 'test_reaping.py'],
+                            cwd=tmp_path, env=env, capture_output=True, text=True, timeout=20)
+    assert result.returncode == 0, result.stdout + result.stderr
