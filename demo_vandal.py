@@ -1,7 +1,7 @@
 import asyncio
 import os
 import argparse
-import time
+from pathlib import Path
 from playwright.async_api import async_playwright
 from vandal import Vandal
 
@@ -12,16 +12,16 @@ async def run_demo(headless=True):
         page = await browser.new_page()
         
         # Load local demo app
-        file_path = "file://" + os.path.abspath("vandal_demo_app.html")
+        file_path = Path(__file__).with_name("vandal_demo_app.html").resolve().as_uri()
         
         print("\n--- PHASE 1: Normal Test (Expect Success) ---")
         await page.goto(file_path)
         await page.click("#login-btn")
         msg = await page.inner_text("#message")
         if msg == 'Logged In Successfully!':
-            print("✅ Normal test passed.")
+            print("Normal test passed.")
         else:
-            print("❌ Normal test failed.")
+            print("Normal test failed.")
 
         print("\n--- PHASE 2: Vandalized Test (Expect Failure) ---")
         await page.goto(file_path) # Reset page

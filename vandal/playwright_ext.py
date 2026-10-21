@@ -118,13 +118,13 @@ class Vandal:
         ]
         # Save JSON
         json_path = file_path if file_path.endswith(".json") else file_path + ".json"
-        with open(json_path, "w") as f:
+        with open(json_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4)
         
         # Save HTML
         html_path = json_path.replace(".json", ".html")
         html_content = self._generate_html_report(data)
-        with open(html_path, "w") as f:
+        with open(html_path, "w", encoding="utf-8") as f:
             f.write(html_content)
             
         print(f"Reports saved to {json_path} and {html_path}")
@@ -139,6 +139,7 @@ class Vandal:
         return f"""
         <html>
         <head>
+            <meta charset="utf-8">
             <title>Vandal Mutation Report</title>
             <style>
                 body {{ font-family: sans-serif; margin: 40px; background: #f4f4f9; }}
@@ -164,7 +165,7 @@ class Vandal:
         """Prints a summary of the mutation test results."""
         print("\n--- Vandal Mutation Report ---")
         for m in self.mutants:
-            status = "💀 KILLED" if m.killed else "🧟 SURVIVED"
+            status = "KILLED" if m.killed else "SURVIVED"
             print(f"[{status}] {m.type} on '{m.selector}'")
             if not m.killed:
                 print(f"   Potential Gap: {m.details}")
