@@ -1,4 +1,4 @@
-"""Run PERSON-approved manifests only, with an explicit action-time prompt."""
+"""Run person-approved public manifests, or the hardwired owned container fixture."""
 import argparse
 import hashlib
 import json
@@ -17,6 +17,7 @@ from study.worker import extract_source, validate_recipe
 
 PROXY_KEYS = ("HTTP_PROXY", "HTTPS_PROXY", "FTP_PROXY", "ALL_PROXY", "NO_PROXY",
               "http_proxy", "https_proxy", "ftp_proxy", "all_proxy", "no_proxy")
+OWNED_TEST = "study/fixture/test_local_app.py"
 
 
 def container_command(image, name, inputs, deps, seconds):
@@ -80,12 +81,26 @@ def wheel_hashes(wheelhouse):
     return result
 
 
-def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes):
+def acquire_owned_fixture(row, temporary, output, seconds):
+    """Archive only the committed owned fixture; no arbitrary path or remote input."""
+    root = Path(__file__).resolve().parent.parent
+    if (row["repo"] != "owned-local-fixture" or row["group"] != "fixture"
+            or not re.fullmatch(r"[0-9a-f]{40}", row["commit_sha"])):
+        raise ValueError("owned fixture identity is fixed")
+    command = ["git", "-C", str(root), "archive", "--format=tar",
+               "--output=" + str(temporary / "input/source.tar"), row["commit_sha"], OWNED_TEST]
+    result = run(command, temporary, output / "acquire-owned.log", seconds)
+    if result["exit_code"] or result["timed_out"] or result["log_limited"]:
+        raise RuntimeError("owned fixture archive failed; see acquire-owned.log")
+    write_json(output / "acquisition.json", {"kind": "local Git archive of owned fixture only", "result": result})
+
+
+def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes, *, owned_fixture=False):
     name = "vandal-study-" + uuid.uuid4().hex
     container_attempted = False
     deadline = time.monotonic() + seconds
     status = {"repo": row["repo"], "commit_sha": row["commit_sha"], "group": row["group"],
-              "manifest": row, "image": image, "kind": "public",
+              "manifest": row, "image": image, "kind": "fixture" if owned_fixture else "public",
               "started_at": datetime.now(timezone.utc).isoformat(),
               "status": "skipped", "reason": "not started"}
     with tempfile.TemporaryDirectory(prefix="vandal-study-") as temp:
@@ -105,7 +120,8 @@ def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes):
             status["dependency_sha256"] = reviewed_hashes
             write_json(inputs / "recipe.json", recipe)
             status["recipe_sha256"] = digest(inputs / "recipe.json")
-            acquire(row, temporary, output, min(max(0.1, deadline - time.monotonic()), 120))
+            acquisition = acquire_owned_fixture if owned_fixture else acquire
+            acquisition(row, temporary, output, min(max(0.1, deadline - time.monotonic()), 120))
             status["source_sha256"] = digest(inputs / "source.tar")
             remaining = int(deadline - time.monotonic())
             if remaining < 1:
@@ -176,14 +192,45 @@ def cleanup_confirmed(status):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--repos", type=Path, default=Path("study/repos.csv"))
-    p.add_argument("--results", type=Path, default=Path("study/results/public"))
+    source = p.add_mutually_exclusive_group()
+    source.add_argument("--repos", type=Path)
+    source.add_argument("--owned-fixture", action="store_true", help="only the committed in-repository fixture; never public code")
+    p.add_argument("--results", type=Path)
     p.add_argument("--image", required=True, help="reviewed local sha256 image ID")
     p.add_argument("--wheelhouse", type=Path, required=True)
     p.add_argument("--seconds", type=int, default=900)
     args = p.parse_args()
     if not 30 <= args.seconds <= 3600:
         p.error("seconds must be 30..3600")
+    if args.owned_fixture:
+        # This mode has no source path, manifest, URL or test-selection input.
+        # It cannot grant approval to any public candidate.
+        root = Path(__file__).resolve().parent.parent
+        sha = subprocess.check_output(["git", "-C", str(root), "rev-parse", "HEAD"],
+                                      env=clean_env(), text=True, timeout=10).strip()
+        row = {"repo": "owned-local-fixture", "commit_sha": sha, "group": "fixture"}
+        recipe = {"test_paths": [OWNED_TEST], "requirements": [], "install_project": False,
+                  "extras": [], "pytest_args": []}
+        if not re.fullmatch(r"sha256:[0-9a-f]{64}", args.image):
+            p.error("image must be a local sha256 image ID")
+        reviewed_hashes = wheel_hashes(args.wheelhouse.resolve())
+        output = (args.results or Path("study/results/pilot/owned-container-fixture")).resolve()
+        output.mkdir(parents=True, exist_ok=False)
+        status = run_one(row, recipe, args.image, args.wheelhouse.resolve(), output,
+                         args.seconds, reviewed_hashes, owned_fixture=True)
+        if status["status"] == "completed":
+            from study.summarize import metrics
+            measured, _ = metrics(json.loads((output / "vandal_report.json").read_text()))
+            if not measured["n_scored"] or measured["error"]:
+                status.update(status="unscored", reason="owned fixture did not produce error-free scored mutants")
+        status["isolation"] = "container pipeline; local owned Git archive, not public GitHub acquisition"
+        write_json(output / "status.json", status)
+        print(status["status"], status["reason"])
+        if status["status"] != "completed" or not cleanup_confirmed(status):
+            p.exit(1)
+        return
+    args.repos = args.repos or Path("study/repos.csv")
+    args.results = args.results or Path("study/results/public")
     rows = read_rows(args.repos)
     if not rows:
         print("No approved repositories. Nothing executed.")

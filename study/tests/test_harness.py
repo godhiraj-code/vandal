@@ -307,3 +307,56 @@ def test_cleanup_failure_stops_next_repository(tmp_path, monkeypatch):
     with pytest.raises(SystemExit) as exc:
         main()
     assert exc.value.code == 1 and seen == ["one/repo"]
+
+
+def test_owned_acquisition_contains_only_committed_fixture(tmp_path):
+    import subprocess
+    from study.run_study import acquire_owned_fixture, OWNED_TEST
+    root = Path(__file__).resolve().parents[2]
+    sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
+    (tmp_path / "input").mkdir()
+    output = tmp_path / "out"
+    output.mkdir()
+    acquire_owned_fixture({"repo": "owned-local-fixture", "group": "fixture", "commit_sha": sha}, tmp_path, output, 15)
+    with tarfile.open(tmp_path / "input/source.tar") as archive:
+        files = [m.name for m in archive if m.isfile()]
+        assert files == [OWNED_TEST]
+        assert archive.extractfile(OWNED_TEST).read() == subprocess.check_output(["git", "show", sha + ":" + OWNED_TEST], cwd=root)
+
+
+def test_owned_acquisition_rejects_public_identity(tmp_path):
+    from study.run_study import acquire_owned_fixture
+    with pytest.raises(ValueError, match="identity is fixed"):
+        acquire_owned_fixture(candidate(), tmp_path, tmp_path, 15)
+
+
+def test_owned_mode_rejects_manifest_option(monkeypatch):
+    from study.run_study import main
+    monkeypatch.setattr(sys, "argv", ["run_study", "--owned-fixture", "--repos", "candidates.csv",
+        "--image", "sha256:" + "a" * 64, "--wheelhouse", "."])
+    with pytest.raises(SystemExit) as exc:
+        main()
+    assert exc.value.code == 2
+
+
+def test_owned_mode_has_fixed_source_and_does_not_review_public_rows(tmp_path, monkeypatch):
+    from study.run_study import main, OWNED_TEST
+    wheels = tmp_path / "wheels"
+    wheels.mkdir()
+    monkeypatch.setattr(sys, "argv", ["run_study", "--owned-fixture", "--results", str(tmp_path / "out"),
+        "--image", "sha256:" + "a" * 64, "--wheelhouse", str(wheels)])
+    def forbidden(*args):
+        raise AssertionError("owned mode must not read or approve a public manifest")
+    monkeypatch.setattr("builtins.input", forbidden)
+    monkeypatch.setattr("study.run_study.read_rows", forbidden)
+    seen = []
+    def owned(row, recipe, *args, **kwargs):
+        seen.append((row, recipe, kwargs))
+        return {"status": "skipped", "reason": "owned test mock", "cleanup": {"exit_code": 0}}
+    monkeypatch.setattr("study.run_study.run_one", owned)
+    with pytest.raises(SystemExit) as exc:
+        main()
+    assert exc.value.code == 1
+    row, recipe, kwargs = seen[0]
+    assert row["repo"] == "owned-local-fixture" and row["group"] == "fixture"
+    assert recipe["test_paths"] == [OWNED_TEST] and kwargs == {"owned_fixture": True}
