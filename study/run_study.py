@@ -31,7 +31,7 @@ def container_command(image, name, inputs, deps, seconds):
             "--cap-drop=ALL", "--security-opt=no-new-privileges", "--pids-limit=256",
             "--cpus=2", "--memory=4g", "--memory-swap=4g", "--shm-size=256m",
             "--ulimit=nofile=1024:1024", "--ulimit=fsize=134217728:134217728",
-            "--log-driver=local", "--log-opt=max-size=8m", "--log-opt=max-file=1",
+            "--log-driver=local", "--log-opt=max-size=8m", "--log-opt=max-file=1", "--log-opt=compress=false",
             "--tmpfs=/work:rw,nosuid,nodev,size=3g,uid=10001,gid=10001,mode=700",
             "--tmpfs=/tmp:rw,nosuid,nodev,size=256m,uid=10001,gid=10001,mode=700",
             *["--env=" + key + "=" for key in PROXY_KEYS],

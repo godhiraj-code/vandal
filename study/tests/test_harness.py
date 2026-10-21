@@ -119,6 +119,8 @@ def test_container_and_environment_do_not_inherit_secrets(tmp_path, monkeypatch)
     cmd = container_command("sha256:" + "a" * 64, "test", tmp_path, tmp_path, 60)
     assert "--network=none" in cmd and "--cap-drop=ALL" in cmd
     assert "--read-only" in cmd and "--memory=4g" in cmd and "--pids-limit=256" in cmd
+    # Docker's local driver rejects compression with just one log file.
+    assert "--log-opt=max-file=1" in cmd and "--log-opt=compress=false" in cmd
     assert "--privileged" not in cmd and not any("docker.sock" in s for s in cmd)
     assert all("readonly" in cmd[i + 1] for i, x in enumerate(cmd) if x == "--mount")
     assert all("--env=" + key + "=" in cmd for key in PROXY_KEYS)
