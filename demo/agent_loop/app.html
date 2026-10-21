@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corner Shop checkout</title>
+<style>
+  body { font: 20px system-ui; max-width: 32rem; margin: 4rem auto; padding: 1rem; }
+  input, button { font: inherit; padding: .6rem; margin: .5rem 0; }
+  label, input { display: block; }
+</style>
+<h1>Corner Shop</h1>
+<p>One coffee · $4.00</p>
+<label for="name">Name for pickup</label>
+<input id="name" autocomplete="off">
+<button id="checkout" type="button">Place order</button>
+<p id="status" role="status">Your order is not placed.</p>
+<script>
+  document.querySelector('#checkout').addEventListener('click', () => {
+    const name = document.querySelector('#name').value.trim();
+    document.querySelector('#status').textContent = name
+      ? `Thanks, ${name}! Your coffee total is $4.00.`
+      : 'Enter a pickup name.';
+  });
+</script>
+</html>

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add a local, headless scripted agent-loop demo with measured weak/fixed scores,
+  survivor output, an agent prompt, a VHS tape and a CI improvement check.
+
 - Avoid ineffective pointer/click defaults for press, type, select_option, focus,
   dispatch_event and set_input_files. Keep data_sabotage for type; infer
   stealth_disable and ghost_element for hover, backed by browser kill tests.

@@ -23,6 +23,8 @@ jobs:
         run: python -m playwright install --with-deps chromium
       - name: Legacy demo from checkout
         run: python demo_vandal.py --headless
+      - name: Measure scripted agent-loop improvement
+        run: python demo/agent_loop/run_demo.py
       - name: Full headless suite from checkout
         run: python -m pytest -q
       - name: Measure logic sabotage example
