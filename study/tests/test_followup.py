@@ -113,7 +113,7 @@ def test_error_ceiling_boundary_and_invalid_exclusion(tmp_path):
     assert all(c['n_repos'] == 1 for c in strategies.values())
     path = tmp_path / 'REPORT.md'; summarize(tmp_path, path)
     text = path.read_text()
-    assert '| 1 | N/A | N/A |' in text and 'no median, IQR or strategy rates' in text
+    assert '| 1 | N/A | N/A | N/A |' in text and 'no median, IQR or strategy rates' in text
     assert text.count('owned fixture excluded') == 1 and 'Error %' in text
     strategy_table = text.split('## Strategy survival')[1].split('## Exclusions')[0]
     assert 'N/A' in strategy_table
@@ -122,14 +122,24 @@ def test_error_ceiling_boundary_and_invalid_exclusion(tmp_path):
     assert '| 2 | 100.0000 | 0.0000 |' in path.read_text()
 
 
-def test_diagnostic_evidence_never_becomes_results(tmp_path):
-    root = tmp_path / 'diagnostic' / 'old'
+def test_diagnostic_evidence_never_becomes_results(tmp_path, monkeypatch):
+    diagnostic = tmp_path / 'study/results/diagnostic'
+    monkeypatch.setattr('study.summarize.DIAGNOSTIC_ROOT', diagnostic)
+    root = diagnostic / 'old'
     add_result(root, 'evidence', 0)
     assert read_results(tmp_path) == ([], {})
     assert read_results(root) == ([], {})
     root2 = tmp_path / 'marked'; add_result(root2, 'evidence', 0)
     (root2 / '.diagnostic-only').touch()
     assert read_results(root2) == ([], {})
+
+
+def test_unrelated_diagnostic_directory_remains_eligible(tmp_path):
+    root = tmp_path / 'diagnostic' / 'public'
+    add_result(root, 'diagnostic', 0)
+    rows, strategies = read_results(tmp_path)
+    assert len(rows) == 1 and rows[0]['eligible'] and rows[0]['repo'] == 'owner/diagnostic'
+    assert strategies
 
 
 @pytest.mark.parametrize('path,ignored', [
@@ -157,6 +167,9 @@ def test_hash_locked_harness_and_artifact_export():
     docker = (ROOT / 'study/Dockerfile').read_text()
     assert docker.count('--require-hashes') == 2 and 'apt-get' not in docker
     assert '--no-build-isolation' in docker and '--no-deps' in docker
+    licenses = {w['name']: w['license'] for w in WHEELS}
+    assert licenses['pytest-playwright'] == 'Apache-2.0'
+    assert licenses['python-discovery'] == 'MIT'
 
 
 def test_failed_baseline_resource_class_does_not_invent_mutants(tmp_path):
@@ -190,3 +203,32 @@ def test_guard_launcher_preserves_baseline_root_helper_imports(tmp_path):
                                 env=env, capture_output=True, text=True, timeout=20)
         assert result.returncode == 0, result.stdout + result.stderr
         assert 'tests/test_owned.py::test_owned' in result.stdout
+
+
+@pytest.mark.parametrize('import_mode', ['prepend', 'importlib'])
+@pytest.mark.parametrize('inject_bootstrap_paths', [False, True])
+def test_guard_launcher_matches_baseline_sys_path_and_repo_common(tmp_path, import_mode, inject_bootstrap_paths):
+    from study.process import clean_env
+    (tmp_path / 'common.py').write_text('OWNED_PROBE = True\n')
+    (tmp_path / 'tests').mkdir()
+    (tmp_path / 'tests/test_probe.py').write_text(
+        'import json, sys\nfrom pathlib import Path\nimport common\n'
+        'def test_probe():\n'
+        '    assert common.OWNED_PROBE\n'
+        '    Path("probe.json").write_text(json.dumps({"path": sys.path, "common": common.__file__}))\n')
+    env = clean_env()
+    env['STUDY_RESOURCE_LOG'] = str(tmp_path / 'resources.jsonl')
+    if inject_bootstrap_paths:
+        env['PYTHONPATH'] = os.pathsep.join([str(ROOT / 'study'), str(Path('/opt').resolve())])
+    observations = []
+    for launcher in [['-m', 'pytest'], [str(ROOT / 'study/pytest_entry.py')]]:
+        result = subprocess.run([sys.executable, *launcher, '-q', '-p', 'no:vandal',
+                                 '--import-mode=' + import_mode, 'tests/test_probe.py'],
+                                cwd=tmp_path, env=env, capture_output=True, text=True, timeout=20)
+        assert result.returncode == 0, result.stdout + result.stderr
+        observations.append(json.loads((tmp_path / 'probe.json').read_text()))
+    baseline, guarded = observations
+    removed = {ROOT / 'study', Path('/opt').resolve()}
+    assert guarded['path'] == [p for p in baseline['path'] if Path(p).resolve() not in removed]
+    assert not any(Path(p).resolve() in removed for p in guarded['path'])
+    assert Path(guarded['common']).resolve() == Path(baseline['common']).resolve() == tmp_path / 'common.py'

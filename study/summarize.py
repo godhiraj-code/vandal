@@ -11,6 +11,7 @@ from pathlib import Path
 from study.common import approval_reason, digest
 
 STATUSES = ("killed", "survived", "error", "not_applied", "skipped")
+DIAGNOSTIC_ROOT = Path(__file__).resolve().parent / "results" / "diagnostic"
 
 
 def counts(mutants):
@@ -83,7 +84,7 @@ def spread(values):
 def read_results(root):
     rows, strategies, seen = [], defaultdict(Counter), set()
     for path in sorted(root.rglob("status.json")):
-        if "diagnostic" in path.parts or any((p / ".diagnostic-only").exists() for p in path.parents):
+        if DIAGNOSTIC_ROOT in path.resolve().parents or any((p / ".diagnostic-only").exists() for p in path.parents):
             continue
         row = {"repo": str(path.parent.relative_to(root)), "commit_sha": "", "kind": "unknown",
                "group": "unknown", "status": "invalid", "reason": "", "eligible": False,
@@ -204,7 +205,8 @@ def summarize(root, report_path, *, write_fixture_attempts=False):
               "One complete, scored observation per repository; repository-weighted median, inclusive-quartile IQR and min-max spread. Guidance-only provenance, incomplete runs and invalid reports are excluded; owned fixture excluded. Median, IQR and strategy rates require at least two valid repositories.", "",
               "| n repositories | Median % | IQR percentage points | Min-max % |", "|---|---|---|---|"]
     data = spread([r["score"] for r in rows if r["eligible"]])
-    lines.append(f"| {data['n']} | {cell(data['median'])} | {cell(data['iqr'])} | {cell(data['min'])}-{cell(data['max'])} |")
+    range_text = f"{cell(data['min'])}-{cell(data['max'])}" if data['n'] >= 2 else "N/A"
+    lines.append(f"| {data['n']} | {cell(data['median'])} | {cell(data['iqr'])} | {range_text} |")
     if not data["n"]:
         lines += ["", "No eligible public results exist. No strength estimate is reported for agent-written suites."]
     lines += ["", "## Strategy survival", "",

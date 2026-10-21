@@ -44,7 +44,7 @@ One complete, scored observation per repository; repository-weighted median, inc
 
 | n repositories | Median % | IQR percentage points | Min-max % |
 |---|---|---|---|
-| 0 | N/A | N/A | N/A-N/A |
+| 0 | N/A | N/A | N/A |
 
 No eligible public results exist. No strength estimate is reported for agent-written suites.
 
