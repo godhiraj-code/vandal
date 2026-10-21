@@ -37,7 +37,9 @@ def pytest_configure(config):
         raise pytest.UsageError(str(exc)) from exc
     try:
         check_compatibility()
-    except (ValueError, ImportError, AttributeError) as exc:
+    except ValueError as exc:
+        raise pytest.UsageError(str(exc)) from exc
+    except (ImportError, AttributeError) as exc:
         raise pytest.UsageError(f"{exc} (adapter tested on Playwright 1.60.0 and 1.64.0)") from exc
     option = config.getoption("vandal_strategies")
     strategies = list(dict.fromkeys(option.split(","))) if option is not None else None
@@ -266,9 +268,14 @@ class VandalPlugin:
             inferred = []
             if any(op in CLICK_OPERATIONS for op in operations):
                 inferred += ["stealth_disable", "ghost_element", "logic_sabotage"]
-            if any(op in READ_OPERATIONS or op.startswith("expect:") for op in operations):
+            if any(op in {"press", "type", "select_option", "hover", "focus",
+                          "dispatch_event", "set_input_files"} for op in operations):
+                inferred += ["stealth_disable", "logic_sabotage"]
+            if any(op in READ_OPERATIONS or op == "type" or op.startswith("expect:") for op in operations):
                 inferred.append("data_sabotage")
-            choices[target] = self.strategies if self.strategies is not None else inferred
+            choices[target] = self.strategies if self.strategies is not None else list(dict.fromkeys(inferred))
+        test["untested_targets"] = [target for target in targets
+                                    if target in test["targets"] and not choices[target]]
         # Round-robin targets: a small cap must not exhaust one target first.
         return [(choices[t][i], t) for i in range(max(map(len, choices.values()), default=0))
                 for t in targets if i < len(choices[t])]
@@ -301,6 +308,7 @@ class VandalPlugin:
                 if baseline != "passed" or exitstatus not in (0, 1):
                     continue
                 candidates = self.candidates(test, targets)
+                entry["untested_targets"] = test["untested_targets"]
                 entry["skipped_by_cap"] = max(0, len(candidates) - self.config.getoption("vandal_max_mutants"))
                 # Atomic checkpoints let a bounded MCP caller recover completed
                 # mutants even when it must terminate the active worker tree.
@@ -337,6 +345,10 @@ class VandalPlugin:
                 f"{test['nodeid']}: {test['baseline']}, {score_text(test['summary']['score'])}, "
                 f"{test.get('skipped_by_cap', 0)} skipped by cap"
             )
+            for target in test.get("untested_targets", []):
+                terminalreporter.write_line(
+                    f"Vandal: {target} was used but no default strategy applies; pass --vandal-strategies"
+                )
         for mutant in survivors(self.report):
             terminalreporter.write_line(
                 f"SURVIVED {mutant['test']} | {mutant['strategy']} | {mutant['selector']} | {mutant['hint']}"

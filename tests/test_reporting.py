@@ -1,4 +1,5 @@
 import json
+import os
 
 import pytest
 
@@ -98,3 +99,36 @@ def test_html_json_collision_is_rejected_before_writing(tmp_path, filename):
     with pytest.raises(ValueError, match="distinct"):
         write_report(make_report([]), destination)
     assert destination.read_text(encoding="utf-8") == "existing report"
+
+
+def test_json_temporary_creation_uses_normal_file_mode(tmp_path, monkeypatch):
+    original = os.open
+    modes = []
+    def observe(path, flags, mode=0o777, **kwargs):
+        modes.append(mode)
+        return original(path, flags, mode, **kwargs)
+    monkeypatch.setattr(os, "open", observe)
+    write_report(make_report([]), tmp_path / "report.json")
+    assert modes == [0o666]
+
+
+@pytest.mark.skipif(os.name == "nt", reason="Windows does not implement POSIX file mode/umask semantics")
+@pytest.mark.parametrize("mask", [0o022, 0o027, 0o077])
+def test_json_report_permissions_follow_umask(tmp_path, mask):
+    import stat
+    import subprocess
+    import sys
+    # Change the umask in a child, never in the test runner or another thread.
+    source = '''
+import os, sys
+from pathlib import Path
+from vandal.reporting import make_report, write_report
+os.umask(int(sys.argv[2]))
+write_report(make_report([]), Path(sys.argv[1]))
+'''
+    path = tmp_path / "report.json"
+    for existing in (False, True):
+        if existing:
+            path.chmod(0o600)
+        subprocess.run([sys.executable, "-c", source, str(path), str(mask)], check=True)
+        assert stat.S_IMODE(path.stat().st_mode) == 0o666 & ~mask

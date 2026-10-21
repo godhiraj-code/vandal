@@ -182,6 +182,7 @@ Frame._click = None
     run, report = run_suite(tmp_path, "def test_never(): assert False", "--vandal", conftest=conftest)
     assert run.returncode == 4
     assert "Frame._click" in run.stderr and "1.60.0 and 1.64.0" in run.stderr
+    assert run.stderr.count("1.60.0 and 1.64.0") == 1
     assert report is None
 
 
@@ -258,3 +259,75 @@ def test_slow(page):
     assert "Incomplete run: deadline reached" in html
     assert "completed mutants only" in html
     assert "test_partial.py::test_first" in html and "survived" in html
+
+
+@pytest.mark.parametrize("operation", ["press", "type", "select_option", "hover",
+                                       "focus", "dispatch_event", "set_input_files"])
+def test_remaining_action_defaults(operation):
+    planner = SimpleNamespace(strategies=None)
+    test = {"explicit": None, "targets": {"#q": {"operations": [operation]}}}
+    expected = ["stealth_disable", "logic_sabotage"]
+    if operation == "type":
+        expected.append("data_sabotage")
+    assert VandalPlugin.candidates(planner, test, ["#q"]) == [(s, "#q") for s in expected]
+    assert test["untested_targets"] == []
+    test["targets"]["#q"]["operations"] += ["click", "fill"]
+    pairs = VandalPlugin.candidates(planner, test, ["#q"])
+    assert len(pairs) == len(set(pairs))
+
+
+@pytest.mark.parametrize("api", ["sync", "async"])
+def test_select_option_and_press_get_default_mutants(tmp_path, api):
+    html = '<select id="s"><option value="a">A</option><option value="b">B</option></select><input id="q">'
+    wait = "await " if api == "async" else ""
+    source = f'''
+import pytest
+{"@pytest.mark.asyncio" if api == "async" else ""}
+{"async " if api == "async" else ""}def test_input(ready):
+    {wait}ready.locator("#s").select_option("b", timeout=1500)
+    {wait}ready.locator("#q").press("a", timeout=1500)
+'''
+    run, report = run_suite(tmp_path, source, "--vandal", conftest=fixture(api, html))
+    assert run.returncode == 0, run.stdout + run.stderr
+    test = report["tests"][0]
+    assert test["baseline"] == "passed", report
+    assert test["untested_targets"] == []
+    assert [(m["strategy"], m["selector"]) for m in test["mutants"]] == [
+        ("stealth_disable", "#s"), ("stealth_disable", "#q"),
+        ("logic_sabotage", "#s"), ("logic_sabotage", "#q")]
+    assert all(m["status"] in ("killed", "survived") for m in test["mutants"]), report
+
+
+@pytest.mark.parametrize("explicit", [False, True])
+def test_untested_defaults_are_separate_from_cap(tmp_path, explicit):
+    # Simulate an observed extension operation without a default policy.
+    conftest = '''
+from vandal.instrumentation import Instrumentation
+original_record = Instrumentation.record
+def record(self, selector, operation, kwargs):
+    original_record(self, selector, "extension_read" if selector == "#q" else operation, kwargs)
+Instrumentation.record = record
+'''
+    source = '''
+def test_flow(page):
+    page.set_content('<input id="q"><button id="b">Go</button>')
+    page.locator("#q").count()
+    page.locator("#b").click(timeout=1500)
+'''
+    args = ["--vandal", "--vandal-max-mutants=1"]
+    if explicit:
+        args.append("--vandal-strategies=logic_sabotage")
+    run, report = run_suite(tmp_path, source, *args, conftest=conftest)
+    assert run.returncode == 0, run.stdout + run.stderr
+    test = report["tests"][0]
+    assert test["untested_targets"] == ([] if explicit else ["#q"])
+    assert test["skipped_by_cap"] == (1 if explicit else 2)
+    warning = "Vandal: #q was used but no default strategy applies; pass --vandal-strategies"
+    assert (warning in run.stdout) == (not explicit)
+    assert "Vandal: #b was used but no default strategy applies" not in run.stdout
+    import jsonschema
+    schema = json.loads((Path(__file__).parents[1] / "docs/report-schema.json").read_text())
+    jsonschema.validate(report, schema)
+    test["untested_targets"] = [1]
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(report, schema)

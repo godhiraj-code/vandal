@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Infer defaults for remaining observed input actions, report unsupported default
+  targets separately from cap omissions, and respect umask for JSON reports.
+- Remove redundant adapter diagnostics and unused locator factory code; refresh
+  the module overview and remove the internal PR checklist.
+
 - Preserve baseline pytest file logs across mutation workers and label deadline
   HTML reports as incomplete while retaining completed mutant results.
 

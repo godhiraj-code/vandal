@@ -177,9 +177,12 @@ The HTML report escapes test names, selectors and failure text.
 
 Start with `logic_sabotage` for a click-and-assert flow. Default strategies follow observed usage: click/dblclick/tap/check/uncheck
 (and set_checked) use stealth_disable, ghost_element and logic_sabotage; reads,
-Locator assertions and fill use data_sabotage. A target used both ways gets both
-sets. Explicit marker aliases inherit observed test usage if there is no exact
-selector match. Targets with no supported usage get no default candidates.
+Locator assertions and fill use data_sabotage. Press, type, select_option, hover,
+focus, dispatch_event and set_input_files use stealth_disable and logic_sabotage;
+type also uses data_sabotage. A target used multiple ways gets the combined set
+without duplicates. Explicit marker aliases inherit observed test usage if there
+is no exact selector match. Observed targets without supported defaults appear
+in untested_targets and a terminal warning, separately from skipped_by_cap.
 ui_shift and slow_load require explicit --vandal-strategies selection.
 Do not compare scores from different strategy/target sets as if they were identical.
 
