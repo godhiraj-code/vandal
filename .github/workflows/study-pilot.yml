@@ -13,12 +13,20 @@ concurrency:
   cancel-in-progress: false
 jobs:
   pilot:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment: study-pilot
     permissions:
       contents: read
     timeout-minutes: 60
     steps:
+      - name: Require configured environment reviewer gate
+        env:
+          GATE: ${{ vars.STUDY_PILOT_GATE }}
+        run: |
+          if [ "$GATE" != "reviewer-configured" ]; then
+            echo "Study pilot blocked: configure the required reviewer and set STUDY_PILOT_GATE=reviewer-configured only inside the study-pilot environment."
+            exit 1
+          fi
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         id: checkout
         with:

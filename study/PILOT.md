@@ -10,6 +10,12 @@ does not dispatch or authorize an unattended run now. Talkvote remains unapprove
 Dhiraj must create the **study-pilot** environment in repository Settings >
 Environments and add himself as a required reviewer before any dispatch. Verify
 the required-reviewer protection is saved and applies to the selected branch.
+Only after that configuration, add the environment variable **STUDY_PILOT_GATE**
+with value **reviewer-configured**, only inside **study-pilot**. Do not add it as a
+repository or organization variable: the workflow expression can inherit those
+scopes, so correct placement must be checked by the human configuring the gate.
+The first step fails before checkout unless the value matches exactly. This marker
+records the human's configuration attestation; it does not inspect reviewer settings.
 Do not dispatch with an absent or unprotected environment: the workflow's environment
 name alone does not establish protection. No environment, setting or secret was
 created by this change. No secrets are required. If self-review prevention is enabled,
@@ -59,10 +65,14 @@ In Actions > Manual study pilot > Run workflow, select the reviewed ref and past
 the exact token into the required `confirm` input. Review/approve the pending
 study-pilot environment job. The workflow is workflow_dispatch-only, has read-only
 contents permissions at both levels, SHA-pinned actions, nonpersistent checkout
-credentials, a 60-minute job deadline and one shared concurrency group.
+credentials, an ubuntu-24.04 runner, a 60-minute job deadline and one shared concurrency group.
 
 It builds the owned image from that checkout and prints/stores its immutable sha256
-ID. Host acquisition uses bare pinned Git fetch/archive with no candidate checkout,
+ID.
+The base image is pinned to the digest resolved by [the prior Docker CI job](https://github.com/godhiraj-code/vandal/actions/runs/39603296307/job/119232982704):
+`sha256:684df257a1fa0ef3fa288239819984008f560e8f8db5b635ee9e2a50cbcd2e23`.
+The digest, rather than the moving tag, determines the base even with `--pull`.
+Host acquisition uses bare pinned Git fetch/archive with no candidate checkout,
 imports, installation, hooks or submodules. Dependency downloads are wheels only.
 Candidate installation and tests run exclusively in the existing bounded container
 with network none, read-only root, UID 10001, cap-drop ALL and no host credentials or

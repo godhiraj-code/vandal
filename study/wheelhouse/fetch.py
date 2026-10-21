@@ -25,7 +25,7 @@ def manifest(directory, metadata):
             raise ValueError("wheel differs from reviewed hash: " + name)
         rows.append({"filename": name, "sha256": sha, "license": item["license"]})
     with (directory / "MANIFEST.csv").open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=["filename", "sha256", "license"])
+        writer = csv.DictWriter(stream, fieldnames=["filename", "sha256", "license"], lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     return rows

@@ -103,11 +103,39 @@ def test_wheel_manifest_checks_hashes_and_is_not_a_dependency(tmp_path):
     wheel.write_bytes(b"owned test data, not imported")
     item = {"filename": wheel.name, "sha256": digest(wheel), "license": "MIT"}
     assert manifest(tmp_path, [item])[0] == item
+    manifest_bytes = (tmp_path / "MANIFEST.csv").read_bytes()
+    assert b"\r" not in manifest_bytes
+    assert manifest_bytes == ("filename,sha256,license\n" +
+                              f"{wheel.name},{item['sha256']},MIT\n").encode("utf-8")
     assert wheel_hashes(tmp_path) == {wheel.name: item["sha256"]}
     (tmp_path / "MANIFEST.csv").unlink()
     wheel.write_bytes(b"changed")
     with pytest.raises(ValueError, match="hash"):
         manifest(tmp_path, [item])
+
+
+def test_pilot_first_step_requires_environment_gate_before_checkout():
+    text = (ROOT / ".github/workflows/study-pilot.yml").read_text()
+    first = text.split("    steps:\n", 1)[1].split("      - ")[1]
+    assert first.startswith("name: Require configured environment reviewer gate\n")
+    assert "GATE: ${{ vars.STUDY_PILOT_GATE }}" in first
+    script = first.split("        run: |\n", 1)[1]
+    assert script.strip().startswith('if [ "$GATE" != "reviewer-configured" ]; then')
+    assert 'echo "Study pilot blocked:' in script
+    assert "exit 1\n" in script and script.strip().endswith("fi")
+    assert "uses:" not in first
+    assert "runs-on: ubuntu-24.04\n" in text and "ubuntu-latest" not in text
+    guide = (ROOT / "study/PILOT.md").read_text()
+    assert "only inside **study-pilot**" in guide
+    assert "repository or organization variable" in guide
+
+
+def test_docker_base_is_pinned_to_prior_ci_resolved_digest():
+    text = (ROOT / "study/Dockerfile").read_text()
+    expected = ("mcr.microsoft.com/playwright/python:v1.64.0-noble@sha256:"
+                "684df257a1fa0ef3fa288239819984008f560e8f8db5b635ee9e2a50cbcd2e23")
+    assert re.findall(r"^FROM (.+)$", text, re.MULTILINE) == [expected]
+    assert "119232982704" in text
 
 
 def test_download_is_binary_only_hash_locked_and_has_clean_environment(tmp_path, monkeypatch):
