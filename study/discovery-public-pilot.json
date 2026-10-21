@@ -5158,8 +5158,8 @@
     "test_commit": 4
   },
   "total_candidates_by_evidence_type": {
-    "test_commit": 13,
-    "agent_pr": 1
+    "test_commit": 14,
+    "agent_pr": 2
   },
   "new_10_to_150_offline_proposals": 1,
   "public_code_executed": false,
@@ -5170,5 +5170,3632 @@
     "Generic fetch rejects commit-search/license API endpoint shapes; supported commit-search and pinned file reads used. No credentials retrieved.",
     "Zero tracked calls can reflect conservative syntax limitations, not proof a runtime suite is unscoreable.",
     "No five new qualifying offline-ready repositories found; only one new proposal, not yet installed or run."
-  ]
+  ],
+  "extension": {
+    "searches": [
+      {
+        "query": "playwright pytest \"Co-authored-by: Claude\" \"MIT\"",
+        "evidence_type": "commit_search",
+        "topn": 30,
+        "returned": 30,
+        "hits": [
+          {
+            "repo": "dodjango/tasmota-auto-updater",
+            "sha": "f08e6c7236a0f3e9ba3e3a111037677192566688",
+            "evidence_url": "https://github.com/dodjango/tasmota-auto-updater/commit/f08e6c7236a0f3e9ba3e3a111037677192566688",
+            "title": "test: bootstrap Playwright e2e harness and test-strategy plan (#77)"
+          },
+          {
+            "repo": "MindaugasSarpis/slidev-videos",
+            "sha": "c07d08f18a0fe35dde18ef9e71d1cb395c76d265",
+            "evidence_url": "https://github.com/MindaugasSarpis/slidev-videos/commit/c07d08f18a0fe35dde18ef9e71d1cb395c76d265",
+            "title": "chore: CI (pytest + example build + smoke), real README, MIT LICENSE"
+          },
+          {
+            "repo": "KanujVerma/job-alert",
+            "sha": "522bce80c63a96fcfee42c2cea39bd5509040f64",
+            "evidence_url": "https://github.com/KanujVerma/job-alert/commit/522bce80c63a96fcfee42c2cea39bd5509040f64",
+            "title": "chore: add MIT license and split test deps out of runtime requirements"
+          },
+          {
+            "repo": "bitwerkstatt/ostbevern_money",
+            "sha": "bcb27b6cb8852aa95bf4e6afc476a7f5dc498a48",
+            "evidence_url": "https://github.com/bitwerkstatt/ostbevern_money/commit/bcb27b6cb8852aa95bf4e6afc476a7f5dc498a48",
+            "title": "docs(09-15): Abschlusslauf der CI-Kette auf dem Endstand"
+          },
+          {
+            "repo": "bitwerkstatt/ostbevern_money",
+            "sha": "83c79d434f4e7d37ed1cb4eb61416d9847fe96f7",
+            "evidence_url": "https://github.com/bitwerkstatt/ostbevern_money/commit/83c79d434f4e7d37ed1cb4eb61416d9847fe96f7",
+            "title": "docs(09-10): 07-VERIFICATION Re-Verifikation gegen den Endstand mit Fingerprint"
+          },
+          {
+            "repo": "Attila0604/Soraya-Agent",
+            "sha": "8f542859f1d5e9b10d3789b083ae48421e920002",
+            "evidence_url": "https://github.com/Attila0604/Soraya-Agent/commit/8f542859f1d5e9b10d3789b083ae48421e920002",
+            "title": "Tests ins Repo und Kurzbeschreibung fuer neue Chats (#14)"
+          },
+          {
+            "repo": "EduTheMan9/om-toolkit",
+            "sha": "4ce9b2dd06dbc794542cb48fb2b908a7c338a1b6",
+            "evidence_url": "https://github.com/EduTheMan9/om-toolkit/commit/4ce9b2dd06dbc794542cb48fb2b908a7c338a1b6",
+            "title": "ci: add GitHub Actions (pytest, vitest+build, Playwright) and MIT license"
+          },
+          {
+            "repo": "SheylaSam/prisma-capstone",
+            "sha": "1aba45fae724b22409cc8749df48d246caf5d088",
+            "evidence_url": "https://github.com/SheylaSam/prisma-capstone/commit/1aba45fae724b22409cc8749df48d246caf5d088",
+            "title": "feat(frontend): Rankings-Detail — Sortierung, Filter, CSV-Export (Closes #21) (#126)"
+          },
+          {
+            "repo": "Neopram/whetzy",
+            "sha": "20371a6b478273c2ba0a3e05407b2959ef4c5857",
+            "evidence_url": "https://github.com/Neopram/whetzy/commit/20371a6b478273c2ba0a3e05407b2959ef4c5857",
+            "title": "feat: add source index entries for tracks 26/28/29/30"
+          },
+          {
+            "repo": "don69andrea/prisma-v2",
+            "sha": "78fde942fb142bf44325d439d36b70105ae66655",
+            "evidence_url": "https://github.com/don69andrea/prisma-v2/commit/78fde942fb142bf44325d439d36b70105ae66655",
+            "title": "feat(frontend): Rankings-Detail — Sortierung, Filter, CSV-Export (Closes #21) (#126)"
+          },
+          {
+            "repo": "tolgaguensal-lab/tatilvakti",
+            "sha": "555f1ac7933358ac8264cbf0a5f65a3b67910221",
+            "evidence_url": "https://github.com/tolgaguensal-lab/tatilvakti/commit/555f1ac7933358ac8264cbf0a5f65a3b67910221",
+            "title": "CI: GitHub Actions für pytest (3.10/3.13), Shell-Prüfung und Browser-Tests"
+          },
+          {
+            "repo": "Diegofuego871/ha-device-panel",
+            "sha": "f1b4f934a3e8c818f5d2e1d0bab992a9f8f4ad4f",
+            "evidence_url": "https://github.com/Diegofuego871/ha-device-panel/commit/f1b4f934a3e8c818f5d2e1d0bab992a9f8f4ad4f",
+            "title": "0.1.0: Projektstart"
+          },
+          {
+            "repo": "LuckyTriple7/HA-AddOns",
+            "sha": "29a27fcf3e870bb5e42cec0a5978180ecf14cf84",
+            "evidence_url": "https://github.com/LuckyTriple7/HA-AddOns/commit/29a27fcf3e870bb5e42cec0a5978180ecf14cf84",
+            "title": "test(tuiwatch): Regressionstests fuers Parsing + CI, playwright lazy (0.17.0)"
+          },
+          {
+            "repo": "ellmos-ai/ellmos-tests",
+            "sha": "ca031fe8001a5b40c9e1c8fab938aed49ee10e49",
+            "evidence_url": "https://github.com/ellmos-ai/ellmos-tests/commit/ca031fe8001a5b40c9e1c8fab938aed49ee10e49",
+            "title": "Zertifizierung: UC-Katalog-Generator, Modul-Manifeste, Playwright-Beispiele (Fremdarbeit)"
+          },
+          {
+            "repo": "peppigminze/Cypher",
+            "sha": "1c9c9f5f83ec7b5a669b0af3308568c54055f11a",
+            "evidence_url": "https://github.com/peppigminze/Cypher/commit/1c9c9f5f83ec7b5a669b0af3308568c54055f11a",
+            "title": "FIX2 Punkt 3: Abschluss - Testand, Commits, offene Punkte"
+          },
+          {
+            "repo": "Kainoa00/mooz",
+            "sha": "0a9690b129316638973aa42601b1267c80cec31c",
+            "evidence_url": "https://github.com/Kainoa00/mooz/commit/0a9690b129316638973aa42601b1267c80cec31c",
+            "title": "chore: scaffold web app, bridge package, and CI"
+          },
+          {
+            "repo": "MidlightDDK/filinglens",
+            "sha": "63d78ea80e28fc99fa857ccf8a816da189a09327",
+            "evidence_url": "https://github.com/MidlightDDK/filinglens/commit/63d78ea80e28fc99fa857ccf8a816da189a09327",
+            "title": "chore: scaffold workspace, placeholder Worker, and CI (M0)"
+          },
+          {
+            "repo": "roland1910/Familienkalender",
+            "sha": "c03a490c2335888f1ac85c197ac0ee01f6d27016",
+            "evidence_url": "https://github.com/roland1910/Familienkalender/commit/c03a490c2335888f1ac85c197ac0ee01f6d27016",
+            "title": "Etappe 3: Demo-Seed und E2E-Testinfrastruktur (TDD)"
+          },
+          {
+            "repo": "frederikbeimgraben/Kinoko",
+            "sha": "d9ca5edeaa3a876f5e50d777a70c0ce44150ee5c",
+            "evidence_url": "https://github.com/frederikbeimgraben/Kinoko/commit/d9ca5edeaa3a876f5e50d777a70c0ce44150ee5c",
+            "title": "U0 Werkzeuge: Screenshot-Prüfung, Flüsse, Lighthouse, Vertrag und Lint (#103)"
+          },
+          {
+            "repo": "craebby/FamQuest",
+            "sha": "4d9b051cd6d790a8c13a68b3102c8494b7c84533",
+            "evidence_url": "https://github.com/craebby/FamQuest/commit/4d9b051cd6d790a8c13a68b3102c8494b7c84533",
+            "title": "Etappe 5: Familienansicht mit Abhaken und Navigationsleiste"
+          },
+          {
+            "repo": "iilgmbh/iil-klickdummy",
+            "sha": "3f533543f81cadc481cc32b2b253f268e0e8b921",
+            "evidence_url": "https://github.com/iilgmbh/iil-klickdummy/commit/3f533543f81cadc481cc32b2b253f268e0e8b921",
+            "title": "fix(gen-e2e): pytest.importorskip(\"playwright\") im generierten Output (T-01) (v1.22.1) (#53)"
+          },
+          {
+            "repo": "Tabsi1998/THE-LION_SQUAD-eSPORT-Webseite",
+            "sha": "5c4c96e0ee66a87e0ac2724f1de09e8e52000dff",
+            "evidence_url": "https://github.com/Tabsi1998/THE-LION_SQUAD-eSPORT-Webseite/commit/5c4c96e0ee66a87e0ac2724f1de09e8e52000dff",
+            "title": "Anmeldung mit Passkey: Knopf, Vorschlag und Registrierung nach Standard (#1533)"
+          },
+          {
+            "repo": "straussbastian/ai_flashcards_for_school",
+            "sha": "1d8cb9ecc63aaa475d2a585c01f535e666e8a0e9",
+            "evidence_url": "https://github.com/straussbastian/ai_flashcards_for_school/commit/1d8cb9ecc63aaa475d2a585c01f535e666e8a0e9",
+            "title": "CI installiert Chromium und ruft die Browsertests ausdruecklich auf"
+          },
+          {
+            "repo": "descipar/marktcrawler",
+            "sha": "10154a4a8d7cef40a2c90d3056e48e9aa34687b7",
+            "evidence_url": "https://github.com/descipar/marktcrawler/commit/10154a4a8d7cef40a2c90d3056e48e9aa34687b7",
+            "title": "feat: Playwright UI-Tests für alle kritischen Frontend-Features (Prio 1-3)"
+          },
+          {
+            "repo": "MauricePutinas/SiteScan",
+            "sha": "0d890d40ed1188cf6b7a14d3f6b60f02b771d3ca",
+            "evidence_url": "https://github.com/MauricePutinas/SiteScan/commit/0d890d40ed1188cf6b7a14d3f6b60f02b771d3ca",
+            "title": "SiteScan v1.0 – 60-Sekunden Website-Audit & Conversion-Roast"
+          },
+          {
+            "repo": "wayneliu0297/renovation-quotation-system",
+            "sha": "13b51a354447e8ec40a90c66c7594f7cb83a0066",
+            "evidence_url": "https://github.com/wayneliu0297/renovation-quotation-system/commit/13b51a354447e8ec40a90c66c7594f7cb83a0066",
+            "title": "ci: add GitHub Actions test workflow; docs: screenshot, badges, MIT license"
+          },
+          {
+            "repo": "craebby/FamQuest",
+            "sha": "1ea13b537c36187487557547ceafd3f662988aca",
+            "evidence_url": "https://github.com/craebby/FamQuest/commit/1ea13b537c36187487557547ceafd3f662988aca",
+            "title": "Etappe 8d: Familie im Elternbereich einstellbar"
+          },
+          {
+            "repo": "peppigminze/Cypher",
+            "sha": "4fcb445093c0921f5b92c55d62c5f05c19e5a206",
+            "evidence_url": "https://github.com/peppigminze/Cypher/commit/4fcb445093c0921f5b92c55d62c5f05c19e5a206",
+            "title": "Doku und Testlauf: Sicherheitsmodell nachgefuehrt, pytest --basetemp fest"
+          },
+          {
+            "repo": "eidos-agi/eidos-mcp-registry",
+            "sha": "ba28b0503379ce43bceec04329403f0b4ca12123",
+            "evidence_url": "https://github.com/eidos-agi/eidos-mcp-registry/commit/ba28b0503379ce43bceec04329403f0b4ca12123",
+            "title": "Add PyPI packaging metadata, MIT license, and CI workflow"
+          },
+          {
+            "repo": "janpow77/auditcore",
+            "sha": "8765504b406efc41b2b28556b850f45e3a92a029",
+            "evidence_url": "https://github.com/janpow77/auditcore/commit/8765504b406efc41b2b28556b850f45e3a92a029",
+            "title": "feat(ui,dataprotection): Oberfläche VVT und DSFA mit REST-Modul (auditcore_dataprotection 0.5.0) (#146)"
+          }
+        ]
+      },
+      {
+        "query": "playwright pytest \"Co-authored-by: Cursor\" \"offline\"",
+        "evidence_type": "commit_search",
+        "topn": 30,
+        "returned": 30,
+        "hits": [
+          {
+            "repo": "arun-idhunaal/RAG_Chatbot",
+            "sha": "84d8c560d52f697a0bb7462eba6ec2f13721681f",
+            "evidence_url": "https://github.com/arun-idhunaal/RAG_Chatbot/commit/84d8c560d52f697a0bb7462eba6ec2f13721681f",
+            "title": "Clean repo for Streamlit Cloud after Phases 1–6 audit."
+          },
+          {
+            "repo": "mohamd764/shadow-dom-booking-scraper",
+            "sha": "6bb06780c39dbd9313f9fcea214300c1cc42b70f",
+            "evidence_url": "https://github.com/mohamd764/shadow-dom-booking-scraper/commit/6bb06780c39dbd9313f9fcea214300c1cc42b70f",
+            "title": "Turn the one-off scraper into a reusable shadow-DOM package (#1)"
+          },
+          {
+            "repo": "AnshSinghal-CyberUltron/AI_Mesh_Firewall",
+            "sha": "5d5e05edb4ac2f316d5e4c1821e17096a152df85",
+            "evidence_url": "https://github.com/AnshSinghal-CyberUltron/AI_Mesh_Firewall/commit/5d5e05edb4ac2f316d5e4c1821e17096a152df85",
+            "title": "ralph(E1-openai-sdk-frontend-playwright): WIP gate robustness; live gates blocked by Docker daemon"
+          },
+          {
+            "repo": "piyushtater158-cpu/brand-deal-inbox-triage",
+            "sha": "cb42ebb212f1009594c7e2df569f6881fdf6c820",
+            "evidence_url": "https://github.com/piyushtater158-cpu/brand-deal-inbox-triage/commit/cb42ebb212f1009594c7e2df569f6881fdf6c820",
+            "title": "Fix browser field edits, vendor HTMX, unique DM IDs, Indian Rs tiles; add container smoke and browser tests"
+          },
+          {
+            "repo": "BabyNejii/corruption-fucker",
+            "sha": "e4735d6205114682e775cbe591d9989830db11a3",
+            "evidence_url": "https://github.com/BabyNejii/corruption-fucker/commit/e4735d6205114682e775cbe591d9989830db11a3",
+            "title": "Implement Python procurement scraper (apps/scraper)"
+          },
+          {
+            "repo": "bob4o-afk/svineklanica",
+            "sha": "e4735d6205114682e775cbe591d9989830db11a3",
+            "evidence_url": "https://github.com/bob4o-afk/svineklanica/commit/e4735d6205114682e775cbe591d9989830db11a3",
+            "title": "Implement Python procurement scraper (apps/scraper)"
+          },
+          {
+            "repo": "micytao/vllm-playground",
+            "sha": "175db12ea28769417a0b0a8c6455ba548a500d0c",
+            "evidence_url": "https://github.com/micytao/vllm-playground/commit/175db12ea28769417a0b0a8c6455ba548a500d0c",
+            "title": "ci: add layered test suite + GitHub Actions CI/CD pipeline"
+          },
+          {
+            "repo": "jvelasca/Bolsa_V1",
+            "sha": "0bb09e711e70dce7d6d634fcb476d147a13957a0",
+            "evidence_url": "https://github.com/jvelasca/Bolsa_V1/commit/0bb09e711e70dce7d6d634fcb476d147a13957a0",
+            "title": "docs(v2.55): CI del sello v2.55-beta medida y citada por su run (§12 del audit-pack)"
+          },
+          {
+            "repo": "zonzideka/asterun",
+            "sha": "b5100562133c8c80de31f33a5555468f1ae91f37",
+            "evidence_url": "https://github.com/zonzideka/asterun/commit/b5100562133c8c80de31f33a5555468f1ae91f37",
+            "title": "按平台放行 Linux x86_64 的 Antigravity CLI 1.2.0 profile (#8)"
+          },
+          {
+            "repo": "cheafi/Trading-bot-CC",
+            "sha": "09646728a2d463f6cd84950f5e7843c1bf8b3a76",
+            "evidence_url": "https://github.com/cheafi/Trading-bot-CC/commit/09646728a2d463f6cd84950f5e7843c1bf8b3a76",
+            "title": "CC upgrade: ops i18n, screening yield, BDR brief, investor UX (#26)"
+          },
+          {
+            "repo": "jmjava/tekton-dag",
+            "sha": "836936d0593b37a75a04817e345f1c12a0f82344",
+            "evidence_url": "https://github.com/jmjava/tekton-dag/commit/836936d0593b37a75a04817e345f1c12a0f82344",
+            "title": "Organize tekton-dag for academic review (SEIP later, no 2026 deadline) (#12)"
+          },
+          {
+            "repo": "FLYERGLITCHY/ML-iPhone-responsibility",
+            "sha": "bafde1b0a05b02fe7434f5de3bd811c499777e4d",
+            "evidence_url": "https://github.com/FLYERGLITCHY/ML-iPhone-responsibility/commit/bafde1b0a05b02fe7434f5de3bd811c499777e4d",
+            "title": "End-to-end Avito iPhone valuation pipeline (scraper, cleaner, training, evaluator) (#1)"
+          },
+          {
+            "repo": "Fearplay/applypilot-ai",
+            "sha": "610777dac31a876da1e8d2900cc1af1d1465457b",
+            "evidence_url": "https://github.com/Fearplay/applypilot-ai/commit/610777dac31a876da1e8d2900cc1af1d1465457b",
+            "title": "feat(settings,build): keyring-backed in-app settings + Windows EXE builder"
+          },
+          {
+            "repo": "jvelasca/english-tutor",
+            "sha": "efe4d450395dabc6f21cba20a06fe1d4b6cb4932",
+            "evidence_url": "https://github.com/jvelasca/english-tutor/commit/efe4d450395dabc6f21cba20a06fe1d4b6cb4932",
+            "title": "release(v3.88.0): la espera se ve, el diccionario dice los 2-3 significados principales, la cache de diccionario se precalienta y se mide, y se estudia el diccionario offline (solo estudio, sin empaquetar)"
+          },
+          {
+            "repo": "jvelasca/english-tutor",
+            "sha": "e55b96dad1e73455d114e530dd233984511d55cb",
+            "evidence_url": "https://github.com/jvelasca/english-tutor/commit/e55b96dad1e73455d114e530dd233984511d55cb",
+            "title": "﻿release(v3.91.0): el diccionario pasa a motor de sentidos y la inversa deja de barrer la tabla"
+          },
+          {
+            "repo": "jvelasca/english-tutor",
+            "sha": "9a4e70a50b0c1f0e674e6d974cc0249c52a2ccc1",
+            "evidence_url": "https://github.com/jvelasca/english-tutor/commit/9a4e70a50b0c1f0e674e6d974cc0249c52a2ccc1",
+            "title": "release(v3.69.0): E2E + Adaptive Engine Validation"
+          },
+          {
+            "repo": "therealronin23/atlas",
+            "sha": "009a4d8d6bdde56ea02519ed32826ccb0bdabb31",
+            "evidence_url": "https://github.com/therealronin23/atlas/commit/009a4d8d6bdde56ea02519ed32826ccb0bdabb31",
+            "title": "Cold self-audit loop + postmortem hardening (v0.9.0) (#5)"
+          },
+          {
+            "repo": "Manavp7/PathogenRadar",
+            "sha": "a6e45d1736e19e66f369c557a4ea11874d56d70a",
+            "evidence_url": "https://github.com/Manavp7/PathogenRadar/commit/a6e45d1736e19e66f369c557a4ea11874d56d70a",
+            "title": "PathogenRadar — national disease-intelligence platform (Phase 1 + 2 + 3) (#1)"
+          },
+          {
+            "repo": "zhuocun/agent",
+            "sha": "a9f3b3dbde1fbe4a27ec8019968806e82b1045a3",
+            "evidence_url": "https://github.com/zhuocun/agent/commit/a9f3b3dbde1fbe4a27ec8019968806e82b1045a3",
+            "title": "Establish Playwright E2E coverage instrumentation and expand suite to 152 tests (#228)"
+          },
+          {
+            "repo": "AmitabhainArunachala/Bunki-app",
+            "sha": "812a85b7832edbec4fd51707eb5690df675ad8fa",
+            "evidence_url": "https://github.com/AmitabhainArunachala/Bunki-app/commit/812a85b7832edbec4fd51707eb5690df675ad8fa",
+            "title": "Live-session UX + Mac desktop shell + CN fine-toothed sweep (62-finding ledger) (#85)"
+          },
+          {
+            "repo": "tenstorrent/tt-studio",
+            "sha": "8d622a0a69be48700f47ecb80a82f299a397f1e4",
+            "evidence_url": "https://github.com/tenstorrent/tt-studio/commit/8d622a0a69be48700f47ecb80a82f299a397f1e4",
+            "title": "Rc v2.9.0 (#1157)"
+          },
+          {
+            "repo": "hidjq/swe-marathon-easy-generation",
+            "sha": "3f137bad8b015b57bf753fc68a057e644e564505",
+            "evidence_url": "https://github.com/hidjq/swe-marathon-easy-generation/commit/3f137bad8b015b57bf753fc68a057e644e564505",
+            "title": "Fix slack-clone task canary coverage (#65)"
+          },
+          {
+            "repo": "abundant-ai/swe-marathon",
+            "sha": "3f137bad8b015b57bf753fc68a057e644e564505",
+            "evidence_url": "https://github.com/abundant-ai/swe-marathon/commit/3f137bad8b015b57bf753fc68a057e644e564505",
+            "title": "Fix slack-clone task canary coverage (#65)"
+          },
+          {
+            "repo": "nastechresearch/nastech-agent",
+            "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "evidence_url": "https://github.com/nastechresearch/nastech-agent/commit/9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "title": "perf(state): external-content FTS + tool-row-free trigram index (schema v23) (#65798)"
+          },
+          {
+            "repo": "Zhaowief/hermes-agent",
+            "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "evidence_url": "https://github.com/Zhaowief/hermes-agent/commit/9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "title": "perf(state): external-content FTS + tool-row-free trigram index (schema v23) (#65798)"
+          },
+          {
+            "repo": "sligo-droid/hermes-agent",
+            "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "evidence_url": "https://github.com/sligo-droid/hermes-agent/commit/9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "title": "perf(state): external-content FTS + tool-row-free trigram index (schema v23) (#65798)"
+          },
+          {
+            "repo": "mauzhi/hermes-dashboard",
+            "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "evidence_url": "https://github.com/mauzhi/hermes-dashboard/commit/9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "title": "perf(state): external-content FTS + tool-row-free trigram index (schema v23) (#65798)"
+          },
+          {
+            "repo": "chidionyema/hermes-agent",
+            "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "evidence_url": "https://github.com/chidionyema/hermes-agent/commit/9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "title": "perf(state): external-content FTS + tool-row-free trigram index (schema v23) (#65798)"
+          },
+          {
+            "repo": "sjuxax/hermes-agent",
+            "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "evidence_url": "https://github.com/sjuxax/hermes-agent/commit/9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "title": "perf(state): external-content FTS + tool-row-free trigram index (schema v23) (#65798)"
+          },
+          {
+            "repo": "imxiaoxin13/Hermes",
+            "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "evidence_url": "https://github.com/imxiaoxin13/Hermes/commit/9acc4b47f5b2abda0949d07372ecf67938d50a16",
+            "title": "perf(state): external-content FTS + tool-row-free trigram index (schema v23) (#65798)"
+          }
+        ]
+      },
+      {
+        "query": "playwright pytest \"Co-authored-by: Copilot\" \"static\"",
+        "evidence_type": "commit_search",
+        "topn": 30,
+        "returned": 30,
+        "hits": [
+          {
+            "repo": "sslivins/arctic-controller",
+            "sha": "0c5515c46ddaa4392088dc52e8299f529fdc526c",
+            "evidence_url": "https://github.com/sslivins/arctic-controller/commit/0c5515c46ddaa4392088dc52e8299f529fdc526c",
+            "title": "ci: host-side fast test gate + merge-queue readiness (#100)"
+          },
+          {
+            "repo": "tegataiprime/Platelet-Movie",
+            "sha": "14664611814b126289f291ad24ee294102efb07c",
+            "evidence_url": "https://github.com/tegataiprime/Platelet-Movie/commit/14664611814b126289f291ad24ee294102efb07c",
+            "title": "Fix runtime filter toggle visibility bug + add Playwright UI regression suite (#85)"
+          },
+          {
+            "repo": "gandie/Interfaces-2026",
+            "sha": "cef668b555336218c0c27dce2a7e4626cb4cfe73",
+            "evidence_url": "https://github.com/gandie/Interfaces-2026/commit/cef668b555336218c0c27dce2a7e4626cb4cfe73",
+            "title": "feat: scaffold FastAPI project with choreo CRUD, Alembic, Docker, and tests"
+          },
+          {
+            "repo": "igzibo/igzibo.github.io",
+            "sha": "57988d23f35915cf84fe6725f01586e247dd8f04",
+            "evidence_url": "https://github.com/igzibo/igzibo.github.io/commit/57988d23f35915cf84fe6725f01586e247dd8f04",
+            "title": "Feat: Updated the baseline because of the intentional change to the candidate profile"
+          },
+          {
+            "repo": "judeper/FSI-AgentGov-Solutions",
+            "sha": "d6f9d094493edea1b0b55489e65ec1de534189f0",
+            "evidence_url": "https://github.com/judeper/FSI-AgentGov-Solutions/commit/d6f9d094493edea1b0b55489e65ec1de534189f0",
+            "title": "fix(audit-compliance-manager): live-validated currency remediation v1.0.6 (#347)"
+          },
+          {
+            "repo": "BharathSubbarao/CompIntCalculator",
+            "sha": "a53ae10b70bae67f8a4abc8cd66a2e0bbe84d7af",
+            "evidence_url": "https://github.com/BharathSubbarao/CompIntCalculator/commit/a53ae10b70bae67f8a4abc8cd66a2e0bbe84d7af",
+            "title": "feat: track parallel execution runs as separate live cards in dashboard"
+          },
+          {
+            "repo": "hibbertda/lego_manager",
+            "sha": "63d687e1ecea9521154a09cb2c1a7a7d134f820f",
+            "evidence_url": "https://github.com/hibbertda/lego_manager/commit/63d687e1ecea9521154a09cb2c1a7a7d134f820f",
+            "title": "Show one PDF at a time for multi-booklet sets, with a switcher"
+          },
+          {
+            "repo": "lhotakj/kinetiqo",
+            "sha": "4108764f873210d4dc8606e4224daa15756f59a7",
+            "evidence_url": "https://github.com/lhotakj/kinetiqo/commit/4108764f873210d4dc8606e4224daa15756f59a7",
+            "title": "v2. mega stats & poster (#21)"
+          },
+          {
+            "repo": "Tachaan/aigenius-copilotsdk-s5ep2",
+            "sha": "3ee75253672d7f029153c0d64436f37484668859",
+            "evidence_url": "https://github.com/Tachaan/aigenius-copilotsdk-s5ep2/commit/3ee75253672d7f029153c0d64436f37484668859",
+            "title": "Add Python track to the Copilot SDK learning series (#7)"
+          },
+          {
+            "repo": "FalkorDB/QueryWeaver",
+            "sha": "940c8fd745b17a2b921fc6a0bacfdb7fd2360dd5",
+            "evidence_url": "https://github.com/FalkorDB/QueryWeaver/commit/940c8fd745b17a2b921fc6a0bacfdb7fd2360dd5",
+            "title": "Staging-->Main (#455)"
+          },
+          {
+            "repo": "vicperdana/aigenius-copilotsdk-s5ep2",
+            "sha": "3ee75253672d7f029153c0d64436f37484668859",
+            "evidence_url": "https://github.com/vicperdana/aigenius-copilotsdk-s5ep2/commit/3ee75253672d7f029153c0d64436f37484668859",
+            "title": "Add Python track to the Copilot SDK learning series (#7)"
+          },
+          {
+            "repo": "anabil25/ResearchAssistant",
+            "sha": "1f82e6f5b39bba48e30a2a624e428578bf6c746a",
+            "evidence_url": "https://github.com/anabil25/ResearchAssistant/commit/1f82e6f5b39bba48e30a2a624e428578bf6c746a",
+            "title": "Close skip-guard loophole in Playwright coverage-contract gate"
+          },
+          {
+            "repo": "kelvinxxle/swing-analyzer",
+            "sha": "fb45134463329ac9963affabf89f6bf6971b78ff",
+            "evidence_url": "https://github.com/kelvinxxle/swing-analyzer/commit/fb45134463329ac9963affabf89f6bf6971b78ff",
+            "title": "M3 — End-to-end walking skeleton (mock analysis) (#16)"
+          },
+          {
+            "repo": "hibbertda/lego_manager",
+            "sha": "9b029ad4db96e38d98c9ac16c1a5789f379c6c6a",
+            "evidence_url": "https://github.com/hibbertda/lego_manager/commit/9b029ad4db96e38d98c9ac16c1a5789f379c6c6a",
+            "title": "Replace native PDF embed with self-hosted PDF.js viewer + page tracking"
+          },
+          {
+            "repo": "gwtlewis/agent-lab",
+            "sha": "67079b782568ba28a2d154a2a765f5f7b37af309",
+            "evidence_url": "https://github.com/gwtlewis/agent-lab/commit/67079b782568ba28a2d154a2a765f5f7b37af309",
+            "title": "Add web UI, reasoning stream, markdown rendering, and tests"
+          },
+          {
+            "repo": "D0n9X1n/chatgpt-tag-highlighter",
+            "sha": "2614e9588439a3ffb2c2a873c74818dcc23ba903",
+            "evidence_url": "https://github.com/D0n9X1n/chatgpt-tag-highlighter/commit/2614e9588439a3ffb2c2a873c74818dcc23ba903",
+            "title": "ci: introduce GitHub Actions pipeline + OSS standards"
+          },
+          {
+            "repo": "canonical/paas-charm",
+            "sha": "dea5dc6af2973f471aa37198f45ed7a3b3e9ce3d",
+            "evidence_url": "https://github.com/canonical/paas-charm/commit/dea5dc6af2973f471aa37198f45ed7a3b3e9ce3d",
+            "title": "refactor: configure framework options through paas-config.yaml (#316)"
+          },
+          {
+            "repo": "hibbertda/lego_manager",
+            "sha": "16164b7f36c47246fab9b38a7f1966785eec3f74",
+            "evidence_url": "https://github.com/hibbertda/lego_manager/commit/16164b7f36c47246fab9b38a7f1966785eec3f74",
+            "title": "Redesign set grid cards (LEGO-shop style), add favorites, make grid default"
+          },
+          {
+            "repo": "seudazhong/sherpa",
+            "sha": "0f26a0df07bf35a280d2878fba7f5f571beaa8cf",
+            "evidence_url": "https://github.com/seudazhong/sherpa/commit/0f26a0df07bf35a280d2878fba7f5f571beaa8cf",
+            "title": "docs: refresh README to running-codebase status; drop 设计出处 (#1)"
+          },
+          {
+            "repo": "rysweet/Simard",
+            "sha": "d69b8d94f1b4e5b29442a88581b0b34e87afe24b",
+            "evidence_url": "https://github.com/rysweet/Simard/commit/d69b8d94f1b4e5b29442a88581b0b34e87afe24b",
+            "title": "feat(pure-rust): make Simard a Python-free, kuzu-free daemon (#3181) (#3223)"
+          },
+          {
+            "repo": "topness-msft/TodoIQ",
+            "sha": "c5fe177891d7ba2ab27d72caca9bac8c51135d2b",
+            "evidence_url": "https://github.com/topness-msft/TodoIQ/commit/c5fe177891d7ba2ab27d72caca9bac8c51135d2b",
+            "title": "Add Cowork interaction answers and Riveter branding (#1)"
+          },
+          {
+            "repo": "4444J99/limen",
+            "sha": "74c13044a2d285dfbb4259b8197752895689c29d",
+            "evidence_url": "https://github.com/4444J99/limen/commit/74c13044a2d285dfbb4259b8197752895689c29d",
+            "title": "feat: github-universe mission — never-dismiss cross-repo doctrine (#1246)"
+          },
+          {
+            "repo": "AshleyHollis/yt-summarizer",
+            "sha": "6f3e7afc73d3ef93306b951b0917f737e209a877",
+            "evidence_url": "https://github.com/AshleyHollis/yt-summarizer/commit/6f3e7afc73d3ef93306b951b0917f737e209a877",
+            "title": "fix(e2e): use Auth0 Universal Login in auth.setup.ts (#160)"
+          },
+          {
+            "repo": "anabil25/ResearchAssistant",
+            "sha": "30d6c79aae8ef789c4455cf481e8e94502793daf",
+            "evidence_url": "https://github.com/anabil25/ResearchAssistant/commit/30d6c79aae8ef789c4455cf481e8e94502793daf",
+            "title": "fix: close all 7 be0e523 review blockers (sources key, port-lock, gate isolation, malformed results, unreachable AST credit, grant spec rewrite, forced-click guard)"
+          },
+          {
+            "repo": "rysweet/amplihack",
+            "sha": "484db911b5d8e26f71a81d908eec5603e8c85af3",
+            "evidence_url": "https://github.com/rysweet/amplihack/commit/484db911b5d8e26f71a81d908eec5603e8c85af3",
+            "title": "feat(recipes): ADO dual-provider step-16 resilience and step-19d agent conversion (#4205) (#4212)"
+          },
+          {
+            "repo": "Benjamin-KY/open-harness-atlas",
+            "sha": "87bc479f2de44895e5ba1ca4fa95643ba8183969",
+            "evidence_url": "https://github.com/Benjamin-KY/open-harness-atlas/commit/87bc479f2de44895e5ba1ca4fa95643ba8183969",
+            "title": "fix(v0.4.2): a11y + reliability hotfix from 6-persona UX/UI swarm"
+          },
+          {
+            "repo": "canonical/paas-charm",
+            "sha": "e149eeef696cf2037eff5b69b2ad36057454ad6f",
+            "evidence_url": "https://github.com/canonical/paas-charm/commit/e149eeef696cf2037eff5b69b2ad36057454ad6f",
+            "title": "V2 (#294)"
+          },
+          {
+            "repo": "elasticdotventures/__b00t__",
+            "sha": "d201dd4cb62f991192280f92d3c3c92315ecda78",
+            "evidence_url": "https://github.com/elasticdotventures/__b00t__/commit/d201dd4cb62f991192280f92d3c3c92315ecda78",
+            "title": "Integrate PM2 with b00t container for task management (#141)"
+          },
+          {
+            "repo": "elasticdotventures/_b00t_",
+            "sha": "d201dd4cb62f991192280f92d3c3c92315ecda78",
+            "evidence_url": "https://github.com/elasticdotventures/_b00t_/commit/d201dd4cb62f991192280f92d3c3c92315ecda78",
+            "title": "Integrate PM2 with b00t container for task management (#141)"
+          },
+          {
+            "repo": "johnbilliris/ama",
+            "sha": "06d764030891ed875829534d7abcac90056129c8",
+            "evidence_url": "https://github.com/johnbilliris/ama/commit/06d764030891ed875829534d7abcac90056129c8",
+            "title": "033 MAF Adoption (#56)"
+          }
+        ]
+      },
+      {
+        "query": "playwright pytest \"Co-authored-by: Claude\" \"no network\"",
+        "evidence_type": "commit_search",
+        "topn": 30,
+        "returned": 30,
+        "hits": [
+          {
+            "repo": "ajibolailesanmi-sudo/Finance-",
+            "sha": "e616246f109642f0898a5d81b83ca0dba89b80cb",
+            "evidence_url": "https://github.com/ajibolailesanmi-sudo/Finance-/commit/e616246f109642f0898a5d81b83ca0dba89b80cb",
+            "title": "Add CI workflow running the offline test suite on push/PR"
+          },
+          {
+            "repo": "abrahamperz/ByteCrawl",
+            "sha": "b8bf99567204eed950c43d0d74e02a5217e8bb64",
+            "evidence_url": "https://github.com/abrahamperz/ByteCrawl/commit/b8bf99567204eed950c43d0d74e02a5217e8bb64",
+            "title": "test: offline suite (89 tests) plus opt-in live browser tests"
+          },
+          {
+            "repo": "MEOMcGill/igscrape",
+            "sha": "2fb978d7a6753c0ca139916852de51da8d8e17ff",
+            "evidence_url": "https://github.com/MEOMcGill/igscrape/commit/2fb978d7a6753c0ca139916852de51da8d8e17ff",
+            "title": "Run the tests and the linter in CI"
+          },
+          {
+            "repo": "florianlepont/skypane",
+            "sha": "4369084266aece55138899becc3fb9e6eb0d5f77",
+            "evidence_url": "https://github.com/florianlepont/skypane/commit/4369084266aece55138899becc3fb9e6eb0d5f77",
+            "title": "Plan phase 32: test foundation — pytest and CI you can trust (#97)"
+          },
+          {
+            "repo": "gabrielolsen06-eng/gherkin-copilot",
+            "sha": "9e7d361fb88edeaccd66d5ef7cf9989d2d302bc8",
+            "evidence_url": "https://github.com/gabrielolsen06-eng/gherkin-copilot/commit/9e7d361fb88edeaccd66d5ef7cf9989d2d302bc8",
+            "title": "Add `init`: a starter pytest-bdd + Playwright project"
+          },
+          {
+            "repo": "KhaledBakhtriIA/agent-data-fabric",
+            "sha": "d74d97c173666e256d4d25595c5a796917b5fdea",
+            "evidence_url": "https://github.com/KhaledBakhtriIA/agent-data-fabric/commit/d74d97c173666e256d4d25595c5a796917b5fdea",
+            "title": "feat: framework-agnostic Python reliability tool + professional README"
+          },
+          {
+            "repo": "ViniciusDeMartinViude/tcc_mba",
+            "sha": "46b5bd15757a4c59fe527ddd0783468dab8f4a9d",
+            "evidence_url": "https://github.com/ViniciusDeMartinViude/tcc_mba/commit/46b5bd15757a4c59fe527ddd0783468dab8f4a9d",
+            "title": "test: offline pytest suite with HTML fixtures (66 tests)"
+          },
+          {
+            "repo": "rudi193-cmd/safe-app-store",
+            "sha": "6297c24ddcc12eae271d1636b7510d747d26e8e2",
+            "evidence_url": "https://github.com/rudi193-cmd/safe-app-store/commit/6297c24ddcc12eae271d1636b7510d747d26e8e2",
+            "title": "ci: cache pip in gates job + cache Playwright browsers"
+          },
+          {
+            "repo": "jaspherramos98/stock-advisor",
+            "sha": "468ce929ee097c41b13ff6bcf6960770c8c489e7",
+            "evidence_url": "https://github.com/jaspherramos98/stock-advisor/commit/468ce929ee097c41b13ff6bcf6960770c8c489e7",
+            "title": "CI: GitHub Actions workflow + first committed pytest suite"
+          },
+          {
+            "repo": "Amakahhh/scholarship_assistant",
+            "sha": "dfd4f0ad6751e81e560b721a0ee8325edc54691d",
+            "evidence_url": "https://github.com/Amakahhh/scholarship_assistant/commit/dfd4f0ad6751e81e560b721a0ee8325edc54691d",
+            "title": "Initial commit: scholarship-assistant, all 8 modules"
+          },
+          {
+            "repo": "smitehamner/yuu-clip",
+            "sha": "3f74e168254ae8f769970b2cc911d1d71ed06fb8",
+            "evidence_url": "https://github.com/smitehamner/yuu-clip/commit/3f74e168254ae8f769970b2cc911d1d71ed06fb8",
+            "title": "test(ui): add Playwright tests for score override, rescore pill, and regen confirm"
+          },
+          {
+            "repo": "20sgt/Data-Architecture",
+            "sha": "2d1ea9181d739a05324a2be3ced0ba5b91392be2",
+            "evidence_url": "https://github.com/20sgt/Data-Architecture/commit/2d1ea9181d739a05324a2be3ced0ba5b91392be2",
+            "title": "Add golden parser tests + CI"
+          },
+          {
+            "repo": "Meerav29/discourse-lens",
+            "sha": "850ff2f3ecc92a1046aba8298154624c7c8439aa",
+            "evidence_url": "https://github.com/Meerav29/discourse-lens/commit/850ff2f3ecc92a1046aba8298154624c7c8439aa",
+            "title": "Add a demo map, end-to-end tests and CI"
+          },
+          {
+            "repo": "toouur/foursquare-dashboard",
+            "sha": "f1a1ec65a60ab3ee8fdb99bb903d79e4eeafe400",
+            "evidence_url": "https://github.com/toouur/foursquare-dashboard/commit/f1a1ec65a60ab3ee8fdb99bb903d79e4eeafe400",
+            "title": "test: add pytest suite — unit, API contract, E2E smoke, Py↔JS parity"
+          },
+          {
+            "repo": "omri566/garmin-coach",
+            "sha": "7478b0ef2a842fbbf8aa285dda1c1a162f2d8545",
+            "evidence_url": "https://github.com/omri566/garmin-coach/commit/7478b0ef2a842fbbf8aa285dda1c1a162f2d8545",
+            "title": "Add pytest unit suite for analytics/coaching/llm core + CI (#2)"
+          },
+          {
+            "repo": "bcollier/faculty-twin",
+            "sha": "22ce7ac014f96a648dfed108f76a5604a2101756",
+            "evidence_url": "https://github.com/bcollier/faculty-twin/commit/22ce7ac014f96a648dfed108f76a5604a2101756",
+            "title": "Test harness: CI on every PR, coverage to 80%+ per module, browser tests, mock contract, live smoke++, property tests (#56)"
+          },
+          {
+            "repo": "MvdB/website_to_okf",
+            "sha": "c2f06fde8977e9182cede296f6a2c546e3523c25",
+            "evidence_url": "https://github.com/MvdB/website_to_okf/commit/c2f06fde8977e9182cede296f6a2c546e3523c25",
+            "title": "Add LICENSE, tests, CI, and community docs for public release"
+          },
+          {
+            "repo": "tijoseymathew/periop-companion",
+            "sha": "606309f79355ebb2f7ac159212784d66b6ce4d2f",
+            "evidence_url": "https://github.com/tijoseymathew/periop-companion/commit/606309f79355ebb2f7ac159212784d66b6ce4d2f",
+            "title": "test(ui): Playwright headless e2e for the U1 workspace; SPA static-mount tests (ui.md U1, C6)"
+          },
+          {
+            "repo": "peodpeod55-debug/Stock-Screener",
+            "sha": "31153b4fde286db81a8c56cb027de4981b38a606",
+            "evidence_url": "https://github.com/peodpeod55-debug/Stock-Screener/commit/31153b4fde286db81a8c56cb027de4981b38a606",
+            "title": "test: conftest กันเน็ตทุกทาง + redirect state ไป tmp · CI GitHub Actions (port จาก HK)"
+          },
+          {
+            "repo": "dsx87/job-search",
+            "sha": "a4ccfa78ea0bfc70fc1a04cb87b49d3a34d2641d",
+            "evidence_url": "https://github.com/dsx87/job-search/commit/a4ccfa78ea0bfc70fc1a04cb87b49d3a34d2641d",
+            "title": "Add CI workflow to run the offline characterization suite"
+          },
+          {
+            "repo": "sulbhathube/PlaywriteAgent",
+            "sha": "3e88687eda32e6dd538f60c26d7ef4cf3734f20f",
+            "evidence_url": "https://github.com/sulbhathube/PlaywriteAgent/commit/3e88687eda32e6dd538f60c26d7ef4cf3734f20f",
+            "title": "Initial commit: PlaywriteAgent self-healing test framework"
+          },
+          {
+            "repo": "chengli1986/hedge-fund-research",
+            "sha": "06d87a1dab246b9cfc979a0ed570c798bd331652",
+            "evidence_url": "https://github.com/chengli1986/hedge-fund-research/commit/06d87a1dab246b9cfc979a0ed570c798bd331652",
+            "title": "ci: install Chromium and fail, not skip, the browser tests in CI (stage-4 audit P11)"
+          },
+          {
+            "repo": "b0ir/visual-lens",
+            "sha": "10404e2eeb13db0bdda5db5c99a5d5742f014689",
+            "evidence_url": "https://github.com/b0ir/visual-lens/commit/10404e2eeb13db0bdda5db5c99a5d5742f014689",
+            "title": "test: add backend smoke tests for SSRF, JSON parsing, and provider catalog"
+          },
+          {
+            "repo": "b0ir/visual-lens",
+            "sha": "fd7e2ca62966e59e188b405e5363a451b8ca6392",
+            "evidence_url": "https://github.com/b0ir/visual-lens/commit/fd7e2ca62966e59e188b405e5363a451b8ca6392",
+            "title": "test: add backend smoke tests for SSRF, JSON parsing, and provider catalog"
+          },
+          {
+            "repo": "riazsas/content_originality_verification_systerm",
+            "sha": "50fef7b35331dd62a9cea7f3864cb325c6e38bed",
+            "evidence_url": "https://github.com/riazsas/content_originality_verification_systerm/commit/50fef7b35331dd62a9cea7f3864cb325c6e38bed",
+            "title": "Initial commit — two-layer plagiarism detection tool"
+          },
+          {
+            "repo": "chengli1986/hedge-fund-research",
+            "sha": "062fb6734121c92eb78d84220d071d988f3e8601",
+            "evidence_url": "https://github.com/chengli1986/hedge-fund-research/commit/062fb6734121c92eb78d84220d071d988f3e8601",
+            "title": "fix(tests): a unit test was driving a real browser; the network guard now covers Playwright"
+          },
+          {
+            "repo": "tindo2003/used_cars_finder",
+            "sha": "8563651278a1a24a3beeb596010de4308499a8d2",
+            "evidence_url": "https://github.com/tindo2003/used_cars_finder/commit/8563651278a1a24a3beeb596010de4308499a8d2",
+            "title": "Extract DB logic into a ListingsDB class with full CRUD, add unit tests"
+          },
+          {
+            "repo": "Charlie-C-1266/Testing_Template",
+            "sha": "88055fed5258ac831b0e13225be7d5288493696a",
+            "evidence_url": "https://github.com/Charlie-C-1266/Testing_Template/commit/88055fed5258ac831b0e13225be7d5288493696a",
+            "title": "Add Python dev container test-harness template"
+          },
+          {
+            "repo": "megahirt/yt-gallery",
+            "sha": "ebe2f62af1dd8dd829b480cf5213ea843a99f591",
+            "evidence_url": "https://github.com/megahirt/yt-gallery/commit/ebe2f62af1dd8dd829b480cf5213ea843a99f591",
+            "title": "Add comprehensive unit and E2E tests (#1)"
+          },
+          {
+            "repo": "jordanlaforge15-del/agentic-bylaw-system",
+            "sha": "64c79afeaf5a319fd848bafd0917ed1bffdcc121",
+            "evidence_url": "https://github.com/jordanlaforge15-del/agentic-bylaw-system/commit/64c79afeaf5a319fd848bafd0917ed1bffdcc121",
+            "title": "[ABS-474] assert the registration offline, in pytest and Playwright"
+          }
+        ]
+      },
+      {
+        "query": "repo:straussbastian/ai_flashcards_for_school \"Co-Authored-By\" \"browser\"",
+        "evidence_type": "commit_search",
+        "topn": 10,
+        "returned": 9,
+        "hits": [
+          {
+            "repo": "straussbastian/ai_flashcards_for_school",
+            "sha": "1d8cb9ecc63aaa475d2a585c01f535e666e8a0e9",
+            "evidence_url": "https://github.com/straussbastian/ai_flashcards_for_school/commit/1d8cb9ecc63aaa475d2a585c01f535e666e8a0e9",
+            "title": "CI installiert Chromium und ruft die Browsertests ausdruecklich auf"
+          },
+          {
+            "repo": "straussbastian/ai_flashcards_for_school",
+            "sha": "901255d137bdaad612af713e6610e449243af3fb",
+            "evidence_url": "https://github.com/straussbastian/ai_flashcards_for_school/commit/901255d137bdaad612af713e6610e449243af3fb",
+            "title": "Design-Spec und freigegebene Mockups"
+          },
+          {
+            "repo": "straussbastian/ai_flashcards_for_school",
+            "sha": "0060729743eb9c41ebf56cabe9985dad1be00e79",
+            "evidence_url": "https://github.com/straussbastian/ai_flashcards_for_school/commit/0060729743eb9c41ebf56cabe9985dad1be00e79",
+            "title": "Plan 1: Fundament und Container, Spec-Korrektur richtige_index"
+          },
+          {
+            "repo": "straussbastian/ai_flashcards_for_school",
+            "sha": "4b24eebcdb7b35d1ef2ffdb36f189b4a2c691823",
+            "evidence_url": "https://github.com/straussbastian/ai_flashcards_for_school/commit/4b24eebcdb7b35d1ef2ffdb36f189b4a2c691823",
+            "title": "Playwright als Entwicklungsabhaengigkeit und die Markierung \"browser\""
+          },
+          {
+            "repo": "straussbastian/ai_flashcards_for_school",
+            "sha": "016b9aeee094c89dd534b6ba61d2456018f2058c",
+            "evidence_url": "https://github.com/straussbastian/ai_flashcards_for_school/commit/016b9aeee094c89dd534b6ba61d2456018f2058c",
+            "title": "Browsertests: Aufbau und die Grenze zwischen HTML und Klartext"
+          },
+          {
+            "repo": "straussbastian/ai_flashcards_for_school",
+            "sha": "ca7d87d5170a518edd693c1aa55a2dbf7f9f2551",
+            "evidence_url": "https://github.com/straussbastian/ai_flashcards_for_school/commit/ca7d87d5170a518edd693c1aa55a2dbf7f9f2551",
+            "title": "Der Anfang einer langen Rueckseite bleibt erreichbar"
+          },
+          {
+            "repo": "straussbastian/ai_flashcards_for_school",
+            "sha": "f0135ec904d7a392c5a596ec5b44f8244c2d17c0",
+            "evidence_url": "https://github.com/straussbastian/ai_flashcards_for_school/commit/f0135ec904d7a392c5a596ec5b44f8244c2d17c0",
+            "title": "Browsertest: die Tastenleiste gegen die Knoepfe, die es wirklich gibt"
+          },
+          {
+            "repo": "straussbastian/ai_flashcards_for_school",
+            "sha": "b0c4e67b273b41090924a82f764bc97e9a84aafa",
+            "evidence_url": "https://github.com/straussbastian/ai_flashcards_for_school/commit/b0c4e67b273b41090924a82f764bc97e9a84aafa",
+            "title": "Hover-Hervorhebung nur noch auf Geraeten mit Mauszeiger"
+          },
+          {
+            "repo": "straussbastian/ai_flashcards_for_school",
+            "sha": "9ec60edac9c33c02dffcf606557f941a35b85d8e",
+            "evidence_url": "https://github.com/straussbastian/ai_flashcards_for_school/commit/9ec60edac9c33c02dffcf606557f941a35b85d8e",
+            "title": "Sammlungen: ein Link statt dreizehn"
+          }
+        ]
+      },
+      {
+        "query": "repo:tolgaguensal-lab/tatilvakti \"Co-Authored-By\" \"e2e\"",
+        "evidence_type": "commit_search",
+        "topn": 10,
+        "returned": 10,
+        "hits": [
+          {
+            "repo": "tolgaguensal-lab/tatilvakti",
+            "sha": "becf183485757d38e274f9f9159b846295b84785",
+            "evidence_url": "https://github.com/tolgaguensal-lab/tatilvakti/commit/becf183485757d38e274f9f9159b846295b84785",
+            "title": "CI: Browser-Tests mit fester Systemschrift DejaVu Sans"
+          },
+          {
+            "repo": "tolgaguensal-lab/tatilvakti",
+            "sha": "555f1ac7933358ac8264cbf0a5f65a3b67910221",
+            "evidence_url": "https://github.com/tolgaguensal-lab/tatilvakti/commit/555f1ac7933358ac8264cbf0a5f65a3b67910221",
+            "title": "CI: GitHub Actions für pytest (3.10/3.13), Shell-Prüfung und Browser-Tests"
+          },
+          {
+            "repo": "tolgaguensal-lab/tatilvakti",
+            "sha": "dc38023a1a5761518ed814245d2e07361a4b9bb0",
+            "evidence_url": "https://github.com/tolgaguensal-lab/tatilvakti/commit/dc38023a1a5761518ed814245d2e07361a4b9bb0",
+            "title": "CI: shellcheck-Befunde nach dem Zusammenführen von CI und Restore beheben"
+          },
+          {
+            "repo": "tolgaguensal-lab/tatilvakti",
+            "sha": "1e70f1998c4ddbb5be7bc395d97d9bc67c04afb8",
+            "evidence_url": "https://github.com/tolgaguensal-lab/tatilvakti/commit/1e70f1998c4ddbb5be7bc395d97d9bc67c04afb8",
+            "title": "Review Frontend: gemischter Nachliefer-Hinweis, Startseiten-Test unabhängig vom Datenstand"
+          },
+          {
+            "repo": "tolgaguensal-lab/tatilvakti",
+            "sha": "162493b9bf84fc5cb1cd18a510998d448a504676",
+            "evidence_url": "https://github.com/tolgaguensal-lab/tatilvakti/commit/162493b9bf84fc5cb1cd18a510998d448a504676",
+            "title": "Reisevorbereitungs-PWA Deutschland → Türkei (v1, DE/TR)"
+          },
+          {
+            "repo": "tolgaguensal-lab/tatilvakti",
+            "sha": "8c30b0195da22761def3eba27533230647696e16",
+            "evidence_url": "https://github.com/tolgaguensal-lab/tatilvakti/commit/8c30b0195da22761def3eba27533230647696e16",
+            "title": "PR #6 Nachprüfung: Ferien-Auswahl, Karte, Jetzt-Linie, Badge, README"
+          },
+          {
+            "repo": "tolgaguensal-lab/tatilvakti",
+            "sha": "ac02818b1f0ec8c6efce8d4b54b289907fb86631",
+            "evidence_url": "https://github.com/tolgaguensal-lab/tatilvakti/commit/ac02818b1f0ec8c6efce8d4b54b289907fb86631",
+            "title": "Doku: README und Migrationsleitfaden auf den Stand von Phase 1 und 2"
+          },
+          {
+            "repo": "tolgaguensal-lab/tatilvakti",
+            "sha": "ac8e272628b563d447cd1d8301d7e36f3ba23d0e",
+            "evidence_url": "https://github.com/tolgaguensal-lab/tatilvakti/commit/ac8e272628b563d447cd1d8301d7e36f3ba23d0e",
+            "title": "Frontend-Härtung: Melden mit Zeitlimit und Sende-Zustand, ehrliche Warteschlange, eigene Fehlerseiten"
+          },
+          {
+            "repo": "tolgaguensal-lab/tatilvakti",
+            "sha": "dd2011cb60526f94b4a790ce1bc35cfcc47c0e90",
+            "evidence_url": "https://github.com/tolgaguensal-lab/tatilvakti/commit/dd2011cb60526f94b4a790ce1bc35cfcc47c0e90",
+            "title": "Texte und Auffindbarkeit: TR ohne deutsche Reste, natürliches Türkisch, eigene Seiten je Ferienzeitraum"
+          },
+          {
+            "repo": "tolgaguensal-lab/tatilvakti",
+            "sha": "437df6d841cf0bd080c2362bd0dfa8e8cc0645a6",
+            "evidence_url": "https://github.com/tolgaguensal-lab/tatilvakti/commit/437df6d841cf0bd080c2362bd0dfa8e8cc0645a6",
+            "title": "Ältere Geräte und Barrierefreiheit: Auswahl ohne :has(), Farben ohne color-mix(), Toolbar-Sprungziele, ?land= geprüft"
+          }
+        ]
+      },
+      {
+        "query": "repo:hibbertda/lego_manager \"Co-Authored-By\" \"Playwright\"",
+        "evidence_type": "commit_search",
+        "topn": 10,
+        "returned": 5,
+        "hits": [
+          {
+            "repo": "hibbertda/lego_manager",
+            "sha": "c4ea262c4b85c159bbda2291f822879643483971",
+            "evidence_url": "https://github.com/hibbertda/lego_manager/commit/c4ea262c4b85c159bbda2291f822879643483971",
+            "title": "Pin Admin Area link to bottom of the sidebar nav"
+          },
+          {
+            "repo": "hibbertda/lego_manager",
+            "sha": "f0dd96736f0765f002620a02c28bb9125d9a1ae2",
+            "evidence_url": "https://github.com/hibbertda/lego_manager/commit/f0dd96736f0765f002620a02c28bb9125d9a1ae2",
+            "title": "Add storage build status, status filter, delete popover, PDF resize"
+          },
+          {
+            "repo": "hibbertda/lego_manager",
+            "sha": "63d687e1ecea9521154a09cb2c1a7a7d134f820f",
+            "evidence_url": "https://github.com/hibbertda/lego_manager/commit/63d687e1ecea9521154a09cb2c1a7a7d134f820f",
+            "title": "Show one PDF at a time for multi-booklet sets, with a switcher"
+          },
+          {
+            "repo": "hibbertda/lego_manager",
+            "sha": "16164b7f36c47246fab9b38a7f1966785eec3f74",
+            "evidence_url": "https://github.com/hibbertda/lego_manager/commit/16164b7f36c47246fab9b38a7f1966785eec3f74",
+            "title": "Redesign set grid cards (LEGO-shop style), add favorites, make grid default"
+          },
+          {
+            "repo": "hibbertda/lego_manager",
+            "sha": "9b029ad4db96e38d98c9ac16c1a5789f379c6c6a",
+            "evidence_url": "https://github.com/hibbertda/lego_manager/commit/9b029ad4db96e38d98c9ac16c1a5789f379c6c6a",
+            "title": "Replace native PDF embed with self-hosted PDF.js viewer + page tracking"
+          }
+        ]
+      },
+      {
+        "query": "is:pr author:app/devin-ai-integration playwright pytest",
+        "evidence_type": "agent_pr",
+        "page": 2,
+        "per_page": 30,
+        "returned": 30,
+        "hits": [
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/44",
+            "title": "WebArena: offline unit tests for GenericWebArenaTask.validate/__init__; fix task_id error message"
+          },
+          {
+            "repo": "qadevtips/QA-and-Dev-Tips",
+            "evidence_url": "https://github.com/qadevtips/QA-and-Dev-Tips/pull/1",
+            "title": "Add pytest unit tests for the Python modules (0% -> 95%/72% coverage)"
+          },
+          {
+            "repo": "Cognition-Partner-Workshops/otterworks",
+            "evidence_url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2046",
+            "title": "test(docs): e2e QA test pyramid"
+          },
+          {
+            "repo": "dsalvadorjasin/devin-remediation-service",
+            "evidence_url": "https://github.com/dsalvadorjasin/devin-remediation-service/pull/23",
+            "title": "ECS migration phase 1: task definitions + local ECS runtime emulation with live e2e evidence"
+          },
+          {
+            "repo": "COG-GTM/AgentLab",
+            "evidence_url": "https://github.com/COG-GTM/AgentLab/pull/62",
+            "title": "feature: add AGENTS.md with Unit Testing Agent instructions"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/34",
+            "title": "Extract fenced python code after leading prose in PythonActionSet.to_python_code (sfind-bfcf0205)"
+          },
+          {
+            "repo": "pun97it/superset",
+            "evidence_url": "https://github.com/pun97it/superset/pull/20",
+            "title": "fix(reports): commit permalink before Playwright screenshot"
+          },
+          {
+            "repo": "Cognition-Partner-Workshops/otterworks",
+            "evidence_url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2051",
+            "title": "test(admin): e2e QA test pyramid"
+          },
+          {
+            "repo": "hands0924/databricks-fmapi-task-benchmark",
+            "evidence_url": "https://github.com/hands0924/databricks-fmapi-task-benchmark/pull/2",
+            "title": "Add unit tests for the lowest-coverage modules"
+          },
+          {
+            "repo": "Cognition-Partner-Workshops/otterworks",
+            "evidence_url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2045",
+            "title": "test(auth): e2e QA test pyramid"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/37",
+            "title": "WebArena-Lite: surface evaluator helper errors instead of scoring 0, add request timeouts"
+          },
+          {
+            "repo": "thanhdicode/Hackathon_2026",
+            "evidence_url": "https://github.com/thanhdicode/Hackathon_2026/pull/1",
+            "title": "chore(architecture): normalize foundation, install all deps, and fix hero demo runtime"
+          },
+          {
+            "repo": "Cognition-Partner-Workshops/otterworks",
+            "evidence_url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2065",
+            "title": "test(docs): e2e QA test pyramid"
+          },
+          {
+            "repo": "pun97it/superset",
+            "evidence_url": "https://github.com/pun97it/superset/pull/22",
+            "title": "fix(reports): commit permalink to DB before Playwright screenshot"
+          },
+          {
+            "repo": "greytrash/edugrey",
+            "evidence_url": "https://github.com/greytrash/edugrey/pull/6",
+            "title": "Add comprehensive unit tests for midjourney_invoice_downloader (100% coverage)"
+          },
+          {
+            "repo": "sn-poc/advanced-selenium-webdriver",
+            "evidence_url": "https://github.com/sn-poc/advanced-selenium-webdriver/pull/1",
+            "title": "Migrate Java Selenium WebDriver tests to Python Playwright"
+          },
+          {
+            "repo": "COG-GTM/vantage-telco",
+            "evidence_url": "https://github.com/COG-GTM/vantage-telco/pull/20",
+            "title": "feature: Phase 0 — dev tooling, pinned deps, CI gates, modernization capture harness + baseline"
+          },
+          {
+            "repo": "rickyviank/fins_polyglot_microservices",
+            "evidence_url": "https://github.com/rickyviank/fins_polyglot_microservices/pull/25",
+            "title": "Add comprehensive test suite for reporting-service (0% → 100% coverage)"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/19",
+            "title": "visualwebarena: share BLIP-2 captioning model across episodes, load lazily"
+          },
+          {
+            "repo": "wandemcphill/Global-Talent-Exchange",
+            "evidence_url": "https://github.com/wandemcphill/Global-Talent-Exchange/pull/250",
+            "title": "chore: lock backend deps, clear npm audit/eslint/ruff/bandit, remove tracked artifacts"
+          },
+          {
+            "repo": "Cognition-Partner-Workshops/otterworks",
+            "evidence_url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2053",
+            "title": "test(electron): e2e QA test pyramid"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/18",
+            "title": "side(mcp): modernize BrowserGym MCP server (FastMCP, stdio + Streamable HTTP, structured observations)"
+          },
+          {
+            "repo": "Cognition-Partner-Workshops/uc-spring-boot-upgrade-microservice-extraction",
+            "evidence_url": "https://github.com/Cognition-Partner-Workshops/uc-spring-boot-upgrade-microservice-extraction/pull/211",
+            "title": "feat: Python Test Automation Platform with Auto-Healing, Object Spy, Migration & Export"
+          },
+          {
+            "repo": "tedfoley-cog/adms-test-automation-demo",
+            "evidence_url": "https://github.com/tedfoley-cog/adms-test-automation-demo/pull/1",
+            "title": "Lift Tier 1 coverage and characterize RTGENACE before trusting the port"
+          },
+          {
+            "repo": "rickyviank/fins_polyglot_microservices",
+            "evidence_url": "https://github.com/rickyviank/fins_polyglot_microservices/pull/26",
+            "title": "Add comprehensive test suite for reporting-service (unit, contract, integration, E2E)"
+          },
+          {
+            "repo": "sruthikilari/superset",
+            "evidence_url": "https://github.com/sruthikilari/superset/pull/19",
+            "title": "fix(config): enable rate limiting unless SUPERSET_ENV=development"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/72",
+            "title": "Add tests for untested action primitives (select_option, drag_and_drop, upload_file, scroll_at, autocomplete fill, last-tab close, forced check)"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/65",
+            "title": "Test observation marking edge cases; strip BrowserGym ids from multi-line ARIA values"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/54",
+            "title": "Test ExpArgs.run error/truncation paths and summary stats aggregation"
+          },
+          {
+            "repo": "Cognition-Partner-Workshops/otterworks",
+            "evidence_url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2052",
+            "title": "test(collaboration): e2e QA test pyramid"
+          }
+        ]
+      },
+      {
+        "query": "is:pr author:app/devin-ai-integration playwright pytest",
+        "evidence_type": "agent_pr",
+        "page": 3,
+        "per_page": 30,
+        "returned": 30,
+        "hits": [
+          {
+            "repo": "bbeamon/devin_ai_playground",
+            "evidence_url": "https://github.com/bbeamon/devin_ai_playground/pull/7",
+            "title": "Keep Data Explorer / Backtest / Optimizer settings when switching pages"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/48",
+            "title": "Add offline unit tests for VisualWebArena task validate()/setup()"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/36",
+            "title": "AssistantBench: unit-test log-distance number scoring, fix scores > 1 for negative answers"
+          },
+          {
+            "repo": "claypilat/superset",
+            "evidence_url": "https://github.com/claypilat/superset/pull/6",
+            "title": "fix(tests): pass required message arg to PlaywrightTimeout constructor"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/26",
+            "title": "bug: add timeout to VisualWebArena goal image download (sfind-4ffc32d1)"
+          },
+          {
+            "repo": "vparl/victor-cognition-takehome",
+            "evidence_url": "https://github.com/vparl/victor-cognition-takehome/pull/10",
+            "title": "fix(tests): pass message arg to PlaywrightTimeout() for CI compatibility"
+          },
+          {
+            "repo": "tedfoley-cog/adms-test-automation-demo",
+            "evidence_url": "https://github.com/tedfoley-cog/adms-test-automation-demo/pull/2",
+            "title": "Fix demo scaffold issues found in the dry run"
+          },
+          {
+            "repo": "SellerPush/ai-tools-db",
+            "evidence_url": "https://github.com/SellerPush/ai-tools-db/pull/4",
+            "title": "test: add unit test suite for update_ai_tools (0% -> 99% coverage)"
+          },
+          {
+            "repo": "vparl/victor-cognition-takehome",
+            "evidence_url": "https://github.com/vparl/victor-cognition-takehome/pull/13",
+            "title": "fix(tests): pass message arg to PlaywrightTimeout in test"
+          },
+          {
+            "repo": "akhayyum22/superset",
+            "evidence_url": "https://github.com/akhayyum22/superset/pull/65",
+            "title": "fix(deps): upgrade Flask to 3.1.3 for PYSEC-2026-2151"
+          },
+          {
+            "repo": "Cognition-Partner-Workshops/otterworks",
+            "evidence_url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2064",
+            "title": "test(admin): e2e QA test pyramid"
+          },
+          {
+            "repo": "Sayedardhi/banking-test-demo",
+            "evidence_url": "https://github.com/Sayedardhi/banking-test-demo/pull/11",
+            "title": "userservice: authentication test coverage (unit, PostgreSQL integration, E2E-gated CI)"
+          },
+          {
+            "repo": "vparl/victor-cognition-takehome",
+            "evidence_url": "https://github.com/vparl/victor-cognition-takehome/pull/12",
+            "title": "fix(test): pass required message arg to PlaywrightTimeout in CI-failing test"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/33",
+            "title": "VWA: add timeouts to classifieds reset POST and goal-image download"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/41",
+            "title": "AssistantBench: branch-level question_scorer tests + fix scorer crashes (sfind-bc14baaa)"
+          },
+          {
+            "repo": "muhenan/xiaohongshu-mcp-python",
+            "evidence_url": "https://github.com/muhenan/xiaohongshu-mcp-python/pull/2",
+            "title": "Add unit tests for all modules (60 tests)"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/13",
+            "title": "side(experiments): modernize browsergym-experiments + atomic step-result saving"
+          },
+          {
+            "repo": "Rafull225/vc-prospect-2026",
+            "evidence_url": "https://github.com/Rafull225/vc-prospect-2026/pull/5",
+            "title": "fix: CORS-less 500s, non-ASCII API key crash, health probe semantics, 422 messages"
+          },
+          {
+            "repo": "SachetCognition/bank-demo",
+            "evidence_url": "https://github.com/SachetCognition/bank-demo/pull/11",
+            "title": "Workstream 5: CI/CD & Documentation"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/49",
+            "title": "Test benchmark warm-up utils; don't crash when the massage sub-process dies without reporting"
+          },
+          {
+            "repo": "e2b-dev/E2B",
+            "evidence_url": "https://github.com/e2b-dev/E2B/pull/1742",
+            "title": "test: add opt-in e2e tier scaffolding for the SDK test suites (1/4)"
+          },
+          {
+            "repo": "kwancer/superset",
+            "evidence_url": "https://github.com/kwancer/superset/pull/4",
+            "title": "ci: optimize CI workflows for speed — caching, parallelization, redundancy removal"
+          },
+          {
+            "repo": "adotak/vitadrive",
+            "evidence_url": "https://github.com/adotak/vitadrive/pull/28",
+            "title": "test(e2e): Playwright browser tests against a seeded server, run in CI"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/15",
+            "title": "side(chat-ui): rebuild in-episode chatbox as one accessible, self-contained page"
+          },
+          {
+            "repo": "Regantih/gridsignal",
+            "evidence_url": "https://github.com/Regantih/gridsignal/pull/6",
+            "title": "GridSignal app: React flight deck (3D multi-market scene) and FastAPI layer over the engine, one container, CI and e2e"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/68",
+            "title": "Add offline tests for WebArenaInstance.full_reset"
+          },
+          {
+            "repo": "juliettejahan/superset",
+            "evidence_url": "https://github.com/juliettejahan/superset/pull/94",
+            "title": "test(db_engine_specs): improve coverage for DrillEngineSpec"
+          },
+          {
+            "repo": "Cognition-Partner-Workshops/otterworks",
+            "evidence_url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2048",
+            "title": "test(files): e2e QA test pyramid"
+          },
+          {
+            "repo": "dsalvadorjasin/llm-router",
+            "evidence_url": "https://github.com/dsalvadorjasin/llm-router/pull/10",
+            "title": "upstream: route by prompt affinity instead of round-robin"
+          },
+          {
+            "repo": "COG-GTM/BrowserGym",
+            "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/43",
+            "title": "Add unit tests for prune_html, overlay_som, _get_coord_str and the _process_bid guard"
+          }
+        ]
+      },
+      {
+        "query": "is:pr author:app/copilot-swe-agent playwright pytest",
+        "evidence_type": "agent_pr",
+        "page": 2,
+        "per_page": 30,
+        "returned": 30,
+        "hits": [
+          {
+            "repo": "BhavyaSoneji/MATRIVA",
+            "evidence_url": "https://github.com/BhavyaSoneji/MATRIVA/pull/141",
+            "title": "Fix backend CI failure in week-based dating fallback"
+          },
+          {
+            "repo": "replaymap44-commits/Static-saas",
+            "evidence_url": "https://github.com/replaymap44-commits/Static-saas/pull/5",
+            "title": "Add Python Playwright web scraping bot for Rockstar Social Club"
+          },
+          {
+            "repo": "replaymap44-commits/Static-saas",
+            "evidence_url": "https://github.com/replaymap44-commits/Static-saas/pull/9",
+            "title": "Add Python Playwright bot for Rockstar Social Club"
+          },
+          {
+            "repo": "amusinski/test-engineering-portfolio",
+            "evidence_url": "https://github.com/amusinski/test-engineering-portfolio/pull/1",
+            "title": "Bootstrap test-engineering-portfolio with agents, Playwright framework, scaffolding, and case studies"
+          },
+          {
+            "repo": "SuiYunsy/midscene",
+            "evidence_url": "https://github.com/SuiYunsy/midscene/pull/14",
+            "title": "TypeScript to Python migration plan for midscene packages"
+          },
+          {
+            "repo": "sanaddiab6-del/GRC_SC",
+            "evidence_url": "https://github.com/sanaddiab6-del/GRC_SC/pull/9",
+            "title": "Rewrite `.github/copilot-instructions.md` to match the actual Django/SvelteKit codebase"
+          },
+          {
+            "repo": "codekaa1ciu1/directgraph-engine",
+            "evidence_url": "https://github.com/codekaa1ciu1/directgraph-engine/pull/2",
+            "title": "Convert implementation from Node.js/Express to Python/FastAPI"
+          },
+          {
+            "repo": "Juve-ctrl/skills-introduction-to-github",
+            "evidence_url": "https://github.com/Juve-ctrl/skills-introduction-to-github/pull/1",
+            "title": "# MEDICORE NEXUS — MASTER SYSTEM BUILD PROMPT\n\n## 1. YOUR ROLE AND MISSION\n\nAct as the lead software architect, senior full-stack engineer, application security engineer, database designer, QA engineer, DevOps engineer, and technical documentation lead..."
+          },
+          {
+            "repo": "djmahe4/ctf-katana",
+            "evidence_url": "https://github.com/djmahe4/ctf-katana/pull/3",
+            "title": "feat(reverse): Tri-Mode Execution Engine — SOLVE / BUILD / THINK hub"
+          },
+          {
+            "repo": "rudolf1/brencher",
+            "evidence_url": "https://github.com/rudolf1/brencher/pull/82",
+            "title": "Refactor app concurrency to asyncio TaskGroup orchestration"
+          },
+          {
+            "repo": "b-iurea/ministack",
+            "evidence_url": "https://github.com/b-iurea/ministack/pull/4",
+            "title": "Add PR-focused Python matrix CI and Docker health smoke workflow"
+          },
+          {
+            "repo": "pablotoledo/local-jina-reader",
+            "evidence_url": "https://github.com/pablotoledo/local-jina-reader/pull/2",
+            "title": "feat: implement Phase 1 scaffold (FastAPI + Playwright + Redis + Docker Compose)"
+          },
+          {
+            "repo": "phall2020-ui/solar-predictive-maintenance",
+            "evidence_url": "https://github.com/phall2020-ui/solar-predictive-maintenance/pull/2",
+            "title": "Add Playwright E2E tests for Monthly Reporting Data module"
+          },
+          {
+            "repo": "P4X-ng/osv",
+            "evidence_url": "https://github.com/P4X-ng/osv/pull/155",
+            "title": "Add project type detection to Playwright test workflow"
+          },
+          {
+            "repo": "tnglemongrass/aider",
+            "evidence_url": "https://github.com/tnglemongrass/aider/pull/20",
+            "title": "Add `/models` endpoint discovery for dynamic model listing"
+          },
+          {
+            "repo": "radiorabe/mkdocs-theme-rabe",
+            "evidence_url": "https://github.com/radiorabe/mkdocs-theme-rabe/pull/1",
+            "title": "feat: create mkdocs-theme-rabe Python package"
+          },
+          {
+            "repo": "corruptspower-maker/Master-Chief-Executive-Agent",
+            "evidence_url": "https://github.com/corruptspower-maker/Master-Chief-Executive-Agent/pull/1",
+            "title": "Phase 1 corrections: escalation tier rename, MISSING_MCP_TOOL reason, remove Playwright, update configs"
+          },
+          {
+            "repo": "jrlampa/plugin_autocad",
+            "evidence_url": "https://github.com/jrlampa/plugin_autocad/pull/28",
+            "title": "CI/CD fixes, backend clean code, and merge conflict resolution"
+          },
+          {
+            "repo": "HelloAGit/GenomeDesk",
+            "evidence_url": "https://github.com/HelloAGit/GenomeDesk/pull/1",
+            "title": "GenomeDesk v2: Dashboard, AI Research Assistant, Security and Documentation"
+          },
+          {
+            "repo": "SuiYunsy/midscene",
+            "evidence_url": "https://github.com/SuiYunsy/midscene/pull/3",
+            "title": "Add Python mspy scaffold for core/cli/shared/web-integration"
+          },
+          {
+            "repo": "ilyesHamdiii/cti-internship",
+            "evidence_url": "https://github.com/ilyesHamdiii/cti-internship/pull/4",
+            "title": "Stabilize CI/DevSecOps workflows with explicit gating, deterministic test wiring, and truthful deployment/security states"
+          },
+          {
+            "repo": "rudolf1/apartments_search",
+            "evidence_url": "https://github.com/rudolf1/apartments_search/pull/2",
+            "title": "Apartment search application with Playwright automation, authentication, dependency injection notifications, and Docker support"
+          },
+          {
+            "repo": "ChibaYuki347/dev-demo",
+            "evidence_url": "https://github.com/ChibaYuki347/dev-demo/pull/11",
+            "title": "Align manual issue→ADO sync workflow with AC-001 trigger path"
+          },
+          {
+            "repo": "Vikaash-dev/FREE-LLM-AGGREGATOR-",
+            "evidence_url": "https://github.com/Vikaash-dev/FREE-LLM-AGGREGATOR-/pull/10",
+            "title": "Fix critical issues: Make ML dependencies optional, fix syntax errors, and improve security"
+          },
+          {
+            "repo": "inanc-can/teduco-ai",
+            "evidence_url": "https://github.com/inanc-can/teduco-ai/pull/20",
+            "title": "Add comprehensive testing strategy and infrastructure"
+          },
+          {
+            "repo": "liuhongke985/smartwin",
+            "evidence_url": "https://github.com/liuhongke985/smartwin/pull/1",
+            "title": "feat: create complete project management infrastructure (W1-W2 phase)"
+          },
+          {
+            "repo": "Jacquesngw1/fluffy-fiesta",
+            "evidence_url": "https://github.com/Jacquesngw1/fluffy-fiesta/pull/2",
+            "title": "Fix CI: install project package so `geo_audit` is importable"
+          },
+          {
+            "repo": "Notas-a-Mano-serie-de-libros/3_notas-a-mano-sobre-analisis-de-complejidad-computacional",
+            "evidence_url": "https://github.com/Notas-a-Mano-serie-de-libros/3_notas-a-mano-sobre-analisis-de-complejidad-computacional/pull/18",
+            "title": "Pin playwright to 1.63.0 in requirements-lock.txt to fix Colab validation CI"
+          },
+          {
+            "repo": "egpbos/test_dianna_877",
+            "evidence_url": "https://github.com/egpbos/test_dianna_877/pull/1",
+            "title": "Replace notebook CI reproductions with dashboard CI failure reproduction workflow"
+          },
+          {
+            "repo": "Installsure/installsure-new-build",
+            "evidence_url": "https://github.com/Installsure/installsure-new-build/pull/3",
+            "title": "Implement InstallSure Golden Path v1.1: Complete CI/CD, Security, and Testing Infrastructure"
+          }
+        ]
+      },
+      {
+        "query": "is:pr author:app/copilot-swe-agent playwright pytest",
+        "evidence_type": "agent_pr",
+        "page": 3,
+        "per_page": 30,
+        "returned": 30,
+        "hits": [
+          {
+            "repo": "HakjunMIN/aicc-oss-harness",
+            "evidence_url": "https://github.com/HakjunMIN/aicc-oss-harness/pull/21",
+            "title": "Add GET /healthz readiness endpoint"
+          },
+          {
+            "repo": "pairing4good/spring-petclinic",
+            "evidence_url": "https://github.com/pairing4good/spring-petclinic/pull/47",
+            "title": "[WIP] Implement Comprehensive Playwright End-to-End Tests"
+          },
+          {
+            "repo": "vishaltailor01/-QA-Langchain",
+            "evidence_url": "https://github.com/vishaltailor01/-QA-Langchain/pull/1",
+            "title": "[WIP] Add initial implementation for QA tool supporting STLC"
+          },
+          {
+            "repo": "levisatto83/pricehistory",
+            "evidence_url": "https://github.com/levisatto83/pricehistory/pull/1",
+            "title": "Implement price monitoring system with scraping, storage, notifications, and API"
+          },
+          {
+            "repo": "YairTurambar/sat-tariff-scraper",
+            "evidence_url": "https://github.com/YairTurambar/sat-tariff-scraper/pull/19",
+            "title": "Preserva las rutas de navegadores al simular otras plataformas"
+          },
+          {
+            "repo": "mr-carlitos/opinion-voice-poc",
+            "evidence_url": "https://github.com/mr-carlitos/opinion-voice-poc/pull/1",
+            "title": "Expand offline test coverage across backend, browser, and diagnostic scripts"
+          },
+          {
+            "repo": "domfahey/pdfviewer",
+            "evidence_url": "https://github.com/domfahey/pdfviewer/pull/42",
+            "title": "Refactor test suite into module-based structure with edge case separation"
+          },
+          {
+            "repo": "Santi-a-ux/Web_Liquidacion_Definitiva0-main",
+            "evidence_url": "https://github.com/Santi-a-ux/Web_Liquidacion_Definitiva0-main/pull/15",
+            "title": "Add comprehensive test report with presentation-ready statistics (REPORTE_PRUEBAS.md)"
+          },
+          {
+            "repo": "Jul352mf/THE_Email_Scraper",
+            "evidence_url": "https://github.com/Jul352mf/THE_Email_Scraper/pull/9",
+            "title": "[WIP] ✨ Set up Copilot instructions"
+          },
+          {
+            "repo": "Installsure/External-Review-Repository",
+            "evidence_url": "https://github.com/Installsure/External-Review-Repository/pull/28",
+            "title": "Implement complete InstallSure production-ready infrastructure with testing, CI/CD, and comprehensive documentation"
+          },
+          {
+            "repo": "Smiths165/Google-maps-screper",
+            "evidence_url": "https://github.com/Smiths165/Google-maps-screper/pull/1",
+            "title": "Add Google Maps business scraper with CSV export"
+          },
+          {
+            "repo": "husamhilal/aitour26-BRK442-github-copilot-as-an-ai-agent-in-the-developer-workflow",
+            "evidence_url": "https://github.com/husamhilal/aitour26-BRK442-github-copilot-as-an-ai-agent-in-the-developer-workflow/pull/2",
+            "title": "Add plain HTML/CSS/JS UI with category support to Product Store demo app"
+          },
+          {
+            "repo": "the-ride-never-ends/get_law_from_contracted_repos",
+            "evidence_url": "https://github.com/the-ride-never-ends/get_law_from_contracted_repos/pull/2",
+            "title": "Add Gherkin v6 feature files with black box testing and implemented pytest tests"
+          },
+          {
+            "repo": "Pablo060606/DualLeagueManager",
+            "evidence_url": "https://github.com/Pablo060606/DualLeagueManager/pull/2",
+            "title": "[WIP] Fix execution issues and add GitHub Actions CI"
+          },
+          {
+            "repo": "Karen86Tonoyan/browser-content-inspection-agent",
+            "evidence_url": "https://github.com/Karen86Tonoyan/browser-content-inspection-agent/pull/1",
+            "title": "Implement ALFA Agent Control System — Operational Learning Loop"
+          },
+          {
+            "repo": "nntan90/qa-skill-suite",
+            "evidence_url": "https://github.com/nntan90/qa-skill-suite/pull/1",
+            "title": "feat: Professional QA Skill Suite improvements - CI/CD, new skills, templates, docs"
+          },
+          {
+            "repo": "mezzyboss/church-ai",
+            "evidence_url": "https://github.com/mezzyboss/church-ai/pull/2",
+            "title": "Add initial Python dependencies"
+          },
+          {
+            "repo": "vargasgustavo/JOAOTESTE",
+            "evidence_url": "https://github.com/vargasgustavo/JOAOTESTE/pull/1",
+            "title": "feat: V0 SaaS restaurant table & queue management platform"
+          },
+          {
+            "repo": "eddmtzarias/TE-explico",
+            "evidence_url": "https://github.com/eddmtzarias/TE-explico/pull/3",
+            "title": "Complete production infrastructure for TOKRAGGCORP system"
+          },
+          {
+            "repo": "Takuya338/Flask",
+            "evidence_url": "https://github.com/Takuya338/Flask/pull/1",
+            "title": "Add white/black/blue centered UI design via CSS"
+          },
+          {
+            "repo": "ahmedsza/zavademo",
+            "evidence_url": "https://github.com/ahmedsza/zavademo/pull/11",
+            "title": "Add BDD feature specifications for Zava application"
+          },
+          {
+            "repo": "youh4ck3dme/V4-prototype-icoatlas",
+            "evidence_url": "https://github.com/youh4ck3dme/V4-prototype-icoatlas/pull/1",
+            "title": "Security: Fix CORS wildcard, add security headers, rate limiting, and webhook verification"
+          },
+          {
+            "repo": "ADLIB-Mrani/secon-ebook",
+            "evidence_url": "https://github.com/ADLIB-Mrani/secon-ebook/pull/1",
+            "title": "Implement full-stack e-book generation platform with multi-source aggregation"
+          },
+          {
+            "repo": "Pythonnoobob/chinesestudy",
+            "evidence_url": "https://github.com/Pythonnoobob/chinesestudy/pull/2",
+            "title": "docs: Add website testing guidance"
+          },
+          {
+            "repo": "karlicoss/promnesia",
+            "evidence_url": "https://github.com/karlicoss/promnesia/pull/480",
+            "title": "Add comprehensive end-to-end test improvements: analysis, utilities, and documentation"
+          },
+          {
+            "repo": "kighaz/Smart_Library",
+            "evidence_url": "https://github.com/kighaz/Smart_Library/pull/1",
+            "title": "Implement Smart Library – digitales Ausleihsystem (Flask)"
+          },
+          {
+            "repo": "shand-j/python",
+            "evidence_url": "https://github.com/shand-j/python/pull/9",
+            "title": "Add OpenClaw configuration UI for zero-knowledge deployment"
+          },
+          {
+            "repo": "siaexit/my-household-account-",
+            "evidence_url": "https://github.com/siaexit/my-household-account-/pull/1",
+            "title": "Scaffold household ledger monorepo: Next.js web, FastAPI API, tests, docker-compose, AWS infra"
+          },
+          {
+            "repo": "poaudet/pkb-stack",
+            "evidence_url": "https://github.com/poaudet/pkb-stack/pull/8",
+            "title": "Implement Capture UI foundations and core"
+          },
+          {
+            "repo": "Installsure/External-Review-Repository",
+            "evidence_url": "https://github.com/Installsure/External-Review-Repository/pull/29",
+            "title": "Implement complete InstallSure monorepo infrastructure with backend API, tests, and automation"
+          }
+        ]
+      }
+    ],
+    "gates": {
+      "metadata_gates": [
+        {
+          "repo": "Kainoa00/mooz",
+          "sha": "0a9690b129316638973aa42601b1267c80cec31c",
+          "license": "MIT"
+        },
+        {
+          "repo": "LuckyTriple7/HA-AddOns",
+          "sha": "29a27fcf3e870bb5e42cec0a5978180ecf14cf84",
+          "license": "NOASSERTION"
+        },
+        {
+          "repo": "dodjango/tasmota-auto-updater",
+          "sha": "f08e6c7236a0f3e9ba3e3a111037677192566688",
+          "license": "MIT"
+        },
+        {
+          "repo": "EduTheMan9/om-toolkit",
+          "sha": "4ce9b2dd06dbc794542cb48fb2b908a7c338a1b6",
+          "license": "MIT"
+        },
+        {
+          "repo": "Neopram/whetzy",
+          "sha": "20371a6b478273c2ba0a3e05407b2959ef4c5857",
+          "license": "NOASSERTION"
+        },
+        {
+          "repo": "MindaugasSarpis/slidev-videos",
+          "sha": "c07d08f18a0fe35dde18ef9e71d1cb395c76d265",
+          "license": "MIT"
+        },
+        {
+          "repo": "ellmos-ai/ellmos-tests",
+          "sha": "ca031fe8001a5b40c9e1c8fab938aed49ee10e49",
+          "license": "MIT"
+        },
+        {
+          "repo": "peppigminze/Cypher",
+          "sha": "4fcb445093c0921f5b92c55d62c5f05c19e5a206",
+          "license": null
+        },
+        {
+          "repo": "don69andrea/prisma-v2",
+          "sha": "78fde942fb142bf44325d439d36b70105ae66655",
+          "license": null
+        },
+        {
+          "repo": "tolgaguensal-lab/tatilvakti",
+          "sha": "555f1ac7933358ac8264cbf0a5f65a3b67910221",
+          "license": "MIT"
+        },
+        {
+          "repo": "KanujVerma/job-alert",
+          "sha": "522bce80c63a96fcfee42c2cea39bd5509040f64",
+          "license": "MIT"
+        },
+        {
+          "repo": "SheylaSam/prisma-capstone",
+          "sha": "1aba45fae724b22409cc8749df48d246caf5d088",
+          "license": null
+        },
+        {
+          "repo": "Attila0604/Soraya-Agent",
+          "sha": "8f542859f1d5e9b10d3789b083ae48421e920002",
+          "license": null
+        },
+        {
+          "repo": "Diegofuego871/ha-device-panel",
+          "sha": "f1b4f934a3e8c818f5d2e1d0bab992a9f8f4ad4f",
+          "license": "MIT"
+        },
+        {
+          "repo": "bitwerkstatt/ostbevern_money",
+          "sha": "83c79d434f4e7d37ed1cb4eb61416d9847fe96f7",
+          "license": "MIT"
+        },
+        {
+          "repo": "wayneliu0297/renovation-quotation-system",
+          "sha": "13b51a354447e8ec40a90c66c7594f7cb83a0066",
+          "license": "MIT"
+        },
+        {
+          "repo": "arun-idhunaal/RAG_Chatbot",
+          "sha": "84d8c560d52f697a0bb7462eba6ec2f13721681f",
+          "license": null
+        },
+        {
+          "repo": "straussbastian/ai_flashcards_for_school",
+          "sha": "1d8cb9ecc63aaa475d2a585c01f535e666e8a0e9",
+          "license": "MIT"
+        },
+        {
+          "repo": "descipar/marktcrawler",
+          "sha": "10154a4a8d7cef40a2c90d3056e48e9aa34687b7",
+          "license": "NOASSERTION"
+        },
+        {
+          "repo": "frederikbeimgraben/Kinoko",
+          "sha": "d9ca5edeaa3a876f5e50d777a70c0ce44150ee5c",
+          "license": "GPL-3.0"
+        },
+        {
+          "repo": "Tabsi1998/THE-LION_SQUAD-eSPORT-Webseite",
+          "sha": "5c4c96e0ee66a87e0ac2724f1de09e8e52000dff",
+          "license": "NOASSERTION"
+        },
+        {
+          "repo": "eidos-agi/eidos-mcp-registry",
+          "sha": "ba28b0503379ce43bceec04329403f0b4ca12123",
+          "license": "MIT"
+        },
+        {
+          "repo": "iilgmbh/iil-klickdummy",
+          "sha": "3f533543f81cadc481cc32b2b253f268e0e8b921",
+          "license": null
+        },
+        {
+          "repo": "janpow77/auditcore",
+          "sha": "8765504b406efc41b2b28556b850f45e3a92a029",
+          "license": "MIT"
+        },
+        {
+          "repo": "craebby/FamQuest",
+          "sha": "1ea13b537c36187487557547ceafd3f662988aca",
+          "license": "AGPL-3.0"
+        },
+        {
+          "repo": "MauricePutinas/SiteScan",
+          "sha": "0d890d40ed1188cf6b7a14d3f6b60f02b771d3ca",
+          "license": "MIT"
+        },
+        {
+          "repo": "MidlightDDK/filinglens",
+          "sha": "63d78ea80e28fc99fa857ccf8a816da189a09327",
+          "license": "MIT"
+        },
+        {
+          "repo": "mohamd764/shadow-dom-booking-scraper",
+          "sha": "6bb06780c39dbd9313f9fcea214300c1cc42b70f",
+          "license": "MIT"
+        },
+        {
+          "repo": "AnshSinghal-CyberUltron/AI_Mesh_Firewall",
+          "sha": "5d5e05edb4ac2f316d5e4c1821e17096a152df85",
+          "license": null
+        },
+        {
+          "repo": "roland1910/Familienkalender",
+          "sha": "c03a490c2335888f1ac85c197ac0ee01f6d27016",
+          "license": null
+        },
+        {
+          "repo": "AmitabhainArunachala/Bunki-app",
+          "sha": "812a85b7832edbec4fd51707eb5690df675ad8fa",
+          "license": null
+        },
+        {
+          "repo": "jvelasca/Bolsa_V1",
+          "sha": "0bb09e711e70dce7d6d634fcb476d147a13957a0",
+          "license": null
+        },
+        {
+          "repo": "piyushtater158-cpu/brand-deal-inbox-triage",
+          "sha": "cb42ebb212f1009594c7e2df569f6881fdf6c820",
+          "license": null
+        },
+        {
+          "repo": "BabyNejii/corruption-fucker",
+          "sha": "e4735d6205114682e775cbe591d9989830db11a3",
+          "license": "GPL-3.0"
+        },
+        {
+          "repo": "Fearplay/applypilot-ai",
+          "sha": "610777dac31a876da1e8d2900cc1af1d1465457b",
+          "license": "NOASSERTION"
+        },
+        {
+          "repo": "FLYERGLITCHY/ML-iPhone-responsibility",
+          "sha": "bafde1b0a05b02fe7434f5de3bd811c499777e4d",
+          "license": null
+        },
+        {
+          "repo": "jvelasca/english-tutor",
+          "sha": "9a4e70a50b0c1f0e674e6d974cc0249c52a2ccc1",
+          "license": null
+        },
+        {
+          "repo": "zhuocun/agent",
+          "sha": "a9f3b3dbde1fbe4a27ec8019968806e82b1045a3",
+          "license": null
+        },
+        {
+          "repo": "Manavp7/PathogenRadar",
+          "sha": "a6e45d1736e19e66f369c557a4ea11874d56d70a",
+          "license": null
+        },
+        {
+          "repo": "zonzideka/asterun",
+          "sha": "b5100562133c8c80de31f33a5555468f1ae91f37",
+          "license": "Apache-2.0"
+        },
+        {
+          "repo": "cheafi/Trading-bot-CC",
+          "sha": "09646728a2d463f6cd84950f5e7843c1bf8b3a76",
+          "license": "MIT"
+        },
+        {
+          "repo": "therealronin23/atlas",
+          "sha": "009a4d8d6bdde56ea02519ed32826ccb0bdabb31",
+          "license": null
+        },
+        {
+          "repo": "bob4o-afk/svineklanica",
+          "sha": "e4735d6205114682e775cbe591d9989830db11a3",
+          "license": "GPL-3.0"
+        },
+        {
+          "repo": "jmjava/tekton-dag",
+          "sha": "836936d0593b37a75a04817e345f1c12a0f82344",
+          "license": "Apache-2.0"
+        },
+        {
+          "repo": "micytao/vllm-playground",
+          "sha": "175db12ea28769417a0b0a8c6455ba548a500d0c",
+          "license": "Apache-2.0"
+        },
+        {
+          "repo": "tenstorrent/tt-studio",
+          "sha": "8d622a0a69be48700f47ecb80a82f299a397f1e4",
+          "license": "Apache-2.0"
+        },
+        {
+          "repo": "sslivins/arctic-controller",
+          "sha": "0c5515c46ddaa4392088dc52e8299f529fdc526c",
+          "license": null
+        },
+        {
+          "repo": "hidjq/swe-marathon-easy-generation",
+          "sha": "3f137bad8b015b57bf753fc68a057e644e564505",
+          "license": "Apache-2.0"
+        },
+        {
+          "repo": "gandie/Interfaces-2026",
+          "sha": "cef668b555336218c0c27dce2a7e4626cb4cfe73",
+          "license": "MIT"
+        },
+        {
+          "repo": "nastechresearch/nastech-agent",
+          "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+          "license": "MIT"
+        },
+        {
+          "repo": "sligo-droid/hermes-agent",
+          "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+          "license": "MIT"
+        },
+        {
+          "repo": "imxiaoxin13/Hermes",
+          "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+          "license": "MIT"
+        },
+        {
+          "repo": "igzibo/igzibo.github.io",
+          "sha": "57988d23f35915cf84fe6725f01586e247dd8f04",
+          "license": null
+        },
+        {
+          "repo": "tegataiprime/Platelet-Movie",
+          "sha": "14664611814b126289f291ad24ee294102efb07c",
+          "license": "Apache-2.0"
+        },
+        {
+          "repo": "abundant-ai/swe-marathon",
+          "sha": "3f137bad8b015b57bf753fc68a057e644e564505",
+          "license": "Apache-2.0"
+        },
+        {
+          "repo": "Zhaowief/hermes-agent",
+          "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+          "license": "MIT"
+        },
+        {
+          "repo": "judeper/FSI-AgentGov-Solutions",
+          "sha": "d6f9d094493edea1b0b55489e65ec1de534189f0",
+          "license": "MIT"
+        },
+        {
+          "repo": "mauzhi/hermes-dashboard",
+          "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+          "license": "MIT"
+        },
+        {
+          "repo": "chidionyema/hermes-agent",
+          "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+          "license": "MIT"
+        },
+        {
+          "repo": "sjuxax/hermes-agent",
+          "sha": "9acc4b47f5b2abda0949d07372ecf67938d50a16",
+          "license": "MIT"
+        },
+        {
+          "repo": "hibbertda/lego_manager",
+          "sha": "16164b7f36c47246fab9b38a7f1966785eec3f74",
+          "license": "MIT"
+        },
+        {
+          "repo": "lhotakj/kinetiqo",
+          "sha": "4108764f873210d4dc8606e4224daa15756f59a7",
+          "license": "MIT"
+        },
+        {
+          "repo": "vicperdana/aigenius-copilotsdk-s5ep2",
+          "sha": "3ee75253672d7f029153c0d64436f37484668859",
+          "license": "MIT"
+        },
+        {
+          "repo": "anabil25/ResearchAssistant",
+          "sha": "30d6c79aae8ef789c4455cf481e8e94502793daf",
+          "license": "MIT"
+        },
+        {
+          "repo": "D0n9X1n/chatgpt-tag-highlighter",
+          "sha": "2614e9588439a3ffb2c2a873c74818dcc23ba903",
+          "license": "MIT"
+        },
+        {
+          "repo": "FalkorDB/QueryWeaver",
+          "sha": "940c8fd745b17a2b921fc6a0bacfdb7fd2360dd5",
+          "license": "AGPL-3.0"
+        },
+        {
+          "repo": "gwtlewis/agent-lab",
+          "sha": "67079b782568ba28a2d154a2a765f5f7b37af309",
+          "license": null
+        },
+        {
+          "repo": "topness-msft/TodoIQ",
+          "sha": "c5fe177891d7ba2ab27d72caca9bac8c51135d2b",
+          "license": null
+        },
+        {
+          "repo": "kelvinxxle/swing-analyzer",
+          "sha": "fb45134463329ac9963affabf89f6bf6971b78ff",
+          "license": null
+        },
+        {
+          "repo": "seudazhong/sherpa",
+          "sha": "0f26a0df07bf35a280d2878fba7f5f571beaa8cf",
+          "license": null
+        },
+        {
+          "repo": "BharathSubbarao/CompIntCalculator",
+          "sha": "a53ae10b70bae67f8a4abc8cd66a2e0bbe84d7af",
+          "license": null
+        },
+        {
+          "repo": "canonical/paas-charm",
+          "sha": "e149eeef696cf2037eff5b69b2ad36057454ad6f",
+          "license": null
+        },
+        {
+          "repo": "4444J99/limen",
+          "sha": "74c13044a2d285dfbb4259b8197752895689c29d",
+          "license": null
+        },
+        {
+          "repo": "rysweet/Simard",
+          "sha": "d69b8d94f1b4e5b29442a88581b0b34e87afe24b",
+          "license": "MIT"
+        },
+        {
+          "repo": "Tachaan/aigenius-copilotsdk-s5ep2",
+          "sha": "3ee75253672d7f029153c0d64436f37484668859",
+          "license": "MIT"
+        },
+        {
+          "repo": "ViniciusDeMartinViude/tcc_mba",
+          "sha": "46b5bd15757a4c59fe527ddd0783468dab8f4a9d",
+          "license": "MIT"
+        },
+        {
+          "repo": "jaspherramos98/stock-advisor",
+          "sha": "468ce929ee097c41b13ff6bcf6960770c8c489e7",
+          "license": null
+        },
+        {
+          "repo": "johnbilliris/ama",
+          "sha": "06d764030891ed875829534d7abcac90056129c8",
+          "license": null
+        },
+        {
+          "repo": "florianlepont/skypane",
+          "sha": "4369084266aece55138899becc3fb9e6eb0d5f77",
+          "license": "AGPL-3.0"
+        },
+        {
+          "repo": "rudi193-cmd/safe-app-store",
+          "sha": "6297c24ddcc12eae271d1636b7510d747d26e8e2",
+          "license": "Apache-2.0"
+        },
+        {
+          "repo": "gabrielolsen06-eng/gherkin-copilot",
+          "sha": "9e7d361fb88edeaccd66d5ef7cf9989d2d302bc8",
+          "license": null
+        },
+        {
+          "repo": "KhaledBakhtriIA/agent-data-fabric",
+          "sha": "d74d97c173666e256d4d25595c5a796917b5fdea",
+          "license": "MIT"
+        },
+        {
+          "repo": "elasticdotventures/_b00t_",
+          "sha": "d201dd4cb62f991192280f92d3c3c92315ecda78",
+          "license": "NOASSERTION"
+        },
+        {
+          "repo": "Benjamin-KY/open-harness-atlas",
+          "sha": "87bc479f2de44895e5ba1ca4fa95643ba8183969",
+          "license": "Apache-2.0"
+        },
+        {
+          "repo": "ajibolailesanmi-sudo/Finance-",
+          "sha": "e616246f109642f0898a5d81b83ca0dba89b80cb",
+          "license": null
+        },
+        {
+          "repo": "elasticdotventures/__b00t__",
+          "sha": "d201dd4cb62f991192280f92d3c3c92315ecda78",
+          "license": "MIT"
+        },
+        {
+          "repo": "AshleyHollis/yt-summarizer",
+          "sha": "6f3e7afc73d3ef93306b951b0917f737e209a877",
+          "license": null
+        },
+        {
+          "repo": "abrahamperz/ByteCrawl",
+          "sha": "b8bf99567204eed950c43d0d74e02a5217e8bb64",
+          "license": "MIT"
+        },
+        {
+          "repo": "MEOMcGill/igscrape",
+          "sha": "2fb978d7a6753c0ca139916852de51da8d8e17ff",
+          "license": "NOASSERTION"
+        },
+        {
+          "repo": "rysweet/amplihack",
+          "sha": "484db911b5d8e26f71a81d908eec5603e8c85af3",
+          "license": null
+        },
+        {
+          "repo": "dsx87/job-search",
+          "sha": "a4ccfa78ea0bfc70fc1a04cb87b49d3a34d2641d",
+          "license": "MIT"
+        },
+        {
+          "repo": "toouur/foursquare-dashboard",
+          "sha": "f1a1ec65a60ab3ee8fdb99bb903d79e4eeafe400",
+          "license": "Apache-2.0"
+        },
+        {
+          "repo": "MvdB/website_to_okf",
+          "sha": "c2f06fde8977e9182cede296f6a2c546e3523c25",
+          "license": "Apache-2.0"
+        },
+        {
+          "repo": "peodpeod55-debug/Stock-Screener",
+          "sha": "31153b4fde286db81a8c56cb027de4981b38a606",
+          "license": null
+        },
+        {
+          "repo": "tijoseymathew/periop-companion",
+          "sha": "606309f79355ebb2f7ac159212784d66b6ce4d2f",
+          "license": "Apache-2.0"
+        },
+        {
+          "repo": "riazsas/content_originality_verification_systerm",
+          "sha": "50fef7b35331dd62a9cea7f3864cb325c6e38bed",
+          "license": null
+        },
+        {
+          "repo": "chengli1986/hedge-fund-research",
+          "sha": "062fb6734121c92eb78d84220d071d988f3e8601",
+          "license": null
+        },
+        {
+          "repo": "sulbhathube/PlaywriteAgent",
+          "sha": "3e88687eda32e6dd538f60c26d7ef4cf3734f20f",
+          "license": null
+        },
+        {
+          "repo": "Amakahhh/scholarship_assistant",
+          "sha": "dfd4f0ad6751e81e560b721a0ee8325edc54691d",
+          "license": "MIT"
+        },
+        {
+          "repo": "smitehamner/yuu-clip",
+          "sha": "3f74e168254ae8f769970b2cc911d1d71ed06fb8",
+          "license": "Apache-2.0"
+        },
+        {
+          "repo": "Meerav29/discourse-lens",
+          "sha": "850ff2f3ecc92a1046aba8298154624c7c8439aa",
+          "license": null
+        },
+        {
+          "repo": "omri566/garmin-coach",
+          "sha": "7478b0ef2a842fbbf8aa285dda1c1a162f2d8545",
+          "license": null
+        },
+        {
+          "repo": "20sgt/Data-Architecture",
+          "sha": "2d1ea9181d739a05324a2be3ced0ba5b91392be2",
+          "license": null
+        },
+        {
+          "repo": "bcollier/faculty-twin",
+          "sha": "22ce7ac014f96a648dfed108f76a5604a2101756",
+          "license": null
+        },
+        {
+          "repo": "b0ir/visual-lens",
+          "sha": "fd7e2ca62966e59e188b405e5363a451b8ca6392",
+          "license": "NOASSERTION"
+        },
+        {
+          "repo": "Charlie-C-1266/Testing_Template",
+          "sha": "88055fed5258ac831b0e13225be7d5288493696a",
+          "license": null
+        },
+        {
+          "repo": "jordanlaforge15-del/agentic-bylaw-system",
+          "sha": "64c79afeaf5a319fd848bafd0917ed1bffdcc121",
+          "license": null
+        },
+        {
+          "repo": "tindo2003/used_cars_finder",
+          "sha": "8563651278a1a24a3beeb596010de4308499a8d2",
+          "license": null
+        },
+        {
+          "repo": "megahirt/yt-gallery",
+          "sha": "ebe2f62af1dd8dd829b480cf5213ea843a99f591",
+          "license": null
+        }
+      ],
+      "pr_gates": [
+        {
+          "repo": "COG-GTM/BrowserGym",
+          "sha": "34d8e05cf164ee6599d40b24908bd72823e6d708",
+          "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/72",
+          "author": "devin-ai-integration[bot]",
+          "license": "NOASSERTION",
+          "files": [
+            "tests/core/data/autocomplete.html",
+            "tests/core/data/drag_and_drop.html",
+            "tests/core/data/scrollable_panels.html",
+            "tests/core/data/select.html",
+            "tests/core/test_actions_highlevel.py"
+          ]
+        },
+        {
+          "repo": "domfahey/pdfviewer",
+          "sha": "06dd714ce8178bae5a5fe4b42550702f555f4116",
+          "evidence_url": "https://github.com/domfahey/pdfviewer/pull/42",
+          "author": "Copilot",
+          "license": "MIT",
+          "files": [
+            "README.md",
+            "TEST_REFACTORING_SUMMARY.md",
+            "configs/Makefile",
+            "tests/README.md",
+            "tests/integration/test_anyline_sample.py",
+            "tests/integration/test_epa_sample.py",
+            "tests/integration/test_nhtsa_form.py",
+            "tests/integration/test_princexml_sample.py",
+            "tests/integration/test_sample_pdfs.py",
+            "tests/integration/test_weblite_sample.py",
+            "tests/unit/__init__.py",
+            "tests/unit/api/__init__.py",
+            "tests/unit/api/test_health.py",
+            "tests/unit/api/test_load_url_api_edge_cases.py",
+            "tests/unit/api/test_pdf_api_edge_cases.py",
+            "tests/unit/api/test_pdf_endpoints.py",
+            "tests/unit/api/test_upload.py",
+            "tests/unit/middleware/__init__.py",
+            "tests/unit/middleware/test_api_logging.py",
+            "tests/unit/middleware/test_core_logging.py",
+            "tests/unit/middleware/test_logging_middleware.py",
+            "tests/unit/middleware/test_middleware_logging_edge_cases.py",
+            "tests/unit/models/__init__.py",
+            "tests/unit/models/test_pydantic_models.py",
+            "tests/unit/services/__init__.py",
+            "tests/unit/services/test_pdf_service.py",
+            "tests/unit/services/test_pdf_service_edge_cases.py",
+            "tests/unit/utils/__init__.py",
+            "tests/unit/utils/test_dependencies.py",
+            "tests/unit/utils/test_http_client.py",
+            "tests/unit/utils/test_utils_decorators.py",
+            "tests/unit/utils/test_utils_logger_edge_cases.py",
+            "tests/unit/utils/test_validation.py"
+          ]
+        },
+        {
+          "repo": "radiorabe/mkdocs-theme-rabe",
+          "sha": "126058b6a9ff02eb24f3468db8aa05c03c4054d4",
+          "evidence_url": "https://github.com/radiorabe/mkdocs-theme-rabe/pull/1",
+          "author": "Copilot",
+          "license": null,
+          "files": [
+            ".github/dependabot.yml",
+            ".github/workflows/playwright.yaml",
+            ".github/workflows/release.yaml",
+            ".github/workflows/semantic-release.yaml",
+            ".github/workflows/test.yaml",
+            ".gitignore",
+            ".pre-commit-config.yaml",
+            "AGENTS.md",
+            "LICENSE",
+            "README.md",
+            "docs/configuration/backstage.md",
+            "docs/configuration/index.md",
+            "docs/configuration/modes.md",
+            "docs/configuration/theme.md",
+            "docs/getting-started/index.md",
+            "docs/getting-started/installation.md",
+            "docs/getting-started/quickstart.md",
+            "docs/index.md",
+            "docs/reference/hooks.md",
+            "docs/reference/index.md",
+            "mkdocs.yml",
+            "mkdocs_theme_rabe/__init__.py",
+            "mkdocs_theme_rabe/hooks.py",
+            "mkdocs_theme_rabe/theme/__init__.py",
+            "mkdocs_theme_rabe/theme/assets/stylesheets/rabe.css",
+            "mkdocs_theme_rabe/theme/home.html",
+            "mkdocs_theme_rabe/theme/main.html",
+            "mkdocs_theme_rabe/theme/mkdocs_theme.yml",
+            "poetry.lock",
+            "pyproject.toml",
+            "tests/__init__.py",
+            "tests/playwright/__init__.py",
+            "tests/playwright/conftest.py",
+            "tests/playwright/snapshots/test_snapshots/test_getting_started_screenshot/chromium/getting-started.png",
+            "tests/playwright/snapshots/test_snapshots/test_home_desktop_screenshot/chromium/home-desktop.png",
+            "tests/playwright/snapshots/test_snapshots/test_home_mobile_screenshot/chromium/home-mobile.png",
+            "tests/playwright/snapshots/test_snapshots/test_light_mode_screenshot/chromium/home-light-mode.png",
+            "tests/playwright/test_snapshots.py",
+            "tests/test_build.py",
+            "tests/test_hooks.py"
+          ]
+        },
+        {
+          "repo": "COG-GTM/BrowserGym",
+          "sha": "e14a058fea05e1d37934d30f8916c525cad83ac4",
+          "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/15",
+          "author": "devin-ai-integration[bot]",
+          "license": "NOASSERTION",
+          "files": [
+            "browsergym/core/src/browsergym/core/chat.py",
+            "browsergym/core/src/browsergym/core/chat_files/chatbox.html",
+            "browsergym/core/src/browsergym/core/chat_files/chatbox_modern.html",
+            "tests/core/test_chat.py"
+          ]
+        },
+        {
+          "repo": "mr-carlitos/opinion-voice-poc",
+          "sha": "39aca2064fc79265b2ed916411f5320b79a536e0",
+          "evidence_url": "https://github.com/mr-carlitos/opinion-voice-poc/pull/1",
+          "author": "Copilot",
+          "license": null,
+          "files": [
+            ".gitignore",
+            "README.md",
+            "docs/testing.md",
+            "package.json",
+            "pyproject.toml",
+            "scripts/generate_sample_pdfs.py",
+            "tests/conftest.py",
+            "tests/e2e/journey.spec.js",
+            "tests/e2e/media.spec.js",
+            "tests/test_api_lifecycle.py",
+            "tests/test_check_model.py",
+            "tests/test_config.py",
+            "tests/test_foundry.py",
+            "tests/test_graph.py",
+            "tests/test_grounding.py",
+            "tests/test_live_check.py",
+            "tests/test_sample_generation.py",
+            "tests/test_sessions.py",
+            "tests/test_setup.py",
+            "tests/test_streaming_mode.py",
+            "uv.lock"
+          ]
+        },
+        {
+          "repo": "adotak/vitadrive",
+          "sha": "ff058d77e14d96d197223a26887071e7cdc22b25",
+          "evidence_url": "https://github.com/adotak/vitadrive/pull/28",
+          "author": "devin-ai-integration[bot]",
+          "license": "MIT",
+          "files": [
+            ".github/workflows/ci.yml",
+            ".gitignore",
+            "README.md",
+            "e2e/conftest.py",
+            "e2e/test_dashboard.py",
+            "pyproject.toml"
+          ]
+        }
+      ]
+    },
+    "screened": [
+      {
+        "repo": "ViniciusDeMartinViude/tcc_mba",
+        "sha": "46b5bd15757a4c59fe527ddd0783468dab8f4a9d",
+        "risk": "high",
+        "decision": "rejected",
+        "reason": "Changed files are mocked unit/parsing tests; no selected Python browser tests.",
+        "evidence_url": "https://github.com/ViniciusDeMartinViude/tcc_mba/commit/46b5bd15757a4c59fe527ddd0783468dab8f4a9d",
+        "evidence_kind": "test_commit",
+        "license": "MIT",
+        "license_url": "https://github.com/ViniciusDeMartinViude/tcc_mba/blob/46b5bd15757a4c59fe527ddd0783468dab8f4a9d/LICENSE",
+        "pinned_license_sha256": "4dc924f358daf067da0992bbeb1f8584cd26b0cfd0bd4923e48c7d826b4d36d9",
+        "screen": {
+          "observable_calls": 0,
+          "files": {
+            "tests/test_captcha.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_config.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_coordinator.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_fingerprint.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_normalization.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_parsing.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_repository.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_robots.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            }
+          },
+          "external_host_literals": [
+            "example.ae",
+            "www.propertyfinder.ae",
+            "x.ae"
+          ],
+          "offline_risk": [
+            {
+              "file": "tests/conftest.py",
+              "line": 27,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 28,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_captcha.py",
+              "line": 20,
+              "kind": "external_host",
+              "detail": "x.ae"
+            },
+            {
+              "file": "tests/test_captcha.py",
+              "line": 27,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_coordinator.py",
+              "line": 16,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_fingerprint.py",
+              "line": 14,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_fingerprint.py",
+              "line": 16,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_fingerprint.py",
+              "line": 21,
+              "kind": "external_host",
+              "detail": "x.ae"
+            },
+            {
+              "file": "tests/test_fingerprint.py",
+              "line": 22,
+              "kind": "external_host",
+              "detail": "x.ae"
+            },
+            {
+              "file": "tests/test_fingerprint.py",
+              "line": 39,
+              "kind": "external_host",
+              "detail": "x.ae"
+            },
+            {
+              "file": "tests/test_fingerprint.py",
+              "line": 41,
+              "kind": "external_host",
+              "detail": "x.ae"
+            },
+            {
+              "file": "tests/test_parsing.py",
+              "line": 16,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_parsing.py",
+              "line": 79,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_repository.py",
+              "line": 104,
+              "kind": "external_host",
+              "detail": "example.ae"
+            },
+            {
+              "file": "tests/test_repository.py",
+              "line": 119,
+              "kind": "external_host",
+              "detail": "x.ae"
+            },
+            {
+              "file": "tests/test_robots.py",
+              "line": 28,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_robots.py",
+              "line": 33,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_robots.py",
+              "line": 37,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_robots.py",
+              "line": 42,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_robots.py",
+              "line": 43,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_robots.py",
+              "line": 48,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_robots.py",
+              "line": 49,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_robots.py",
+              "line": 54,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_robots.py",
+              "line": 60,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            },
+            {
+              "file": "tests/test_robots.py",
+              "line": 67,
+              "kind": "external_host",
+              "detail": "www.propertyfinder.ae"
+            }
+          ],
+          "heuristic_only": true
+        },
+        "row": null,
+        "source_sha256": {
+          "LICENSE": "4dc924f358daf067da0992bbeb1f8584cd26b0cfd0bd4923e48c7d826b4d36d9",
+          "pyproject.toml": "f9485c5b813a9fb8b3233afcb51ae452d3302c99828ed4b7138f3840e3c6f8f0",
+          "requirements.txt": "f74998a7062daf69371fb2d08396016aa4eaa6d877dae4bf8dd287dc09b11d23",
+          "tests/conftest.py": "1a3f62aef5ff5dd7eb9788f1af113860660145b3563f3027f343a7d901cc7594",
+          "tests/test_captcha.py": "78fbc0acc2e2781aa55df1f184327c8170e1cca24091f838b1480e408e5cf627",
+          "tests/test_config.py": "b1cc80fd4109174ca6df259354c97abf7d5b948fc916802ba64512e7b61baffe",
+          "tests/test_coordinator.py": "5047102fa3e9e19596375eebfa12f94bc627c3d84a898c3b802591a053fd1a8a",
+          "tests/test_fingerprint.py": "2517903c228d22f71b69ea51ec3b76711f5536881c8d54feae898b5ae8954943",
+          "tests/test_normalization.py": "9b75e8e61c3a4a5da7575c4f5350a04ca2ba8c9fe7c6f7d3c3d631562dac6269",
+          "tests/test_parsing.py": "22217110b35bc90f78dc702d3153bca6b1da708dd2380e3588baff103d492eda",
+          "tests/test_repository.py": "1acedeac7c1491a512969d972d4161eea364f0403142d5ab68c9ca7d314b12ff",
+          "tests/test_robots.py": "60c8f99b2fb90e8fdc6de53b0d4bd0b9bf87d60e86a73f7cb8a6b21cda1f8db2"
+        },
+        "additional_asset_flags": [],
+        "unfetched_local_imports": [
+          "src/property_collector/__init__.py",
+          "src/property_collector/browser/__init__.py",
+          "src/property_collector/browser/captcha.py",
+          "src/property_collector/config.py",
+          "src/property_collector/coordinator.py",
+          "src/property_collector/fingerprint.py",
+          "src/property_collector/models.py",
+          "src/property_collector/normalization.py",
+          "src/property_collector/parsing/__init__.py",
+          "src/property_collector/parsing/property_details.py",
+          "src/property_collector/parsing/search_results.py",
+          "src/property_collector/robots.py",
+          "src/property_collector/storage/__init__.py",
+          "src/property_collector/storage/database.py",
+          "src/property_collector/storage/repository.py"
+        ],
+        "coverage_limit": "Static rejection screen, not complete app dependency closure. Missing helpers retained explicitly; no target imports or execution."
+      },
+      {
+        "repo": "tijoseymathew/periop-companion",
+        "sha": "606309f79355ebb2f7ac159212784d66b6ce4d2f",
+        "risk": "high",
+        "decision": "rejected",
+        "reason": "Changed tests exercise the API, not Python Playwright; no LICENSE file was found at this pinned tree (current metadata alone is insufficient).",
+        "evidence_url": "https://github.com/tijoseymathew/periop-companion/commit/606309f79355ebb2f7ac159212784d66b6ce4d2f",
+        "evidence_kind": "test_commit",
+        "license": null,
+        "license_url": "",
+        "pinned_license_sha256": null,
+        "screen": {
+          "observable_calls": 0,
+          "files": {
+            "tests/test_api.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            }
+          },
+          "external_host_literals": [],
+          "offline_risk": [],
+          "heuristic_only": true
+        },
+        "row": null,
+        "source_sha256": {
+          "pyproject.toml": "3839bd3c87af8cea5f68606b851e4b4740de0309b3c9c071688d4004ca845390",
+          "tests/test_api.py": "d459d79317c8836071522a0261fb99dc1c39ad0e590618bdb1c60e4a18c2ade0"
+        },
+        "additional_asset_flags": [],
+        "unfetched_local_imports": [
+          "src/periop/__init__.py",
+          "src/periop/api/__init__.py",
+          "src/periop/api/app.py",
+          "src/periop/schemas.py",
+          "src/periop/store.py",
+          "tests/__init__.py"
+        ],
+        "coverage_limit": "Static rejection screen, not complete app dependency closure. Missing helpers retained explicitly; no target imports or execution."
+      },
+      {
+        "repo": "mohamd764/shadow-dom-booking-scraper",
+        "sha": "6bb06780c39dbd9313f9fcea214300c1cc42b70f",
+        "risk": "high",
+        "decision": "rejected",
+        "reason": "Local HTML exists, but browser.new_page/custom scraping helper receivers produce 0 calls in the current conservative screen. This is a screen limitation, not a runtime result.",
+        "evidence_url": "https://github.com/mohamd764/shadow-dom-booking-scraper/commit/6bb06780c39dbd9313f9fcea214300c1cc42b70f",
+        "evidence_kind": "test_commit",
+        "license": "MIT",
+        "license_url": "https://github.com/mohamd764/shadow-dom-booking-scraper/blob/6bb06780c39dbd9313f9fcea214300c1cc42b70f/LICENSE",
+        "pinned_license_sha256": "9e858eb2dbf91b1fc487a1552493590bce2eed6aa1dcec82db34cf7abbfdc02f",
+        "screen": {
+          "observable_calls": 0,
+          "files": {
+            "tests/expected_slots.py": {
+              "selected": true,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_config.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_demo.py": {
+              "selected": true,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_parse.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_robots.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_sample_csv.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_storage.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            }
+          },
+          "external_host_literals": [
+            "example.com",
+            "github.com"
+          ],
+          "offline_risk": [
+            {
+              "file": "pyproject.toml",
+              "line": 29,
+              "kind": "external_host",
+              "detail": "github.com"
+            },
+            {
+              "file": "tests/expected_slots.py",
+              "line": 34,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/test_config.py",
+              "line": 34,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/test_config.py",
+              "line": 42,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/test_config.py",
+              "line": 43,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/test_config.py",
+              "line": 52,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/test_config.py",
+              "line": 59,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/test_parse.py",
+              "line": 28,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/test_robots.py",
+              "line": 6,
+              "kind": "external_host",
+              "detail": "example.com"
+            }
+          ],
+          "heuristic_only": true
+        },
+        "row": null,
+        "source_sha256": {
+          "LICENSE": "9e858eb2dbf91b1fc487a1552493590bce2eed6aa1dcec82db34cf7abbfdc02f",
+          "pyproject.toml": "bf2537a32d2bcf0bc23b730a719911cfa21fe0d133bcfb4d9e726bcbef1ddd58",
+          "requirements-dev.txt": "22e6e4ce044da48b5819c336030fc6d90061613f2eb4a092b36e330ab454b801",
+          "requirements.txt": "fdbc161be6f9c769e81e6726ccbe906db7bdca278ed2e57537610d01d783e96a",
+          "tests/expected_slots.py": "7565a416b2c9f5ef781e0f6f15c124e721fc0e8e91bc463ab4e3817c38f480f7",
+          "tests/test_config.py": "c6b975d8755d9558d20945cb917329eec956994a0a42fd25a2ca24808a9027bc",
+          "tests/test_demo.py": "806254f3f6368fbd2848db6cd78c2c782c64738f72471239d69e48bfab5026ad",
+          "tests/test_parse.py": "fb3686559dbff6786644134aba22a8871510525e4c184d03d491d2eefa57d0de",
+          "tests/test_robots.py": "8221843cbd951f197a6a5adebee130baf79013dc6a85bbecf56ffc1609bd8e0c",
+          "tests/test_sample_csv.py": "09e4514746afeb9a0abb964c58e05ab562a05fa41cfd68992e7210f4794e4dcd",
+          "tests/test_storage.py": "58d294b2d2655b5f6e9e9245d599b5b9fc062ef7f4a5cdb08ebc57810ffa1a48"
+        },
+        "additional_asset_flags": [],
+        "unfetched_local_imports": [
+          "src/booking_scraper/__init__.py",
+          "src/booking_scraper/config.py",
+          "src/booking_scraper/parse.py",
+          "src/booking_scraper/robots.py",
+          "src/booking_scraper/scrape.py",
+          "src/booking_scraper/storage.py"
+        ],
+        "coverage_limit": "Static rejection screen, not complete app dependency closure. Missing helpers retained explicitly; no target imports or execution."
+      },
+      {
+        "repo": "toouur/foursquare-dashboard",
+        "sha": "f1a1ec65a60ab3ee8fdb99bb903d79e4eeafe400",
+        "risk": "high",
+        "decision": "rejected",
+        "reason": "Browser fixture uses the remote https://4sq.pages.dev site; 0 tracked calls under current receiver rules.",
+        "evidence_url": "https://github.com/toouur/foursquare-dashboard/commit/f1a1ec65a60ab3ee8fdb99bb903d79e4eeafe400",
+        "evidence_kind": "test_commit",
+        "license": "Apache-2.0",
+        "license_url": "https://github.com/toouur/foursquare-dashboard/blob/f1a1ec65a60ab3ee8fdb99bb903d79e4eeafe400/LICENSE",
+        "pinned_license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "screen": {
+          "observable_calls": 0,
+          "files": {
+            "tests/test_api_contract.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_companions.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_companions_parity.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_e2e_smoke.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_shouts.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_transform.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_trip_detection.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            }
+          },
+          "external_host_literals": [
+            "4sq.pages.dev",
+            "4sq.pages.dev)",
+            "4sq.pages.dev)."
+          ],
+          "offline_risk": [
+            {
+              "file": "tests/conftest.py",
+              "line": 18,
+              "kind": "external_host",
+              "detail": "4sq.pages.dev"
+            },
+            {
+              "file": "tests/test_api_contract.py",
+              "line": 9,
+              "kind": "external_host",
+              "detail": "4sq.pages.dev)"
+            },
+            {
+              "file": "tests/test_api_contract.py",
+              "line": 23,
+              "kind": "external_host",
+              "detail": "4sq.pages.dev"
+            },
+            {
+              "file": "tests/test_e2e_smoke.py",
+              "line": 4,
+              "kind": "external_host",
+              "detail": "4sq.pages.dev)."
+            },
+            {
+              "file": "tests/test_e2e_smoke.py",
+              "line": 20,
+              "kind": "external_host",
+              "detail": "4sq.pages.dev"
+            }
+          ],
+          "heuristic_only": true
+        },
+        "row": null,
+        "source_sha256": {
+          "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "requirements.txt": "34db173091087f8bdacbe8041cff949af89a55160c3988f60eb39ded1f743067",
+          "tests/conftest.py": "b3d64c555dd25c310c55897a5c9ce8d59c1bfb7d188180d48d8665b6a7941efb",
+          "tests/test_api_contract.py": "d0aeefd56aa769887ce7a52a9ecba6eb32b8d1421e59edbd5fc582fc776f84ed",
+          "tests/test_companions.py": "98386480ca37f52f534460aac82d4a0f5c4f88c85dd43fa42a812b429368d7f8",
+          "tests/test_companions_parity.py": "9d569320ee3de88d073aed82608e99cb5632db7cb910bd50a7cfae299da216f6",
+          "tests/test_e2e_smoke.py": "ae2e4601af09868e51f0b65f967015e87d9bdd585e2d1096451bd0877d4b2f53",
+          "tests/test_shouts.py": "8b7371da4c60e686ec5e07fcef82ba2edaccc093c60e62d914d79b769c56cab5",
+          "tests/test_transform.py": "b2e84f7ae121e76063a68fee92003faa7917efee63ebc98d32aabe31a54c70ff",
+          "tests/test_trip_detection.py": "003f429bc3b181dd16a3416519c4350370c809f649d5e07a37c61643fba94961"
+        },
+        "additional_asset_flags": [],
+        "unfetched_local_imports": [],
+        "coverage_limit": "Static rejection screen, not complete app dependency closure. Missing helpers retained explicitly; no target imports or execution."
+      },
+      {
+        "repo": "smitehamner/yuu-clip",
+        "sha": "3f74e168254ae8f769970b2cc911d1d71ed06fb8",
+        "risk": "high",
+        "decision": "rejected",
+        "reason": "167 calls exceeds 150; UI tests also require an already-running server at localhost:8080 and skip without it. Heavy Whisper/Ollama app dependencies are not prepared.",
+        "evidence_url": "https://github.com/smitehamner/yuu-clip/commit/3f74e168254ae8f769970b2cc911d1d71ed06fb8",
+        "evidence_kind": "test_commit",
+        "license": "Apache-2.0",
+        "license_url": "https://github.com/smitehamner/yuu-clip/blob/3f74e168254ae8f769970b2cc911d1d71ed06fb8/LICENSE",
+        "pinned_license_sha256": "a9909ce564ede8c0b9e72946769daee8f461ba47936fd5a848ba2aa49e2ee1a1",
+        "screen": {
+          "observable_calls": 167,
+          "files": {
+            "tests/test_ui.py": {
+              "selected": true,
+              "count": 167,
+              "calls": {
+                "click": 35,
+                "expect": 47,
+                "fill": 3,
+                "input_value": 5,
+                "locator": 77
+              }
+            }
+          },
+          "external_host_literals": [],
+          "offline_risk": [],
+          "heuristic_only": true
+        },
+        "row": {
+          "repo": "smitehamner/yuu-clip",
+          "commit_sha": "3f74e168254ae8f769970b2cc911d1d71ed06fb8",
+          "group": "agent",
+          "evidence_kind": "test_commit",
+          "evidence_url": "https://github.com/smitehamner/yuu-clip/commit/3f74e168254ae8f769970b2cc911d1d71ed06fb8",
+          "evidence_detail": "Commit modifies selected Python browser tests; Co-Authored-By: Claude",
+          "test_paths": "[\"tests/test_ui.py\"]",
+          "license": "Apache-2.0",
+          "license_url": "https://github.com/smitehamner/yuu-clip/blob/3f74e168254ae8f769970b2cc911d1d71ed06fb8/LICENSE",
+          "approved": "no",
+          "reviewer": "",
+          "reviewed_at": "",
+          "recipe": "recipes/REVIEW_REQUIRED.json",
+          "observable_calls": "167",
+          "offline_risk": "[]"
+        },
+        "source_sha256": {
+          "LICENSE": "a9909ce564ede8c0b9e72946769daee8f461ba47936fd5a848ba2aa49e2ee1a1",
+          "pyproject.toml": "6d48dc6d710ee794418e3bfb9aebeb0fcc135107dc324becfcc92a0ad84b6d61",
+          "pytest.ini": "b40752023e673056b55ee617e673fb971a20b6fb56438e8dcdaabde7b463577c",
+          "tests/conftest.py": "00323e45c59efc2897e1502ed7c6dee70f3c2631d7e35fda4baf1ae68177626f",
+          "tests/test_ui.py": "207408b1382bf453977f302c8bc285b1d0e1d5ebdc488e6b2dd014f1cf4010a2"
+        },
+        "additional_asset_flags": [],
+        "unfetched_local_imports": [
+          "yuu_clip/__init__.py",
+          "yuu_clip/db/__init__.py",
+          "yuu_clip/db/models.py",
+          "yuu_clip/web/__init__.py",
+          "yuu_clip/web/app.py"
+        ],
+        "coverage_limit": "Static rejection screen, not complete app dependency closure. Missing helpers retained explicitly; no target imports or execution."
+      },
+      {
+        "repo": "adotak/vitadrive",
+        "sha": "ff058d77e14d96d197223a26887071e7cdc22b25",
+        "risk": "high",
+        "decision": "rejected",
+        "reason": "65 calls, but the map assertion depends on unpkg.com Leaflet JS/CSS in vitadrive/static/js/nearby.js. Fixture intercepts map tiles and API data, not Leaflet assets. Source risk, not an observed baseline failure.",
+        "evidence_url": "https://github.com/adotak/vitadrive/pull/28",
+        "evidence_kind": "agent_pr",
+        "license": "MIT",
+        "license_url": "https://github.com/adotak/vitadrive/blob/ff058d77e14d96d197223a26887071e7cdc22b25/LICENSE",
+        "pinned_license_sha256": "6d2015161f91c8a5ebc46eeea9c121766b032961dde5a50715a839fc97697cf9",
+        "screen": {
+          "observable_calls": 65,
+          "files": {
+            "e2e/test_dashboard.py": {
+              "selected": true,
+              "count": 65,
+              "calls": {
+                "click": 10,
+                "expect": 18,
+                "fill": 6,
+                "get_by_label": 4,
+                "get_by_role": 1,
+                "input_value": 1,
+                "locator": 25
+              }
+            }
+          },
+          "external_host_literals": [
+            "example.test",
+            "www.nhtsa.gov"
+          ],
+          "offline_risk": [
+            {
+              "file": "e2e/conftest.py",
+              "line": 23,
+              "kind": "external_host",
+              "detail": "example.test"
+            },
+            {
+              "file": "e2e/conftest.py",
+              "line": 30,
+              "kind": "external_host",
+              "detail": "www.nhtsa.gov"
+            },
+            {
+              "file": "e2e/conftest.py",
+              "line": 60,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "vitadrive/api.py",
+              "line": 142,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "vitadrive/api.py",
+              "line": 146,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            }
+          ],
+          "heuristic_only": true
+        },
+        "row": {
+          "repo": "adotak/vitadrive",
+          "commit_sha": "ff058d77e14d96d197223a26887071e7cdc22b25",
+          "group": "agent",
+          "evidence_kind": "agent_pr",
+          "evidence_url": "https://github.com/adotak/vitadrive/pull/28",
+          "evidence_detail": "Commit modifies selected Python browser tests; agent_pr",
+          "test_paths": "[\"e2e/test_dashboard.py\"]",
+          "license": "MIT",
+          "license_url": "https://github.com/adotak/vitadrive/blob/ff058d77e14d96d197223a26887071e7cdc22b25/LICENSE",
+          "approved": "no",
+          "reviewer": "",
+          "reviewed_at": "",
+          "recipe": "recipes/REVIEW_REQUIRED.json",
+          "observable_calls": "65",
+          "offline_risk": "[{\"file\": \"e2e/conftest.py\", \"line\": 23, \"kind\": \"external_host\", \"detail\": \"example.test\"}, {\"file\": \"e2e/conftest.py\", \"line\": 30, \"kind\": \"external_host\", \"detail\": \"www.nhtsa.gov\"}, {\"file\": \"e2e/conftest.py\", \"line\": 60, \"kind\": \"base_url\", \"detail\": \"review configured browser origin\"}, {\"file\": \"vitadrive/api.py\", \"line\": 142, \"kind\": \"base_url\", \"detail\": \"review configured browser origin\"}, {\"file\": \"vitadrive/api.py\", \"line\": 146, \"kind\": \"base_url\", \"detail\": \"review configured browser origin\"}]"
+        },
+        "source_sha256": {
+          "LICENSE": "6d2015161f91c8a5ebc46eeea9c121766b032961dde5a50715a839fc97697cf9",
+          "e2e/conftest.py": "153df0b29c1ad59e6c91c554ef9a1207d777ad1d23d41861c7ec62812e3f62b2",
+          "e2e/test_dashboard.py": "4636e20f8ccecbc64616c977a6377cb918903dbee70d2590926fb3241edb7f4a",
+          "pyproject.toml": "d9f85dd001098cc3ff1b5cc0faa2110af4396448de537ddf201623e36871389e",
+          "requirements.txt": "5fccad265f54f14129d8798037c3b86c3fe651a6605d4e296bf53592ff78b4d7",
+          "vitadrive/api.py": "5dedfc42c9a5bee23d792f39d3d96e906e3b8cdd027d2f747b240247d8142f71",
+          "vitadrive/static/index.html": "835d42a3b0d90acae099090e8beb796b1db39fb42ea6d261897f86b5139a2394",
+          "vitadrive/static/js/api.js": "887412432da0b2c5e1b602370c7952000ce0b4ba527983d7dd6ebf864a8aea02",
+          "vitadrive/static/js/constants.js": "ca96b7d8340afd44825727f7edc5d6d522afad77ce53e19c7f1187bba4869911",
+          "vitadrive/static/js/costs.js": "4acbdc49f4f741a5f7ff3f9eaaa4bb25d6d003613b6c6521d0f297e009071883",
+          "vitadrive/static/js/main.js": "4572fb2f3bcf8be4c4fff8001b99718d224fffb6a3ef53ef45a9875b1f3d52a0",
+          "vitadrive/static/js/motion.js": "b6f90ffe27af47a62fedfc63f92dd358f2cd174ea2f6e28d983ff5c75370184c",
+          "vitadrive/static/js/nearby.js": "9e1fdba6f539c8f836459b7b66d132933aa32ac993dd41b5544d1ffc1e31b0a1",
+          "vitadrive/static/js/overview.js": "557cc301f11ddae33a0716fb25af64736d57fd251f5839fd8307467748709fad",
+          "vitadrive/static/js/push.js": "827cbc018ee43c32b819b5a3bb5500fbd489fe09672d048392d42ac849ac5ebd",
+          "vitadrive/static/js/router.js": "a2e9dcaab4e0700bff70269cccf495f250aee2510b87494c24f163233b91bf5e",
+          "vitadrive/static/js/state.js": "8625c68585aa3740e7b9a06214fb5f8dd3031e36e357488037bd536b86e3b183",
+          "vitadrive/static/js/util.js": "6083534a534706d71f64eb1deed44324c9e041d77c3aeb4904c1ff5d29d27f39",
+          "vitadrive/static/js/webinfo.js": "a101c3d65db63cfaef5645e8185f0902650768526fdbf667ee641edb6c7d4821",
+          "vitadrive/static/sw.js": "5a617df691953e5dbd43413597a02a9fd3f45e0f2e73f8b386816081a613731e"
+        },
+        "additional_asset_flags": [
+          {
+            "file": "vitadrive/static/index.html",
+            "line": 19,
+            "kind": "external_host",
+            "detail": "www.w3.org"
+          },
+          {
+            "file": "vitadrive/static/js/main.js",
+            "line": 21,
+            "kind": "external_host",
+            "detail": "${cfg.clerk_frontend_api}"
+          },
+          {
+            "file": "vitadrive/static/js/nearby.js",
+            "line": 11,
+            "kind": "external_host",
+            "detail": "unpkg.com"
+          },
+          {
+            "file": "vitadrive/static/js/nearby.js",
+            "line": 13,
+            "kind": "external_host",
+            "detail": "unpkg.com"
+          },
+          {
+            "file": "vitadrive/static/js/nearby.js",
+            "line": 58,
+            "kind": "external_host",
+            "detail": "www.google.com"
+          },
+          {
+            "file": "vitadrive/static/js/nearby.js",
+            "line": 68,
+            "kind": "external_host",
+            "detail": "tile.openstreetmap.org"
+          },
+          {
+            "file": "vitadrive/static/js/nearby.js",
+            "line": 69,
+            "kind": "external_host",
+            "detail": "www.openstreetmap.org"
+          }
+        ],
+        "unfetched_local_imports": [
+          "vitadrive/__init__.py",
+          "vitadrive/assistant.py",
+          "vitadrive/auth.py",
+          "vitadrive/calendar.py",
+          "vitadrive/costs.py",
+          "vitadrive/demo.py",
+          "vitadrive/models.py",
+          "vitadrive/nearby.py",
+          "vitadrive/observability.py",
+          "vitadrive/push.py",
+          "vitadrive/ratelimit.py",
+          "vitadrive/retention.py",
+          "vitadrive/security.py",
+          "vitadrive/service.py",
+          "vitadrive/storage.py",
+          "vitadrive/webinfo.py"
+        ],
+        "coverage_limit": "Static rejection screen, not complete app dependency closure. Missing helpers retained explicitly; no target imports or execution."
+      },
+      {
+        "repo": "COG-GTM/BrowserGym",
+        "sha": "e14a058fea05e1d37934d30f8916c525cad83ac4",
+        "risk": "high",
+        "decision": "rejected",
+        "reason": "Pinned LICENSE declares Apache-2.0 despite current NOASSERTION metadata. Custom Chat/Gym receivers and indirect Playwright imports are outside the current selection rules: 0 calls. Not proof of runtime unscoreability.",
+        "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/15",
+        "evidence_kind": "agent_pr",
+        "license": "Apache-2.0",
+        "license_url": "https://github.com/COG-GTM/BrowserGym/blob/e14a058fea05e1d37934d30f8916c525cad83ac4/LICENSE",
+        "pinned_license_sha256": "b192c58991e8ff585cc574615d40e74185404d4b96c1109d423071ab1367344b",
+        "screen": {
+          "observable_calls": 0,
+          "files": {
+            "tests/core/test_chat.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            }
+          },
+          "external_host_literals": [
+            "a.com",
+            "a.com)",
+            "b.com",
+            "example.com"
+          ],
+          "offline_risk": [
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 141,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 150,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 285,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 289,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 295,
+              "kind": "external_host",
+              "detail": "a.com)"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 296,
+              "kind": "external_host",
+              "detail": "a.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 297,
+              "kind": "external_host",
+              "detail": "a.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 297,
+              "kind": "external_host",
+              "detail": "b.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 298,
+              "kind": "external_host",
+              "detail": "a.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 299,
+              "kind": "external_host",
+              "detail": "a.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 300,
+              "kind": "external_host",
+              "detail": "a.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 302,
+              "kind": "external_host",
+              "detail": "a.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 332,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 333,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 334,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 335,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 342,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 348,
+              "kind": "external_host",
+              "detail": "example.com"
+            },
+            {
+              "file": "tests/core/test_chat.py",
+              "line": 352,
+              "kind": "external_host",
+              "detail": "example.com"
+            }
+          ],
+          "heuristic_only": true
+        },
+        "row": null,
+        "source_sha256": {
+          "LICENSE": "b192c58991e8ff585cc574615d40e74185404d4b96c1109d423071ab1367344b",
+          "browsergym/core/src/browsergym/core/chat.py": "f8d99c5bcfc70210da77741f8fa17594357682a8adabf4f36b1680a41b6f1bb6",
+          "pyproject.toml": "94d8e8462714d69f26101dc61caf1f1e8f1df4fffed634ede52440a465c45a00",
+          "tests/core/test_chat.py": "4511d3640df28e8d2f441c5853742bbfae0df7bc0c47d98fc11d867e16f3ea38"
+        },
+        "additional_asset_flags": [],
+        "unfetched_local_imports": [
+          "browsergym/core/src/browsergym/core/__init__.py",
+          "tests/__init__.py",
+          "tests/core/__init__.py"
+        ],
+        "coverage_limit": "Static rejection screen, not complete app dependency closure. Missing helpers retained explicitly; no target imports or execution."
+      },
+      {
+        "repo": "COG-GTM/BrowserGym",
+        "sha": "34d8e05cf164ee6599d40b24908bd72823e6d708",
+        "risk": "high",
+        "decision": "rejected",
+        "reason": "Pinned LICENSE declares Apache-2.0 despite current NOASSERTION metadata. Custom Chat/Gym receivers and indirect Playwright imports are outside the current selection rules: 0 calls. Not proof of runtime unscoreability.",
+        "evidence_url": "https://github.com/COG-GTM/BrowserGym/pull/72",
+        "evidence_kind": "agent_pr",
+        "license": "Apache-2.0",
+        "license_url": "https://github.com/COG-GTM/BrowserGym/blob/34d8e05cf164ee6599d40b24908bd72823e6d708/LICENSE",
+        "pinned_license_sha256": "b192c58991e8ff585cc574615d40e74185404d4b96c1109d423071ab1367344b",
+        "screen": {
+          "observable_calls": 0,
+          "files": {
+            "tests/core/test_actions_highlevel.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            }
+          },
+          "external_host_literals": [],
+          "offline_risk": [],
+          "heuristic_only": true
+        },
+        "row": null,
+        "source_sha256": {
+          "LICENSE": "b192c58991e8ff585cc574615d40e74185404d4b96c1109d423071ab1367344b",
+          "pyproject.toml": "94d8e8462714d69f26101dc61caf1f1e8f1df4fffed634ede52440a465c45a00",
+          "tests/core/test_actions_highlevel.py": "73351f1a5d831bf9d4d65f2fb03883ec675f2bb6f612ba6ca60ef5bfdd52a59a"
+        },
+        "additional_asset_flags": [],
+        "unfetched_local_imports": [
+          "tests/__init__.py",
+          "tests/core/__init__.py"
+        ],
+        "coverage_limit": "Static rejection screen, not complete app dependency closure. Missing helpers retained explicitly; no target imports or execution."
+      },
+      {
+        "repo": "radiorabe/mkdocs-theme-rabe",
+        "sha": "126058b6a9ff02eb24f3468db8aa05c03c4054d4",
+        "risk": "high",
+        "decision": "rejected",
+        "reason": "18 calls, but pinned LICENSE is GNU AGPL v3 text, not a permissive license; rejected under this request even though OSI alone is broader.",
+        "evidence_url": "https://github.com/radiorabe/mkdocs-theme-rabe/pull/1",
+        "evidence_kind": "agent_pr",
+        "license": null,
+        "license_url": "https://github.com/radiorabe/mkdocs-theme-rabe/blob/126058b6a9ff02eb24f3468db8aa05c03c4054d4/LICENSE",
+        "pinned_license_sha256": "1ef53e56da4052ec003ee104d19c9aa813d2825434d1c1c49a7d3ed4050fa02c",
+        "screen": {
+          "observable_calls": 18,
+          "files": {
+            "tests/playwright/test_snapshots.py": {
+              "selected": true,
+              "count": 18,
+              "calls": {
+                "click": 1,
+                "expect": 9,
+                "locator": 8
+              }
+            },
+            "tests/test_build.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_hooks.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            }
+          },
+          "external_host_literals": [
+            "github.com",
+            "radiorabe.github.io"
+          ],
+          "offline_risk": [
+            {
+              "file": "pyproject.toml",
+              "line": 27,
+              "kind": "external_host",
+              "detail": "radiorabe.github.io"
+            },
+            {
+              "file": "pyproject.toml",
+              "line": 28,
+              "kind": "external_host",
+              "detail": "github.com"
+            },
+            {
+              "file": "pyproject.toml",
+              "line": 29,
+              "kind": "external_host",
+              "detail": "radiorabe.github.io"
+            },
+            {
+              "file": "tests/playwright/conftest.py",
+              "line": 48,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/playwright/conftest.py",
+              "line": 49,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/test_build.py",
+              "line": 100,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/test_build.py",
+              "line": 101,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/test_build.py",
+              "line": 103,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            }
+          ],
+          "heuristic_only": true
+        },
+        "row": null,
+        "source_sha256": {
+          "LICENSE": "1ef53e56da4052ec003ee104d19c9aa813d2825434d1c1c49a7d3ed4050fa02c",
+          "mkdocs_theme_rabe/__init__.py": "6eaca9122396f89e78704d924ac721456d52834e4be150a9e1e766fa7351d7a6",
+          "mkdocs_theme_rabe/hooks.py": "0f336f39c81b5c5d82d0cd4dcb38ebfe3a18e7be3931c706950bfdd60c8f2209",
+          "mkdocs_theme_rabe/theme/__init__.py": "cf07a80836400f60db9a76b2c904daffdf42a82ed26866c03bf4d142ef66dcfd",
+          "pyproject.toml": "87d87baf329de571396936d7302f2d9e835a20227f1a094cfe655f9c73eff491",
+          "tests/playwright/conftest.py": "4f7b9f1aa0369c93c06984c63fe2027ef16432d06d765aac681f57a07b9fb824",
+          "tests/playwright/test_snapshots.py": "cc94ad89455b8ba1e58db838078004849d098691242bbdc00ecedafe80bb43cc",
+          "tests/test_build.py": "21ffa0b343c45bab41613223c7c94cd92354b6dddb1434eeb599203b4a6889af",
+          "tests/test_hooks.py": "5435a8e7a9cab7d42cc904b67960056a86caa03995c850bf9cc5ccab8e3824a7"
+        },
+        "additional_asset_flags": [],
+        "unfetched_local_imports": [
+          "tests/__init__.py",
+          "tests/playwright/__init__.py"
+        ],
+        "coverage_limit": "Static rejection screen, not complete app dependency closure. Missing helpers retained explicitly; no target imports or execution."
+      },
+      {
+        "repo": "straussbastian/ai_flashcards_for_school",
+        "sha": "016b9aeee094c89dd534b6ba61d2456018f2058c",
+        "risk": "high",
+        "decision": "rejected",
+        "reason": "Browsertest fixture requires TEST_DATABASE_URL and a separate database; no pinned LICENSE file found. Custom seite fixture also lies outside the current receiver screen.",
+        "evidence_url": "https://github.com/straussbastian/ai_flashcards_for_school/commit/016b9aeee094c89dd534b6ba61d2456018f2058c",
+        "evidence_kind": "test_commit",
+        "license": null,
+        "license_url": "",
+        "pinned_license_sha256": null,
+        "screen": {
+          "observable_calls": 0,
+          "files": {
+            "tests/browser/test_klartextgrenze.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            }
+          },
+          "external_host_literals": [
+            "karten.example.de",
+            "karten.example.de,",
+            "test"
+          ],
+          "offline_risk": [
+            {
+              "file": "tests/browser/conftest.py",
+              "line": 124,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/browser/conftest.py",
+              "line": 127,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/browser/conftest.py",
+              "line": 160,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/browser/conftest.py",
+              "line": 163,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/browser/conftest.py",
+              "line": 168,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/browser/conftest.py",
+              "line": 126,
+              "kind": "docker_use",
+              "detail": "requires Docker/runtime review"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 22,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 28,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 29,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 31,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 36,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 74,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 120,
+              "kind": "external_host",
+              "detail": "test"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 120,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 129,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 175,
+              "kind": "external_host",
+              "detail": "karten.example.de"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 182,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 185,
+              "kind": "external_host",
+              "detail": "karten.example.de,"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 196,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 30,
+              "kind": "docker_use",
+              "detail": "requires Docker/runtime review"
+            }
+          ],
+          "heuristic_only": true
+        },
+        "row": null,
+        "source_sha256": {
+          "pyproject.toml": "0d2eaa91c44a5927e829d5824e31d8c51027232da602ac208c838106b69cd643",
+          "tests/browser/conftest.py": "93340396b27b3575bf9ad8261b178969f19a439cc281832a47d4542009ebcb95",
+          "tests/browser/test_klartextgrenze.py": "1b8586b86b3aa94f472946c1b962c945a85c61f8628e49a84c2aa8efe0411f91",
+          "tests/conftest.py": "29d105b1dea066152384605ccc46c3abae6c97a4cb04471ff904e694a7a371d4"
+        },
+        "additional_asset_flags": [],
+        "unfetched_local_imports": [
+          "app/__init__.py",
+          "app/config.py",
+          "app/db.py",
+          "app/main.py",
+          "app/mcp/__init__.py",
+          "app/models.py",
+          "app/oauth/__init__.py",
+          "app/oauth/modelle.py",
+          "app/sitzung.py"
+        ],
+        "coverage_limit": "Static rejection screen, not complete app dependency closure. Missing helpers retained explicitly; no target imports or execution."
+      },
+      {
+        "repo": "tolgaguensal-lab/tatilvakti",
+        "sha": "becf183485757d38e274f9f9159b846295b84785",
+        "risk": "high",
+        "decision": "rejected",
+        "reason": "Python pytest wrapper launches Node Playwright scripts; the browser test code is JavaScript, not supported Python Playwright. No pinned LICENSE file found.",
+        "evidence_url": "https://github.com/tolgaguensal-lab/tatilvakti/commit/becf183485757d38e274f9f9159b846295b84785",
+        "evidence_kind": "test_commit",
+        "license": null,
+        "license_url": "",
+        "pinned_license_sha256": null,
+        "screen": {
+          "observable_calls": 0,
+          "files": {
+            "tests/test_e2e.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            }
+          },
+          "external_host_literals": [
+            "tatilvakti.example"
+          ],
+          "offline_risk": [
+            {
+              "file": "tests/conftest.py",
+              "line": 33,
+              "kind": "external_host",
+              "detail": "tatilvakti.example"
+            },
+            {
+              "file": "tests/conftest.py",
+              "line": 33,
+              "kind": "base_url",
+              "detail": "review configured browser origin"
+            }
+          ],
+          "heuristic_only": true
+        },
+        "row": null,
+        "source_sha256": {
+          "tests/conftest.py": "4f526eb175051a0ffbdab1ad4e878db43809417026eeacbf2c90731cfc43180b",
+          "tests/test_e2e.py": "3b69668076a33689ec5071abc4d2b92c50f4b1aa3c581ac3cd33258e8b094b67"
+        },
+        "additional_asset_flags": [],
+        "unfetched_local_imports": [
+          "tatilvakti/__init__.py",
+          "tatilvakti/db.py"
+        ],
+        "coverage_limit": "Static rejection screen, not complete app dependency closure. Missing helpers retained explicitly; no target imports or execution."
+      },
+      {
+        "repo": "hibbertda/lego_manager",
+        "sha": "16164b7f36c47246fab9b38a7f1966785eec3f74",
+        "risk": "high",
+        "decision": "rejected",
+        "reason": "Selected changed tests are Flask client/SQL unit tests. Commit mentions manual Playwright checks but provides no authored Python Playwright test evidence in these files.",
+        "evidence_url": "https://github.com/hibbertda/lego_manager/commit/16164b7f36c47246fab9b38a7f1966785eec3f74",
+        "evidence_kind": "test_commit",
+        "license": null,
+        "license_url": "",
+        "pinned_license_sha256": null,
+        "screen": {
+          "observable_calls": 0,
+          "files": {
+            "tests/test_routes.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            },
+            "tests/test_sql_ops.py": {
+              "selected": false,
+              "count": 0,
+              "calls": {}
+            }
+          },
+          "external_host_literals": [
+            "www.lego.com"
+          ],
+          "offline_risk": [
+            {
+              "file": "tests/test_sql_ops.py",
+              "line": 13,
+              "kind": "external_host",
+              "detail": "www.lego.com"
+            }
+          ],
+          "heuristic_only": true
+        },
+        "row": null,
+        "source_sha256": {
+          "tests/conftest.py": "e473b9f3e1513b131f8e6283e5950b5211ba5d61a1318684fa43627afc8ebb2c",
+          "tests/test_routes.py": "d62131c0b9d85b5fb01b18f7408732e7cc642b0a4f5f5bc6dde16cad3f39e5f9",
+          "tests/test_sql_ops.py": "af8666d13f6e6b35f60fbe0f04d53cd69d86131d0b9cf7612b92d32438c04676"
+        },
+        "additional_asset_flags": [],
+        "unfetched_local_imports": [
+          "app/__init__.py",
+          "app/config.py",
+          "sql_ops.py"
+        ],
+        "coverage_limit": "Static rejection screen, not complete app dependency closure. Missing helpers retained explicitly; no target imports or execution."
+      }
+    ],
+    "new_qualifying_proposals": 0
+  },
+  "search_totals": {
+    "requests": 28,
+    "returned_records": 649,
+    "commit_records": 469,
+    "pinned_source_snapshots": 23,
+    "new_qualifying_proposals": 1
+  }
 }
