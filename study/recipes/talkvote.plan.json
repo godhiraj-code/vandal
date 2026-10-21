@@ -1,0 +1,15 @@
+{
+  "kind": "offline_preparation_plan_not_worker_recipe",
+  "repo": "elenakulgavaya/talkvote",
+  "commit_sha": "8dc73df8b4fcd3ce6c7434a0b3793e210eb5393c",
+  "approved": "no",
+  "state": "blocked_on_reviewed_node_asset_staging",
+  "python": "use pinned harness pytest and pytest-playwright wheels; no project install",
+  "node_engine": "^20.19.0 || >=22.12.0",
+  "locked_package_trees": ["src/backend/package-lock.json", "src/frontend/package-lock.json"],
+  "writable_destinations": ["src/backend/node_modules", "src/frontend/node_modules"],
+  "root_commands_needed": ["tsx src/backend/src/server.ts", "vite src/frontend"],
+  "runtime_network": "none",
+  "prepared_artifacts": [],
+  "note": "No dependency artifacts resolved or candidate code executed. See OFFLINE.md."
+}

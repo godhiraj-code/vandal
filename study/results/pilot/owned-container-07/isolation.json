@@ -45,13 +45,13 @@
   "mounts": [
     {
       "Type": "bind",
-      "Source": "C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-gmrdc85q\\input",
+      "Source": "<HOST_TEMP>\\vandal-study-gmrdc85q\\input",
       "Destination": "/input",
       "RW": false
     },
     {
       "Type": "bind",
-      "Source": "C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-gmrdc85q\\deps",
+      "Source": "<HOST_TEMP>\\vandal-study-gmrdc85q\\deps",
       "Destination": "/deps",
       "RW": false
     }

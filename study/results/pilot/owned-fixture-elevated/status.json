@@ -2,7 +2,7 @@
   "status": "completed",
   "baseline": {
     "command": [
-      "C:\\Users\\dhira\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\.venv\\Scripts\\python.exe",
+      "<HOST_HOME>\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\.venv\\Scripts\\python.exe",
       "-m",
       "pytest",
       "-o",
@@ -10,7 +10,7 @@
       "-q",
       "-p",
       "no:vandal",
-      "--junitxml=C:\\Users\\dhira\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\study\\results\\pilot\\owned-fixture-elevated\\baseline.xml",
+      "--junitxml=<HOST_HOME>\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\study\\results\\pilot\\owned-fixture-elevated\\baseline.xml",
       "--",
       "test_local_app.py"
     ],
@@ -31,14 +31,14 @@
   },
   "mutation": {
     "command": [
-      "C:\\Users\\dhira\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\.venv\\Scripts\\python.exe",
+      "<HOST_HOME>\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\.venv\\Scripts\\python.exe",
       "-m",
       "pytest",
       "-o",
       "addopts=",
       "-q",
       "--vandal",
-      "--vandal-report=C:\\Users\\dhira\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\study\\results\\pilot\\owned-fixture-elevated\\vandal_report.json",
+      "--vandal-report=<HOST_HOME>\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\study\\results\\pilot\\owned-fixture-elevated\\vandal_report.json",
       "--",
       "test_local_app.py"
     ],

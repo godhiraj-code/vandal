@@ -1,6 +1,10 @@
 # Study protocol and results (no public runs yet)
 
-Recorded runs: n=10. Public runs: n=0. Owned fixture runs: n=10. Fixtures never enter the study comparison.
+Public agent-suite sample: n=0 repositories. Public attempts: n=0.
+
+This is a descriptive study of agent-written suites only. No comparison population or causal claim is defined.
+
+Completed owned-fixture validations: n=6 attempts of one fixture; not study subjects. Earlier failed fixture attempts are retained in [FIXTURE_ATTEMPTS.md](FIXTURE_ATTEMPTS.md).
 
 Results are limited to the repositories and selected tests actually executed. No population or causal inference is justified.
 
@@ -10,53 +14,44 @@ Counts below are observed mutants, with n_tests and n_mutants shown per row. Sco
 
 | Repository / kind / group | Status | Score % (n_scored) | n_tests / n_mutants | Killed | Survived | Error | Untested mutants | Unsupported targets | Cap omissions |
 |---|---|---|---|---|---|---|---|---|---|
-| owned-local-fixture / fixture / fixture | skipped | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| owned-local-fixture / fixture / fixture | skipped | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| owned-local-fixture / fixture / fixture | skipped | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| owned-local-fixture / fixture / fixture | skipped | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| owned-local-fixture / fixture / fixture | incomplete | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A |
 | owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
 | owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
-| owned-local-fixture / fixture / fixture | skipped | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A |
 | owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
-| owned-local-fixture / fixture / fixture | unscored | N/A (n=0) | 2 / 5 | 0 | 0 | 5 | 0 | 0 | 0 |
+| owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
+| owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
+| owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
 
 Untested mutants = not_applied + skipped. Unsupported targets and cap omissions are separate units and are not added to that count or score denominator.
 
-## Agent versus human comparison
+## Descriptive agent-suite results
 
-One complete, scored observation per repository; repository-weighted median, inclusive-quartile IQR and min–max spread. Guidance-only provenance, incomplete runs, invalid reports and fixtures are excluded.
+One complete, scored observation per repository; repository-weighted median, inclusive-quartile IQR and min-max spread. Guidance-only provenance, incomplete runs, invalid reports and owned fixtures are excluded. IQR is N/A below two repositories.
 
-| Group | n repositories | Median % | IQR percentage points | Min–max % |
-|---|---|---|---|---|
-| agent | 0 | N/A | N/A | N/A–N/A |
-| human | 0 | N/A | N/A | N/A–N/A |
+| n repositories | Median % | IQR percentage points | Min-max % |
+|---|---|---|---|
+| 0 | N/A | N/A | N/A-N/A |
 
-No between-group difference can be calculated: at least one group has no eligible observations.
+No eligible public results exist. No strength estimate is reported for agent-written suites.
 
 ## Strategy survival
 
 Pooled by mutant, ranked by survivors; larger suites contribute more weight. Survival rate is among killed + survived. Both n_repos and n_mutants are shown. Error/untested outcomes remain outside the rate.
 
-| Group / strategy | n_repos | n_mutants | Survived / n scored | Survival % | Errors | Untested mutants |
+| Strategy | n_repos | n_mutants | Survived / n scored | Survival % | Errors | Untested mutants |
 |---|---|---|---|---|---|---|
 
 No eligible strategy observations (n repositories=0).
 
 ## Exclusions and limitations
 
-- owned-local-fixture: RuntimeError: container unavailable; see container.log (n runs=1).
-- owned-local-fixture: PermissionError: [Errno 13] Permission denied: '/work/venv/bin/python' (n runs=1).
-- owned-local-fixture: PermissionError: [Errno 13] Permission denied: '/work/venv/bin/python' (n runs=1).
-- owned-local-fixture: RuntimeError: owned container mount inspection failed (n runs=1).
-- owned-local-fixture: container deadline; partial output excluded (n runs=1).
 - owned-local-fixture: owned fixture excluded (n runs=1).
 - owned-local-fixture: owned fixture excluded (n runs=1).
-- owned-local-fixture: baseline timeout (n runs=1).
 - owned-local-fixture: owned fixture excluded (n runs=1).
-- owned-local-fixture: no killed/survived mutants (n runs=1).
+- owned-local-fixture: owned fixture excluded (n runs=1).
+- owned-local-fixture: owned fixture excluded (n runs=1).
+- owned-local-fixture: owned fixture excluded (n runs=1).
 
-Selection is a convenience sample from bounded GitHub search, not a random sample. Visible co-authorship is evidence of agent involvement, not exclusive agent authorship. Human provenance requires affirmative evidence; missing agent labels prove nothing.
+Selection is a convenience sample from bounded GitHub search, not a random sample. Visible co-authorship is evidence of agent involvement, not exclusive agent authorship. Only test-specific agent involvement is in scope; guidance alone cannot establish authorship.
 
 Offline, no-secret execution selects for self-contained suites; external CDNs, services and complex install requirements can cause exclusions. All-skip and partially skipped baselines are excluded. A single baseline cannot establish lack of flakiness.
 

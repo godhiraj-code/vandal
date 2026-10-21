@@ -88,7 +88,7 @@ also remains blocked on person review/action-time approval and reviewed dependen
 wheel provisioning. The three selected candidates may fail offline baselines,
 particularly pyvista-js's explicit unpkg CDN check.
 
-No public agent/human comparison is available: n_agent=0, n_human=0.
+No public results were available. The current protocol is agent-only, with public n=0.
 
 ## Container validation and expanded protocol (2026-10-21)
 
@@ -137,3 +137,53 @@ proposed replacements; their dependency preparation and person approval remain p
 The full authenticated discovery CLI was not run: GITHUB_TOKEN is absent. Read-only
 connector search and source inspection are documented in the discovery audit; one
 Devin author query returned HTTP 422, preserved honestly. No public pilot occurred.
+
+
+## AI-only revision (2026-10-21)
+
+The study is now descriptive and agent-only. No public candidate was included or
+executed (n=0). The source inventory contains 12 leads: 11 test_commit and 1 agent_pr;
+only 7 meet the 10-call replacement floor. The target of 10 qualifying replacements
+was not reached. Full SHAs, risks, lower/zero counts, rejected leads and the proposed
+unapproved shortlist are in CANDIDATE_REVIEW.md. Human discovery/comparison is removed.
+
+Local validation on Python 3.13.7:
+
+- Final study tests: 70 passed in 1.38s. Independent reviewer: 70 passed in 1.50s.
+- Full owned repository suite: 166 passed, 4 skipped in 754.88s. One skip is the absent
+  optional MCP package; three are Windows-inapplicable POSIX permissions tests.
+- The initial study-test invocation used the sandbox's unwritable default temp
+  directory: 20 passed, 31 setup errors. Rerunning with the permitted temp directory
+  resolved setup. A development regression expected a 600-level worker object to
+  overflow on every Python version; Python 3.13 can represent it. The test now checks
+  durable terminal status on either supported outcome; no fixture result was altered.
+- Isolated wheel build succeeded: project_vandal-0.2.1-py3-none-any.whl, 14 entries,
+  study excluded. SHA256: 63915cff7e5f89410db663cd8382c2bb350298c153a86f5bd8a7a8cd45069470.
+  Version, vandal/ and pyproject.toml are unchanged.
+- Builds 06, 07, 08 succeeded in 2.834s, 2.628s, 2.482s. Their allowlisted build contexts
+  contained only owned files and known dependencies; no host credentials. Final
+  build 08 context hashes match all 24 recorded inputs.
+- Owned-container 08, 09, 10 each completed baseline 2 passed; 4 killed, 1 survived,
+  0 errors, 80% with n_tests=2, n_scored=5. All passed isolation verification and
+  confirmed cleanup. These are repeated validations of one owned fixture, not
+  public subjects. Final image:
+  sha256:4c682a2499f7802d33c88335c80aa2358979d609ee6d00679beedeba0d2726c5.
+
+Independent review found and corrected false positive expect imports, missed direct
+page-fixture actions, and malformed/nested evidence failures that could suppress a
+terminal status. Regression tests cover these cases and forced redaction failure.
+A final narrow review independently forced the nested-worker fallback and verified
+incomplete status, cleanup and retained raw evidence. No blocker remained.
+
+Before historical evidence redaction, all 75 recorded artifact hashes were verified.
+27 files changed only for host-path sanitization and affected integrity metadata;
+original/sanitized digests are in results/pilot/redaction-audit.json. New runs redact
+before hashing. Earlier failed fixture attempts remain in FIXTURE_ATTEMPTS.md and
+raw logs; main REPORT.md contains completed fixture validations plus public results.
+
+The top-three offline plans are source-derived, unexecuted and unapproved. Contrail
+still needs reviewed dependency wheels; Platelet-Movie has an external-logo source
+risk; talkvote needs a bounded hashed Node-asset staging extension that is not yet
+implemented. No source risk is presented as an observed baseline failure. The
+Docker runtime backup was preserved. Exact publication head, remote parity and new
+head CI conclusions are recorded in PR #7 after checks finish.

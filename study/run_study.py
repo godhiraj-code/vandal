@@ -107,7 +107,7 @@ def inspect_owned_container(name, temporary, output):
     evidence = {"state": inspected["State"], "container_id": inspected["Id"], "image": inspected["Image"], "user": config["User"],
                 "host_config": {key: host[key] for key in ("NetworkMode", "ReadonlyRootfs", "Privileged",
                     "CapDrop", "SecurityOpt", "Memory", "MemorySwap", "NanoCpus", "PidsLimit", "Tmpfs", "LogConfig")},
-                "mounts": [{key: mount[key] for key in ("Type", "Source", "Destination", "RW")}
+                "mounts": [{**{key: mount[key] for key in ("Type", "Destination", "RW")}, "Source": "<host-staged-input>"}
                            for mount in inspected["Mounts"]],
                 "environment_keys": sorted(environment), "github_token_present": "GITHUB_TOKEN" in environment,
                 "proxy_values_empty": all(environment.get(key) == "" for key in PROXY_KEYS)}
@@ -209,6 +209,23 @@ def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes, *,
                 status.update(status="incomplete", reason=status["reason"] + "; container cleanup unconfirmed")
             # Persist the outcome even if export, Docker cleanup or temporary
             # directory removal fails. Never let a failed run disappear.
+            from study.redact import host_paths, redact_file
+            for artifact in output.iterdir():
+                if artifact.is_file():
+                    try:
+                        redact_file(artifact)
+                    except Exception as exc:
+                        status.update(status="incomplete", reason=status["reason"] + "; evidence redaction failed: " + type(exc).__name__)
+            try:
+                status = host_paths(status)
+            except RecursionError:
+                # The exported worker object is untrusted and may parse as JSON
+                # while exceeding the redactor's recursion depth. Its raw file
+                # remains evidence; do not let it suppress the host outcome.
+                status.pop("worker", None)
+                status.update(status="incomplete", reason="worker status nesting exceeds evidence redaction bounds")
+                status = host_paths(status)
+            status["evidence_redaction"] = "Host paths redacted before artifact hashing; measured outcomes unchanged."
             status["artifact_sha256"] = {p.name: digest(p) for p in output.iterdir() if p.is_file()}
             write_json(output / "status.json", status)
     return status

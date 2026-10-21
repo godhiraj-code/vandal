@@ -32,13 +32,13 @@
   "mounts": [
     {
       "Type": "bind",
-      "Source": "C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-g384khk_\\input",
+      "Source": "<HOST_TEMP>\\vandal-study-g384khk_\\input",
       "Destination": "/input",
       "RW": false
     },
     {
       "Type": "bind",
-      "Source": "C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-g384khk_\\deps",
+      "Source": "<HOST_TEMP>\\vandal-study-g384khk_\\deps",
       "Destination": "/deps",
       "RW": false
     }

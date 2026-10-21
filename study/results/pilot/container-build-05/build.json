@@ -3,7 +3,7 @@
     "command": [
       "docker",
       "--config",
-      "C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-owned-build-9wjfg510\\docker-config",
+      "<HOST_TEMP>\\vandal-owned-build-9wjfg510\\docker-config",
       "--host",
       "npipe:////./pipe/dockerDesktopLinuxEngine",
       "build",
@@ -14,7 +14,7 @@
       "-t",
       "vandal-study:owned-validation-05",
       "--iidfile",
-      "C:\\Users\\dhira\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\study\\results\\pilot\\container-build-05\\image-id.txt",
+      "<HOST_HOME>\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\study\\results\\pilot\\container-build-05\\image-id.txt",
       "--build-arg",
       "HTTP_PROXY=",
       "--build-arg",

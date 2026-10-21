@@ -45,13 +45,13 @@
   "mounts": [
     {
       "Type": "bind",
-      "Source": "C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-_f430bzg\\input",
+      "Source": "<HOST_TEMP>\\vandal-study-_f430bzg\\input",
       "Destination": "/input",
       "RW": false
     },
     {
       "Type": "bind",
-      "Source": "C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-_f430bzg\\deps",
+      "Source": "<HOST_TEMP>\\vandal-study-_f430bzg\\deps",
       "Destination": "/deps",
       "RW": false
     }

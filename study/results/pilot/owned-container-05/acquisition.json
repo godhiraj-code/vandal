@@ -4,10 +4,10 @@
     "command": [
       "git",
       "-C",
-      "C:\\Users\\dhira\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study",
+      "<HOST_HOME>\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study",
       "archive",
       "--format=tar",
-      "--output=C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-_f430bzg\\input\\source.tar",
+      "--output=<HOST_TEMP>\\vandal-study-_f430bzg\\input\\source.tar",
       "d5cbb81a67350c6c228bf517e66af24ebc5fec78",
       "study/fixture/test_local_app.py"
     ],

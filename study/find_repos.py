@@ -16,34 +16,161 @@ from study.common import FIELDS, LICENSES, SHA, write_json, write_rows
 
 AGENT = re.compile(r"co-authored-by:.*(?:claude|codex|copilot|cursor|devin|jules|anthropic-code-agent)|generated tests|tests? (?:were )?generated(?: by| with)?", re.I)
 QUERIES = ['playwright pytest "Co-Authored-By: Claude"', 'playwright pytest "Co-authored-by: Cursor"', 'playwright pytest "Co-authored-by: Copilot"', 'playwright "generated tests"']
-PR_AUTHORS = ("app/copilot-swe-agent", "devin-ai-integration", "google-labs-jules")
-HISTORICAL_CUTOFF = "2021-01-01T00:00:00Z"
+PR_AUTHORS = ("app/copilot-swe-agent", "app/devin-ai-integration", "google-labs-jules")
 OBSERVABLE = {"locator", "expect", "click", "fill", "check", "hover", "inner_text", "input_value"}
 
 
-def static_screen(sources):
-    """Count syntactic call sites, not runtime targets or proof of attribution.
+def _tree(source, path):
+    return ast.parse(source.lstrip("\ufeff"), filename=path)
 
-    Aliases, wrappers, dynamic selectors and imported fixture/application code can
-    evade this heuristic; unrelated methods with matching names can overcount.
-    """
-    per_file, hosts = {}, set()
+
+def browser_file(tree, support=""):
+    imports = [node for node in ast.walk(tree) if isinstance(node, (ast.Import, ast.ImportFrom))]
+    modules = [node.module or "" for node in imports if isinstance(node, ast.ImportFrom)]
+    modules += [alias.name for node in imports if isinstance(node, ast.Import) for alias in node.names]
+    playwright = any(name == "playwright" or name.startswith("playwright.") for name in modules)
+    foreign = any(name.split(".")[0] in {"selenium", "appium"} for name in modules)
+    # A page-shaped argument alone is insufficient: require a pinned declaration
+    # of pytest-playwright in supporting configuration/fixtures as well.
+    fixture = any(isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+                  and node.name.startswith("test_") and any(a.arg == "page" for a in node.args.args)
+                  and any(isinstance(call, ast.Call) and isinstance(call.func, ast.Attribute)
+                          and (call.func.attr in OBSERVABLE | {"goto"} or call.func.attr.startswith("get_by_"))
+                          and isinstance(call.func.value, ast.Name) and call.func.value.id == "page"
+                          for call in ast.walk(node)) for node in ast.walk(tree))
+    plugin = bool(re.search(r"pytest[-_]playwright", support))
+    return playwright or (fixture and plugin and not foreign)
+
+
+def page_fixtures(sources):
+    """Recognize simple pytest fixtures returning page or a page-returning factory."""
+    pages, factories = {"page"}, set()
+    for path, source in sources.items():
+        if not path.endswith("conftest.py"):
+            continue
+        for node in ast.walk(_tree(source, path)):
+            if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) or not any(a.arg == "page" for a in node.args.args):
+                continue
+            if not any("fixture" in ast.unparse(d) for d in node.decorator_list):
+                continue
+            inner = {n.name for n in node.body if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
+                     and any(isinstance(r, ast.Return) and isinstance(r.value, ast.Name) and r.value.id == "page" for r in ast.walk(n))}
+            returned = {n.value.id for n in node.body if isinstance(n, ast.Return) and isinstance(n.value, ast.Name)}
+            if "page" in returned:
+                pages.add(node.name)
+            if inner & returned:
+                factories.add(node.name)
+    return pages, factories
+
+
+def offline_flags(sources):
+    """Conservative source/config risk flags; never an observed offline failure."""
+    flags = []
     for path, source in sorted(sources.items()):
-        tree = ast.parse(source, filename=path)
+        source = source.lstrip("\ufeff")
+        for number, line in enumerate(source.splitlines(), 1):
+            for url in re.findall(r"https?://[^\s\"'<>]+", line):
+                host = urllib.parse.urlparse(url).hostname
+                if host and host not in {"localhost", "127.0.0.1", "::1"}:
+                    flags.append({"file": path, "line": number, "kind": "external_host", "detail": host})
+            if re.search(r"base[_-]url", line, re.I):
+                flags.append({"file": path, "line": number, "kind": "base_url", "detail": "review configured browser origin"})
+        if path.endswith(".py"):
+            tree = _tree(source, path)
+            for node in ast.walk(tree):
+                if not isinstance(node, ast.Call):
+                    continue
+                literals = " ".join(str(x.value) for x in ast.walk(node) if isinstance(x, ast.Constant) and isinstance(x.value, str))
+                function = ast.unparse(node.func)
+                # Inspect arguments as data, including argv lists and shell strings.
+                if "git" in literals and "clone" in literals:
+                    flags.append({"file": path, "line": node.lineno, "kind": "git_clone", "detail": "runtime source acquisition"})
+                if re.search(r"\bdocker\b", literals) or function.startswith("docker."):
+                    kind = "docker_availability" if any(x in function + " " + literals for x in ("which", "info", "version", "ping", "from_env")) else "docker_use"
+                    flags.append({"file": path, "line": node.lineno, "kind": kind, "detail": "requires Docker/runtime review"})
+        elif re.search(r"\bdocker\b|git\s+clone", source):
+            flags.append({"file": path, "line": 0, "kind": "setup_command", "detail": "Docker or git clone mentioned in configuration"})
+    return [dict(x) for x in {tuple(sorted(flag.items())): flag for flag in flags}.values()]
+
+
+def static_screen(sources, supporting_sources=None):
+    """Count browser-rooted call sites only; no imports or candidate execution.
+
+    Canonical page variables, locator assignments and expect arguments are tracked.
+    This is conservative syntactic provenance, not Python type or runtime analysis.
+    Imported/custom wrappers and dynamically produced locators can be missed.
+    """
+    support = supporting_sources or {}
+    fixture_pages, fixture_factories = page_fixtures(support)
+    per_file = {}
+    for path, source in sorted(sources.items()):
+        tree = _tree(source, path)
+        selected = browser_file(tree, "\n".join(support.values()))
         names = []
+        expect_names = set()
         for node in ast.walk(tree):
-            if isinstance(node, ast.Call):
+            if isinstance(node, ast.ImportFrom) and (node.module or "").startswith("playwright"):
+                expect_names.update(a.asname or a.name for a in node.names if a.name == "expect")
+
+        class Calls(ast.NodeVisitor):
+            def __init__(self):
+                self.roots = set()
+                self.factories = set()
+
+            def rooted(self, node):
+                if isinstance(node, ast.Name):
+                    return node.id in self.roots
+                if isinstance(node, ast.Attribute):
+                    return self.rooted(node.value)
+                if isinstance(node, ast.Call):
+                    if isinstance(node.func, ast.Name) and node.func.id in self.factories:
+                        return True
+                    if isinstance(node.func, ast.Name) and node.func.id in expect_names:
+                        return bool(node.args) and self.rooted(node.args[0])
+                    if isinstance(node.func, ast.Attribute) and (node.func.attr in {"locator", "nth", "filter"} or node.func.attr.startswith("get_by_")):
+                        return self.rooted(node.func.value)
+                return False
+
+            def visit_FunctionDef(self, node):
+                saved, saved_factories = self.roots, self.factories
+                self.roots = {a.arg for a in node.args.args if a.arg in fixture_pages
+                              or (a.annotation and ast.unparse(a.annotation).split(".")[-1] in {"Page", "Locator"})}
+                self.factories = {a.arg for a in node.args.args if a.arg in fixture_factories}
+                for statement in node.body:
+                    self.visit(statement)
+                self.roots = saved
+                self.factories = saved_factories
+
+            visit_AsyncFunctionDef = visit_FunctionDef
+
+            def visit_Assign(self, node):
+                self.visit(node.value)
+                for target in node.targets:
+                    if isinstance(target, ast.Name):
+                        if self.rooted(node.value):
+                            self.roots.add(target.id)
+                        else:
+                            self.roots.discard(target.id)
+
+            def visit_AnnAssign(self, node):
+                if node.value is not None:
+                    self.visit_Assign(ast.Assign(targets=[node.target], value=node.value))
+
+            def visit_Call(self, node):
                 name = node.func.attr if isinstance(node.func, ast.Attribute) else node.func.id if isinstance(node.func, ast.Name) else ""
-                if name in OBSERVABLE or name.startswith("get_by_"):
-                    names.append(name)
-            if isinstance(node, ast.Constant) and isinstance(node.value, str):
-                for url in re.findall(r"https?://[^\s\"'<>]+", node.value):
-                    host = urllib.parse.urlparse(url).hostname
-                    if host and host not in {"localhost", "127.0.0.1", "::1"}:
-                        hosts.add(host)
-        per_file[path] = {"count": len(names), "calls": dict(sorted(Counter(names).items()))}
+                is_expect = isinstance(node.func, ast.Name) and name in expect_names
+                if (is_expect and node.args and self.rooted(node.args[0])) or (
+                    isinstance(node.func, ast.Attribute) and (name in OBSERVABLE - {"expect"} or name.startswith("get_by_")) and self.rooted(node.func.value)):
+                    names.append("expect" if is_expect else name)
+                self.generic_visit(node)
+
+        if selected:
+            Calls().visit(tree)
+        per_file[path] = {"selected": selected, "count": len(names), "calls": dict(sorted(Counter(names).items()))}
+    risks = offline_flags({**support, **sources})
     return {"observable_calls": sum(x["count"] for x in per_file.values()), "files": per_file,
-            "external_host_literals": sorted(hosts), "heuristic_only": True}
+            "external_host_literals": sorted({f["detail"] for f in risks if f["kind"] == "external_host"}),
+            "offline_risk": risks, "heuristic_only": True}
 
 
 class GitHub:
@@ -63,7 +190,7 @@ class GitHub:
             data = response.read(8 * 1024 * 1024 + 1)
         if len(data) > 8 * 1024 * 1024:
             raise ValueError("GitHub response exceeds size limit")
-        return json.loads(data)
+        return json.loads(data.decode("utf-8-sig"))
 
 
 def pinned_license(api, repo, sha):
@@ -80,24 +207,29 @@ def test_files(commit):
             and f["filename"].endswith(".py") and (Path(f["filename"]).name.startswith("test_") or Path(f["filename"]).name.endswith("_test.py"))]
 
 
-def parse_candidate(repo, commit, license_info, sources, *, evidence_kind=None, evidence_url=None, detail=None):
+def parse_candidate(repo, commit, license_info, sources, *, evidence_kind=None, evidence_url=None, detail=None, supporting_sources=None):
     message = commit["commit"]["message"]
-    selected = [p for p in test_files(commit) if p in sources and ("playwright" in sources[p] or re.search(r"\bpage[.:]", sources[p])) and re.search(r"\bdef test_", sources[p])]
+    screen = static_screen(sources, supporting_sources)
+    selected = [p for p in test_files(commit) if p in screen["files"] and screen["files"][p]["selected"]
+                and re.search(r"\bdef test_", sources[p])]
     spdx = (license_info.get("license") or {}).get("spdx_id")
     match = AGENT.search(message)
     if repo.get("private") or spdx not in LICENSES or not selected or (not evidence_kind and not match):
         return None
+    # Risks in unrelated changed unit tests must not be attributed to this selection.
+    screen = static_screen({p: sources[p] for p in selected}, supporting_sources)
     sha = commit["sha"]
     if not SHA.fullmatch(sha):
         raise ValueError("GitHub returned a non-pinned commit")
     kind = evidence_kind or ("generated_tests" if not match.group(0).lower().startswith("co-authored") else "test_commit")
     row = dict.fromkeys(FIELDS, "")
-    row.update(repo=repo["full_name"], commit_sha=sha, group="unresolved" if kind in {"guidance_only", "historical_lead"} else "agent",
+    row.update(repo=repo["full_name"], commit_sha=sha, group="unresolved" if kind == "guidance_only" else "agent",
                evidence_kind=kind, evidence_url=evidence_url or commit["html_url"],
                evidence_detail=detail or "Commit modifies selected Python browser tests; " + match.group(0),
                test_paths=json.dumps(selected), license=spdx, license_url=license_info["html_url"],
                approved="no", recipe="recipes/REVIEW_REQUIRED.json",
-               observable_calls=str(static_screen({p: sources[p] for p in selected})["observable_calls"]))
+               observable_calls=str(sum(screen["files"][p]["count"] for p in selected)),
+               offline_risk=json.dumps(screen["offline_risk"]))
     return row
 
 
@@ -105,8 +237,25 @@ def sources_at(api, repo, sha, paths):
     sources = {}
     for path in paths[:100]:
         blob = api.get(f"repos/{repo}/contents/{urllib.parse.quote(path)}", ref=sha)
-        sources[path] = base64.b64decode(blob["content"]).decode("utf-8")
+        sources[path] = base64.b64decode(blob["content"]).decode("utf-8-sig")
     return sources
+
+
+def supporting_at(api, repo, sha, test_paths):
+    """Read config/fixtures at the same SHA, never import them. Missing is normal."""
+    candidates = set()
+    for test in test_paths:
+        for parent in Path(test).parents:
+            for name in ("conftest.py", "pytest.ini", "setup.cfg", "tox.ini", "pyproject.toml", "requirements.txt", "requirements-dev.txt"):
+                candidates.add((parent / name).as_posix())
+    result = {}
+    for path in sorted(candidates):
+        try:
+            result.update(sources_at(api, repo, sha, [path]))
+        except urllib.error.HTTPError as exc:
+            if exc.code != 404:
+                raise
+    return result
 
 
 def tree_tests(api, repo, sha):
@@ -126,8 +275,6 @@ def search_specs(mode, queries):
     if mode in {"all", "guidance"}:
         for name in ("AGENTS.md", "CLAUDE.md"):
             yield "code", f"filename:{name} playwright test", "guidance_only"
-    if mode in {"all", "human"}:
-        yield "repositories", "playwright language:Python created:<2021-01-01", "historical_lead"
 
 
 def discover(api, queries, pages, mode="commits"):
@@ -168,19 +315,10 @@ def discover(api, queries, pages, mode="commits"):
                         commit = {"sha": sha, "html_url": pr["html_url"], "commit": {"message": ""}, "files": changed}
                         evidence, detail = pr["html_url"], "Agent-authored PR modifies selected Python browser tests; review diff and attribution."
                     else:
-                        if kind == "historical_lead":
-                            if metadata["created_at"] >= HISTORICAL_CUTOFF:
-                                continue
-                            old = api.get(f"repos/{repo}/commits", until=HISTORICAL_CUTOFF, per_page=1)
-                            if not old:
-                                continue
-                            sha = old[0]["sha"]
-                        elif kind == "guidance_only":
+                        if kind == "guidance_only":
                             sha = api.get(f"repos/{repo}/commits/{metadata['default_branch']}")["sha"]
                         commit = api.get(f"repos/{repo}/commits/{sha}")
-                        if kind in {"guidance_only", "historical_lead"}:
-                            if kind == "historical_lead" and (commit["commit"]["author"]["date"] >= HISTORICAL_CUTOFF or commit["commit"]["committer"]["date"] >= HISTORICAL_CUTOFF):
-                                continue
+                        if kind == "guidance_only":
                             commit["files"] = [{"filename": p} for p in tree_tests(api, repo, sha)]
                             if kind == "guidance_only":
                                 guidance = sources_at(api, repo, sha, [item["path"]])[item["path"]]
@@ -188,8 +326,6 @@ def discover(api, queries, pages, mode="commits"):
                                     continue
                                 evidence = f"https://github.com/{repo}/blob/{sha}/{item['path']}"
                                 detail = "Guidance mentions tests; does not prove selected tests were agent-written."
-                            else:
-                                detail = f"Historical lead only: repo created {metadata['created_at']}; author date {commit['commit']['author']['date']}; commit date {commit['commit']['committer']['date']}. Dates are not authorship proof; person must classify."
                     identity = (repo, sha, kind)
                     if identity in seen:
                         continue
@@ -199,11 +335,12 @@ def discover(api, queries, pages, mode="commits"):
                         audit.append({"repo": repo, "sha": sha, "evidence_kind": kind or "test_commit", "candidate": False, "reason": "no license"})
                         continue
                     sources = sources_at(api, repo, sha, test_files(commit))
-                    row = parse_candidate(metadata, commit, license_info, sources, evidence_kind=kind, evidence_url=evidence, detail=detail)
+                    support = supporting_at(api, repo, sha, list(sources))
+                    row = parse_candidate(metadata, commit, license_info, sources, evidence_kind=kind, evidence_url=evidence, detail=detail, supporting_sources=support)
                     if row:
                         rows.append(row)
                     audit.append({"repo": repo, "sha": sha, "evidence_kind": row["evidence_kind"] if row else kind or "test_commit",
-                                  "candidate": bool(row), "screen": static_screen(sources),
+                                  "candidate": bool(row), "screen": static_screen(sources, support),
                                   "reason": "person review required" if row else "no recognized license, matching evidence or Python browser tests"})
                 except (OSError, ValueError, KeyError, SyntaxError) as exc:
                     audit.append({"repo": repo, "sha": sha, "evidence_kind": kind or "test_commit", "error": str(exc)})
@@ -216,8 +353,8 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--output", type=Path, default=Path("study/candidates.csv"))
     p.add_argument("--query", action="append")
-    p.add_argument("--mode", choices=("all", "commits", "agent-prs", "guidance", "human"), default="all")
-    p.add_argument("--pages", type=int, default=1)
+    p.add_argument("--mode", choices=("all", "commits", "agent-prs", "guidance"), default="all")
+    p.add_argument("--pages", type=int, default=3)
     args = p.parse_args()
     if not 1 <= args.pages <= 10:
         p.error("pages must be between 1 and 10")

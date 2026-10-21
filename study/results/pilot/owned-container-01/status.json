@@ -50,9 +50,9 @@
     "--env=all_proxy=",
     "--env=no_proxy=",
     "--mount",
-    "type=bind,src=C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-qfppnjm0\\input,dst=/input,readonly",
+    "type=bind,src=<HOST_TEMP>\\vandal-study-qfppnjm0\\input,dst=/input,readonly",
     "--mount",
-    "type=bind,src=C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-qfppnjm0\\deps,dst=/deps,readonly",
+    "type=bind,src=<HOST_TEMP>\\vandal-study-qfppnjm0\\deps,dst=/deps,readonly",
     "sha256:9101f6e8a31ce87b93204351a6ce5c574d0bffa59ed68efff8af4db19e931197",
     "python",
     "-m",
@@ -75,9 +75,10 @@
   },
   "artifact_sha256": {
     "acquire-owned.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "acquisition.json": "9f0f1c56dfcc269ebe3b41a5fe4b9831c1d309cd66c725a8b366eef5da994b57",
+    "acquisition.json": "c6c479ff61deb9d78fe797f8c5d8713aef86e3b87c99014442f95ccd3a6e3bfa",
     "cleanup.log": "6a168fb52c5265c5815e147a58dbfe310c4e586c8d29dff9334038b48bbc385b",
     "container.log": "74e453b9fcd97153b5ef3a97e01fc8429f17db6b81cf4da3862c7d3417d9eed8"
   },
-  "isolation": "container pipeline; local owned Git archive, not public GitHub acquisition"
+  "isolation": "container pipeline; local owned Git archive, not public GitHub acquisition",
+  "evidence_redaction": "Host paths sanitized in AI-only revision; hashes now describe sanitized bytes. Original digests retained in ../redaction-audit.json; measured outcomes unchanged."
 }

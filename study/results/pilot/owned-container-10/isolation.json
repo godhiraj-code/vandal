@@ -1,0 +1,77 @@
+{
+  "state": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 16882,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-21T11:10:28.826962597Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+  },
+  "container_id": "6edb2471d24892433c8d89c25fe2a42daa1ea02901f767d0edfa8d28e93cbbe1",
+  "image": "sha256:4c682a2499f7802d33c88335c80aa2358979d609ee6d00679beedeba0d2726c5",
+  "user": "10001:10001",
+  "host_config": {
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "Privileged": false,
+    "CapDrop": [
+      "ALL"
+    ],
+    "SecurityOpt": [
+      "no-new-privileges"
+    ],
+    "Memory": 4294967296,
+    "MemorySwap": 4294967296,
+    "NanoCpus": 2000000000,
+    "PidsLimit": 256,
+    "Tmpfs": {
+      "/tmp": "rw,nosuid,nodev,size=256m,uid=10001,gid=10001,mode=700",
+      "/work": "rw,exec,nosuid,nodev,size=3g,uid=10001,gid=10001,mode=700"
+    },
+    "LogConfig": {
+      "Type": "local",
+      "Config": {
+        "compress": "false",
+        "max-file": "1",
+        "max-size": "8m"
+      }
+    }
+  },
+  "mounts": [
+    {
+      "Type": "bind",
+      "Destination": "/input",
+      "RW": false,
+      "Source": "<host-staged-input>"
+    },
+    {
+      "Type": "bind",
+      "Destination": "/deps",
+      "RW": false,
+      "Source": "<host-staged-input>"
+    }
+  ],
+  "environment_keys": [
+    "ALL_PROXY",
+    "FTP_PROXY",
+    "HTTPS_PROXY",
+    "HTTP_PROXY",
+    "LANG",
+    "LC_ALL",
+    "NO_PROXY",
+    "PATH",
+    "PLAYWRIGHT_BROWSERS_PATH",
+    "all_proxy",
+    "ftp_proxy",
+    "http_proxy",
+    "https_proxy",
+    "no_proxy"
+  ],
+  "github_token_present": false,
+  "proxy_values_empty": true
+}

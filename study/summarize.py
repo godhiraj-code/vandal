@@ -117,7 +117,7 @@ def read_results(root):
                     row.update(status="unscored", reason="no killed/survived mutants")
                 kind = status.get("manifest", {}).get("evidence_kind")
                 row["eligible"] = (row["status"] == "completed" and row["kind"] == "public"
-                                   and row["group"] in {"agent", "human"} and kind != "guidance_only"
+                                   and row["group"] == "agent" and kind != "guidance_only"
                                    and approval_reason(status.get("manifest", {})) is None)
                 if row["kind"] == "public" and row["status"] == "completed":
                     if approval_reason(status.get("manifest", {})):
@@ -129,7 +129,7 @@ def read_results(root):
                 row["_strategies"] = per_strategy
             elif row["status"] == "completed":
                 raise ValueError("completed run is missing its raw report")
-        except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+        except (OSError, ValueError, KeyError, TypeError, AttributeError, RecursionError) as exc:
             row.update(status="invalid", reason=str(exc), eligible=False)
         rows.append(row)
     for row in rows:
@@ -151,6 +151,13 @@ def cell(value):
 
 def summarize(root, report_path):
     rows, strategies = read_results(root)
+    failures = [r for r in rows if r["kind"] == "fixture" and r["status"] != "completed"]
+    visible = [r for r in rows if r not in failures]
+    failure_path = report_path.with_name("FIXTURE_ATTEMPTS.md")
+    failure_lines = ["# Earlier owned-fixture attempts", "", "Historical validation failures; excluded from the descriptive public study.", ""]
+    failure_lines += [f"- {cell(r['repo'])}: {cell(r['status'])}; {cell(r['reason'])} (n attempts=1)." for r in failures]
+    failure_lines += ["", f"Failed/incomplete owned-fixture attempts: n={len(failures)}. Raw artifacts remain under results/pilot/; see VALIDATION.md for the chronological record.", ""]
+    failure_path.write_text("\n".join(failure_lines), encoding="utf-8")
     columns = ["repo", "commit_sha", "kind", "group", "status", "eligible", "score",
                "n_tests", "n_mutants", "n_scored", *STATUSES, "untested", "untested_targets",
                "skipped_by_cap", "action_failed_kills", "reason"]
@@ -159,47 +166,42 @@ def summarize(root, report_path):
         writer = csv.DictWriter(f, fieldnames=columns)
         writer.writeheader()
         writer.writerows(rows)
-    title = "Study protocol and results" if any(r["kind"] == "public" and r.get("n_tests", 0) for r in rows) else "Study protocol and results (no public runs yet)"
+    title = "Study protocol and results" if any(r["kind"] == "public" for r in rows) else "Study protocol and results (no public runs yet)"
     lines = ["# " + title, "",
-             f"Recorded runs: n={len(rows)}. Public runs: n={sum(r['kind'] == 'public' for r in rows)}. "
-             f"Owned fixture runs: n={sum(r['kind'] == 'fixture' for r in rows)}. Fixtures never enter the study comparison.", "",
+             f"Public agent-suite sample: n={sum(r['eligible'] for r in rows)} repositories. Public attempts: n={sum(r['kind'] == 'public' for r in rows)}.", "",
+             "This is a descriptive study of agent-written suites only. No comparison population or causal claim is defined.", "",
+             f"Completed owned-fixture validations: n={sum(r['kind'] == 'fixture' for r in visible)} attempts of one fixture; not study subjects. Earlier failed fixture attempts are retained in [FIXTURE_ATTEMPTS.md](FIXTURE_ATTEMPTS.md).", "",
              "Results are limited to the repositories and selected tests actually executed. No population or causal inference is justified.", "",
              "## Per repository", "",
              "Counts below are observed mutants, with n_tests and n_mutants shown per row. Score is 100 × killed / n_scored; n_scored = killed + survived. N/A means no observation, not zero.", "",
              "| Repository / kind / group | Status | Score % (n_scored) | n_tests / n_mutants | Killed | Survived | Error | Untested mutants | Unsupported targets | Cap omissions |",
              "|---|---|---|---|---|---|---|---|---|---|"]
-    for r in rows:
+    for r in visible:
         lines.append("| " + " | ".join(map(cell, [f"{r['repo']} / {r['kind']} / {r['group']}", r["status"],
             f"{cell(r.get('score'))} (n={cell(r.get('n_scored'))})", f"{cell(r.get('n_tests'))} / {cell(r.get('n_mutants'))}",
             *[r.get(k) for k in ("killed", "survived", "error", "untested", "untested_targets", "skipped_by_cap")]])) + " |")
     lines += ["", "Untested mutants = not_applied + skipped. Unsupported targets and cap omissions are separate units and are not added to that count or score denominator.", "",
-              "## Agent versus human comparison", "",
-              "One complete, scored observation per repository; repository-weighted median, inclusive-quartile IQR and min–max spread. Guidance-only provenance, incomplete runs, invalid reports and fixtures are excluded.", "",
-              "| Group | n repositories | Median % | IQR percentage points | Min–max % |", "|---|---|---|---|---|"]
-    groups = {}
-    for group in ("agent", "human"):
-        data = spread([r["score"] for r in rows if r["eligible"] and r["group"] == group])
-        groups[group] = data
-        lines.append(f"| {group} | {data['n']} | {cell(data['median'])} | {cell(data['iqr'])} | {cell(data['min'])}–{cell(data['max'])} |")
-    if all(groups[g]["n"] for g in groups):
-        difference = groups["agent"]["median"] - groups["human"]["median"]
-        lines += ["", f"Agent minus human median: {difference:.4f} percentage points (n_agent={groups['agent']['n']}, n_human={groups['human']['n']}). Descriptive only."]
-    else:
-        lines += ["", "No between-group difference can be calculated: at least one group has no eligible observations."]
+              "## Descriptive agent-suite results", "",
+              "One complete, scored observation per repository; repository-weighted median, inclusive-quartile IQR and min-max spread. Guidance-only provenance, incomplete runs, invalid reports and owned fixtures are excluded. IQR is N/A below two repositories.", "",
+              "| n repositories | Median % | IQR percentage points | Min-max % |", "|---|---|---|---|"]
+    data = spread([r["score"] for r in rows if r["eligible"]])
+    lines.append(f"| {data['n']} | {cell(data['median'])} | {cell(data['iqr'])} | {cell(data['min'])}-{cell(data['max'])} |")
+    if not data["n"]:
+        lines += ["", "No eligible public results exist. No strength estimate is reported for agent-written suites."]
     lines += ["", "## Strategy survival", "",
               "Pooled by mutant, ranked by survivors; larger suites contribute more weight. Survival rate is among killed + survived. Both n_repos and n_mutants are shown. Error/untested outcomes remain outside the rate.", "",
-              "| Group / strategy | n_repos | n_mutants | Survived / n scored | Survival % | Errors | Untested mutants |", "|---|---|---|---|---|---|---|"]
+              "| Strategy | n_repos | n_mutants | Survived / n scored | Survival % | Errors | Untested mutants |", "|---|---|---|---|---|---|---|"]
     for (group, strategy), c in sorted(strategies.items(), key=lambda item: (-item[1]["survived"], item[0])):
         n = c["killed"] + c["survived"]
         rate = c["survived"] * 100 / n if n else None
-        lines.append(f"| {cell(group)} / {cell(strategy)} | {c['n_repos']} | {sum(c[s] for s in STATUSES)} | {c['survived']} / {n} | {cell(rate)} | {c['error']} | {c['skipped'] + c['not_applied']} |")
+        lines.append(f"| {cell(strategy)} | {c['n_repos']} | {sum(c[s] for s in STATUSES)} | {c['survived']} / {n} | {cell(rate)} | {c['error']} | {c['skipped'] + c['not_applied']} |")
     if not strategies:
         lines += ["", "No eligible strategy observations (n repositories=0)."]
     lines += ["", "## Exclusions and limitations", ""]
-    for r in rows:
+    for r in visible:
         if not r["eligible"]:
             lines.append(f"- {cell(r['repo'])}: {cell(r['reason'] or ('owned fixture excluded' if r['kind'] == 'fixture' else 'provenance or group ineligible'))} (n runs=1).")
-    lines += ["", "Selection is a convenience sample from bounded GitHub search, not a random sample. Visible co-authorship is evidence of agent involvement, not exclusive agent authorship. Human provenance requires affirmative evidence; missing agent labels prove nothing.", "",
+    lines += ["", "Selection is a convenience sample from bounded GitHub search, not a random sample. Visible co-authorship is evidence of agent involvement, not exclusive agent authorship. Only test-specific agent involvement is in scope; guidance alone cannot establish authorship.", "",
               "Offline, no-secret execution selects for self-contained suites; external CDNs, services and complex install requirements can cause exclusions. All-skip and partially skipped baselines are excluded. A single baseline cannot establish lack of flakiness.", "",
               "Default Vandal strategies and its per-test cap depend on observed interactions. Scores across different apps, assertions, targets and strategy mixes are not directly comparable. Controlled action failures count as kills and need not imply an outcome assertion. Mutant errors remain visible but outside the score denominator.", "",
               "Candidate processes can tamper with their own in-container reports. Stored hashes detect later changes, not dishonest execution. Independently inspect raw logs and source before publication. No claim that container isolation or its Docker integration has been validated follows from a host-only fixture test.", ""]

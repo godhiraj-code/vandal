@@ -18,7 +18,7 @@ def candidate():
     return dict(zip(FIELDS, ["owner/repo", "a" * 40, "agent", "test_commit",
                 "https://github.com/owner/repo/commit/" + "a" * 40, "Claude adds browser tests",
                 '["tests/test_ui.py"]', "MIT", "https://github.com/owner/repo/blob/" + "a" * 40 + "/LICENSE",
-                "no", "", "", "recipes/repo.json", "0"]))
+                "no", "", "", "recipes/repo.json", "0", "[]"]))
 
 
 def report(statuses):
@@ -57,9 +57,10 @@ def test_person_review_and_csv(tmp_path):
     write_rows(path, [row])
     assert read_rows(path) == [row]
     row["group"] = "human"
-    assert "evidence" in approval_reason(row)
+    assert "unresolved" in approval_reason(row)
     row["evidence_kind"] = "historical_authorship"
-    assert approval_reason(row) is None
+    assert "unresolved" in approval_reason(row)
+    row.update(group="agent", evidence_kind="test_commit")
     row["commit_sha"] = "main"
     assert "SHA" in approval_reason(row)
 
@@ -156,7 +157,7 @@ def test_fixtures_and_incomplete_runs_excluded(tmp_path):
         (dest / "vandal_report.json").write_text(json.dumps(report(["killed"])))
     rows = summarize(tmp_path, tmp_path / "REPORT.md")
     assert not any(r["eligible"] for r in rows)
-    assert "No between-group difference" in (tmp_path / "REPORT.md").read_text()
+    assert "descriptive study of agent-written suites only" in (tmp_path / "REPORT.md").read_text()
 
 
 def test_real_process_timeout_and_log_bound(tmp_path):
@@ -220,7 +221,7 @@ def test_malformed_report_is_invalid_not_crash(tmp_path, bad):
     assert rows[0]["status"] == "invalid" and not rows[0]["eligible"]
 
 
-@pytest.mark.parametrize("failure", ["malformed_export", "missing_docker", "malformed_worker_cleanup"])
+@pytest.mark.parametrize("failure", ["malformed_export", "missing_docker", "malformed_worker_cleanup", "malformed_report", "nested_report", "nested_worker", "redaction_failure"])
 def test_failed_export_or_cleanup_still_records_status(tmp_path, monkeypatch, failure):
     from study.run_study import run_one
     wheelhouse, output = tmp_path / "wheels", tmp_path / "out"
@@ -231,12 +232,19 @@ def test_failed_export_or_cleanup_still_records_status(tmp_path, monkeypatch, fa
     def fake_run(cmd, cwd, log, seconds, **kwargs):
         if failure == "missing_docker":
             raise FileNotFoundError("docker missing")
-        if failure == "malformed_worker_cleanup" and cmd[1] == "exec":
-            payload = json.dumps({"status": "completed", "reason": []}).encode()
+        if failure in {"malformed_worker_cleanup", "malformed_report", "nested_report", "nested_worker", "redaction_failure"} and cmd[1] == "exec":
+            payload = json.dumps({"status": "completed", "reason": [] if failure == "malformed_worker_cleanup" else ""}).encode()
+            if failure == "nested_worker":
+                payload = b'{"status":"completed","reason":"","data":' + b'[' * 600 + b'0' + b']' * 600 + b'}'
             with tarfile.open(log, "w") as archive:
                 entry = tarfile.TarInfo("worker-status.json")
                 entry.size = len(payload)
                 archive.addfile(entry, io.BytesIO(payload))
+                if failure in {"malformed_report", "nested_report"}:
+                    report = tarfile.TarInfo("vandal_report.json")
+                    raw = b"{" if failure == "malformed_report" else b"[" * 1200 + b"0" + b"]" * 1200
+                    report.size = len(raw)
+                    archive.addfile(report, io.BytesIO(raw))
             return {"exit_code": 0, "timed_out": False, "log_limited": False}
         Path(log).write_bytes(b"not an archive" if cmd[1] == "exec" else b"owned mock")
         return {"exit_code": int(failure == "malformed_worker_cleanup" and cmd[1] == "rm"),
@@ -244,11 +252,29 @@ def test_failed_export_or_cleanup_still_records_status(tmp_path, monkeypatch, fa
     monkeypatch.setattr("study.run_study.acquire", acquire)
     monkeypatch.setattr("study.run_study.run", fake_run)
     monkeypatch.setattr("study.run_study.subprocess.run", lambda *a, **kw: type("Probe", (), {"returncode": 0})())
+    if failure == "redaction_failure":
+        def fail_redaction(path):
+            raise OSError("owned mock failure")
+        monkeypatch.setattr("study.redact.redact_file", fail_redaction)
     result = run_one(candidate(), {}, "sha256:" + "a" * 64, wheelhouse, output, 30, {})
-    assert result["status"] == ("skipped" if failure == "malformed_export" else "incomplete")
     assert (output / "status.json").exists()
+    if failure in {"malformed_report", "nested_report"}:
+        assert result["cleanup"]["exit_code"] == 0
+        assert (output / "vandal_report.json").exists()
+        assert summarize(output, output / "REPORT.md")[0]["status"] == "invalid"
+        return
+    if failure == "nested_worker":
+        # Comprehension recursion costs differ between supported Python versions.
+        # Both retaining a representable object and rejecting excessive nesting
+        # are valid; neither may suppress the terminal status or cleanup.
+        assert result["status"] in {"completed", "incomplete"}
+        assert result["cleanup"]["exit_code"] == 0
+        if result["status"] == "incomplete":
+            assert "nesting exceeds" in result["reason"]
+        return
+    assert result["status"] == ("skipped" if failure == "malformed_export" else "incomplete")
     expected = {"malformed_export": "ReadError", "missing_docker": "FileNotFoundError",
-                "malformed_worker_cleanup": "worker reason must be a string"}
+                "malformed_worker_cleanup": "worker reason must be a string", "nested_worker": "nesting exceeds", "redaction_failure": "evidence redaction failed"}
     assert expected[failure] in result["reason"]
 
 
@@ -427,7 +453,7 @@ def test_license_404_is_a_missing_license_not_error():
     assert pinned_license(API(), "owner/repo", "a" * 40)["reason"] == "no license"
 
 
-def test_discovery_modes_keep_guidance_and_historical_leads_unclassified():
+def test_discovery_modes_keep_guidance_unclassified_and_remove_human_mode():
     from study.find_repos import search_specs, QUERIES, PR_AUTHORS
     specs = list(search_specs("all", QUERIES))
     assert all(any("author:" + author in q and "is:pr" in q for _, q, _ in specs) for author in PR_AUTHORS)
@@ -435,10 +461,12 @@ def test_discovery_modes_keep_guidance_and_historical_leads_unclassified():
     assert sum(kind == "guidance_only" for _, _, kind in specs) == 2
     commit = {"sha": "a" * 40, "html_url": candidate()["evidence_url"], "commit": {"message": "ordinary update"},
               "files": [{"filename": "test_ui.py"}]}
-    for kind in ("guidance_only", "historical_lead"):
+    assert list(search_specs("human", QUERIES)) == []
+    assert "app/devin-ai-integration" in PR_AUTHORS
+    for kind in ("guidance_only",):
         row = parse_candidate({"full_name": "owner/repo"}, commit,
               {"license": {"spdx_id": "MIT"}, "html_url": candidate()["license_url"]},
-              {"test_ui.py": "def test_ui(page): page.locator('#x').click()"}, evidence_kind=kind, detail="review needed")
+              {"test_ui.py": "from playwright.sync_api import Page\ndef test_ui(page): page.locator('#x').click()"}, evidence_kind=kind, detail="review needed")
         assert row["approved"] == "no" and row["group"] == "unresolved"
         assert approval_reason(row) == "authorship is unresolved"
         assert row["observable_calls"] == "2"
@@ -464,7 +492,7 @@ def test_discovery_agent_pr_checks_python_files_at_head():
                 return {"license": {"spdx_id": "MIT"}, "html_url": candidate()["license_url"]}
             if "/contents/" in path:
                 assert kw["ref"] == "a" * 40
-                return {"content": base64.b64encode(b"def test_ui(page): page.locator('#x').click()").decode()}
+                return {"content": base64.b64encode(b"from playwright.sync_api import Page\ndef test_ui(page): page.locator('#x').click()").decode()}
             raise AssertionError(path)
     rows, audit = discover(API(), [], 1, "agent-prs")
     assert len(rows) == 1 and rows[0]["evidence_kind"] == "agent_pr"

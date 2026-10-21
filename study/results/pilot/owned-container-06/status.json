@@ -51,9 +51,9 @@
     "--env=all_proxy=",
     "--env=no_proxy=",
     "--mount",
-    "type=bind,src=C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-i23ktku9\\input,dst=/input,readonly",
+    "type=bind,src=<HOST_TEMP>\\vandal-study-i23ktku9\\input,dst=/input,readonly",
     "--mount",
-    "type=bind,src=C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-i23ktku9\\deps,dst=/deps,readonly",
+    "type=bind,src=<HOST_TEMP>\\vandal-study-i23ktku9\\deps,dst=/deps,readonly",
     "sha256:8f079e295ec0f68a6ae20d22c736be96763e72993e16cae2474c7731ab8aa18d",
     "python",
     "-m",
@@ -157,19 +157,20 @@
   },
   "artifact_sha256": {
     "acquire-owned.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "acquisition.json": "cf46a89bff51b25b31611b9715691c2e834b8da241ffaf9cfb3d5d88f0e899e4",
+    "acquisition.json": "09cee2cb43e6645f01a5ef1e3db6f6a6c93e789dbd54d54796113e8c955fd47a",
     "baseline.log": "0fc440c708b8062bd05d6f72174bb278f97340e23c153cb23a029ed1add7672e",
     "baseline.xml": "41095c335dc619a3a684ddd86d6c68a543455d0cf71f645b2ff3c540e3fc2aca",
     "cleanup.log": "c14d604a2ec65c2fa59ddcdf7ad0111fcd921694860c23ca4ef221f5cfcd7d3e",
     "container.log": "8759b922c21c51c02e35a17d8e61927e7d5e97a759fd191c638d6d18f1a64b3c",
     "environment.txt": "25f35a9fc8dbc0b625d09bb3e8eefa34a1778d3d115d2aa0e466580bc9a1b2e8",
     "install.log": "1271f93d8385e5d129f07d83b844ea65e0d220e76436f4ca9658e1979758761a",
-    "isolation.json": "582783da0cf8cb621901e3eebd9cf7cb6b63878efe3cfea22126ff29749d5547",
+    "isolation.json": "30525b0316ac9d9343a7d02af0a777adcf04d2c6b3d92820210d9b356f12d7bf",
     "mounts.log": "112cf74440e4a99ddc1574ae114d23cb52523c193f98c1ca2c745ae358069250",
     "mutation.log": "93df7e6856d57d8df4bc82128197faf991ccb01c846fcc07452e28f842a8efe5",
     "vandal_report.json": "23c919ab3b1387914ec97c350727e270317f60f0f1a0ae1bd443ec598dc42659",
     "worker-console.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "worker-status.json": "a1a4ffdc5c68b6c5718edbba0fc8b0c84864cf97f1ddb8dd6708056641a01d48"
   },
-  "isolation": "container pipeline; local owned Git archive, not public GitHub acquisition"
+  "isolation": "container pipeline; local owned Git archive, not public GitHub acquisition",
+  "evidence_redaction": "Host paths sanitized in AI-only revision; hashes now describe sanitized bytes. Original digests retained in ../redaction-audit.json; measured outcomes unchanged."
 }

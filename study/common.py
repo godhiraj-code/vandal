@@ -8,7 +8,7 @@ from pathlib import Path, PurePosixPath
 
 FIELDS = ["repo", "commit_sha", "group", "evidence_kind", "evidence_url",
           "evidence_detail", "test_paths", "license", "license_url",
-          "approved", "reviewer", "reviewed_at", "recipe", "observable_calls"]
+          "approved", "reviewer", "reviewed_at", "recipe", "observable_calls", "offline_risk"]
 REPO = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]*/[A-Za-z0-9][A-Za-z0-9_.-]*\Z")
 SHA = re.compile(r"[0-9a-f]{40}\Z")
 # Conservative recognized subset, not a claim to enumerate all OSI licenses.
@@ -43,10 +43,9 @@ def candidate_reason(row):
         return "commit must be a full lowercase SHA"
     if row.get("license") not in LICENSES:
         return "license requires explicit OSI verification/support"
-    if row.get("group") not in {"agent", "human"}:
+    if row.get("group") != "agent":
         return "authorship is unresolved"
-    allowed = {"agent": {"test_commit", "agent_pr", "generated_tests", "guidance_only"},
-               "human": {"human_attestation", "historical_authorship"}}
+    allowed = {"agent": {"test_commit", "agent_pr", "generated_tests"}}
     if row.get("evidence_kind") not in allowed[row["group"]]:
         return "authorship evidence does not support group"
     for key in ("evidence_url", "license_url"):

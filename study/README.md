@@ -12,9 +12,9 @@ python -m study.find_repos
 
 Read-only GitHub Search API discovery uses `GITHUB_TOKEN` from the host environment.
 It searches commits (including generated tests), agent PRs, guidance files and
-historical control leads, checks pinned Python browser files and licenses, and
+checks pinned Python browser files and licenses, and
 writes unapproved leads plus an audit of queries/errors and evidence-type counts.
-Use --mode commits, agent-prs, guidance or human for an individual route.
+Use --mode commits, agent-prs or guidance for an individual route. The default searches three pages per query.
 The AST observable_calls screen never imports or executes candidate code. Bounded search
 is not exhaustive. No test import, collection or repository setup happens here.
 For manual evidence sources see `candidate-evidence.json` and `CANDIDATE_REVIEW.md`.
@@ -23,9 +23,7 @@ Run discovery to a separate `--output` to avoid replacing reviewed candidate wor
 A **person** checks `CRITERIA.md`, source/evidence and recipes, reviews dependency
 wheels, and copies selected rows to `repos.csv` with `approved=yes`, reviewer and
 UTC `reviewed_at`. Keep unapproved/rejected candidates in the discovery audit.
-Historical-control discovery uses pre-2021 repository and commit dates only to
-identify unresolved leads. A person must verify affirmative authorship evidence;
-missing agent metadata never assigns the human group automatically.
+The study is descriptive and agent-only. No human control group or historical listing mode is used. See repos.proposed.csv and recipes/OFFLINE.md for the unapproved shortlist and setup plans.
 
 ## Container execution
 
@@ -100,8 +98,7 @@ baseline/mutation/report path, **not** Docker acquisition, installation, namespa
 isolation or container export. A successful fixture is not a successful public pilot.
 Never use this host-only fallback for a third-party candidate.
 
-`summary.csv` is machine-readable; `REPORT.md` includes all skipped/incomplete/invalid
-runs and method limitations. Existing output directories are never overwritten by a
+`summary.csv` is machine-readable; `REPORT.md` includes public exclusions and method limitations. Earlier failed owned-fixture attempts are retained in `FIXTURE_ATTEMPTS.md`. Existing output directories are never overwritten by a
 run. Choose a new results directory for repeat validation; do not combine repeat
 runs of the same repository into a larger apparent sample.
 

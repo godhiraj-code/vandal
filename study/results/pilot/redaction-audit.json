@@ -1,0 +1,141 @@
+{
+  "method": "Host paths replaced with placeholders; no measured outcomes edited. Original digests identify pre-redaction artifacts in prior PR history. Status integrity maps updated to sanitized bytes.",
+  "verified_original_artifact_hashes": 75,
+  "changed": [
+    {
+      "path": "container-build-01/build.json",
+      "original_sha256": "22cef63fce5266aaffa3ccd6e097712a44d780629d5de744da7220c31996188f",
+      "sanitized_sha256": "2267f6cc2e160e55386b3eb079e98157fba28cc023d01dac682354442f7b865b"
+    },
+    {
+      "path": "container-build-02/build.json",
+      "original_sha256": "4bdfe6c97f931f637d09102623871130141d79c05df836f526caeba657d26584",
+      "sanitized_sha256": "fd5ce9b4b5f5b70d555c8f3f53425c9723241e897066c928cddc50fc8f6bed4c"
+    },
+    {
+      "path": "container-build-03/build.json",
+      "original_sha256": "e4743659037634d8cf9530493d1f8b12fcc8cf4c1001d927834ab8c00fc176e3",
+      "sanitized_sha256": "03cab141af7413493a41a102e58fef2b176f33beaf2c1bea95e341c76c02f257"
+    },
+    {
+      "path": "container-build-04/build.json",
+      "original_sha256": "891e576e90809686b30e865b21a2a697c3b20bc248c4fa599f721d2b96d255bf",
+      "sanitized_sha256": "fd3e433a0e1e18f4f45f6c35f4fd3cedf78486943973b688bbe4b45394d02005"
+    },
+    {
+      "path": "container-build-05/build.json",
+      "original_sha256": "24dfb6f93ae78517ad4df1ae3e104a23e20e3329250101ae21bae5110565117f",
+      "sanitized_sha256": "59a7eab8440d8f82f393798cc5c91959f5b2af0f79988eaee26244b0d82d58c6"
+    },
+    {
+      "path": "owned-container-01/acquisition.json",
+      "original_sha256": "9f0f1c56dfcc269ebe3b41a5fe4b9831c1d309cd66c725a8b366eef5da994b57",
+      "sanitized_sha256": "c6c479ff61deb9d78fe797f8c5d8713aef86e3b87c99014442f95ccd3a6e3bfa"
+    },
+    {
+      "path": "owned-container-01/status.json",
+      "original_sha256": "0fe86c0dc214f6eabbe2614c7192c0d6212ea86602fa8729b1ecad827a0c4076",
+      "sanitized_sha256": "dd0460709f28715910bb23b8887599ba210692fd220b90bd9a9a2db337030a18"
+    },
+    {
+      "path": "owned-container-02/acquisition.json",
+      "original_sha256": "7956879fc2410406c1eb9ae332534e7167cb54a051546bd5c7516099c1b2644d",
+      "sanitized_sha256": "0a85e58faa8008b407518811adaf1976d5c08ab2444d1ff2cf3fe5c55306bbfa"
+    },
+    {
+      "path": "owned-container-02/status.json",
+      "original_sha256": "85e87fedbcf5e119d012fbff42efa2da5fdb9cf86520d6956ad67561052a9b0d",
+      "sanitized_sha256": "0b95ed7c3caec5c57fd7a9b69d01b9c436637049098847175a00b477bcebff02"
+    },
+    {
+      "path": "owned-container-03/acquisition.json",
+      "original_sha256": "d5561f4d405785f24eeced506aca20b0a5551f719aaa80c195a3684fd5b9840b",
+      "sanitized_sha256": "f827fdabbea78feef0e41704425378d47d989cb4ddc775dbfd96ba11e18a9ce1"
+    },
+    {
+      "path": "owned-container-03/isolation.json",
+      "original_sha256": "246b98c2f3add326db9814ebeedc547e691c33b648f4dc254040597681963837",
+      "sanitized_sha256": "05d2ba7a01829deed696ce3bc8588e53ed0f0be7ad0346837df15000fa7f91e2"
+    },
+    {
+      "path": "owned-container-03/status.json",
+      "original_sha256": "ca17fe6b7b35b7ac3ca36c85981e95e9c0f653d439b378d01444a1fa868af9d1",
+      "sanitized_sha256": "c418ffe92b58eddef74157cb817c0716f9d43fcb9c0ad9bdf7f90ed0e1258e48"
+    },
+    {
+      "path": "owned-container-04/acquisition.json",
+      "original_sha256": "72586a7811d973b2af2d5375d2201f73f745a51a8980518d792e57bcebe1e94e",
+      "sanitized_sha256": "1ccb40af583decd144a4241dccf7cdd2895b5aad1db5aef1c72677bd98f5ff53"
+    },
+    {
+      "path": "owned-container-04/isolation.json",
+      "original_sha256": "d7ee064c86287867034c21ec6086fe43749c76eb33da155b48c067f25ffd9c9a",
+      "sanitized_sha256": "6c73278ed30c3049941fbe4e7b3f2a7927eef4f97ffcb4dc28f5768b8ded18ac"
+    },
+    {
+      "path": "owned-container-04/status.json",
+      "original_sha256": "b849cb4877ef5268cb3e798e0a319a0505bbdebc73eb4be963b6bc7491a03866",
+      "sanitized_sha256": "22dba14d0b35e2fc39544a8b1f1f1007d856fb7ce8d896236e44543ace94ae0c"
+    },
+    {
+      "path": "owned-container-05/acquisition.json",
+      "original_sha256": "eeedd93e26c766d8614c90b483d148e3b2c79c36d79e4ad9bdb67f89e5ea758d",
+      "sanitized_sha256": "282156299e7da902758b4c7faa41f7a03a4d01c458232f5511f0322ace81a973"
+    },
+    {
+      "path": "owned-container-05/isolation.json",
+      "original_sha256": "4f70370dd89ec8b8e00b8f92875e6939d395458341b30083b0418fa8204bb796",
+      "sanitized_sha256": "37fb565f9c53b3462c27a6d10c7fb4f553ecf54f8432d0f1ccbd451d22d02360"
+    },
+    {
+      "path": "owned-container-05/status.json",
+      "original_sha256": "a5d3b4662dbd7d14961551507d5d10028c2625ef8ba03051677d3bbdd3644c5f",
+      "sanitized_sha256": "f21e2c062f0bf77c3fdf2878e4b001eaaf149697ed2589402f743e31f838d7c9"
+    },
+    {
+      "path": "owned-container-06/acquisition.json",
+      "original_sha256": "cf46a89bff51b25b31611b9715691c2e834b8da241ffaf9cfb3d5d88f0e899e4",
+      "sanitized_sha256": "09cee2cb43e6645f01a5ef1e3db6f6a6c93e789dbd54d54796113e8c955fd47a"
+    },
+    {
+      "path": "owned-container-06/isolation.json",
+      "original_sha256": "582783da0cf8cb621901e3eebd9cf7cb6b63878efe3cfea22126ff29749d5547",
+      "sanitized_sha256": "30525b0316ac9d9343a7d02af0a777adcf04d2c6b3d92820210d9b356f12d7bf"
+    },
+    {
+      "path": "owned-container-06/status.json",
+      "original_sha256": "b8b1f5f136d1fe5369928ef687f0e80dabb810be5a24c8d08b538be9b1e4321d",
+      "sanitized_sha256": "ce805612f60f277261b70587aa7aab26c172318bede17a21b393b41ccb5b2c93"
+    },
+    {
+      "path": "owned-container-07/acquisition.json",
+      "original_sha256": "0cbe9b24270224575c3d9c42d941d929621dcea66425032c0cd7e20bae54bc6b",
+      "sanitized_sha256": "d14f191a2a27b432a87e8ca56b9731ba19477562e93f2a672f3901c351f5f984"
+    },
+    {
+      "path": "owned-container-07/isolation.json",
+      "original_sha256": "74331c6dc9ab14d5486e9f0bea33b9d0c29cc550047912a1fb3b88dc0a200a27",
+      "sanitized_sha256": "961832bbb58a5e6e2eacf5e401f5bea24a1e4501831c8292d501921210605943"
+    },
+    {
+      "path": "owned-container-07/status.json",
+      "original_sha256": "8985c002239b2145773eb1de9d1adfd500fc8205dd492d290cb53db3029c0048",
+      "sanitized_sha256": "595ba03c882aa11ea88b24013fe08c52dfdabe466b41dc6105dd1b60a7f887af"
+    },
+    {
+      "path": "owned-fixture/status.json",
+      "original_sha256": "9c2cc0496cf52e618f5f0e31091761027ef6552f2a16dd2f3b1ce147d5b74339",
+      "sanitized_sha256": "6257dcb19d12a3d37099a0be77ed7f3450d12fb264f3eeec327c1d786a29c229"
+    },
+    {
+      "path": "owned-fixture-corrected/status.json",
+      "original_sha256": "a1c67d46c4d86add704e0cea3c20e80d4f111fcabbd253d3d99737d581a5faab",
+      "sanitized_sha256": "86715a10fdbc812d5a07aa170d894c16b76dccae26d2316197b5eb883a0f1a48"
+    },
+    {
+      "path": "owned-fixture-elevated/status.json",
+      "original_sha256": "3269e1b3ba0ea5e02f443447498b99c61104c9ffef28da27e10e4952d84346b3",
+      "sanitized_sha256": "ae82ea6f1425b6ebf554d520f3f6efd91bb4fdd4aa5f691883b7efd4a7528783"
+    }
+  ]
+}
