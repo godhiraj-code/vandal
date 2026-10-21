@@ -8,6 +8,32 @@ from contextvars import ContextVar
 
 from .core import VandalEngine
 
+CLICK_OPERATIONS = {"click", "dblclick", "tap", "check", "uncheck", "set_checked"}
+READ_OPERATIONS = set(("fill", "input_value", "inner_text", "text_content",
+    "all_text_contents", "all_inner_texts", "get_attribute", "is_visible",
+    "is_enabled", "is_checked", "count", "wait_for", "wait_for_selector"))
+
+
+def check_compatibility():
+    """Fail before collection when the private adapter cannot be installed."""
+    from importlib.metadata import version
+    from playwright._impl._frame import Frame
+    from playwright._impl._locator import Locator
+    from playwright._impl._selectors import Selectors
+    from playwright._impl._browser_context import BrowserContext
+    from playwright._impl._assertions import PageAssertions
+    from playwright.sync_api._context_manager import PlaywrightContextManager as Sync
+    from playwright.async_api._context_manager import PlaywrightContextManager as Async
+    required = {Frame: ("_click", "_expect", "_query_count", "eval_on_selector_all"),
+                Locator: ("_expect",), Selectors: ("register",),
+                BrowserContext: ("expose_binding",), PageAssertions: ("_expect_impl",),
+                Sync: ("__enter__",), Async: ("__aenter__",)}
+    missing = [f"{cls.__name__}.{name}" for cls, names in required.items()
+               for name in names if not callable(getattr(cls, name, None))]
+    if missing:
+        raise ValueError(f"Incompatible Playwright {version('playwright')}: missing "
+                         + ", ".join(missing) + ". Adapter tested on Playwright 1.60.0 and 1.64.0; requires >=1.60,<2.")
+
 # These are the public operations we observe. Locator selectors use Playwright's
 # internal representation so get_by_role(), chaining and nth() can be replayed.
 OPERATIONS = (
@@ -78,6 +104,8 @@ class Instrumentation:
 
     def record(self, selector, operation, kwargs):
         if selector and self.state.current is not None:
+            trace = self.state.current.setdefault("trace", [])
+            trace.append((selector, operation))
             events = self.state.current["targets"]
             entry = events.setdefault(selector, {"operations": [], "force": False})
             if operation not in entry["operations"]:
@@ -116,7 +144,7 @@ class Instrumentation:
         # on that node. A WeakSet still permits replacement nodes and navigation.
         expression = """elements => {
             const seen = globalThis[KEY] || (globalThis[KEY] = new WeakSet());
-            const fresh = elements.filter(el => !seen.has(el)
+            const fresh = elements.filter(el => (STRATEGY === 'data_sabotage' || !seen.has(el))
                 && (!el.hasAttribute('data-vandalized')
                     || el.getAttribute('data-vandalized') === STRATEGY));
             fresh.forEach(el => {
@@ -331,6 +359,7 @@ class Instrumentation:
         from playwright import async_api, sync_api
         from playwright._impl._frame import Frame as ImplFrame
         from playwright._impl._locator import Locator as ImplLocator
+        from playwright._impl._assertions import PageAssertions
         from playwright.sync_api._context_manager import PlaywrightContextManager as SyncManager
         from playwright.async_api._context_manager import PlaywrightContextManager as AsyncManager
         for cls, name in ((SyncManager, "__enter__"), (AsyncManager, "__aenter__")):
@@ -339,7 +368,7 @@ class Instrumentation:
             setattr(cls, name, self.wrap_start(original))
         for api in (sync_api, async_api):
             for cls in (api.Page, api.Frame, api.Locator):
-                for name in OPERATIONS + FACTORIES + ("goto", "set_content"):
+                for name in OPERATIONS + ("goto", "set_content"):
                     original = getattr(cls, name, None)
                     if original is not None:
                         self.originals.append((cls, name, original))
@@ -347,6 +376,14 @@ class Instrumentation:
         original = ImplLocator._expect
         self.originals.append((ImplLocator, "_expect", original))
         ImplLocator._expect = self.wrap_expect(original)
+        original_page_expect = PageAssertions._expect_impl
+        @functools.wraps(original_page_expect)
+        async def page_expect(obj, expression, *args, **kwargs):
+            if not self.busy and self.state.current is not None:
+                self.state.current.setdefault("trace", []).append(("", "expect:" + expression))
+            return await original_page_expect(obj, expression, *args, **kwargs)
+        self.originals.append((PageAssertions, "_expect_impl", original_page_expect))
+        PageAssertions._expect_impl = page_expect
         for name in set(OPERATIONS) | {"_click", "_expect", "_query_count", "eval_on_selector_all"}:
             original = getattr(ImplFrame, name, None)
             if original is not None:

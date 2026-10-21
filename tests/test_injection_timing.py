@@ -171,7 +171,7 @@ def test_flow(page):
         marker.write_text("changed external state")
     assert not marker.exists()
 '''
-    run, report = run_suite(tmp_path, source, "--vandal", "--vandal-strategies=ui_shift")
+    run, report = run_suite(tmp_path, source, "--vandal", "--vandal-strict", "--vandal-strategies=ui_shift")
     mutant = report["tests"][0]["mutants"][0]
     assert mutant["controls"] == {"before": "passed", "after": "error"}
     assert mutant["status"] == "error"

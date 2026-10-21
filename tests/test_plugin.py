@@ -45,6 +45,7 @@ def test_not_selected():
     assert report is not None, run.stdout + run.stderr
     assert run.returncode == 1, run.stdout
     assert report["summary"]["score"] == 50
+    assert "Vandal: strength 50.0% is below --vandal-min-score 75" in run.stdout
     assert len(report["tests"]) == 2
     assert report["tests"][0]["mutants"][0]["selector"] == "#b"
     assert "force=True" in report["tests"][0]["mutants"][0]["hint"]
@@ -114,7 +115,7 @@ def bad_fixture():
         assert False, "teardown assertion is not a kill"
 '''
     run, report = run_suite(
-        tmp_path, source, "--vandal", "--vandal-strategies=logic_sabotage",
+        tmp_path, source, "--vandal", "--vandal-strict", "--vandal-strategies=logic_sabotage",
         "--vandal-timeout=" + ("8" if failure == "timeout" else "30"), conftest=conftest,
     )
     assert run.returncode == 1, run.stdout
@@ -182,7 +183,7 @@ def test_strategies(page):
     # Read without actionability waits: all six injected strategies are observable.
     page.locator("#b").text_content()
 '''
-    run, report = run_suite(tmp_path, source, "--vandal", "--vandal-max-mutants=6")
+    run, report = run_suite(tmp_path, source, "--vandal", "--vandal-max-mutants=6", "--vandal-strategies=stealth_disable,ghost_element,data_sabotage,logic_sabotage,ui_shift,slow_load")
     assert run.returncode == 0, run.stdout
     assert report["summary"]["survived"] == 6
     assert len({m["strategy"] for m in report["tests"][0]["mutants"]}) == 6
@@ -204,7 +205,7 @@ def test_unmarked():
     assert run.returncode == 0, run.stdout
     assert len(report["tests"]) == 1
     assert report["tests"][0]["targets"] == ["#name"]
-    assert report["summary"]["survived"] == 1
+    assert report["summary"]["killed"] == 1
 
 
 def test_baseline_skip_and_xfail_are_excluded(tmp_path):

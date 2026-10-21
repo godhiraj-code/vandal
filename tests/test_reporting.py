@@ -76,6 +76,21 @@ def test_schema():
         jsonschema.validate(report, schema)
 
 
+@pytest.mark.parametrize("timed_out", [False, True])
+def test_partial_report_discloses_deadline_without_losing_results(tmp_path, timed_out):
+    mutant = dict(strategy="logic_sabotage", selector="#b", status="survived",
+                  hint="Review", details="Passed")
+    report = make_report([dict(nodeid="test.py::test_completed", baseline="passed",
+                              targets=["#b"], mutants=[mutant])])
+    report["timed_out"] = timed_out
+    write_report(report, tmp_path / "report.json")
+    html = (tmp_path / "report.html").read_text()
+    assert ("Incomplete run: deadline reached" in html) == timed_out
+    assert ("completed mutants only" in html) == timed_out
+    assert "test.py::test_completed" in html and "survived" in html
+    assert json.loads((tmp_path / "report.json").read_text()) == report
+
+
 @pytest.mark.parametrize("filename", ["report.html", "report.HTML"])
 def test_html_json_collision_is_rejected_before_writing(tmp_path, filename):
     destination = tmp_path / filename

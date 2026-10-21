@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+- Preserve baseline pytest file logs across mutation workers and label deadline
+  HTML reports as incomplete while retaining completed mutant results.
+
+- Count controlled Playwright call errors as action_failed kills; add optional
+  kill_reason, skipped_by_cap and MCP timed_out report fields within schema v1.
+- Make mutant-error exit failures opt-in with --vandal-strict and explain gates.
+- Use a standard vandal/ package with editable installs and root-level tests.
+- Discover targets on use, infer default strategies, alternate targets before
+  the cap, refresh data sabotage and make terminal counts and hints readable.
+- Isolate worker reporter outputs and validate private Playwright hooks; bound
+  Playwright below version 2 while retaining the manual async API.
+- Return completed MCP mutants on deadlines and validate restricted pytest_args.
+- Run checkout-based CI and add Windows/macOS smoke coverage and score assertions.
+
 - Keep native mutation receipts outside the document so navigation preserves
   killed/survived accounting and the CI score gate.
 - Apply mutations during native Playwright selector retries, including replacement

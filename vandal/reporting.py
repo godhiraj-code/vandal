@@ -1,6 +1,8 @@
 """Version 1 of the automatic runner's report (separate from Vandal.save_report)."""
 import html
 import json
+import os
+import tempfile
 from pathlib import Path
 
 SCHEMA_VERSION = 1
@@ -50,8 +52,24 @@ def report_paths(path):
 def write_report(report, path):
     path, html_path = report_paths(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    # Readers always see a complete checkpoint, even if the process is killed.
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent,
+                                         prefix=".vandal-", delete=False) as stream:
+            temporary = Path(stream.name)
+            stream.write(json.dumps(report, indent=2) + "\n")
+        os.replace(temporary, path)
+    finally:
+        if temporary and temporary.exists():
+            temporary.unlink()
     esc = lambda value: html.escape(str(value))
+    incomplete = (
+        "<p role='status'><strong>Incomplete run: deadline reached.</strong> "
+        "Strength covers completed mutants only. Unfinished candidates are not "
+        "included; do not interpret this as the full suite's strength.</p>"
+        if report.get("timed_out") else ""
+    )
     rows = []
     for test in report["tests"]:
         rows.append("<tr><th colspan='5'>" + esc(test["nodeid"]) + " | baseline: "
@@ -68,7 +86,7 @@ def write_report(report, path):
         "body{font-family:system-ui;margin:2rem}table{border-collapse:collapse;width:100%}"
         "td,th{border:1px solid #ccc;padding:.6rem;text-align:left;overflow-wrap:anywhere}"
         "</style><h1>Vandal strength: " + score_text(report["summary"]["score"]) +
-        "</h1><p>Survivors are candidates for review, not proof of missing assertions. "
+        "</h1>" + incomplete + "<p>Survivors are candidates for review, not proof of missing assertions. "
         "Errors and unapplied mutations do not contribute to strength.</p><pre>" +
         esc(json.dumps(report["summary"], indent=2)) + "</pre><table>"
         "<tr><th>Strategy</th><th>Selector</th><th>Status</th><th>Hint</th><th>Details</th></tr>"

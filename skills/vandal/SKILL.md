@@ -17,7 +17,8 @@ code and may change application data. Use an isolated test environment.
    These outcomes do not contribute to the score. A null score means no scored mutants.
 4. Inspect each `survived` mutant and its hint. Survival is evidence to investigate,
    not proof that an assertion is missing. A shifted element can legitimately work;
-   a text mutation may be overwritten by normal application behavior.
+   an injected fault can be irrelevant to the intended test contract. Data
+   sabotage is refreshed at later observed reads and assertions.
 5. Read the test and application contract. Add assertions for meaningful user-visible
    outcomes, values, navigation, or state. Do not assert Vandal's DOM markers,
    detect worker environment variables, add arbitrary sleeps, or weaken the app.
@@ -30,6 +31,12 @@ code and may change application data. Use an isolated test environment.
 
 For MCP clients, install `project-vandal[mcp]` on Python 3.10+ and launch
 `vandal-mcp` with the trusted repository as its working directory. Call
-`run_vandal(test_path, strategies, max_mutants)` and
+`run_vandal(test_path, strategies, max_mutants, deadline_seconds, pytest_args)` and
 `get_surviving_mutants(report_path)`. The server uses stdio, allows paths only
-inside its working directory, and bounds each run to 600 seconds.
+inside its working directory, and bounds each run to 600 seconds. pytest_args
+permits only -k/-m expressions and local node IDs. A deadline returns completed
+mutants with timed_out=true; do not compare that partial score as a full run.
+Use --vandal-strict when mutant errors should fail CI. Review kill_reason:
+action_failed means a controlled Playwright call failed, while assertion means
+the test's assertion failed. Default strategies are inferred from observed use;
+explicit strategies are preferable for a stable before/after comparison.

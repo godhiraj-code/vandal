@@ -9,7 +9,7 @@ import tempfile
 import pytest
 
 from .core import VandalEngine
-from .instrumentation import Instrumentation
+from .instrumentation import Instrumentation, CLICK_OPERATIONS, READ_OPERATIONS, check_compatibility
 from .reporting import make_report, report_paths, score_text, survivors, write_report
 from .runner import run_process
 
@@ -19,7 +19,8 @@ WORKER_ENV = "_VANDAL_WORKER"
 def pytest_addoption(parser):
     group = parser.getgroup("vandal")
     group.addoption("--vandal", action="store_true", help="Measure Playwright test strength")
-    group.addoption("--vandal-strategies", default=",".join(VandalEngine.MUTATIONS))
+    group.addoption("--vandal-strategies", default=None, help="Explicit strategies; otherwise infer from target usage")
+    group.addoption("--vandal-strict", action="store_true", help="Fail when mutant errors are recorded")
     group.addoption("--vandal-max-mutants", type=int, default=20, help="Maximum mutants per test")
     group.addoption("--vandal-timeout", type=float, default=60, help="Seconds per worker, including fixtures")
     group.addoption("--vandal-min-score", type=float, default=None)
@@ -34,8 +35,13 @@ def pytest_configure(config):
         report_paths(config.getoption("vandal_report"))
     except ValueError as exc:
         raise pytest.UsageError(str(exc)) from exc
-    strategies = list(dict.fromkeys(config.getoption("vandal_strategies").split(",")))
-    if not strategies or any(s not in VandalEngine.MUTATIONS for s in strategies):
+    try:
+        check_compatibility()
+    except (ValueError, ImportError, AttributeError) as exc:
+        raise pytest.UsageError(f"{exc} (adapter tested on Playwright 1.60.0 and 1.64.0)") from exc
+    option = config.getoption("vandal_strategies")
+    strategies = list(dict.fromkeys(option.split(","))) if option is not None else None
+    if strategies is not None and (not strategies or any(s not in VandalEngine.MUTATIONS for s in strategies)):
         raise pytest.UsageError("Unknown or empty --vandal-strategies")
     if config.getoption("vandal_max_mutants") < 1:
         raise pytest.UsageError("--vandal-max-mutants must be positive")
@@ -53,7 +59,7 @@ def pytest_configure(config):
     config.pluginmanager.register(state, "vandal-runner")
 
 
-def classify(result, returncode):
+def classify(result, returncode, controls=None):
     phases = result.get("phases", {})
     if returncode not in (0, 1) or result.get("injection_errors"):
         return "error", "Worker or mutation injection failed: " + "; ".join(result.get("injection_errors", []))
@@ -66,7 +72,8 @@ def classify(result, returncode):
         return "skipped", "Skipped or expected-failure test is not scored"
     if call.get("outcome") not in ("passed", "failed"):
         return "error", "Missing or incomplete test call"
-    if call["outcome"] == "failed" and (not call.get("assertion") or not result.get("applied")):
+    detected = call.get("assertion") or call.get("playwright_error")
+    if call["outcome"] == "failed" and (not detected or not result.get("applied")):
         return "error", call.get("details", "Test failed without a confirmed assertion kill")
     if call["outcome"] == "passed" and returncode != 0:
         return "error", "Worker exited unsuccessfully despite a passing test call"
@@ -74,7 +81,9 @@ def classify(result, returncode):
         return "not_applied", "No target was confirmed mutated during the test call"
     if call.get("outcome") == "passed" and returncode == 0:
         return "survived", "Test passed after confirmed mutation"
-    if call.get("outcome") == "failed" and call.get("assertion") and returncode == 1:
+    if call.get("outcome") == "failed" and detected and returncode == 1:
+        if call.get("playwright_error") and (not controls or any(controls.get(p) != "passed" for p in ("before", "after"))):
+            return "error", "Playwright call failed without both passing unmutated controls"
         return "killed", call.get("details", "Assertion failed")
     return "error", call.get("details", "Non-assertion failure or incomplete worker")
 
@@ -135,9 +144,11 @@ class VandalPlugin:
     def pytest_runtest_makereport(self, item, call):
         outcome = yield
         report = outcome.get_result()
+        from playwright._impl._errors import Error
         self.tests[item.nodeid]["phases"][report.when] = {
             "outcome": report.outcome,
             "assertion": bool(call.excinfo and isinstance(call.excinfo.value, AssertionError)),
+            "playwright_error": bool(call.excinfo and isinstance(call.excinfo.value, Error)),
             "xfail": hasattr(report, "wasxfail"),
             "details": str(report.longrepr)[-3000:] if report.failed else "",
         }
@@ -148,6 +159,10 @@ class VandalPlugin:
         worker = dict(nodeid=test["nodeid"], strategy=strategy, selector=selector,
                       output=str(destination), control=control)
         env = dict(os.environ, **{WORKER_ENV: json.dumps(worker)})
+        for key in list(env):
+            if key.startswith("COV_CORE_") or key == "COVERAGE_PROCESS_START":
+                env.pop(key)
+        env["COVERAGE_FILE"] = str(worker_dir / ".coverage")
         # Preserve the original options and replay the exact selected nodeid.
         # Mutation failures must never poison the real suite's --lf cache.
         command = [sys.executable, "-m", "pytest", *self.config.invocation_params.args]
@@ -156,6 +171,17 @@ class VandalPlugin:
             command.append(f"--junitxml={worker_dir / 'junit.xml'}")
         if self.config.pluginmanager.hasplugin("playwright"):
             command.append(f"--output={worker_dir / 'playwright'}")
+        # Override options from CLI, addopts and config without touching the
+        # baseline's output. Each worker owns its reporter destinations.
+        if self.config.pluginmanager.hasplugin("logging"):
+            # A final CLI override also wins over ini and PYTEST_ADDOPTS paths.
+            command.append(f"--log-file={worker_dir / 'pytest.log'}")
+        if getattr(self.config.option, "htmlpath", None):
+            command.append(f"--html={worker_dir / 'report.html'}")
+        if self.config.pluginmanager.hasplugin("pytest_cov"):
+            command.append("--no-cov")
+        if getattr(self.config.option, "allure_report_dir", None):
+            command.append(f"--alluredir={worker_dir / 'allure'}")
         if self.config.pluginmanager.hasplugin("cacheprovider"):
             # Baseline --lf selection is already resolved. A worker's empty,
             # isolated cache must not deselect it after the baseline now passes.
@@ -194,27 +220,58 @@ class VandalPlugin:
         # Require a clean replay before every mutant, and again after a putative
         # kill, to exclude reproducible replay/state failures from the score.
         controls = {"before": "passed", "after": "not_run"}
+        result = None
         error = self.clean_replay(test, strategy, selector, directory)
         if error:
             controls["before"] = "error"
             status, details = "error", "Clean replay before mutation failed: " + error
         else:
             result, code, error = self.run_worker(test, strategy, selector, directory)
-            status, details = ("error", error) if error else classify(result, code)
-            if status == "killed":
+            call = (result or {}).get("phases", {}).get("call", {})
+            candidate = (not error and result.get("applied") and not result.get("injection_errors")
+                         and code == 1 and call.get("outcome") == "failed"
+                         and (call.get("assertion") or call.get("playwright_error")))
+            if candidate:
                 error = self.clean_replay(test, strategy, selector, directory)
                 controls["after"] = "error" if error else "passed"
                 if error:
-                    status, details = "error", "Clean replay after mutation failed: " + error
+                    error = "Clean replay after mutation failed: " + error
+            status, details = ("error", error) if error else classify(result, code, controls)
         event = test["targets"].get(selector, {})
         if event.get("force"):
             hint = "Uses force=True; review actionability and assert the user-visible outcome."
-        elif any(op in event.get("operations", []) for op in ("click", "dblclick", "tap")):
-            hint = f"Clicked {selector}; check that the test asserts the resulting UI or state."
+        elif any(op in event.get("operations", []) for op in CLICK_OPERATIONS):
+            trace = test.get("trace", [])
+            last_click = max((i for i, (target, op) in enumerate(trace)
+                              if target == selector and op in CLICK_OPERATIONS), default=-1)
+            asserted = any(op.startswith("expect:") for _, op in trace[last_click + 1:])
+            hint = (f"A Playwright assertion ran after clicking {selector}; review its outcome checks."
+                    if asserted else f"No Playwright assertion ran after clicking {selector}; review Python assertions and the outcome.")
         else:
             hint = f"Used {selector}; check assertions about its value, state, or resulting behavior."
-        return dict(strategy=strategy, selector=selector, status=status, hint=hint,
-                    details=details, controls=controls)
+        mutant = dict(strategy=strategy, selector=selector, status=status, hint=hint,
+                      details=details, controls=controls)
+        if status == "killed":
+            mutant["kill_reason"] = "assertion" if result["phases"]["call"].get("assertion") else "action_failed"
+        return mutant
+
+    def candidates(self, test, targets):
+        choices = {}
+        for target in targets:
+            operations = test["targets"].get(target, {}).get("operations", [])
+            # Explicit aliases (e.g. CSS marker with a role operation) use the
+            # observed test operations when their spelling has no exact match.
+            if not operations and test["explicit"] is not None:
+                operations = [op for e in test["targets"].values() for op in e["operations"]]
+            inferred = []
+            if any(op in CLICK_OPERATIONS for op in operations):
+                inferred += ["stealth_disable", "ghost_element", "logic_sabotage"]
+            if any(op in READ_OPERATIONS or op.startswith("expect:") for op in operations):
+                inferred.append("data_sabotage")
+            choices[target] = self.strategies if self.strategies is not None else inferred
+        # Round-robin targets: a small cap must not exhaust one target first.
+        return [(choices[t][i], t) for i in range(max(map(len, choices.values()), default=0))
+                for t in targets if i < len(choices[t])]
 
     @pytest.hookimpl(trylast=True)
     def pytest_sessionfinish(self, session, exitstatus):
@@ -243,29 +300,42 @@ class VandalPlugin:
                 tests.append(entry)
                 if baseline != "passed" or exitstatus not in (0, 1):
                     continue
-                candidates = [(s, t) for t in targets for s in self.strategies]
+                candidates = self.candidates(test, targets)
+                entry["skipped_by_cap"] = max(0, len(candidates) - self.config.getoption("vandal_max_mutants"))
+                # Atomic checkpoints let a bounded MCP caller recover completed
+                # mutants even when it must terminate the active worker tree.
+                write_report(make_report(tests), self.config.getoption("vandal_report"))
                 for strategy, selector in candidates[:self.config.getoption("vandal_max_mutants")]:
                     if terminal:
                         terminal.write_line(f"Vandal: {test['nodeid']} | {strategy} | {selector}")
                     entry["mutants"].append(self.run_mutant(test, strategy, selector, Path(temporary)))
+                    write_report(make_report(tests), self.config.getoption("vandal_report"))
         self.report = make_report(tests)
         write_report(self.report, self.config.getoption("vandal_report"))
         minimum = self.config.getoption("vandal_min_score")
         score = self.report["summary"]["score"]
-        if exitstatus == 0 and (
-            self.report["summary"]["error"]
-            or (minimum is not None and (score is None or score < minimum))
-        ):
+        reasons = []
+        if self.config.getoption("vandal_strict") and self.report["summary"]["error"]:
+            reasons.append(f"{self.report['summary']['error']} mutant errors with --vandal-strict")
+        if minimum is not None and (score is None or score < minimum):
+            reasons.append(f"strength {score_text(score)} is below --vandal-min-score {minimum:g}"
+                           if score is not None else f"no scored mutants for --vandal-min-score {minimum:g}")
+        if exitstatus == 0 and reasons:
             session.exitstatus = pytest.ExitCode.TESTS_FAILED
+            if terminal:
+                terminal.write_line("Vandal: " + "; ".join(reasons))
 
     def pytest_terminal_summary(self, terminalreporter):
         if not self.report:
             return
         terminalreporter.section("Vandal strength")
-        terminalreporter.write_line(score_text(self.report["summary"]["score"]) + " " + str(self.report["summary"]))
+        summary = self.report["summary"]
+        terminalreporter.write_line(score_text(summary["score"]) + " | " + ", ".join(
+            f"{summary[key]} {key.replace('_', ' ')}" for key in ("killed", "survived", "error", "not_applied", "skipped")))
         for test in self.report["tests"]:
             terminalreporter.write_line(
-                f"{test['nodeid']}: {test['baseline']}, {score_text(test['summary']['score'])}"
+                f"{test['nodeid']}: {test['baseline']}, {score_text(test['summary']['score'])}, "
+                f"{test.get('skipped_by_cap', 0)} skipped by cap"
             )
         for mutant in survivors(self.report):
             terminalreporter.write_line(

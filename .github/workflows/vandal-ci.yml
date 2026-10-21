@@ -2,9 +2,9 @@ name: Project Vandal CI
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [main, master]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [main, master]
 
 jobs:
   test:
@@ -12,41 +12,40 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.9", "3.10", "3.11", "3.12"]
-
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
-        
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip wheel --no-deps . --wheel-dir dist
-        python -c "from pathlib import Path; import subprocess, sys; subprocess.check_call([sys.executable, '-m', 'pip', 'install', str(next(Path('dist').glob('*.whl'))) + '[test,mcp]'])"
-        
-    - name: Install Playwright Browsers
-      run: playwright install --with-deps chromium
-      
-    - name: Verify Package Import
-      run: |
-        python -c "import vandal; print('Vandal Package imported successfully')"
-        
-    - name: Run Demo (Headless)
-      run: |
-        python demo_vandal.py --headless
-
-    - name: Run plugin and browser regression tests (Headless)
-      run: |
-        mkdir -p "$RUNNER_TEMP/vandal-wheel-check"
-        cp -R tests docs examples "$RUNNER_TEMP/vandal-wheel-check/"
-        cd "$RUNNER_TEMP/vandal-wheel-check"
-        python -c "import vandal; print('Testing installed wheel:', vandal.__file__)"
-        python -m pytest tests -q
-
-    - name: Compare weak and strong example tests
-      run: |
-        cd "$RUNNER_TEMP/vandal-wheel-check"
-        python -m pytest examples/test_strength.py --vandal --vandal-strategies=logic_sabotage --vandal-min-score=50
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install editable package and test dependencies
+        run: python -m pip install -e ".[test,mcp]"
+      - name: Install Chromium
+        run: python -m playwright install --with-deps chromium
+      - name: Legacy demo from checkout
+        run: python demo_vandal.py --headless
+      - name: Full headless suite from checkout
+        run: python -m pytest -q
+      - name: Measure logic sabotage example
+        run: |
+          python -m pytest examples/test_strength.py --vandal --vandal-strategies=logic_sabotage
+          python -c "import json; r=json.load(open('vandal_report.json')); s=[t['summary']['score'] for t in r['tests']]; print(s); assert len(s)==2 and s[0] < s[1]"
+      - name: Measure default strategy example
+        run: |
+          python -m pytest examples/test_strength.py --vandal
+          python -c "import json; r=json.load(open('vandal_report.json')); s=[t['summary']['score'] for t in r['tests']]; print(s); assert len(s)==2 and s[0] < s[1]"
+  platform-smoke:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -e ".[test]"
+      - run: python -m playwright install chromium
+      - name: Unit and process cleanup tests
+        run: python -m pytest tests/test_reporting.py tests/test_runner.py -q
+      - name: Browser plugin smoke
+        run: python -m pytest tests/test_plugin.py::test_sync_discovery_selection_and_min_score -q

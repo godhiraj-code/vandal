@@ -45,7 +45,9 @@ def test_timeout_does_not_return_stale_report(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     (tmp_path / "vandal_report.json").write_text('{"stale":true}')
     monkeypatch.setattr(mcp_server, "run_process", lambda *a, **k: (1, "log", True))
-    assert "error" in mcp_server.run_vandal(".")
+    report = mcp_server.run_vandal(".")
+    assert report["timed_out"] is True
+    assert report["tests"] == [] and "stale" not in report
 
 
 @pytest.mark.asyncio

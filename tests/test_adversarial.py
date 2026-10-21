@@ -17,7 +17,7 @@ def test_worker_error(page):
     page.set_content({APP!r})
     page.click("#b")
 '''
-    run, report = run_suite(tmp_path, source, "--vandal", "--vandal-strategies=logic_sabotage")
+    run, report = run_suite(tmp_path, source, "--vandal", "--vandal-strict", "--vandal-strategies=logic_sabotage")
     assert run.returncode == 1, run.stdout
     assert report["summary"]["error"] == 1
     assert report["summary"]["not_applied"] == 0
@@ -136,7 +136,7 @@ def test_selector(page):
     page.set_content({APP!r})
     page.click("#b")
 '''
-    run, report = run_suite(tmp_path, source, "--vandal", "--vandal-strategies=logic_sabotage")
+    run, report = run_suite(tmp_path, source, "--vandal", "--vandal-strict", "--vandal-strategies=logic_sabotage")
     assert run.returncode == 1
     assert report["summary"]["error"] == 1
     assert report["summary"]["score"] is None
@@ -228,7 +228,7 @@ def hanging_fixture():
         time.sleep(60)
 '''
     run, report = run_suite(
-        tmp_path, source, "--vandal", "--vandal-strategies=logic_sabotage",
+        tmp_path, source, "--vandal", "--vandal-strict", "--vandal-strategies=logic_sabotage",
         "--vandal-timeout=5", conftest=conftest,
     )
     assert run.returncode == 1

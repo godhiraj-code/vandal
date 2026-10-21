@@ -29,14 +29,16 @@ pytest -m vandal --vandal --vandal-min-score=80
 | Option | Default | Meaning |
 | --- | --- | --- |
 | `--vandal` | off | Enable baseline discovery and mutation workers. |
-| `--vandal-strategies` | all six strategies | Comma-separated strategy names, in execution order. |
+| `--vandal-strategies` | infer from usage | Explicit comma-separated strategy names override inference. |
+| `--vandal-strict` | off | Fail when any mutant has an error outcome. |
 | `--vandal-max-mutants` | 20 | Maximum mutants per test, positive integer. |
 | `--vandal-timeout` | 60 | Worker wall time in seconds, including startup, collection, fixtures and test. |
 | `--vandal-min-score` | unset | Fail if strength is below this percentage, or if no mutants were scored. |
 | `--vandal-report` | `vandal_report.json` | JSON destination; HTML uses the same stem. An `.html` destination is rejected before running tests. |
 
-Candidates are ordered by first-seen selector, then strategy. The cap truncates
-that list. Restrict strategies and explicit targets for focused, comparable runs.
+Candidates alternate across first-seen targets, taking each target's first
+strategy before its second. The cap truncates that list; each test reports
+`skipped_by_cap` in JSON and the terminal. Restrict strategies and explicit targets for focused, comparable runs.
 The CLI bounds individual workers; the ordinary baseline retains pytest's normal
 runtime behavior. Use your CI job deadline for a suite-wide bound.
 
@@ -58,8 +60,8 @@ The optional marker supplies selectors. It does not exclude unmarked tests;
 Selectors support Playwright syntax, including role and text selectors.
 
 Without explicit targets, Vandal records common Page, Frame, and Locator operations
-(click, fill, check, press, hover, text/value reads and others), plus locator and
-`get_by_*` construction. Chained locators and `nth()` preserve their Playwright
+(click, fill, check, press, hover, text/value reads and others). Locator and
+`get_by_*` construction alone never records a target. Chained locators and `nth()` preserve their Playwright
 selector. Locator assertions through `expect(locator)` are observed too, including
 locators constructed by fixtures. Replay currently uses Playwright's private
 locator selector/frame representation, assertion dispatch and selector composition;
@@ -78,14 +80,15 @@ Applications during native retries send receipts to the Python worker immediatel
 so navigation cannot erase a confirmed mutation or remove it from the score.
 Configured targets are resolved in the operation's frame independently of whether
 the test uses a CSS, role or chained locator, including nested FrameLocators.
-Each matching element is changed once, tracked by node identity independently of
-the DOM marker. In particular, reading a restored `slow_load` target does not hide
+Except for data sabotage, each matching element is changed once, tracked by node
+identity independently of the DOM marker. Data sabotage is reapplied on target
+resolution, including reads and assertion retries after application text changes. In particular, reading a restored `slow_load` target does not hide
 it again. A cloned marker does not suppress mutation of a new node: event handlers
 and restoration timers are installed for the clone when it is observed.
 Replacement nodes are considered on subsequent native resolutions,
 including retries within an operation. Injection occurs only in the test call,
 not setup or teardown. A target used only during setup may therefore be unapplied.
-A locator constructed but never used may also become a candidate. This is deliberately
+A locator constructed but never used is not a candidate. This is deliberately
 observable target discovery, not a full trace of every DOM access.
 
 Raw JavaScript interactions, ElementHandle operations, direct mouse/keyboard actions,
@@ -133,25 +136,30 @@ separately. Vandal supports replay of either API but does not rewrite fixture li
 
 ## Outcomes and strength
 
-Only assertion failures in the test call count as killed, after confirmed mutation
-and clean setup/teardown, with passing unmutated controls before and after the
-mutant. This includes Playwright `expect` assertion failures.
-An actionability timeout or browser exception is an error, not a kill. The runner
-also excludes skipped/xfail calls, unmatched targets, collection failures, and
-worker deadlines. Failed baseline setup or teardown prevents mutation of that test.
+AssertionError and Playwright Error (including TimeoutError) in the test call
+count as killed after confirmed mutation, clean setup/teardown, and passing
+unmutated controls before and after. The optional `kill_reason` is `assertion`
+or `action_failed`. A blocked click can therefore kill a mutant even in a weak
+test. This is detection evidence, not proof of a meaningful outcome assertion.
+Injection errors, worker deadlines, setup/teardown failures, and failed controls
+remain errors. Skipped/xfail calls, unmatched targets and collection failures
+are excluded. Failed baselines prevent mutation of that test.
 Any failing worker without a confirmed injection is an error, including assertion
 failures before injection. Failures caused by unrelated intermittent state after
 injection can still be misattributed; the repeatable-state requirement above applies.
 
 Strength is `100 * killed / (killed + survived)`, overall and per test. With no
 scored mutants it is `N/A` (JSON `null`), never 100%. A minimum-score gate fails
-when there is no score, even with a threshold of zero. Worker errors fail the
-command independently of the gate; baseline failures retain pytest's exit status.
+when there is no score, even with a threshold of zero. Mutant errors are informational by
+default; `--vandal-strict` makes them fail the command. Baseline failures retain
+pytest's exit status. Whenever Vandal changes an exit status for strict errors or
+a threshold, it prints one reason line, for example
+`Vandal: strength 50.0% is below --vandal-min-score 51`.
 Unapplied and skipped mutants are visible but do not independently fail a run.
 A run can have a high score and many excluded outcomes, so inspect the counts.
 
 Survivors are candidates for review, not proven missing assertions. A shifted
-button may still behave correctly; a fill can overwrite sabotaged input data.
+button may still behave correctly. Data sabotage is refreshed before later reads.
 Read the hint and test contract before adding assertions. Prefer checking the
 resulting UI, navigation, or state. Do not assert Vandal's own DOM marker.
 
@@ -167,8 +175,12 @@ The HTML report escapes test names, selectors and failure text.
 - `ui_shift`: translates an element 100 pixels right and down.
 - `slow_load`: hides an element for five seconds before restoring visibility.
 
-Start with `logic_sabotage` for a click-and-assert flow. All six strategies are
-available by default, but some expose action timeouts or equivalent behavior.
+Start with `logic_sabotage` for a click-and-assert flow. Default strategies follow observed usage: click/dblclick/tap/check/uncheck
+(and set_checked) use stealth_disable, ghost_element and logic_sabotage; reads,
+Locator assertions and fill use data_sabotage. A target used both ways gets both
+sets. Explicit marker aliases inherit observed test usage if there is no exact
+selector match. Targets with no supported usage get no default candidates.
+ui_shift and slow_load require explicit --vandal-strategies selection.
 Do not compare scores from different strategy/target sets as if they were identical.
 
 ## Weak and strong example
@@ -188,10 +200,11 @@ Use [skills/vandal/SKILL.md](skills/vandal/SKILL.md) for the assertion improveme
 loop. On Python 3.10+, install `project-vandal[mcp]` and launch `vandal-mcp` in a
 trusted repository. Configure it as a stdio server in your MCP client.
 
-`run_vandal(test_path, strategies, max_mutants)` returns the JSON report, including
+`run_vandal(test_path, strategies, max_mutants, deadline_seconds, pytest_args)` returns the JSON report, including
 pytest's exit code, and saves the JSON/HTML pair in the server working directory.
-It limits each worker to 30 seconds, each call to 600 seconds, and accepts 1 to 100
-mutants per test. A timeout returns an error rather than a stale report.
+It limits each worker to 30 seconds, each call to deadline_seconds (default and maximum 600), and accepts 1 to 100
+mutants per test. A deadline returns a partial report with `timed_out: true`,
+retaining completed mutants rather than reading a stale report.
 `get_surviving_mutants(report_path)` returns survivors with hypotheses for an agent
 to inspect. Paths must stay within the working directory; report reads are capped
 at 10 MiB. Arguments are passed directly to a subprocess without shell interpolation.
@@ -210,7 +223,7 @@ async with Vandal(page) as v:
 
 The existing manual API is unchanged: exceptions inside the block are recorded
 as killed and propagate to the caller. Its accounting is broader than the automatic
-plugin's assertion-only rule. Catch exceptions around the block if you want to
+plugin's controlled assertion/Playwright-error rule. Catch exceptions around the block if you want to
 continue, as the original demo does:
 
 ```bash
@@ -232,3 +245,28 @@ mutations with automatic runs because they confound the measured mutation.
 To add a custom strategy, add a JavaScript function to `VandalEngine.MUTATIONS` in
 `core.py`, following the existing selector and `data-vandalized` conventions.
 The automatic plugin validates strategy names against that dictionary.
+
+## Worker reports and bounded MCP calls
+
+Workers redirect built-in pytest file logs, pytest-html, JUnit, Allure and Playwright artifacts into their
+own temporary folders, and disable pytest-cov collection so they cannot overwrite
+the baseline report or coverage files. Other third-party reporters may need
+project-specific configuration.
+
+MCP `pytest_args` accepts only -k/-m expressions and local node IDs. Arguments
+are passed as an array without shell interpolation. Invalid flags, outside paths,
+non-finite deadlines, and deadlines above 600 seconds are rejected before pytest.
+The plugin atomically checkpoints reports after completed mutants. On a deadline,
+MCP terminates the process tree and returns the latest checkpoint with
+`timed_out: true`; a deadline during the baseline may return an empty report.
+The partial score covers only completed mutants, so never treat it as a full run.
+The saved HTML visibly labels deadline reports as incomplete and retains the
+completed mutant results.
+
+Hints use observed Playwright assertions in event order. Python assert statements
+are not traced, so a no-Playwright-assertion hint is a review prompt, not proof
+that the test contains no assertions.
+
+The adapter validates its required private hooks at --vandal configuration time.
+It has been exercised with Playwright 1.60.0 and 1.64.0; the dependency range is
+>=1.60,<2, not a claim that every intervening or future version was tested.

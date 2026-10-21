@@ -8,7 +8,7 @@
 **Proof that your AI written end to end tests actually catch bugs.**
 
 Vandal runs your pytest + Playwright tests against injected UI faults and measures
-which faults trigger assertions. Passing tests can still miss broken behavior.
+which faults trigger assertions or Playwright action failures. Passing tests can still miss broken behavior.
 Vandal gives you a strength score and candidates for better assertions, including
 reports that coding agents can read. A score describes the mutations exercised;
 it is not a guarantee that a test catches every bug.
@@ -42,15 +42,23 @@ pytest tests/test_login.py --vandal --vandal-strategies=logic_sabotage,data_sabo
 pytest -k login --vandal --vandal-min-score=80
 ```
 
-Strength is `100 * killed / (killed + survived)`, overall and per test. Only
-assertion failures after a confirmed mutation count as killed. Baseline failures,
-setup/teardown errors, non-assertion exceptions, timeouts, skipped tests, and
-unapplied mutations do not raise the score. Errors fail the command. No scored
+Strength is `100 * killed / (killed + survived)`, overall and per test. Assertion
+failures and Playwright `Error`/`TimeoutError` in the test call count as killed
+only after confirmed mutation and passing unmutated controls. Reports distinguish
+`kill_reason: assertion` from `action_failed`. Worker deadlines, injection errors,
+setup/teardown failures, and failed controls remain errors and are excluded.
+Mutant errors do not fail the command by default; add `--vandal-strict` to fail
+for them. Baseline failures retain pytest's status. No scored
 mutants means `null` in JSON and `N/A` in the terminal; a minimum score gate fails
 in that case, including a gate of zero.
 
-Targets are discovered from observed clicks, fills, reads, Locator assertions,
-and locator construction.
+Targets are discovered when actions, reads or Locator assertions run. Constructing
+an unused locator does not create a target. By default, clicks, double-clicks, taps
+and checks use `stealth_disable`, `ghost_element`, and `logic_sabotage`; reads,
+assertions and fills use `data_sabotage`. `ui_shift` and `slow_load` require explicit
+selection. Candidates alternate across targets before the cap; `skipped_by_cap`
+reports candidates omitted by that cap. Data sabotage is refreshed when targets
+are resolved again, so later app text changes do not silently undo it.
 For focused runs, specify targets with normal Playwright selectors:
 
 ```python
@@ -91,9 +99,11 @@ vandal-mcp
 Configure your MCP client to launch `vandal-mcp` with the trusted test repository
 as its working directory. The stdio server exposes:
 
-- `run_vandal(test_path, strategies, max_mutants)`: runs pytest and returns the JSON
-  report, with a 600 second overall deadline, 30 seconds per mutant, and a maximum
-  of 100 mutants per test.
+- `run_vandal(test_path, strategies, max_mutants, deadline_seconds, pytest_args)`: runs pytest and returns the JSON
+  report, with an optional `deadline_seconds` (maximum 600), 30 seconds per
+  worker, and a maximum of 100 mutants per test. `pytest_args` permits only `-k`,
+  `-m`, and node IDs inside the working folder. A deadline returns completed
+  mutants in a partial report with `timed_out: true`.
 - `get_surviving_mutants(report_path)`: reads survivors and review hints from a
   report inside that working directory.
 
@@ -157,8 +167,8 @@ If the test fails inside the `async with` block, the mutant is recorded as **kil
 
 ## Project Structure
 
-- `core.py`: The heart of the mutation engine (JavaScript-based strategies).
-- `playwright_ext.py`: Playwright wrapper and context manager.
+- `vandal/core.py`: The heart of the mutation engine (JavaScript-based strategies).
+- `vandal/playwright_ext.py`: Playwright wrapper and context manager.
 - `demo_vandal.py`: A demonstration script showing Vandal in action.
 - `vandal_demo_app.html`: A simple demo application for testing.
 
@@ -168,12 +178,12 @@ The project includes a demo script that tests a simple login button.
 
 ### Headless Mode
 ```bash
-PYTHONPATH="." python demo_vandal.py --headless
+python demo_vandal.py --headless
 ```
 
 ### Headed Mode
 ```bash
-PYTHONPATH="." python demo_vandal.py --headed
+python demo_vandal.py --headed
 ```
 
 In headed mode, the script includes a `slow_mo` delay and holds the browser open for 5 seconds after completion so you can see the results.
@@ -213,7 +223,8 @@ The selector matched nothing on the current page when the mutation was applied. 
 **My mutant survived but the UI was clearly broken.**
 Check the hint, `force=True`, and assertions about the visible outcome. A survivor
 is a candidate for review, not proof that an assertion is missing. The automatic
-runner reports actionability timeouts as errors rather than assertion kills.
+runner records controlled Playwright call failures as `action_failed` kills;
+worker deadlines and infrastructure failures remain excluded errors.
 
 **Can I undo a mutation?**
 `revert_mutation()` reverts `stealth_disable`, `ghost_element`, `data_sabotage` and `ui_shift` on the current page. `logic_sabotage` and `slow_load` have no revert script. Persistent mutations are registered with `page.add_init_script()`, which Playwright can't remove, so use a fresh page or context for the next test.
