@@ -15,6 +15,9 @@ from study.common import approval_reason, digest, paths, read_rows, write_json
 from study.process import clean_env, run
 from study.worker import extract_source, validate_recipe
 
+PROXY_KEYS = ("HTTP_PROXY", "HTTPS_PROXY", "FTP_PROXY", "ALL_PROXY", "NO_PROXY",
+              "http_proxy", "https_proxy", "ftp_proxy", "all_proxy", "no_proxy")
+
 
 def container_command(image, name, inputs, deps, seconds):
     if not re.fullmatch(r"sha256:[0-9a-f]{64}", image):
@@ -30,6 +33,7 @@ def container_command(image, name, inputs, deps, seconds):
             "--log-driver=local", "--log-opt=max-size=8m", "--log-opt=max-file=1",
             "--tmpfs=/work:rw,nosuid,nodev,size=3g,uid=10001,gid=10001,mode=700",
             "--tmpfs=/tmp:rw,nosuid,nodev,size=256m,uid=10001,gid=10001,mode=700",
+            *["--env=" + key + "=" for key in PROXY_KEYS],
             "--mount", f"type=bind,src={inputs},dst=/input,readonly",
             "--mount", f"type=bind,src={deps},dst=/deps,readonly",
             image, "python", "-m", "study.worker", "--seconds", str(seconds)]
@@ -78,6 +82,7 @@ def wheel_hashes(wheelhouse):
 
 def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes):
     name = "vandal-study-" + uuid.uuid4().hex
+    container_attempted = False
     deadline = time.monotonic() + seconds
     status = {"repo": row["repo"], "commit_sha": row["commit_sha"], "group": row["group"],
               "manifest": row, "image": image, "kind": "public",
@@ -107,6 +112,7 @@ def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes):
                 raise RuntimeError("repository deadline exhausted during acquisition")
             command = container_command(image, name, inputs, deps, remaining)
             status["container_command"] = command
+            container_attempted = True
             result = run(command, temporary, output / "container.log", 30)
             if result["exit_code"] or result["timed_out"]:
                 raise RuntimeError("container unavailable; see container.log")
@@ -140,6 +146,8 @@ def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes):
                 worker = json.loads((output / "worker-status.json").read_text())
                 if worker.get("status") not in {"completed", "skipped", "incomplete"}:
                     raise ValueError("invalid worker status")
+                if not isinstance(worker.get("reason", ""), str):
+                    raise ValueError("worker reason must be a string")
                 status.update(status=worker["status"], reason=worker.get("reason", ""))
                 status["worker"] = worker
         except Exception as exc:
@@ -147,14 +155,23 @@ def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes):
         finally:
             # Kill the whole container, including detached candidate children.
             try:
-                status["cleanup"] = run(["docker", "rm", "--force", name], temporary, output / "cleanup.log", 15)
+                status["cleanup"] = (run(["docker", "rm", "--force", name], temporary, output / "cleanup.log", 15)
+                                     if container_attempted else {"exit_code": 0, "not_required": True})
             except Exception as exc:
                 status["cleanup"] = {"error": f"{type(exc).__name__}: {exc}"}
+            if not cleanup_confirmed(status):
+                status.update(status="incomplete", reason=status["reason"] + "; container cleanup unconfirmed")
             # Persist the outcome even if export, Docker cleanup or temporary
             # directory removal fails. Never let a failed run disappear.
             status["artifact_sha256"] = {p.name: digest(p) for p in output.iterdir() if p.is_file()}
             write_json(output / "status.json", status)
     return status
+
+
+def cleanup_confirmed(status):
+    cleanup = status.get("cleanup", {})
+    return cleanup.get("exit_code") == 0 and not any(
+        cleanup.get(key) for key in ("timed_out", "log_limited", "error"))
 
 
 def main():
@@ -201,6 +218,8 @@ def main():
         output.mkdir(parents=True, exist_ok=False)
         status = run_one(row, recipe, args.image, args.wheelhouse.resolve(), output, args.seconds, reviewed_hashes)
         print(row["repo"], status["status"], status["reason"])
+        if not cleanup_confirmed(status):
+            p.exit(1, "Container cleanup unconfirmed; stopping before any further repository. Inspect status/cleanup.log.\n")
 
 
 if __name__ == "__main__":

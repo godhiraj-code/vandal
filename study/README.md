@@ -65,7 +65,10 @@ Only read-only source/recipe and dependency inputs are mounted. No host credenti
 or `GITHUB_TOKEN` enter a container, and no candidate output is written through a
 host bind mount. Whitelisted regular artifacts are exported through bounded tar
 data; the entire container is forcibly removed after collection. Cleanup failures
-remain in status/logs and require operator attention.
+remain in status/logs, exclude the result and stop subsequent repositories until
+operator attention. Explicit empty proxy environment flags override Docker CLI
+[automatic proxy injection](https://docs.docker.com/engine/cli/proxy/), which could
+otherwise copy host-configured proxy credentials into a container.
 
 The standalone baseline disables Vandal. Both phases clear repository `addopts`,
 use identical reviewed `-m`/`-k` selection, and pass only explicit test files.

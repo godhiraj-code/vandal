@@ -30,6 +30,19 @@ incorrectly consumed the source-fetch disk allowance. All four were corrected wi
 regressions. The expanded local suite passed **37 tests in 0.78s**. The corrected
 browser fixture's execution function did not change in this repair.
 
+A final isolation review added explicit empty proxy environment values to prevent
+Docker CLI configuration from injecting host proxy credentials, and made uncertain
+container cleanup mark the result incomplete and halt subsequent repositories.
+The first new regression setup failed because its mock evidence URLs referenced
+the wrong repository; after correcting that setup, **38 tests passed in 0.98s**.
+These are command/policy checks; the unavailable engine still prevents validation
+of actual container isolation. No public code was executed.
+
+Independent review of that frozen correction passed 38 tests in 0.89s but found
+one further P2: a malformed worker reason combined with cleanup failure could
+prevent durable status writing. Worker reason types are now validated before
+adoption. The combined regression and full local suite passed **39 tests in 1.00s**.
+
 Raw artifact hashes were also verified against committed Git blobs. `.gitattributes`
 preserves evidence bytes and generated whitespace across platforms; all eight wheel
 module contents match the unchanged owned package source. The actual CLI rejects

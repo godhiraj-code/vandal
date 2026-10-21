@@ -9,7 +9,7 @@ import pytest
 from study.common import FIELDS, approval_reason, safe_path, write_rows, read_rows
 from study.find_repos import parse_candidate, test_files as select_files
 from study.process import clean_env, run
-from study.run_study import container_command
+from study.run_study import PROXY_KEYS, container_command
 from study.summarize import counts, metrics, spread, summarize
 from study.worker import baseline_reason, extract_source, validate_recipe
 
@@ -121,6 +121,7 @@ def test_container_and_environment_do_not_inherit_secrets(tmp_path, monkeypatch)
     assert "--read-only" in cmd and "--memory=4g" in cmd and "--pids-limit=256" in cmd
     assert "--privileged" not in cmd and not any("docker.sock" in s for s in cmd)
     assert all("readonly" in cmd[i + 1] for i, x in enumerate(cmd) if x == "--mount")
+    assert all("--env=" + key + "=" in cmd for key in PROXY_KEYS)
 
 
 def test_recipe_cannot_override_runner():
@@ -217,7 +218,7 @@ def test_malformed_report_is_invalid_not_crash(tmp_path, bad):
     assert rows[0]["status"] == "invalid" and not rows[0]["eligible"]
 
 
-@pytest.mark.parametrize("failure", ["malformed_export", "missing_docker"])
+@pytest.mark.parametrize("failure", ["malformed_export", "missing_docker", "malformed_worker_cleanup"])
 def test_failed_export_or_cleanup_still_records_status(tmp_path, monkeypatch, failure):
     from study.run_study import run_one
     wheelhouse, output = tmp_path / "wheels", tmp_path / "out"
@@ -228,15 +229,25 @@ def test_failed_export_or_cleanup_still_records_status(tmp_path, monkeypatch, fa
     def fake_run(cmd, cwd, log, seconds, **kwargs):
         if failure == "missing_docker":
             raise FileNotFoundError("docker missing")
+        if failure == "malformed_worker_cleanup" and cmd[1] == "exec":
+            payload = json.dumps({"status": "completed", "reason": []}).encode()
+            with tarfile.open(log, "w") as archive:
+                entry = tarfile.TarInfo("worker-status.json")
+                entry.size = len(payload)
+                archive.addfile(entry, io.BytesIO(payload))
+            return {"exit_code": 0, "timed_out": False, "log_limited": False}
         Path(log).write_bytes(b"not an archive" if cmd[1] == "exec" else b"owned mock")
-        return {"exit_code": 0, "timed_out": False, "log_limited": False}
+        return {"exit_code": int(failure == "malformed_worker_cleanup" and cmd[1] == "rm"),
+                "timed_out": False, "log_limited": False}
     monkeypatch.setattr("study.run_study.acquire", acquire)
     monkeypatch.setattr("study.run_study.run", fake_run)
     monkeypatch.setattr("study.run_study.subprocess.run", lambda *a, **kw: type("Probe", (), {"returncode": 0})())
     result = run_one(candidate(), {}, "sha256:" + "a" * 64, wheelhouse, output, 30, {})
-    assert result["status"] == "skipped"
+    assert result["status"] == ("skipped" if failure == "malformed_export" else "incomplete")
     assert (output / "status.json").exists()
-    assert ("ReadError" if failure == "malformed_export" else "FileNotFoundError") in result["reason"]
+    expected = {"malformed_export": "ReadError", "missing_docker": "FileNotFoundError",
+                "malformed_worker_cleanup": "worker reason must be a string"}
+    assert expected[failure] in result["reason"]
 
 
 def test_approval_is_bound_to_result_repository(tmp_path):
@@ -266,3 +277,33 @@ def test_source_disk_quota_excludes_staged_dependencies(tmp_path, monkeypatch):
     monkeypatch.setattr("study.run_study.run", fake_run)
     acquire(candidate(), tmp_path, output, 30)
     assert monitors == [tmp_path / "source.git"] * 3 + [tmp_path / "input"]
+
+
+def test_cleanup_failure_stops_next_repository(tmp_path, monkeypatch):
+    from study.common import digest
+    from study.run_study import main
+    rows = []
+    for repo in ("one/repo", "two/repo"):
+        row = candidate()
+        row.update(repo=repo, approved="yes", reviewer="person", reviewed_at="2026-10-21T00:00:00Z")
+        row["evidence_url"] = row["evidence_url"].replace("owner/repo", repo)
+        row["license_url"] = row["license_url"].replace("owner/repo", repo)
+        rows.append(row)
+    manifest = tmp_path / "repos.csv"
+    write_rows(manifest, rows)
+    (tmp_path / "recipes").mkdir()
+    (tmp_path / "recipes/repo.json").write_text(json.dumps({"test_paths": ["tests/test_ui.py"]}))
+    wheels = tmp_path / "wheels"
+    wheels.mkdir()
+    monkeypatch.setattr(sys, "argv", ["run_study", "--repos", str(manifest),
+        "--results", str(tmp_path / "results"), "--image", "sha256:" + "a" * 64,
+        "--wheelhouse", str(wheels)])
+    monkeypatch.setattr("builtins.input", lambda prompt: "RUN " + digest(manifest)[:12])
+    seen = []
+    def failed_cleanup(row, *args):
+        seen.append(row["repo"])
+        return {"status": "incomplete", "reason": "cleanup failed", "cleanup": {"exit_code": 1}}
+    monkeypatch.setattr("study.run_study.run_one", failed_cleanup)
+    with pytest.raises(SystemExit) as exc:
+        main()
+    assert exc.value.code == 1 and seen == ["one/repo"]
