@@ -99,10 +99,13 @@ allowance. Installation and baseline consume it too. The workflow's 60-minute
 job timeout still bounds the whole pilot. Review recipe budgets with the input
 manifest before execution; increasing a budget does not approve or run a repo.
 
-Both preflight and the runner reject manifests when the sum of effective recipe
-budgets plus a fixed **600-second setup allowance exceeds 3000 seconds**. Exactly
-3000 is allowed, leaving 600 seconds below the 60-minute job timeout. Two default
-900-second recipes total 2400 seconds with setup; two 1800-second recipes fail.
+Both preflight and the runner allow at most **10 manifest rows** and enforce
+**600 + sum(budget_seconds + 60 for each recipe) <= 3000 seconds**, using each
+recipe's effective budget. This reserves 600 seconds for setup and 60 seconds of
+teardown per repository. Exactly 3000 is allowed, leaving 600 seconds below the
+60-minute job timeout. Two default 900-second recipes total 2520 seconds; two
+1140-second recipes total exactly 3000, while budgets of 1140 and 1141 fail.
+Ten 180-second recipes fit exactly; eleven rows fail even with smaller budgets.
 Use the same `--seconds` fallback in preflight and the runner when overriding it.
 Every value must be an integer from 30 through 3600; booleans and floats are invalid.
 `budget_seconds` is the canonical recipe field. Legacy `seconds` remains supported

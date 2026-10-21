@@ -40,12 +40,17 @@ def test_recipe_alias_is_compatible_but_not_ambiguous():
         recipe_seconds({'seconds': 900, 'budget_seconds': 900})
 
 
-@pytest.mark.parametrize('seconds,allowed', [(1200, True), (1201, False)])
-def test_preflight_and_runner_check_whole_budget_before_any_run(tmp_path, monkeypatch, seconds, allowed):
+@pytest.mark.parametrize('budgets,allowed,error', [
+    ([1140, 1140], True, ''),
+    ([1140, 1141], False, 'total run budget 3001s'),
+    ([180] * 10, True, ''),
+    ([30] * 11, False, 'at most 10 rows'),
+])
+def test_preflight_and_runner_check_whole_budget_before_any_run(tmp_path, monkeypatch, budgets, allowed, error, capsys):
     from test_harness import candidate
     rows = []
     (tmp_path / 'recipes').mkdir()
-    for i in range(2):
+    for i, seconds in enumerate(budgets):
         row = candidate()
         row.update(repo=f'owned/repo{i}', approved='yes', reviewer='Owned mock', reviewed_at='2026-10-21T00:00:00Z',
                    recipe=f'recipes/repo{i}.json', evidence_url=f'https://github.com/owned/repo{i}/commit/'+ 'a'*40,
@@ -56,9 +61,9 @@ def test_preflight_and_runner_check_whole_budget_before_any_run(tmp_path, monkey
     write_rows(manifest, rows)
     token = confirmation(manifest)
     if allowed:
-        assert len(preflight(manifest, token)) == 2
+        assert len(preflight(manifest, token)) == len(budgets)
     else:
-        with pytest.raises(ValueError, match='total run budget'):
+        with pytest.raises(ValueError, match=error):
             preflight(manifest, token)
     calls = []
     monkeypatch.setattr('study.run_study.run_one', lambda *a, **k: calls.append(a) or {'status': 'skipped', 'reason': 'mock', 'cleanup': {'exit_code': 0}})
@@ -67,18 +72,19 @@ def test_preflight_and_runner_check_whole_budget_before_any_run(tmp_path, monkey
         '--image', 'sha256:'+'a'*64, '--wheelhouse', str(tmp_path), '--results', str(tmp_path/'out')])
     if allowed:
         main()
-        assert len(calls) == 2 and all(c[5] == seconds for c in calls)
+        assert [c[5] for c in calls] == budgets
     else:
         with pytest.raises(SystemExit):
             main()
         assert calls == [] and not (tmp_path/'out').exists()
+        assert error in capsys.readouterr().err
 
 
-def test_total_budget_includes_fallback_and_setup():
-    assert validate_run_budget([{}, {}]) == 2400
-    assert validate_run_budget([{}, {}], 1200) == 3000
+def test_total_budget_includes_fallback_setup_and_per_repo_teardown():
+    assert validate_run_budget([{}, {}]) == 2520
+    assert validate_run_budget([{}, {}], 1140) == 3000
     with pytest.raises(ValueError, match='3000'):
-        validate_run_budget([{}, {}], 1201)
+        validate_run_budget([{}, {}], 1141)
 
 
 def test_committed_summary_regenerates_byte_exact_with_lf(tmp_path):

@@ -466,7 +466,10 @@ def discover(api, queries, pages, mode="commits"):
                                     continue
                                 evidence = f"https://github.com/{repo}/blob/{sha}/{item['path']}"
                                 detail = "Guidance mentions tests; does not prove selected tests were agent-written."
-                    identity = (repo, sha, row_kind)
+                    # Code hits select individual files, and provenance modes may
+                    # share a label without having screened the same evidence.
+                    identity = (repo, sha, endpoint, row_kind,
+                                (kind, item["path"]) if endpoint == "code" else None)
                     if identity in seen:
                         continue
                     seen.add(identity)

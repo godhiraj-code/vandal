@@ -60,6 +60,50 @@ def test_discovery_stops_when_candidate_read_is_rate_limited(code):
     assert 'no automatic retries' in audit[-1]['reason']
 
 
+@pytest.mark.parametrize('routes', [
+    [('code_only', 'conftest.py'), ('code_only', 'tests/test_app.py')],
+    [('code_only', 'tests/test_app.py'), ('guidance_only', 'AGENTS.md')],
+    [('guidance_only', 'CLAUDE.md'), ('code_only', 'tests/test_app.py')],
+])
+def test_each_code_file_and_provenance_mode_is_screened(monkeypatch, routes):
+    from study import find_repos
+    sha = 'a' * 40
+    sources = {
+        'conftest.py': 'from playwright.sync_api import Page\n',
+        'tests/test_app.py': 'from playwright.sync_api import Page\ndef test_app(page: Page): page.locator("button").click()\n',
+        'AGENTS.md': 'Write browser tests.',
+        'CLAUDE.md': 'Write browser tests.',
+    }
+    screened = []
+    parse = find_repos.parse_candidate
+    def record_screen(*args, **kwargs):
+        screened.append(kwargs['evidence_url'])
+        return parse(*args, **kwargs)
+    specs = [('code', str(i), kind) for i, (kind, _) in enumerate(routes)]
+    monkeypatch.setattr(find_repos, 'search_specs', lambda *_: iter(specs))
+    monkeypatch.setattr(find_repos, 'parse_candidate', record_screen)
+    monkeypatch.setattr(find_repos, 'pinned_license', lambda *_: {
+        'license': {'spdx_id': 'MIT'}, 'html_url': f'https://github.com/owned/probe/blob/{sha}/LICENSE'})
+    monkeypatch.setattr(find_repos, 'sources_at', lambda api, repo, pin, paths: {p: sources[p] for p in paths})
+    monkeypatch.setattr(find_repos, 'supporting_at', lambda *_: {})
+    monkeypatch.setattr(find_repos, 'tree_tests', lambda *_: ['tests/test_app.py'])
+    class API:
+        def get(self, endpoint, **kw):
+            if endpoint == 'search/code':
+                path = routes[int(kw['q'])][1]
+                return {'items': [{'repository': {'full_name': 'owned/probe'}, 'path': path}]}
+            if endpoint == 'repos/owned/probe':
+                return {'full_name': 'owned/probe', 'private': False, 'default_branch': 'main'}
+            if endpoint.startswith('repos/owned/probe/commits/'):
+                return {'sha': sha, 'commit': {'message': ''}, 'files': []}
+            raise AssertionError(endpoint)
+    rows, audit = discover(API(), [], 1, mode='all')
+    assert screened == [f'https://github.com/owned/probe/blob/{sha}/{path}' for _, path in routes]
+    assert len(rows) == (1 if routes[0][1] == 'conftest.py' else 2)
+    assert all(json.loads(row['test_paths']) == ['tests/test_app.py'] for row in rows)
+    assert not any('error' in entry for entry in audit)
+
+
 def test_meow_fetch_uses_reviewed_profile_without_credentials(tmp_path, monkeypatch):
     from study.wheelhouse import fetch
     monkeypatch.setenv('GITHUB_TOKEN', 'owned sentinel')

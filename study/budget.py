@@ -3,7 +3,9 @@ import argparse
 
 DEFAULT_SECONDS = 900
 SETUP_SECONDS = 600
+TEARDOWN_SECONDS = 60
 MAX_RUN_SECONDS = 3000
+MAX_REPOS = 10
 
 
 def validate_seconds(value):
@@ -30,7 +32,10 @@ def recipe_seconds(recipe, fallback=DEFAULT_SECONDS):
 
 def validate_run_budget(recipes, fallback=DEFAULT_SECONDS):
     validate_seconds(fallback)
-    total = SETUP_SECONDS + sum(recipe_seconds(recipe, fallback) for recipe in recipes)
+    recipes = list(recipes)
+    if len(recipes) > MAX_REPOS:
+        raise ValueError(f"manifest may have at most {MAX_REPOS} rows")
+    total = SETUP_SECONDS + sum(recipe_seconds(recipe, fallback) + TEARDOWN_SECONDS for recipe in recipes)
     if total > MAX_RUN_SECONDS:
-        raise ValueError(f"total run budget {total}s exceeds {MAX_RUN_SECONDS}s including {SETUP_SECONDS}s setup")
+        raise ValueError(f"total run budget {total}s exceeds {MAX_RUN_SECONDS}s including {SETUP_SECONDS}s setup and {TEARDOWN_SECONDS}s teardown per repo")
     return total
