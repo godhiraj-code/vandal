@@ -1,0 +1,1584 @@
+{
+  "schema_version": 1,
+  "summary": {
+    "killed": 30,
+    "survived": 29,
+    "error": 0,
+    "not_applied": 0,
+    "skipped": 0,
+    "score": 50.847457627118644
+  },
+  "tests": [
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime-hm-group",
+        "#max-runtime-hm-group",
+        "#min-runtime-group",
+        "#max-runtime-group"
+      ],
+      "mutants": [
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "Used #runtime-format-toggle; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime-hm-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime-hm-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime-group",
+            "subreaper": true
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 0,
+        "survived": 5,
+        "error": 0,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": 0.0
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime-group",
+        "#max-runtime-group",
+        "#min-runtime-hm-group",
+        "#max-runtime-hm-group"
+      ],
+      "mutants": [
+        {
+          "strategy": "stealth_disable",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "y:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7fede3d34080>\ncb = <function Channel.send.<locals>.<lambda> at 0x7fede394b880>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_65df0c263416468ab8629f1714bf0807=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-pointer=\"\" data-vandalized=\"stealth_disable\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium]",
+            "strategy": "stealth_disable",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime-hm-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime-hm-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "ait original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f24d9ea8110>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f24d9abf880>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_a09ffcdaff0448f0aae5bedc717875d9=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-opacity=\"\" data-vandal-original-pointer=\"\" data-vandalized=\"ghost_element\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium]",
+            "strategy": "ghost_element",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "  - cell \"1 h 30 m\"\nE               - cell \"2020\"\nE               - cell \"7.1\"\nE               - cell \"PG-13\"\nE               - cell \"Drama\"\nE             - row \"Add to favorites Zulu Film A longer film. 2 h 30 m 2021 8.2 R Action\":\nE               - cell \"Add to favorites\":\nE                 - button \"Add to favorites\":\nE                   - img\nE               - cell \"Zulu Film A longer film.\"\nE               - cell \"2 h 30 m\"\nE               - cell \"2021\"\nE               - cell \"8.2\"\nE               - cell \"R\"\nE               - cell \"Action\"\nE         - heading \"\u2139\ufe0f Acknowledgements & Disclaimers\" [level=2]\nE         - heading \"\ud83d\udcca Data Source\" [level=3]\nE         - paragraph:\nE           - text: This product uses the\nE           - link \"TMDB API\":\nE             - /url: https://www.themoviedb.org/\nE           - text: but is not endorsed or certified by TMDB. Movie data, ratings, and Netflix availability information are provided by\nE           - link \"The Movie Database (TMDB)\":\nE             - /url: https://www.themoviedb.org/\nE           - text: .\nE         - paragraph:\nE           - img \"TMDB Logo\"\nE         - heading \"\u26a0\ufe0f Accuracy Disclaimer\" [level=3]\nE         - paragraph: Netflix availability and movie data may have a 24-48 hour lag from TMDB's updates. Regional availability varies, and content may be removed or added without notice. Always verify movie availability on Netflix before your donation appointment.\nE         - heading \"\u270d\ufe0f Commentary Attribution\" [level=3]\nE         - paragraph:\nE           - text: \"\\\"Lady Whistledown\\\" commentary is AI-generated in the style of the character from\"\nE           - emphasis: Bridgerton\nE           - text: \", a Netflix series created by Chris Van Dusen and produced by Shondaland.\"\nE           - emphasis: Bridgerton\nE           - text: is based on the novels by Julia Quinn. This is a parody/homage and is not affiliated with Netflix, Shondaland, or Julia Quinn.\nE         - heading \"\ud83e\ude78 About Platelet Donation\" [level=3]\nE         - paragraph:\nE           - text: Platelet donation typically takes 2-3 hours and helps cancer patients, trauma victims, and surgical patients. Learn more about platelet donation at\nE           - link \"American Red Cross\":\nE             - /url: https://www.redcrossblood.org/giveplatelets.html\nE           - text: .\nE         - heading \"\u26a0\ufe0f Red Cross Disclaimer\" [level=3]\nE         - paragraph: This website is not affiliated with, endorsed by, or connected to the American Red Cross or any other Red Cross organization. The use of the American Red Cross brand colors and references to platelet donation are for informational purposes only. All trademarks and brand elements belong to their respective owners.\nE       - contentinfo:\nE         - paragraph:\nE           - text: Built with \u2764\ufe0f |\nE           - link \"View on GitHub\":\nE             - /url: https://github.com/tegataiprime/Platelet-Movie\nE           - text: \"| Updated weekly\"\n\ntests/ui/test_runtime_filter_toggle.py:35: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium]",
+            "strategy": "logic_sabotage",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 3,
+        "survived": 5,
+        "error": 0,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": 37.5
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime-hm-group",
+        "#max-runtime-hm-group",
+        "#min-runtime-group",
+        "#max-runtime-group"
+      ],
+      "mutants": [
+        {
+          "strategy": "stealth_disable",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "y:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7fca10bbba70>\ncb = <function Channel.send.<locals>.<lambda> at 0x7fca10613880>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_85980bbc8a4f4d03998c16f813fabf8f=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-pointer=\"\" data-vandalized=\"stealth_disable\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium]",
+            "strategy": "stealth_disable",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime-hm-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime-hm-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "ait original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f3a56a60290>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f3a56677880>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_827c157283224bf1a5d3688b27d4b91d=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-opacity=\"\" data-vandal-original-pointer=\"\" data-vandalized=\"ghost_element\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium]",
+            "strategy": "ghost_element",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium]",
+            "strategy": "logic_sabotage",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 2,
+        "survived": 6,
+        "error": 0,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": 25.0
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime-hm-group",
+        "#min-runtime-group",
+        "#max-runtime-hm-group",
+        "#max-runtime-group"
+      ],
+      "mutants": [
+        {
+          "strategy": "stealth_disable",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "y:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f7d09ebfd70>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f7d09aefc40>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_80754af89ecc41499544af81addc8577=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-pointer=\"\" data-vandalized=\"stealth_disable\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium]",
+            "strategy": "stealth_disable",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime-hm-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime-hm-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime-group",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "ait original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f0a204000e0>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f0a20017ba0>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_e3c73a38834b4761b317042bb430745c=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-opacity=\"\" data-vandal-original-pointer=\"\" data-vandalized=\"ghost_element\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium]",
+            "strategy": "ghost_element",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "               - img\nE                       - cell \"Zulu Film A longer film.\"\nE                       - cell \"2 h 30 m\"\nE                       - cell \"2021\"\nE                       - cell \"8.2\"\nE                       - cell \"R\"\nE                       - cell \"Action\"\nE                 - heading \"\u2139\ufe0f Acknowledgements & Disclaimers\" [level=2]\nE                 - heading \"\ud83d\udcca Data Source\" [level=3]\nE                 - paragraph:\nE                   - text: This product uses the\nE                   - link \"TMDB API\":\nE                     - /url: https://www.themoviedb.org/\nE                   - text: but is not endorsed or certified by TMDB. Movie data, ratings, and Netflix availability information are provided by\nE                   - link \"The Movie Database (TMDB)\":\nE                     - /url: https://www.themoviedb.org/\nE                   - text: .\nE                 - paragraph:\nE                   - img \"TMDB Logo\"\nE                 - heading \"\u26a0\ufe0f Accuracy Disclaimer\" [level=3]\nE                 - paragraph: Netflix availability and movie data may have a 24-48 hour lag from TMDB's updates. Regional availability varies, and content may be removed or added without notice. Always verify movie availability on Netflix before your donation appointment.\nE                 - heading \"\u270d\ufe0f Commentary Attribution\" [level=3]\nE                 - paragraph:\nE                   - text: \"\\\"Lady Whistledown\\\" commentary is AI-generated in the style of the character from\"\nE                   - emphasis: Bridgerton\nE                   - text: \", a Netflix series created by Chris Van Dusen and produced by Shondaland.\"\nE                   - emphasis: Bridgerton\nE                   - text: is based on the novels by Julia Quinn. This is a parody/homage and is not affiliated with Netflix, Shondaland, or Julia Quinn.\nE                 - heading \"\ud83e\ude78 About Platelet Donation\" [level=3]\nE                 - paragraph:\nE                   - text: Platelet donation typically takes 2-3 hours and helps cancer patients, trauma victims, and surgical patients. Learn more about platelet donation at\nE                   - link \"American Red Cross\":\nE                     - /url: https://www.redcrossblood.org/giveplatelets.html\nE                   - text: .\nE                 - heading \"\u26a0\ufe0f Red Cross Disclaimer\" [level=3]\nE                 - paragraph: This website is not affiliated with, endorsed by, or connected to the American Red Cross or any other Red Cross organization. The use of the American Red Cross brand colors and references to platelet donation are for informational purposes only. All trademarks and brand elements belong to their respective owners.\nE               - contentinfo:\nE                 - paragraph:\nE                   - text: Built with \u2764\ufe0f |\nE                   - link \"View on GitHub\":\nE                     - /url: https://github.com/tegataiprime/Platelet-Movie\nE                   - text: \"| Updated weekly\"\n\ntests/ui/test_runtime_filter_toggle.py:90: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium]",
+            "strategy": "logic_sabotage",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 3,
+        "survived": 5,
+        "error": 0,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": 37.5
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime-hours",
+        "#min-runtime-minutes",
+        "#max-runtime-hours",
+        "#max-runtime-minutes",
+        "#min-runtime",
+        "#max-runtime"
+      ],
+      "mutants": [
+        {
+          "strategy": "stealth_disable",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "y:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7fae0a168170>\ncb = <function Channel.send.<locals>.<lambda> at 0x7fae09d7fc40>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_94e948e539f14236b0c5c06736c58717=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-pointer=\"\" data-vandalized=\"stealth_disable\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium]",
+            "strategy": "stealth_disable",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-hours",
+          "status": "killed",
+          "hint": "Used #min-runtime-hours; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:36903/index.html'>\n\n    def test_default_values_convert_correctly_between_modes(site_page):\n        \"\"\"Switching modes preserves the equivalent runtime value (90m == 1h30m).\"\"\"\n        page = site_page\n    \n>       expect(page.locator(\"#min-runtime-hours\")).to_have_value(\"1\")\nE       AssertionError: Locator expected to have Value '1'\nE       Actual value:  \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#min-runtime-hours\").locator(\"vandal_0193505712634d5ca0189568dbdb653a=apply\").or_(locator(\"#min-runtime-hours\")) with timeout 5000ms\nE         - waiting for locator(\"#min-runtime-hours\").locator(\"vandal_0193505712634d5ca0189568dbdb653a=apply\").or_(locator(\"#min-runtime-hours\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"20\" value=\"1\" type=\"number\" id=\"min-runtime-hours\" data-vandal-original-val=\"\" data-vandalized=\"data_sabotage\" aria-label=\"Minimum runtime hours\"/>\nE              - unexpected value \"\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Minimum runtime hours\"\n\ntests/ui/test_runtime_filter_toggle.py:101: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime-hours",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-minutes",
+          "status": "killed",
+          "hint": "Used #min-runtime-minutes; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:39739/index.html'>\n\n    def test_default_values_convert_correctly_between_modes(site_page):\n        \"\"\"Switching modes preserves the equivalent runtime value (90m == 1h30m).\"\"\"\n        page = site_page\n    \n        expect(page.locator(\"#min-runtime-hours\")).to_have_value(\"1\")\n>       expect(page.locator(\"#min-runtime-minutes\")).to_have_value(\"30\")\nE       AssertionError: Locator expected to have Value '30'\nE       Actual value:  \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#min-runtime-minutes\").locator(\"vandal_efb3519e321f477294738e64869bdff0=apply\").or_(locator(\"#min-runtime-minutes\")) with timeout 5000ms\nE         - waiting for locator(\"#min-runtime-minutes\").locator(\"vandal_efb3519e321f477294738e64869bdff0=apply\").or_(locator(\"#min-runtime-minutes\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"59\" value=\"30\" type=\"number\" id=\"min-runtime-minutes\" data-vandal-original-val=\"\" data-vandalized=\"data_sabotage\" aria-label=\"Minimum runtime minutes\"/>\nE              - unexpected value \"\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Minimum runtime minutes\"\n\ntests/ui/test_runtime_filter_toggle.py:102: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime-minutes",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-hours",
+          "status": "killed",
+          "hint": "Used #max-runtime-hours; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:43163/index.html'>\n\n    def test_default_values_convert_correctly_between_modes(site_page):\n        \"\"\"Switching modes preserves the equivalent runtime value (90m == 1h30m).\"\"\"\n        page = site_page\n    \n        expect(page.locator(\"#min-runtime-hours\")).to_have_value(\"1\")\n        expect(page.locator(\"#min-runtime-minutes\")).to_have_value(\"30\")\n>       expect(page.locator(\"#max-runtime-hours\")).to_have_value(\"2\")\nE       AssertionError: Locator expected to have Value '2'\nE       Actual value:  \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#max-runtime-hours\").locator(\"vandal_1c997644c7cf43aa810da5faeeb6deae=apply\").or_(locator(\"#max-runtime-hours\")) with timeout 5000ms\nE         - waiting for locator(\"#max-runtime-hours\").locator(\"vandal_1c997644c7cf43aa810da5faeeb6deae=apply\").or_(locator(\"#max-runtime-hours\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"20\" value=\"2\" type=\"number\" id=\"max-runtime-hours\" data-vandal-original-val=\"\" data-vandalized=\"data_sabotage\" aria-label=\"Maximum runtime hours\"/>\nE              - unexpected value \"\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Maximum runtime hours\"\n\ntests/ui/test_runtime_filter_toggle.py:103: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime-hours",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-minutes",
+          "status": "killed",
+          "hint": "Used #max-runtime-minutes; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:34221/index.html'>\n\n    def test_default_values_convert_correctly_between_modes(site_page):\n        \"\"\"Switching modes preserves the equivalent runtime value (90m == 1h30m).\"\"\"\n        page = site_page\n    \n        expect(page.locator(\"#min-runtime-hours\")).to_have_value(\"1\")\n        expect(page.locator(\"#min-runtime-minutes\")).to_have_value(\"30\")\n        expect(page.locator(\"#max-runtime-hours\")).to_have_value(\"2\")\n>       expect(page.locator(\"#max-runtime-minutes\")).to_have_value(\"40\")\nE       AssertionError: Locator expected to have Value '40'\nE       Actual value:  \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#max-runtime-minutes\").locator(\"vandal_85640671bfa54cfb8d6d257cfba0905e=apply\").or_(locator(\"#max-runtime-minutes\")) with timeout 5000ms\nE         - waiting for locator(\"#max-runtime-minutes\").locator(\"vandal_85640671bfa54cfb8d6d257cfba0905e=apply\").or_(locator(\"#max-runtime-minutes\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"59\" value=\"40\" type=\"number\" id=\"max-runtime-minutes\" data-vandal-original-val=\"\" data-vandalized=\"data_sabotage\" aria-label=\"Maximum runtime minutes\"/>\nE              - unexpected value \"\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Maximum runtime minutes\"\n\ntests/ui/test_runtime_filter_toggle.py:104: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime-minutes",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime",
+          "status": "killed",
+          "hint": "Used #min-runtime; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:46515/index.html'>\n\n    def test_default_values_convert_correctly_between_modes(site_page):\n        \"\"\"Switching modes preserves the equivalent runtime value (90m == 1h30m).\"\"\"\n        page = site_page\n    \n        expect(page.locator(\"#min-runtime-hours\")).to_have_value(\"1\")\n        expect(page.locator(\"#min-runtime-minutes\")).to_have_value(\"30\")\n        expect(page.locator(\"#max-runtime-hours\")).to_have_value(\"2\")\n        expect(page.locator(\"#max-runtime-minutes\")).to_have_value(\"40\")\n    \n        page.click(\"#runtime-format-toggle\")\n    \n>       expect(page.locator(\"#min-runtime\")).to_have_value(\"90\")\nE       AssertionError: Locator expected to have Value '90'\nE       Actual value:  \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#min-runtime\").locator(\"vandal_2a4d8c72785b4fd389d6c6230905dfe4=apply\").or_(locator(\"#min-runtime\")) with timeout 5000ms\nE         - waiting for locator(\"#min-runtime\").locator(\"vandal_2a4d8c72785b4fd389d6c6230905dfe4=apply\").or_(locator(\"#min-runtime\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"500\" value=\"90\" type=\"number\" id=\"min-runtime\" data-vandal-original-val=\"\" data-vandalized=\"data_sabotage\"/>\nE              - unexpected value \"\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Minimum Runtime (minutes):\"\n\ntests/ui/test_runtime_filter_toggle.py:108: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime",
+          "status": "killed",
+          "hint": "Used #max-runtime; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:45683/index.html'>\n\n    def test_default_values_convert_correctly_between_modes(site_page):\n        \"\"\"Switching modes preserves the equivalent runtime value (90m == 1h30m).\"\"\"\n        page = site_page\n    \n        expect(page.locator(\"#min-runtime-hours\")).to_have_value(\"1\")\n        expect(page.locator(\"#min-runtime-minutes\")).to_have_value(\"30\")\n        expect(page.locator(\"#max-runtime-hours\")).to_have_value(\"2\")\n        expect(page.locator(\"#max-runtime-minutes\")).to_have_value(\"40\")\n    \n        page.click(\"#runtime-format-toggle\")\n    \n        expect(page.locator(\"#min-runtime\")).to_have_value(\"90\")\n>       expect(page.locator(\"#max-runtime\")).to_have_value(\"160\")\nE       AssertionError: Locator expected to have Value '160'\nE       Actual value:  \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#max-runtime\").locator(\"vandal_d2d65e30b94a4406bc96171a62babd00=apply\").or_(locator(\"#max-runtime\")) with timeout 5000ms\nE         - waiting for locator(\"#max-runtime\").locator(\"vandal_d2d65e30b94a4406bc96171a62babd00=apply\").or_(locator(\"#max-runtime\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"500\" value=\"160\" type=\"number\" id=\"max-runtime\" data-vandal-original-val=\"\" data-vandalized=\"data_sabotage\"/>\nE              - unexpected value \"\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Maximum Runtime (minutes):\"\n\ntests/ui/test_runtime_filter_toggle.py:109: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "ait original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f03a500c140>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f03a4c27c40>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_cbb5f63f9fd249378bb84738492e83dd=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-opacity=\"\" data-vandal-original-pointer=\"\" data-vandalized=\"ghost_element\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium]",
+            "strategy": "ghost_element",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium]",
+            "strategy": "logic_sabotage",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 8,
+        "survived": 2,
+        "error": 0,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": 80.0
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime-hours",
+        "#min-runtime-minutes",
+        "#max-runtime-hours",
+        "#max-runtime-minutes",
+        "#apply-filters",
+        "#filter-error"
+      ],
+      "mutants": [
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "Used #runtime-format-toggle; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-hours",
+          "status": "killed",
+          "hint": "Used #min-runtime-hours; check assertions about its value, state, or resulting behavior.",
+          "details": " - row \"Favourite Title \u21c5 Runtime \u25b2 Year \u21c5 Score \u21c5 Rated \u21c5 Genres \u21c5\":\nE               - columnheader \"Favourite\":\nE                 - img\nE               - columnheader \"Title \u21c5\"\nE               - columnheader \"Runtime \u25b2\"\nE               - columnheader \"Year \u21c5\"\nE               - columnheader \"Score \u21c5\"\nE               - columnheader \"Rated \u21c5\"\nE               - columnheader \"Genres \u21c5\"\nE           - rowgroup:\nE             - row \"No movies found matching the filter criteria.\":\nE               - cell \"No movies found matching the filter criteria.\"\nE         - heading \"\u2139\ufe0f Acknowledgements & Disclaimers\" [level=2]\nE         - heading \"\ud83d\udcca Data Source\" [level=3]\nE         - paragraph:\nE           - text: This product uses the\nE           - link \"TMDB API\":\nE             - /url: https://www.themoviedb.org/\nE           - text: but is not endorsed or certified by TMDB. Movie data, ratings, and Netflix availability information are provided by\nE           - link \"The Movie Database (TMDB)\":\nE             - /url: https://www.themoviedb.org/\nE           - text: .\nE         - paragraph:\nE           - img \"TMDB Logo\"\nE         - heading \"\u26a0\ufe0f Accuracy Disclaimer\" [level=3]\nE         - paragraph: Netflix availability and movie data may have a 24-48 hour lag from TMDB's updates. Regional availability varies, and content may be removed or added without notice. Always verify movie availability on Netflix before your donation appointment.\nE         - heading \"\u270d\ufe0f Commentary Attribution\" [level=3]\nE         - paragraph:\nE           - text: \"\\\"Lady Whistledown\\\" commentary is AI-generated in the style of the character from\"\nE           - emphasis: Bridgerton\nE           - text: \", a Netflix series created by Chris Van Dusen and produced by Shondaland.\"\nE           - emphasis: Bridgerton\nE           - text: is based on the novels by Julia Quinn. This is a parody/homage and is not affiliated with Netflix, Shondaland, or Julia Quinn.\nE         - heading \"\ud83e\ude78 About Platelet Donation\" [level=3]\nE         - paragraph:\nE           - text: Platelet donation typically takes 2-3 hours and helps cancer patients, trauma victims, and surgical patients. Learn more about platelet donation at\nE           - link \"American Red Cross\":\nE             - /url: https://www.redcrossblood.org/giveplatelets.html\nE           - text: .\nE         - heading \"\u26a0\ufe0f Red Cross Disclaimer\" [level=3]\nE         - paragraph: This website is not affiliated with, endorsed by, or connected to the American Red Cross or any other Red Cross organization. The use of the American Red Cross brand colors and references to platelet donation are for informational purposes only. All trademarks and brand elements belong to their respective owners.\nE       - contentinfo:\nE         - paragraph:\nE           - text: Built with \u2764\ufe0f |\nE           - link \"View on GitHub\":\nE             - /url: https://github.com/tegataiprime/Platelet-Movie\nE           - text: \"| Updated weekly\"\n\ntests/ui/test_runtime_filter_toggle.py:122: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime-hours",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-minutes",
+          "status": "survived",
+          "hint": "Used #min-runtime-minutes; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime-minutes",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-hours",
+          "status": "survived",
+          "hint": "Used #max-runtime-hours; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime-hours",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-minutes",
+          "status": "survived",
+          "hint": "Used #max-runtime-minutes; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime-minutes",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "stealth_disable",
+          "selector": "#apply-filters",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #apply-filters; review its outcome checks.",
+          "details": "te-packages/vandal/instrumentation.py:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f9361b6c140>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f9363850400>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#apply-filters\").locator(\"vandal_14efe5c117be4490b10315ad5ce9ec0c=apply\").or_(locator(\"#apply-filters\"))\nE               - locator resolved to <button id=\"apply-filters\" class=\"btn-primary\" data-vandal-original-pointer=\"\" data-vandalized=\"stealth_disable\">Apply Filters</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium]",
+            "strategy": "stealth_disable",
+            "selector": "#apply-filters",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#filter-error",
+          "status": "killed",
+          "hint": "Used #filter-error; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:39633/index.html'>\n\n    def test_apply_filters_rejects_min_greater_than_max(site_page):\n        \"\"\"Applying filters where min > max shows an inline validation error.\"\"\"\n        page = site_page\n    \n        page.fill(\"#min-runtime-hours\", \"5\")\n        page.fill(\"#min-runtime-minutes\", \"0\")\n        page.fill(\"#max-runtime-hours\", \"1\")\n        page.fill(\"#max-runtime-minutes\", \"0\")\n        page.click(\"#apply-filters\")\n    \n>       expect(page.locator(\"#filter-error\")).to_have_text(\n            \"Minimum runtime cannot be greater than maximum runtime.\"\n        )\nE       AssertionError: Locator expected to have text 'Minimum runtime cannot be greater than maximum runtime.'\nE       Actual value: VANDALIZED_TEXT \nE       Call log:\nE         - Expect \"to_have_text\" locator(\"#filter-error\").locator(\"vandal_f53c1dc9c5104b0785d1d75085592aaf=apply\").or_(locator(\"#filter-error\")) with timeout 5000ms\nE         - waiting for locator(\"#filter-error\").locator(\"vandal_f53c1dc9c5104b0785d1d75085592aaf=apply\").or_(locator(\"#filter-error\"))\nE           14 \u00d7 locator resolved to <p role=\"alert\" id=\"filter-error\" aria-live=\"assertive\" class=\"filter-error show\" data-vandalized=\"data_sabotage\" data-vandal-original-text=\"VANDALIZED_TEXT\">VANDALIZED_TEXT</p>\nE              - unexpected value \"VANDALIZED_TEXT\"\nE       \nE       Aria snapshot:\nE       - alert: VANDALIZED_TEXT\n\ntests/ui/test_runtime_filter_toggle.py:122: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#filter-error",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#apply-filters",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #apply-filters; review its outcome checks.",
+          "details": "tion.py:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7fc1d8a1c050>\ncb = <function Channel.send.<locals>.<lambda> at 0x7fc1d89e4220>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#apply-filters\").locator(\"vandal_e13c7d26c87f4f9a8bb479d28635e9c1=apply\").or_(locator(\"#apply-filters\"))\nE               - locator resolved to <button id=\"apply-filters\" class=\"btn-primary\" data-vandal-original-opacity=\"\" data-vandal-original-pointer=\"\" data-vandalized=\"ghost_element\">Apply Filters</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium]",
+            "strategy": "ghost_element",
+            "selector": "#apply-filters",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#apply-filters",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #apply-filters; review its outcome checks.",
+          "details": " - cell \"1 h 30 m\"\nE               - cell \"2020\"\nE               - cell \"7.1\"\nE               - cell \"PG-13\"\nE               - cell \"Drama\"\nE             - row \"Add to favorites Zulu Film A longer film. 2 h 30 m 2021 8.2 R Action\":\nE               - cell \"Add to favorites\":\nE                 - button \"Add to favorites\":\nE                   - img\nE               - cell \"Zulu Film A longer film.\"\nE               - cell \"2 h 30 m\"\nE               - cell \"2021\"\nE               - cell \"8.2\"\nE               - cell \"R\"\nE               - cell \"Action\"\nE         - heading \"\u2139\ufe0f Acknowledgements & Disclaimers\" [level=2]\nE         - heading \"\ud83d\udcca Data Source\" [level=3]\nE         - paragraph:\nE           - text: This product uses the\nE           - link \"TMDB API\":\nE             - /url: https://www.themoviedb.org/\nE           - text: but is not endorsed or certified by TMDB. Movie data, ratings, and Netflix availability information are provided by\nE           - link \"The Movie Database (TMDB)\":\nE             - /url: https://www.themoviedb.org/\nE           - text: .\nE         - paragraph:\nE           - img \"TMDB Logo\"\nE         - heading \"\u26a0\ufe0f Accuracy Disclaimer\" [level=3]\nE         - paragraph: Netflix availability and movie data may have a 24-48 hour lag from TMDB's updates. Regional availability varies, and content may be removed or added without notice. Always verify movie availability on Netflix before your donation appointment.\nE         - heading \"\u270d\ufe0f Commentary Attribution\" [level=3]\nE         - paragraph:\nE           - text: \"\\\"Lady Whistledown\\\" commentary is AI-generated in the style of the character from\"\nE           - emphasis: Bridgerton\nE           - text: \", a Netflix series created by Chris Van Dusen and produced by Shondaland.\"\nE           - emphasis: Bridgerton\nE           - text: is based on the novels by Julia Quinn. This is a parody/homage and is not affiliated with Netflix, Shondaland, or Julia Quinn.\nE         - heading \"\ud83e\ude78 About Platelet Donation\" [level=3]\nE         - paragraph:\nE           - text: Platelet donation typically takes 2-3 hours and helps cancer patients, trauma victims, and surgical patients. Learn more about platelet donation at\nE           - link \"American Red Cross\":\nE             - /url: https://www.redcrossblood.org/giveplatelets.html\nE           - text: .\nE         - heading \"\u26a0\ufe0f Red Cross Disclaimer\" [level=3]\nE         - paragraph: This website is not affiliated with, endorsed by, or connected to the American Red Cross or any other Red Cross organization. The use of the American Red Cross brand colors and references to platelet donation are for informational purposes only. All trademarks and brand elements belong to their respective owners.\nE       - contentinfo:\nE         - paragraph:\nE           - text: Built with \u2764\ufe0f |\nE           - link \"View on GitHub\":\nE             - /url: https://github.com/tegataiprime/Platelet-Movie\nE           - text: \"| Updated weekly\"\n\ntests/ui/test_runtime_filter_toggle.py:122: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium]",
+            "strategy": "logic_sabotage",
+            "selector": "#apply-filters",
+            "subreaper": true
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 5,
+        "survived": 4,
+        "error": 0,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": 55.55555555555556
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime",
+        "#max-runtime",
+        "#reset-filters"
+      ],
+      "mutants": [
+        {
+          "strategy": "stealth_disable",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "y:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7fb6fdcd01d0>\ncb = <function Channel.send.<locals>.<lambda> at 0x7fb6fd8df880>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_3d8ee9474e4245f7951fe078083e5a40=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-pointer=\"\" data-vandalized=\"stealth_disable\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium]",
+            "strategy": "stealth_disable",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime",
+          "status": "killed",
+          "hint": "Used #min-runtime; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:46099/index.html'>\n\n    def test_reset_filters_restores_defaults(site_page):\n        \"\"\"Reset restores the default runtime filter values in the active mode.\"\"\"\n        page = site_page\n    \n        page.click(\"#runtime-format-toggle\")  # switch to minutes-only mode\n        page.fill(\"#min-runtime\", \"50\")\n        page.fill(\"#max-runtime\", \"500\")\n        page.click(\"#reset-filters\")\n    \n>       expect(page.locator(\"#min-runtime\")).to_have_value(\"90\")\nE       AssertionError: Locator expected to have Value '90'\nE       Actual value:  \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#min-runtime\").locator(\"vandal_a47cb35475ce4e6da58aa7b310148cff=apply\").or_(locator(\"#min-runtime\")) with timeout 5000ms\nE         - waiting for locator(\"#min-runtime\").locator(\"vandal_a47cb35475ce4e6da58aa7b310148cff=apply\").or_(locator(\"#min-runtime\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"500\" value=\"90\" type=\"number\" id=\"min-runtime\" data-vandal-original-val=\"\" data-vandalized=\"data_sabotage\"/>\nE              - unexpected value \"\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Minimum Runtime (minutes):\"\n\ntests/ui/test_runtime_filter_toggle.py:136: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#min-runtime",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime",
+          "status": "killed",
+          "hint": "Used #max-runtime; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:34351/index.html'>\n\n    def test_reset_filters_restores_defaults(site_page):\n        \"\"\"Reset restores the default runtime filter values in the active mode.\"\"\"\n        page = site_page\n    \n        page.click(\"#runtime-format-toggle\")  # switch to minutes-only mode\n        page.fill(\"#min-runtime\", \"50\")\n        page.fill(\"#max-runtime\", \"500\")\n        page.click(\"#reset-filters\")\n    \n        expect(page.locator(\"#min-runtime\")).to_have_value(\"90\")\n>       expect(page.locator(\"#max-runtime\")).to_have_value(\"160\")\nE       AssertionError: Locator expected to have Value '160'\nE       Actual value:  \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#max-runtime\").locator(\"vandal_910bea9eb9c244539f2d35f8c3ed2318=apply\").or_(locator(\"#max-runtime\")) with timeout 5000ms\nE         - waiting for locator(\"#max-runtime\").locator(\"vandal_910bea9eb9c244539f2d35f8c3ed2318=apply\").or_(locator(\"#max-runtime\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"500\" value=\"160\" type=\"number\" id=\"max-runtime\" data-vandal-original-val=\"\" data-vandalized=\"data_sabotage\"/>\nE              - unexpected value \"\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Maximum Runtime (minutes):\"\n\ntests/ui/test_runtime_filter_toggle.py:137: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#max-runtime",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "stealth_disable",
+          "selector": "#reset-filters",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #reset-filters; review its outcome checks.",
+          "details": ".12/site-packages/vandal/instrumentation.py:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f99d7733f20>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f99d735b1a0>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#reset-filters\").locator(\"vandal_3de6c08dad9b40c997ca17cab3dfe6d9=apply\").or_(locator(\"#reset-filters\"))\nE               - locator resolved to <button id=\"reset-filters\" class=\"btn-secondary\" data-vandal-original-pointer=\"\" data-vandalized=\"stealth_disable\">Reset</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium]",
+            "strategy": "stealth_disable",
+            "selector": "#reset-filters",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "ait original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f496e7bd580>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f496df3b880>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_8a185a00e77943a4a453ddfca0c704fd=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-opacity=\"\" data-vandal-original-pointer=\"\" data-vandalized=\"ghost_element\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium]",
+            "strategy": "ghost_element",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#reset-filters",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #reset-filters; review its outcome checks.",
+          "details": "umentation.py:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7ff38cc9bda0>\ncb = <function Channel.send.<locals>.<lambda> at 0x7ff38c8ba7a0>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#reset-filters\").locator(\"vandal_14a77d76a0c54f6b8954c637dfa08017=apply\").or_(locator(\"#reset-filters\"))\nE               - locator resolved to <button id=\"reset-filters\" class=\"btn-secondary\" data-vandal-original-opacity=\"\" data-vandal-original-pointer=\"\" data-vandalized=\"ghost_element\">Reset</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium]",
+            "strategy": "ghost_element",
+            "selector": "#reset-filters",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "ronous\n    result = original(obj, *args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:17698: in fill\n    self._sync(\n../venv/lib/python3.12/site-packages/playwright/_impl/_page.py:932: in fill\n    return await self._main_frame.fill(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/vandal/instrumentation.py:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:641: in fill\n    await self._fill(**locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:653: in _fill\n    await self._channel.send(\"fill\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f98c6315970>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f98c5f8b880>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.fill: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_b8fc27f7b2384b108cdc5a48a640d6c1=apply\").or_(locator(\"#min-runtime\"))\nE               - locator resolved to <input min=\"0\" max=\"500\" value=\"90\" type=\"number\" id=\"min-runtime\"/>\nE               - fill(\"50\")\nE             - attempting fill action\nE               2 \u00d7 waiting for element to be visible, enabled and editable\nE                 - element is not visible\nE               - retrying fill action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and editable\nE                 - element is not visible\nE               - retrying fill action\nE                 - waiting 100ms\nE               60 \u00d7 waiting for element to be visible, enabled and editable\nE                  - element is not visible\nE                - retrying fill action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium]",
+            "strategy": "logic_sabotage",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#reset-filters",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #reset-filters; review its outcome checks.",
+          "details": "site_page = <Page url='http://127.0.0.1:33947/index.html'>\n\n    def test_reset_filters_restores_defaults(site_page):\n        \"\"\"Reset restores the default runtime filter values in the active mode.\"\"\"\n        page = site_page\n    \n        page.click(\"#runtime-format-toggle\")  # switch to minutes-only mode\n        page.fill(\"#min-runtime\", \"50\")\n        page.fill(\"#max-runtime\", \"500\")\n        page.click(\"#reset-filters\")\n    \n>       expect(page.locator(\"#min-runtime\")).to_have_value(\"90\")\nE       AssertionError: Locator expected to have Value '90'\nE       Actual value: 50 \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#reset-filters\").locator(\"vandal_e5881604da4348df8929748b22447caf=apply\").or_(locator(\"#min-runtime\")) with timeout 5000ms\nE         - waiting for locator(\"#reset-filters\").locator(\"vandal_e5881604da4348df8929748b22447caf=apply\").or_(locator(\"#min-runtime\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"500\" value=\"90\" type=\"number\" id=\"min-runtime\"/>\nE              - unexpected value \"50\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Minimum Runtime (minutes):\": \"50\"\n\ntests/ui/test_runtime_filter_toggle.py:136: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium]",
+            "strategy": "logic_sabotage",
+            "selector": "#reset-filters",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 8,
+        "survived": 1,
+        "error": 0,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": 88.88888888888889
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_movies_render_from_mocked_data[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#movies-tbody"
+      ],
+      "mutants": [
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "Used #runtime-format-toggle; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          },
+          "resources": {
+            "before": 2,
+            "before_cleanup": 6,
+            "after": 2,
+            "cleanup_attempted": 4,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_movies_render_from_mocked_data[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#runtime-format-toggle",
+            "subreaper": true
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#movies-tbody",
+          "status": "killed",
+          "hint": "Used #movies-tbody; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:43643/index.html'>\n\n    def test_movies_render_from_mocked_data(site_page):\n        \"\"\"Sanity check that the page renders movies from the (mocked) data feed.\"\"\"\n        page = site_page\n    \n>       expect(page.locator(\"#movies-tbody\")).to_contain_text(\"Alpha Film\")\nE       AssertionError: Locator expected to contain text 'Alpha Film'\nE       Actual value: VANDALIZED_TEXT \nE       Call log:\nE         - Expect \"to_contain_text\" locator(\"#movies-tbody\").locator(\"vandal_3ba82a31046c4655906b5289f56c9f03=apply\").or_(locator(\"#movies-tbody\")) with timeout 5000ms\nE         - waiting for locator(\"#movies-tbody\").locator(\"vandal_3ba82a31046c4655906b5289f56c9f03=apply\").or_(locator(\"#movies-tbody\"))\nE           14 \u00d7 locator resolved to <tbody id=\"movies-tbody\" data-vandalized=\"data_sabotage\" data-vandal-original-text=\"VANDALIZED_TEXT\">VANDALIZED_TEXT</tbody>\nE              - unexpected value \"VANDALIZED_TEXT\"\nE       \nE       Aria snapshot:\nE       - rowgroup: VANDALIZED_TEXT\n\ntests/ui/test_runtime_filter_toggle.py:144: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion",
+          "resources": {
+            "before": 2,
+            "before_cleanup": 8,
+            "after": 2,
+            "cleanup_attempted": 6,
+            "remaining_new": 0,
+            "reaped": true,
+            "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_movies_render_from_mocked_data[chromium]",
+            "strategy": "data_sabotage",
+            "selector": "#movies-tbody",
+            "subreaper": true
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 1,
+        "survived": 1,
+        "error": 0,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": 50.0
+      }
+    }
+  ]
+}

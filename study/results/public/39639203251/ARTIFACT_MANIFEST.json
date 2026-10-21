@@ -1,0 +1,220 @@
+{
+  "run_id": 39639203251,
+  "artifact_id": 12363714678,
+  "source_commit": "8fd62837499a78f0498b1e8900f11af0ed84d7cf",
+  "zip_sha256": "22559d9fe1521d9bed8fa7c97696182c618c499ea54833d34d5188f251fdb9dc",
+  "entries": [
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/acquire-0.log",
+      "size": 661,
+      "sha256": "68747941f7831733f01bd2efe8d891cd71a0b7da86cd0cf956af2cd5e34c18bd"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/acquire-2.log",
+      "size": 41,
+      "sha256": "c7d1a91c50d4ab44f308cd42caf11776afdbabe6ccd763f6b103c80d0a7d3b45"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/acquire-1.log",
+      "size": 114,
+      "sha256": "c6687744c695d81b055bd2196a5dfc7a6f6a43022cf4b78255b516c566b35633"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/acquire-3.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/acquisition.json",
+      "size": 1420,
+      "sha256": "bdbd79d88d7bd63fb4f2cedb55a99c275fdb04c08a077cd272c88ffa2184fbde"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/baseline.log",
+      "size": 3432,
+      "sha256": "16b696a64c093db6bde61e17538296b46aa6cbb10b459b63d56d7b93dcfda4a6"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/baseline.xml",
+      "size": 5692,
+      "sha256": "1638f01d1051fcf33bffac17d3769cce14dae16c036bc829ecb09bc104500317"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/cleanup.log",
+      "size": 46,
+      "sha256": "8f5e152039b9d4aa4f5019e61d78d1ea54f7f8ba708de6752531d21d57792216"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/container.log",
+      "size": 65,
+      "sha256": "b71283ce1029ca8da1637f5874072d1dd832dcc635dd56abfc730dfe58c36ff2"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/environment.txt",
+      "size": 739,
+      "sha256": "5c20329a551af317992f9f0cc287f0bb3e98ed5d077355fb97d25aa547c63b18"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/harness-install.log",
+      "size": 2916,
+      "sha256": "50172314665b235c69dcee8dc4dbf54f021ee21bc7fffe6c33f977273a645bc0"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/harness.lock",
+      "size": 2164,
+      "sha256": "60dc222024cc783791c2343f591153432516a175e0e2e857b29c642f20cdc45d"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/install.log",
+      "size": 4158,
+      "sha256": "28a22a75613793c00ebb8a8309d0480e65e8e3064647a46763ecef65490f28c8"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/status.json",
+      "size": 7998,
+      "sha256": "5154f82692aade9156ee60aa97d4cf4a6da7c7935c66dc8ddc6a01e2d67a59c9"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/worker-console.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/venv.log",
+      "size": 302,
+      "sha256": "7f66f7ebc30570e04a8e7afb613a41be14c596356cfe7965ac8410a7a8ef9aa6"
+    },
+    {
+      "path": "study/results/public/atdr__contrail__2465e368b765/worker-status.json",
+      "size": 1151,
+      "sha256": "96dd7d95bdfc4e575d383f452ee7141831fe59945a2040734e1879262da1a6f5"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/acquire-0.log",
+      "size": 661,
+      "sha256": "b8f19b4da0af8ab7b79aa04b5c20a7aa2ab649b4370a6bdb36c906e3a91cc190"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/acquire-1.log",
+      "size": 128,
+      "sha256": "203bde2836d93e3a865defb8e80a9d894b9709902c66fa4f22ba0d1f47f7f4e0"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/acquire-2.log",
+      "size": 41,
+      "sha256": "e11e2cf3cff770a1630023a25d7e77cc645d2c326d8e8615294e66baf0ded07e"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/acquire-3.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/acquisition.json",
+      "size": 1434,
+      "sha256": "7fae1b09b1ccfde137441c821182c51fba1147a3e8b040853f65308d125af2d0"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/baseline.log",
+      "size": 98,
+      "sha256": "d3c4b982d4d6e6222edb6a0b21b772d4e3e8ef9112a53633634e49c13cb9ceb9"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/baseline.xml",
+      "size": 1328,
+      "sha256": "fa7c9aaba1e5a81d8a105a6a8d19b84fdd7985c47878182cfaa95d7515d7e890"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/cleanup.log",
+      "size": 46,
+      "sha256": "820c2246865531ed581fa0b4b6e4c8af904b41985c5d8d6d45a011eb7f5bcd62"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/container.log",
+      "size": 65,
+      "sha256": "267c88b06b72615922153119a2f128ea7d9cb23c3c70749c54b56e6261b82652"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/environment.txt",
+      "size": 522,
+      "sha256": "cbd47dbf2077c05af40f968c92e00297540e63f44d8f59462bb2db5383f5e006"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/harness-install.log",
+      "size": 2916,
+      "sha256": "50172314665b235c69dcee8dc4dbf54f021ee21bc7fffe6c33f977273a645bc0"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/harness.lock",
+      "size": 2164,
+      "sha256": "60dc222024cc783791c2343f591153432516a175e0e2e857b29c642f20cdc45d"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/install.log",
+      "size": 30,
+      "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/mutation.log",
+      "size": 17122,
+      "sha256": "9b17d48e9979a69fc19ebb55f5c37935a77faf19c527a7aabc8328a08f79667c"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/resources.jsonl",
+      "size": 17706,
+      "sha256": "dd822cd896ebb293f767be2618b62559ddda342892c57202f0b857c1ecb4871b"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/status.json",
+      "size": 9047,
+      "sha256": "ae4331a265d5a4b908de6e80cada59f7a95cb4d4f0a29b81a57ad904f8681fd1"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/vandal_report.json",
+      "size": 130300,
+      "sha256": "c90a1e203d5412199cda7dd7f919a4db273ac5a5c07fc4af80b65810465d0d1e"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/venv.log",
+      "size": 302,
+      "sha256": "243fab8dea25e4a065d57ef35ee69bd471b571756e4b6f8d40a576061afffc89"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/worker-console.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "study/results/public/tegataiprime__Platelet-Movie__14664611814b/worker-status.json",
+      "size": 1269,
+      "sha256": "4fcd9a4797956be41c0517cd201ea129c7481bd5959df9a97dfe35d8ec191bda"
+    },
+    {
+      "path": "study/results/summary.csv",
+      "size": 2962,
+      "sha256": "bcd2dbf41390571b6123eb66a0a470c23390c4167ac0195c88a45cd62be25171"
+    },
+    {
+      "path": "study/REPORT.md",
+      "size": 5926,
+      "sha256": "8caf7bd1832f08699da35efdb704a5cce733cea991aa244471460a77f6a92531"
+    },
+    {
+      "path": "wheelhouse/MANIFEST.csv",
+      "size": 2075,
+      "sha256": "308ed87e3f898803c028fab5d7ab1fa6176e4fb16d543b227ec27ab529341f5d"
+    },
+    {
+      "path": "study/pilot-image-id.txt",
+      "size": 71,
+      "sha256": "32a4bcbfb002ade06b5f878cf01f5f811eb8873c314a34cdad612682970834b8"
+    },
+    {
+      "path": "study/PILOT_SUMMARY.md",
+      "size": 535,
+      "sha256": "2c792ca8d3e06bd9075e5451a68bda0e7ba727541ce6af786c86904263cc3725"
+    }
+  ],
+  "verified_internal_artifact_hashes": 35,
+  "retention": "Every archive file retained byte exact; annotations outside artifact/."
+}

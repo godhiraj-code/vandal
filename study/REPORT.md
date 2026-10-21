@@ -1,6 +1,6 @@
-# Study protocol (no valid public results)
+# Study protocol and results
 
-Public agent-suite sample: n=0 repositories. Included public attempts: n=0.
+Public agent-suite sample: n=1 repositories. Included public attempts: n=2.
 
 Diagnostic archives are omitted from all tables and sample sizes; see results/diagnostic/ for failed-pilot evidence.
 
@@ -15,10 +15,12 @@ Results are limited to the repositories and selected tests actually executed. No
 Counts below are observed mutants, with n_tests and n_mutants shown per row. Score is 100 × killed / n_scored; n_scored = killed + survived. Error rate is 100 x errors / all mutants. Runs above 10% errors are invalid and have no score. N/A means no observation, not zero.
 
 
-### Public repositories (n=0 runs)
+### Public repositories (n=2 runs)
 
 | Repository / artifact directory / pinned SHA | Status | Score % (n_scored) | n_tests / n_mutants | Killed | Survived | Error | Error % | Untested mutants | Unsupported targets | Cap omissions |
 |---|---|---|---|---|---|---|---|---|---|---|
+| atdr/contrail / public/39639203251/artifact/study/results/public/atdr__contrail__2465e368b765 / 2465e368b7658bd23f0d41f1473c114db3573005  | skipped | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
+| tegataiprime/Platelet-Movie / public/39639203251/artifact/study/results/public/tegataiprime__Platelet-Movie__14664611814b / 14664611814b126289f291ad24ee294102efb07c  | completed | 50.8475 (n=59) | 8 / 59 | 30 | 29 | 0 | 0.0000 | 0 | 0 | 0 |
 
 ### Host-only owned fixture validation (n=1 runs)
 
@@ -44,9 +46,7 @@ One complete, scored observation per repository; repository-weighted median, inc
 
 | n repositories | Median % | IQR percentage points | Min-max % |
 |---|---|---|---|
-| 0 | N/A | N/A | N/A |
-
-No eligible public results exist. No strength estimate is reported for agent-written suites.
+| 1 | N/A | N/A | N/A |
 
 ## Strategy survival
 
@@ -54,13 +54,16 @@ Pooled by mutant, ranked by survivors; larger suites contribute more weight. Sur
 
 | Strategy | n_repos | n_mutants | Survived / n scored | Survival % | Errors | Untested mutants |
 |---|---|---|---|---|---|---|
+| data_sabotage | 1 | 38 | 27 / 38 | N/A | 0 | 0 |
+| logic_sabotage | 1 | 7 | 2 / 7 | N/A | 0 | 0 |
+| ghost_element | 1 | 7 | 0 / 7 | N/A | 0 | 0 |
+| stealth_disable | 1 | 7 | 0 / 7 | N/A | 0 | 0 |
 
-No eligible strategy observations (n repositories=0).
-
-Insufficient valid repositories (n=0); no median, IQR or strategy rates are reported.
+Insufficient valid repositories (n=1); no median, IQR or strategy rates are reported.
 
 ## Exclusions and limitations
 
+- atdr/contrail: baseline failed (pytest exit 1); see baseline.log (n runs=1).
 
 Selection is a convenience sample from bounded GitHub search, not a random sample. Visible co-authorship is evidence of agent involvement, not exclusive agent authorship. Only test-specific agent involvement is in scope; guidance alone cannot establish authorship.
 

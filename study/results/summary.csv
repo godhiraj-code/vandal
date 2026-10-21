@@ -12,3 +12,5 @@ pilot/owned-container-10,container,owned-local-fixture,c34637afac674437101cf90b7
 pilot/owned-fixture,host-only,owned-local-fixture,86ea7e4801fdf00ae40c867ad5300a9addd11500,fixture,fixture,skipped,False,,,,,,,,,,,,,,,baseline timeout
 pilot/owned-fixture-corrected,host-only,owned-local-fixture,e886c215ebb550c2e26780008c42ea7e87560e9f,fixture,fixture,completed,False,80.0,2,5,5,4,1,0,0,0,0.0,0,0,0,2,
 pilot/owned-fixture-elevated,host-only,owned-local-fixture,650dab65e793d443ab1bab11f90eb27f07b50e32,fixture,fixture,invalid run,False,,2,5,0,0,0,5,0,0,100.0,0,0,0,0,mutant error rate exceeds 10%
+public/39639203251/artifact/study/results/public/atdr__contrail__2465e368b765,container,atdr/contrail,2465e368b7658bd23f0d41f1473c114db3573005,public,agent,skipped,False,,,,,,,,,,,,,,,baseline failed (pytest exit 1); see baseline.log
+public/39639203251/artifact/study/results/public/tegataiprime__Platelet-Movie__14664611814b,container,tegataiprime/Platelet-Movie,14664611814b126289f291ad24ee294102efb07c,public,agent,completed,True,50.847457627118644,8,59,59,30,29,0,0,0,0.0,0,0,0,15,

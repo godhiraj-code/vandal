@@ -126,6 +126,7 @@ def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes, *,
     deadline = time.monotonic() + seconds
     status = {"repo": row["repo"], "commit_sha": row["commit_sha"], "group": row["group"],
               "manifest": row, "image": image, "kind": "fixture" if owned_fixture else "public",
+              "budget_seconds": seconds,
               "started_at": datetime.now(timezone.utc).isoformat(),
               "status": "skipped", "reason": "not started"}
     with tempfile.TemporaryDirectory(prefix="vandal-study-") as temp:
@@ -330,7 +331,8 @@ def main():
         identifier = row["repo"].replace("/", "__") + "__" + row["commit_sha"][:12]
         output = args.results / identifier
         output.mkdir(parents=True, exist_ok=False)
-        status = run_one(row, recipe, args.image, args.wheelhouse.resolve(), output, args.seconds, reviewed_hashes)
+        status = run_one(row, recipe, args.image, args.wheelhouse.resolve(), output,
+                         recipe.get("seconds", args.seconds), reviewed_hashes)
         print(row["repo"], status["status"], status["reason"])
         if not cleanup_confirmed(status):
             p.exit(1, "Container cleanup unconfirmed; stopping before any further repository. Inspect status/cleanup.log.\n")

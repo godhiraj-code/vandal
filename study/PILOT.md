@@ -91,6 +91,18 @@ secrets or token expressions are supplied to shell commands or containers.
 
 ## Inspect and retain artifacts afterwards
 
+Recipes may set `"seconds": 1800` for a larger suite. The integer range is
+30–3600 seconds. A recipe's value takes precedence over the runner's `--seconds`
+fallback (900 by default); owned-fixture validation continues to use the CLI
+budget. This is a per-repository acquisition/container budget, not a per-test
+allowance. Installation and baseline consume it too. The workflow's 60-minute
+job timeout still bounds the whole pilot. Review recipe budgets with the input
+manifest before execution; increasing a budget does not approve or run a repo.
+
+Future worker-status.json files include the measured harness installation exit
+code, elapsed seconds, timeout/log-limit flags, installation method and lock hash.
+PILOT_SUMMARY.md displays scores to one decimal without changing raw reports.
+
 The job summary lists image ID and each selected repository's status, baseline exit
 result, score and sample size. Missing observations say not run/not observed/N/A.
 The artifact contains public raw results/logs, regenerated REPORT.md and summary.csv,

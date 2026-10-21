@@ -1,0 +1,70 @@
+......F........                                                          [100%]
+=================================== FAILURES ===================================
+______________ test_the_ranking_dialog_opens_and_closes[chromium] ______________
+
+open_passport = <function open_passport.<locals>.open_ at 0x7fa6f5ac5760>
+
+    def test_the_ranking_dialog_opens_and_closes(open_passport):
+        destinations = ["JFK", "CDG", "SIN", "AMS", "DXB", "HND", "SYD", "LAX"]
+        rows = [
+            row(
+                flight_date=f"2026-0{month}-01",
+                origin="LHR",
+                destination=destination,
+                emissions_kg_actual=str(100 * month),
+            )
+            for month, destination in enumerate(destinations, start=1)
+        ]
+        page = open_passport(rows)
+        dialog = page.locator("#ranking-dialog")
+        see_all = page.locator("[data-ranking=routes]")
+    
+        see_all.click()
+        expect(dialog).to_be_visible()
+        expect(page.locator("#ranking-dialog-title")).to_have_text("All routes · total CO₂e")
+>       labels = page.evaluate("Chart.getChart('ranking-dialog-canvas').data.labels")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests_browser/test_passport_page.py:161: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:16843: in evaluate
+    self._sync(
+../venv/lib/python3.12/site-packages/playwright/_impl/_page.py:476: in evaluate
+    return await self._main_frame.evaluate(expression, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:346: in evaluate
+    await self._channel.send(
+../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <playwright._impl._connection.Connection object at 0x7fa6f66205f0>
+cb = <function Channel.send.<locals>.<lambda> at 0x7fa6f5aa13a0>
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.Error: Page.evaluate: TypeError: Cannot read properties of undefined (reading 'data')
+E               at eval (eval at evaluate (:370:30), <anonymous>:1:40)
+E               at eval (<anonymous>)
+E               at UtilityScript.evaluate (<anonymous>:370:30)
+E               at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: Error
+=========================== short test summary info ============================
+FAILED tests_browser/test_passport_page.py::test_the_ranking_dialog_opens_and_closes[chromium]
+1 failed, 14 passed in 11.60s

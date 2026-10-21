@@ -1,8 +1,11 @@
-# Offline preparation plans — not executed; execution approval pending
+# Offline preparation plans and retained pilot status
 
-These plans refer only to the three snapshots below. They are source-derived plans,
-not installation or baseline results. No candidate has been built, imported, collected
-or run. Contrail and Platelet-Movie have explicit inclusion approval in repos.csv; execution remains separately gated. Talkvote is unapproved. Dependency versions/hashes and the Dockerfile must be reviewed before action-time
+These plans cover the four snapshots below. The retained pilot 39639203251 records
+Platelet-Movie's successful baseline and Contrail's failed baseline; see REPORT.md.
+No candidate was built, imported, collected or run during this revision. Contrail and
+Platelet-Movie have prior inclusion approval in repos.csv; further execution remains
+separately gated. Talkvote and meow-now are unapproved. Dependency versions/hashes
+and the Dockerfile must be reviewed before action-time
 execution; the workflow records its freshly built immutable image ID.
 
 Use a disposable acquisition environment without host credentials for preparation.
@@ -106,3 +109,37 @@ required preparation, rather than masquerading as an executable worker recipe.
 Before approving talkvote, implement and review a bounded, hashed asset-staging
 extension (or an equally reviewed derived-image worker) and validate it with an owned
 Node fixture. No candidate source or tests have been executed to prepare this plan.
+
+## Additional proposal: ccqw/meow-now
+
+Pinned snapshot: `912b21de0feee6931025ac02d3c838420e3c9b05`, MIT.
+Recipe: `recipes/meow-now.json`; 39 observable call sites in
+`tests/browser/test_smoke.py`, Claude co-authored test commit. No approval or run.
+
+The selected test file starts uvicorn on a random loopback port, constructs
+`Settings(ollama_url=None, ...)`, and uses Chromium's fake microphone/audio flags.
+Its imported Python helpers synthesize audio locally; the HTML embeds its assets
+and uses data URLs. No separate service or remote model is needed by this selected
+path. This is static source evidence, not a successful offline baseline.
+
+Prepare Linux CPython 3.12 wheels for FastAPI (`>=0.110,<1`), uvicorn (`>=0.29,<1`),
+httpx (`>=0.27,<1`), numpy (`>=1.26,<3`) and their resolved dependencies (including
+Starlette, Pydantic/pydantic-core, annotated types/doc as required, anyio, certifi,
+httpcore/h11, idna and click). Include setuptools `>=69` and any build-environment
+requirements. The image supplies pytest, pytest-playwright, Playwright and Chromium.
+Resolve and hash the complete wheel closure before approval/execution; no versions,
+hashes, successful downloads or installs are claimed here. Do not install the `dev`
+extra: its pytest `<9` constraint conflicts with this image's pytest 9.
+
+The worker installs the project with its `browser` extra offline inside the
+container. Use the explicit test file, not the directory: an owned synthetic pytest
+probe verified that explicit file selection bypasses this directory-only collection
+guard. This does not execute or validate the real suite. The recipe budget is 1800
+seconds; audio timing and Chromium fake-media behavior remain risks. Candidate
+source/build code must execute only in the approved isolated container, with no
+network. No Node/Vite build or extra asset staging is identified for this snapshot.
+
+The new search did not establish five new suitable offline-ready repositories.
+This is the only new proposed recipe; earlier Contrail/Platelet recipes and the
+blocked talkvote preparation plan remain available. Do not treat those existing
+entries as five new candidates.

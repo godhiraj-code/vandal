@@ -53,7 +53,7 @@ def summary(manifest, results, image_file, destination):
                     baseline = "exit=" + str(record.get("exit_code", "unknown")) + "; timeout=" + str(record.get("timed_out", "unknown"))
             except (OSError, ValueError, TypeError, AttributeError, RecursionError):
                 baseline = "unavailable: malformed evidence"
-        score = str(row["score"]) if row.get("eligible") and row.get("score") is not None else "N/A"
+        score = f"{row['score']:.1f}" if row.get("eligible") and row.get("score") is not None else "N/A"
         values = [selected["repo"] + " / " + selected["commit_sha"], row.get("status", "not run"), baseline,
                   score + " (n=" + str(row.get("n_scored", "N/A")) + ")", row.get("reason", "no recorded attempt")]
         lines.append("| " + " | ".join(safe(v) for v in values) + " |")

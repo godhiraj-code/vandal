@@ -10,7 +10,7 @@ import shutil
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from study.common import safe_path, write_json
+from study.common import digest, safe_path, write_json
 from study.process import clean_env, run
 
 
@@ -75,9 +75,11 @@ def extract_source(archive, destination, recipe=None):
 
 
 def validate_recipe(recipe):
-    allowed = {"test_paths", "source_paths", "requirements", "install_project", "extras", "pytest_args"}
+    allowed = {"test_paths", "source_paths", "requirements", "install_project", "extras", "pytest_args", "seconds"}
     if set(recipe) - allowed:
         raise ValueError("unsupported recipe key")
+    if type(recipe.get("seconds", 900)) is not int or not 30 <= recipe.get("seconds", 900) <= 3600:
+        raise ValueError("recipe seconds must be an integer in 30..3600")
     for key in ("test_paths", "source_paths", "requirements", "extras", "pytest_args"):
         if not isinstance(recipe.get(key, []), list) or any(not isinstance(x, str) for x in recipe.get(key, [])):
             raise ValueError("recipe fields must be lists of strings")
@@ -96,6 +98,13 @@ def validate_recipe(recipe):
     if len(args) % 2 or any(args[i] not in {"-m", "-k"} for i in range(0, len(args), 2)):
         raise ValueError("only -m/-k expression pairs are supported")
     return recipe
+
+
+def install_summary(result, lock):
+    """Bounded measured installation evidence, without paths or command output."""
+    return {key: result[key] for key in ("exit_code", "seconds", "timed_out", "log_limited")} | {
+        "lock_sha256": digest(lock), "method": "offline pip --require-hashes",
+        "log": "harness-install.log"}
 
 
 def baseline_reason(result, junit):
@@ -175,6 +184,7 @@ def main():
     started = time.monotonic()
     status = {"status": "skipped", "reason": "worker did not complete"}
     skipped_links = []
+    harness_summary = None
     try:
         shutil.copyfile('/opt/harness.lock', output / 'harness.lock')
         recipe = validate_recipe(json.loads(Path("/input/recipe.json").read_text()))
@@ -192,6 +202,7 @@ def main():
                               '--no-index', '--find-links=/opt/wheels', '--require-hashes', '-r', '/opt/harness.lock'],
                              source, output / 'harness-install.log',
                              max(0.1, args.seconds - (time.monotonic() - started)), env)
+        harness_summary = install_summary(harness_install, output / 'harness.lock')
         if harness_install['exit_code'] or harness_install['timed_out'] or harness_install['log_limited']:
             raise RuntimeError('hash-locked harness installation failed; see harness-install.log')
         # Owned package and dependencies are already hash-installed.
@@ -215,6 +226,8 @@ def main():
     except Exception as exc:
         status.update(status="skipped", reason=f"{type(exc).__name__}: {exc}")
     status['skipped_links'] = skipped_links
+    status['harness_install'] = harness_summary
+    status['budget_seconds'] = args.seconds
     classify_failed_run(status, output)
     write_json(output / "worker-status.json", status)
     # Keep tmpfs alive for bounded host export, never wait indefinitely.
