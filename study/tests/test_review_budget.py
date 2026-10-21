@@ -92,7 +92,7 @@ def test_committed_summary_regenerates_byte_exact_with_lf(tmp_path):
     source = Path(__file__).resolve().parents[1] / 'results'
     destination = tmp_path / 'results'
     shutil.copytree(source, destination)
-    summarize(destination, tmp_path/'REPORT.md')
+    summarize(destination, tmp_path/'REPORT.md', archive_run='39639203251')
     actual = (destination/'summary.csv').read_bytes()
     assert b'\r' not in actual
     assert actual == (source/'summary.csv').read_bytes()

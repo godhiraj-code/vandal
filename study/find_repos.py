@@ -407,7 +407,7 @@ def pr_provenance(pr):
 def discover(api, queries, pages, mode="commits"):
     if type(pages) is not int or not 1 <= pages <= 10:
         raise ValueError("pages must be 1..10 (100 results/page, GitHub's 1000-result cap)")
-    rows, audit, seen = [], [], set()
+    rows, audit, seen, code_snapshots = [], [], set(), {}
     for endpoint, query, kind in search_specs(mode, queries):
         for page in range(1, pages + 1):
             try:
@@ -481,7 +481,22 @@ def discover(api, queries, pages, mode="commits"):
                     support = supporting_at(api, repo, sha, list(sources), sources)
                     row = parse_candidate(metadata, commit, license_info, sources, evidence_kind=row_kind, evidence_url=evidence, detail=detail, supporting_sources=support)
                     if row:
-                        rows.append(row)
+                        if kind == "code_only":
+                            snapshot = (repo, sha)
+                            if snapshot not in code_snapshots:
+                                code_snapshots[snapshot] = (row, {}, {}, set())
+                                rows.append(row)
+                            merged, accepted_sources, accepted_support, evidence_urls = code_snapshots[snapshot]
+                            accepted_sources.update({p: sources[p] for p in json.loads(row["test_paths"])})
+                            accepted_support.update(support)
+                            evidence_urls.add(evidence)
+                            screen = static_screen(accepted_sources, accepted_support)
+                            merged.update(test_paths=json.dumps(sorted(accepted_sources)),
+                                          observable_calls=str(screen["observable_calls"]),
+                                          offline_risk=json.dumps(screen["offline_risk"]),
+                                          evidence_detail="Python browser code presence only; no test-specific agent authorship established. Accepted code hits: " + "; ".join(sorted(evidence_urls)))
+                        else:
+                            rows.append(row)
                     audit.append({"repo": repo, "sha": sha, "evidence_kind": row["evidence_kind"] if row else kind or "test_commit",
                                   "candidate": bool(row), "screen": static_screen(sources, support),
                                   "reason": "person review required" if row else "no recognized license, matching evidence or Python browser tests"})
@@ -510,8 +525,9 @@ def main():
     if not token:
         p.error("GITHUB_TOKEN is required for search; never pass it to run_study or Docker")
     rows, audit = discover(GitHub(token), args.query or QUERIES, args.pages, args.mode)
-    # Multiple provenance routes can identify the same snapshot. Keep the first
-    # lead in the manifest; retain every evidence route in the audit.
+    # Accepted code hits already form one recomputed union per snapshot. Other
+    # provenance routes remain separate in the audit; do not extend strong
+    # authorship evidence to files found only by a weak code-presence search.
     unique = {}
     for row in rows:
         unique.setdefault((row["repo"], row["commit_sha"]), row)

@@ -11,6 +11,12 @@ worker statuses remain historical evidence, including their original formatting.
 The repository-level REPORT.md and PILOT_SUMMARY.md are newly derived summaries.
 No public code was executed while retaining or interpreting this artifact.
 
+Retained location: `study/results/archive/39639203251/`. The live results scan and
+workflow upload of `study/results/public/**` exclude this archive. Reproduce its
+historical public report with `python -m study.summarize --archive-run 39639203251`;
+this selects the archived public attempts instead of fresh live attempts. Original
+paths inside `artifact/` and its manifest are preserved as downloaded evidence.
+
 ## Contrail: excluded baseline
 
 At `2465e368b7658bd23f0d41f1473c114db3573005`, the baseline recorded **14 passed,

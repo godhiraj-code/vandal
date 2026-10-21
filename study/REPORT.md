@@ -1,5 +1,7 @@
 # Study protocol and results
 
+Historical public selection: archive/39639203251/ only; live public attempts are excluded. Reproduce with `python -m study.summarize --archive-run 39639203251`.
+
 Public agent-suite sample: n=1 repositories. Included public attempts: n=2.
 
 Diagnostic archives are omitted from all tables and sample sizes; see results/diagnostic/ for failed-pilot evidence.
@@ -19,8 +21,8 @@ Counts below are observed mutants, with n_tests and n_mutants shown per row. Sco
 
 | Repository / artifact directory / pinned SHA | Status | Score % (n_scored) | n_tests / n_mutants | Killed | Survived | Error | Error % | Untested mutants | Unsupported targets | Cap omissions |
 |---|---|---|---|---|---|---|---|---|---|---|
-| atdr/contrail / public/39639203251/artifact/study/results/public/atdr__contrail__2465e368b765 / 2465e368b7658bd23f0d41f1473c114db3573005  | skipped | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| tegataiprime/Platelet-Movie / public/39639203251/artifact/study/results/public/tegataiprime__Platelet-Movie__14664611814b / 14664611814b126289f291ad24ee294102efb07c  | completed | 50.8475 (n=59) | 8 / 59 | 30 | 29 | 0 | 0.0000 | 0 | 0 | 0 |
+| atdr/contrail / archive/39639203251/artifact/study/results/public/atdr__contrail__2465e368b765 / 2465e368b7658bd23f0d41f1473c114db3573005  | skipped | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
+| tegataiprime/Platelet-Movie / archive/39639203251/artifact/study/results/public/tegataiprime__Platelet-Movie__14664611814b / 14664611814b126289f291ad24ee294102efb07c  | completed | 50.8475 (n=59) | 8 / 59 | 30 | 29 | 0 | 0.0000 | 0 | 0 | 0 |
 
 ### Host-only owned fixture validation (n=1 runs)
 

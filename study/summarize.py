@@ -4,6 +4,7 @@ import csv
 import json
 import math
 import os
+import re
 import statistics
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -12,6 +13,7 @@ from study.common import approval_reason, digest
 
 STATUSES = ("killed", "survived", "error", "not_applied", "skipped")
 DIAGNOSTIC_ROOT = Path(__file__).resolve().parent / "results" / "diagnostic"
+ARCHIVE_ROOT = Path(__file__).resolve().parent / "results" / "archive"
 
 
 def counts(mutants):
@@ -81,10 +83,22 @@ def spread(values):
             "min": min(values), "max": max(values), "iqr": q[2] - q[0] if q else None}
 
 
-def read_results(root):
+def read_results(root, *, archive_run=None):
+    archive_roots = {ARCHIVE_ROOT.resolve(), (root / "archive").resolve()}
+    selected_archive = None
+    if archive_run is not None:
+        if not isinstance(archive_run, str) or not re.fullmatch(r"[0-9]+", archive_run):
+            raise ValueError("archive run must be a numeric run ID")
+        selected_archive = (root / "archive" / archive_run).resolve()
+        if (selected_archive.parent != (root / "archive").resolve()
+                or not selected_archive.is_dir()):
+            raise ValueError("selected archive run is missing or escapes archive directory")
     rows, strategies, seen = [], defaultdict(Counter), set()
     for path in sorted(root.rglob("status.json")):
-        if DIAGNOSTIC_ROOT in path.resolve().parents or any((p / ".diagnostic-only").exists() for p in path.parents):
+        parents = path.resolve().parents
+        if DIAGNOSTIC_ROOT in parents or any((p / ".diagnostic-only").exists() for p in path.parents):
+            continue
+        if any(archive in parents for archive in archive_roots) and selected_archive not in parents:
             continue
         row = {"repo": str(path.parent.relative_to(root)), "commit_sha": "", "kind": "unknown",
                "group": "unknown", "status": "invalid", "reason": "", "eligible": False,
@@ -94,6 +108,10 @@ def read_results(root):
             if not isinstance(status, dict):
                 raise ValueError("status must be an object")
             row.update({k: status[k] for k in ("repo", "commit_sha", "kind", "group", "status", "reason")})
+            # Historical selection replaces live public attempts; it never mixes
+            # archived and new runs of the same repository into one sample.
+            if selected_archive is not None and row["kind"] == "public" and selected_archive not in parents:
+                continue
             if any(not isinstance(row[k], str) for k in ("repo", "commit_sha", "kind", "group", "status", "reason")):
                 raise ValueError("invalid status field types")
             row["validation_mode"] = ("host-only" if "host-only" in status.get("isolation", "")
@@ -159,10 +177,10 @@ def cell(value):
     return str(value).replace("|", "\\|").replace("\n", " ")
 
 
-def summarize(root, report_path, *, write_fixture_attempts=False):
+def summarize(root, report_path, *, write_fixture_attempts=False, archive_run=None):
     if write_fixture_attempts and (os.environ.get("CI") or os.environ.get("GITHUB_ACTIONS")):
         raise ValueError("fixture history must never be rewritten from CI")
-    rows, strategies = read_results(root)
+    rows, strategies = read_results(root, archive_run=archive_run)
     failures = [r for r in rows if r["kind"] == "fixture" and r["status"] != "completed"]
     visible = [r for r in rows if r not in failures]
     failure_path = report_path.with_name("FIXTURE_ATTEMPTS.md")
@@ -181,6 +199,8 @@ def summarize(root, report_path, *, write_fixture_attempts=False):
         writer.writerows(rows)
     title = "Study protocol and results" if any(r["kind"] == "public" and r["status"] == "completed" for r in rows) else "Study protocol (no valid public results)"
     lines = ["# " + title, "",
+             (f"Historical public selection: archive/{archive_run}/ only; live public attempts are excluded. Reproduce with `python -m study.summarize --archive-run {archive_run}`."
+              if archive_run else "Live public selection: retained results/archive/ evidence is excluded; use --archive-run RUN_ID only for a separate historical report."), "",
              f"Public agent-suite sample: n={sum(r['eligible'] for r in rows)} repositories. Included public attempts: n={sum(r['kind'] == 'public' for r in rows)}.", "",
              "Diagnostic archives are omitted from all tables and sample sizes; see results/diagnostic/ for failed-pilot evidence.", "",
              "This is a descriptive study of agent-written suites only. No comparison population or causal claim is defined.", "",
@@ -237,8 +257,9 @@ def main():
     p.add_argument("--results", type=Path, default=Path("study/results"))
     p.add_argument("--report", type=Path, default=Path("study/REPORT.md"))
     p.add_argument("--write-fixture-attempts", action="store_true", help="explicitly regenerate historical fixture failure log; forbidden in CI")
+    p.add_argument("--archive-run", help="select one retained numeric run ID instead of live public attempts")
     args = p.parse_args()
-    summarize(args.results, args.report, write_fixture_attempts=args.write_fixture_attempts)
+    summarize(args.results, args.report, write_fixture_attempts=args.write_fixture_attempts, archive_run=args.archive_run)
 
 
 if __name__ == "__main__":

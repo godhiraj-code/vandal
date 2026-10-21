@@ -126,7 +126,19 @@ manifest/SHA correspondence, cleanup status and artifact_sha256 maps before acce
 numbers. Candidate code can falsify its own reports; hashes only detect later edits.
 Keep failures and deviations. Copy the inspected files into the corresponding study/
 paths in a separate local review checkout, preserving existing evidence rather than
-overwriting another run. Recompute `python -m study.summarize`, review the diff, then
+overwriting another run. Retained artifacts belong under `study/results/archive/RUN_ID/`,
+outside the live `study/results/public/**` upload tree. Never put an old artifact
+inside live results: it would be re-uploaded and could duplicate a new run.
+
+Normal `python -m study.summarize` scans live results and excludes the archive
+tree. To reproduce the retained pilot report, run
+`python -m study.summarize --archive-run 39639203251`. This explicitly selects
+that archive's public attempts instead of live public attempts; owned-fixture
+history remains separate. The committed REPORT.md and summary.csv use this
+historical selection. Neither selection combines old and new public runs.
+The original extracted `artifact/` files and ARTIFACT_MANIFEST.json remain byte
+exact; paths inside them describe the original downloaded artifact and must not
+be rewritten. Review the newly generated report diff, then
 commit only the reviewed reports/raw evidence/manifest/image/summary in a separate
 results commit. Do not commit wheel binaries. Any such results commit/push requires
 the human's subsequent instruction; the workflow never performs it automatically.

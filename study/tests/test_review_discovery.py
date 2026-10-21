@@ -121,3 +121,42 @@ def test_meow_fetch_uses_reviewed_profile_without_credentials(tmp_path, monkeypa
     for wheel in metadata:
         assert f"{wheel['name']}=={wheel['version']} --hash=sha256:{wheel['sha256']}" in lock
         assert wheel['license'] != 'UNKNOWN'
+
+
+def test_code_mode_writes_combined_paths_counts_and_risks(tmp_path, monkeypatch):
+    import sys
+    from study import find_repos
+    from study.common import read_rows
+    sha = 'a' * 40
+    sources = {
+        'tests/test_a.py': 'from playwright.sync_api import Page\nfrom helpers import Login\ndef test_a(page: Page):\n Login(page).submit()\n page.locator("input").fill("a")\n',
+        'tests/test_b.py': 'from playwright.sync_api import Page\nfrom helpers import Login\ndef test_b(page: Page):\n Login(page).submit()\n page.get_by_text("ok").click()\n page.goto("https://example.invalid")\n',
+    }
+    support = {'helpers.py': 'import shutil\nfrom playwright.sync_api import Page\nclass Login:\n def __init__(self, page: Page): self.page = page\n def submit(self):\n  shutil.which("docker")\n  self.page.get_by_role("button").click()\n'}
+    class API:
+        def get(self, endpoint, **kw):
+            if endpoint == 'search/code':
+                return {'items': [{'repository': {'full_name': 'owned/probe'}, 'path': p} for p in sources]}
+            if endpoint == 'repos/owned/probe':
+                return {'full_name': 'owned/probe', 'private': False, 'default_branch': 'main'}
+            if endpoint.startswith('repos/owned/probe/commits/'):
+                return {'sha': sha, 'commit': {'message': ''}, 'files': []}
+            raise AssertionError(endpoint)
+    monkeypatch.setattr(find_repos, 'GitHub', lambda _: API())
+    monkeypatch.setattr(find_repos, 'search_specs', lambda *_: iter([('code', 'owned query', 'code_only')]))
+    monkeypatch.setattr(find_repos, 'pinned_license', lambda *_: {
+        'license': {'spdx_id': 'MIT'}, 'html_url': f'https://github.com/owned/probe/blob/{sha}/LICENSE'})
+    monkeypatch.setattr(find_repos, 'sources_at', lambda api, repo, pin, paths: {p: sources[p] for p in paths})
+    monkeypatch.setattr(find_repos, 'supporting_at', lambda *_: support)
+    monkeypatch.setenv('GITHUB_TOKEN', 'owned fake transport sentinel')
+    output = tmp_path / 'candidates.csv'
+    monkeypatch.setattr(sys, 'argv', ['find_repos', '--mode', 'code', '--pages', '1', '--output', str(output)])
+    find_repos.main()
+    rows = read_rows(output)
+    assert len(rows) == 1
+    assert json.loads(rows[0]['test_paths']) == sorted(sources)
+    assert rows[0]['observable_calls'] == '6'  # Shared page object counted once, not 4 + 4.
+    assert json.loads(rows[0]['offline_risk']) == find_repos.static_screen(sources, support)['offline_risk']
+    assert len(json.loads(rows[0]['offline_risk'])) == 2
+    assert all(path in rows[0]['evidence_detail'] for path in sources)
+    assert rows[0]['approved'] == 'no' and rows[0]['group'] == 'unresolved'

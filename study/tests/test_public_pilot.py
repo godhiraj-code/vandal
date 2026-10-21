@@ -53,7 +53,7 @@ def test_harness_install_summary_records_measured_success_and_failure(tmp_path, 
 
 
 def test_archived_pilot_bytes_match_manifest():
-    root = Path(__file__).resolve().parents[1] / 'results/public/39639203251'
+    root = Path(__file__).resolve().parents[1] / 'results/archive/39639203251'
     manifest = json.loads((root / 'ARTIFACT_MANIFEST.json').read_text(encoding='utf-8'))
     assert len(manifest['entries']) == 42
     for entry in manifest['entries']:
@@ -72,7 +72,7 @@ def test_archived_pilot_bytes_match_manifest():
 def test_static_survivor_breakdown_matches_all_raw_survivors():
     import csv
     from collections import Counter
-    root = Path(__file__).resolve().parents[1] / 'results/public/39639203251'
+    root = Path(__file__).resolve().parents[1] / 'results/archive/39639203251'
     with (root / 'SURVIVORS.csv').open(encoding='utf-8', newline='') as stream:
         classified = list(csv.DictReader(stream))
     report = json.loads((root / 'artifact/study/results/public/tegataiprime__Platelet-Movie__14664611814b/vandal_report.json').read_text())
