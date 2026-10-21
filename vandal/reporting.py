@@ -60,7 +60,12 @@ def write_report(report, path):
         candidate = path.parent / (".vandal-" + uuid.uuid4().hex)
         descriptor = os.open(candidate, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o666)
         temporary = candidate
-        with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
+        try:
+            stream = os.fdopen(descriptor, "w", encoding="utf-8")
+        except BaseException:
+            os.close(descriptor)
+            raise
+        with stream:
             stream.write(json.dumps(report, indent=2) + "\n")
         os.replace(temporary, path)
     finally:

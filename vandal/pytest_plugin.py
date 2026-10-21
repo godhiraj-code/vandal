@@ -268,9 +268,8 @@ class VandalPlugin:
             inferred = []
             if any(op in CLICK_OPERATIONS for op in operations):
                 inferred += ["stealth_disable", "ghost_element", "logic_sabotage"]
-            if any(op in {"press", "type", "select_option", "hover", "focus",
-                          "dispatch_event", "set_input_files"} for op in operations):
-                inferred += ["stealth_disable", "logic_sabotage"]
+            if "hover" in operations:
+                inferred += ["stealth_disable", "ghost_element"]
             if any(op in READ_OPERATIONS or op == "type" or op.startswith("expect:") for op in operations):
                 inferred.append("data_sabotage")
             choices[target] = self.strategies if self.strategies is not None else list(dict.fromkeys(inferred))

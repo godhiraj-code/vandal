@@ -112,6 +112,38 @@ def test_json_temporary_creation_uses_normal_file_mode(tmp_path, monkeypatch):
     assert modes == [0o666]
 
 
+def test_fdopen_failure_closes_descriptor_and_preserves_report(tmp_path, monkeypatch):
+    descriptors = []
+    original_open = os.open
+    def capture(*args, **kwargs):
+        descriptor = original_open(*args, **kwargs)
+        descriptors.append(descriptor)
+        return descriptor
+    def fail_fdopen(*args, **kwargs):
+        raise OSError("fdopen failed")
+    path = tmp_path / "report.json"
+    path.write_text("existing report")
+    monkeypatch.setattr(os, "open", capture)
+    monkeypatch.setattr(os, "fdopen", fail_fdopen)
+    try:
+        with pytest.raises(OSError, match="fdopen failed"):
+            write_report(make_report([]), path)
+        assert len(descriptors) == 1
+        with pytest.raises(OSError) as closed:
+            os.fstat(descriptors[0])
+        import errno
+        assert closed.value.errno == errno.EBADF
+        assert path.read_text() == "existing report"
+        assert not list(tmp_path.glob(".vandal-*"))
+    finally:
+        # Keep the fail-before reproduction from leaking an open descriptor.
+        for descriptor in descriptors:
+            try:
+                os.close(descriptor)
+            except OSError:
+                pass
+
+
 @pytest.mark.skipif(os.name == "nt", reason="Windows does not implement POSIX file mode/umask semantics")
 @pytest.mark.parametrize("mask", [0o022, 0o027, 0o077])
 def test_json_report_permissions_follow_umask(tmp_path, mask):

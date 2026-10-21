@@ -55,9 +55,11 @@ in that case, including a gate of zero.
 Targets are discovered when actions, reads or Locator assertions run. Constructing
 an unused locator does not create a target. By default, clicks, double-clicks, taps
 and checks use `stealth_disable`, `ghost_element`, and `logic_sabotage`; reads,
-assertions and fills use `data_sabotage`. Press, type, select_option, hover, focus,
-dispatch_event and set_input_files use `stealth_disable` and `logic_sabotage`;
-type also uses `data_sabotage`. Observed targets without an inferred strategy
+assertions, fills and type use `data_sabotage`. Hover uses `stealth_disable` and
+`ghost_element`, which block the browser's hover action. Press, select_option,
+focus, dispatch_event and set_input_files have no default strategies: pointer
+blocking and click handlers do not reliably sabotage those operations. Targets used only
+through those actions are reported as untested. Observed targets without an inferred strategy
 appear in `untested_targets` with a terminal warning, separately from cap omissions.
 `ui_shift` and `slow_load` require explicit
 selection. Candidates alternate across targets before the cap; `skipped_by_cap`

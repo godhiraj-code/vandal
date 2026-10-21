@@ -266,36 +266,71 @@ def test_slow(page):
 def test_remaining_action_defaults(operation):
     planner = SimpleNamespace(strategies=None)
     test = {"explicit": None, "targets": {"#q": {"operations": [operation]}}}
-    expected = ["stealth_disable", "logic_sabotage"]
-    if operation == "type":
-        expected.append("data_sabotage")
+    expected = (["data_sabotage"] if operation == "type" else
+                ["stealth_disable", "ghost_element"] if operation == "hover" else [])
     assert VandalPlugin.candidates(planner, test, ["#q"]) == [(s, "#q") for s in expected]
-    assert test["untested_targets"] == []
+    assert test["untested_targets"] == ([] if expected else ["#q"])
     test["targets"]["#q"]["operations"] += ["click", "fill"]
     pairs = VandalPlugin.candidates(planner, test, ["#q"])
     assert len(pairs) == len(set(pairs))
 
 
 @pytest.mark.parametrize("api", ["sync", "async"])
-def test_select_option_and_press_get_default_mutants(tmp_path, api):
-    html = '<select id="s"><option value="a">A</option><option value="b">B</option></select><input id="q">'
+def test_asserted_select_option_and_press_are_untested_by_default(tmp_path, api):
+    html = '''<select id="s" onchange="document.querySelector('#selected').textContent=this.value">
+    <option value="a">A</option><option value="b">B</option></select>
+    <input id="q" onkeydown="if(event.key==='Enter') document.querySelector('#searched').textContent='searched'">
+    <p id="selected">waiting</p><p id="searched">waiting</p>'''
     wait = "await " if api == "async" else ""
     source = f'''
 import pytest
+from playwright.{api}_api import expect
 {"@pytest.mark.asyncio" if api == "async" else ""}
 {"async " if api == "async" else ""}def test_input(ready):
     {wait}ready.locator("#s").select_option("b", timeout=1500)
-    {wait}ready.locator("#q").press("a", timeout=1500)
+    {wait}expect(ready.locator("#selected")).to_have_text("b", timeout=500)
+    {wait}ready.locator("#q").press("Enter", timeout=1500)
+    {wait}expect(ready.locator("#searched")).to_have_text("searched", timeout=500)
 '''
     run, report = run_suite(tmp_path, source, "--vandal", conftest=fixture(api, html))
     assert run.returncode == 0, run.stdout + run.stderr
     test = report["tests"][0]
     assert test["baseline"] == "passed", report
-    assert test["untested_targets"] == []
+    assert test["untested_targets"] == ["#s", "#q"]
+    assert report["summary"]["survived"] == 0, report
+    assert report["summary"]["error"] == 0, report
     assert [(m["strategy"], m["selector"]) for m in test["mutants"]] == [
-        ("stealth_disable", "#s"), ("stealth_disable", "#q"),
-        ("logic_sabotage", "#s"), ("logic_sabotage", "#q")]
-    assert all(m["status"] in ("killed", "survived") for m in test["mutants"]), report
+        ("data_sabotage", "#selected"), ("data_sabotage", "#searched")]
+    assert all(m["status"] == "killed" for m in test["mutants"]), report
+    for selector in ("#s", "#q"):
+        assert f"Vandal: {selector} was used but no default strategy applies; pass --vandal-strategies" in run.stdout
+
+
+@pytest.mark.parametrize("api", ["sync", "async"])
+@pytest.mark.parametrize("strategy", ["stealth_disable", "ghost_element"])
+def test_hover_strategy_blocks_real_hover(tmp_path, api, strategy):
+    html = '''<button id="b" onmouseover="document.querySelector('#result').textContent='hovered'">Hover</button>
+    <p id="result">waiting</p>'''
+    wait = "await " if api == "async" else ""
+    source = f'''
+import pytest
+from playwright.{api}_api import expect
+{"@pytest.mark.asyncio" if api == "async" else ""}
+@pytest.mark.vandal(targets=["#b"])
+{"async " if api == "async" else ""}def test_hover(ready):
+    {wait}ready.locator("#b").hover(timeout=1500)
+    {wait}expect(ready.locator("#result")).to_have_text("hovered", timeout=500)
+'''
+    run, report = run_suite(tmp_path, source, "--vandal", "--vandal-strategies=" + strategy,
+                           conftest=fixture(api, html))
+    assert run.returncode == 0, run.stdout + run.stderr
+    test = report["tests"][0]
+    assert test["baseline"] == "passed", report
+    assert len(test["mutants"]) == 1, report
+    mutant = test["mutants"][0]
+    assert mutant["status"] == "killed", report
+    assert mutant["kill_reason"] == "action_failed", report
+    assert mutant["controls"] == {"before": "passed", "after": "passed"}
 
 
 @pytest.mark.parametrize("explicit", [False, True])
