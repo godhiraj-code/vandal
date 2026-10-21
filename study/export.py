@@ -7,7 +7,7 @@ import tarfile
 from pathlib import Path
 
 NAMES = ("worker-status.json", "venv.log", "install.log", "environment.txt", "baseline.log",
-         "baseline.xml", "mutation.log", "vandal_report.json")
+         "baseline.xml", "mutation.log", "vandal_report.json", "resources.jsonl", "harness.lock", "harness-install.log")
 
 
 def main():

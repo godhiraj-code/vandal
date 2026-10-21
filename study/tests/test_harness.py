@@ -119,7 +119,7 @@ def test_container_and_environment_do_not_inherit_secrets(tmp_path, monkeypatch)
     assert not {"GITHUB_TOKEN", "AWS_SECRET_ACCESS_KEY", "PYTHONPATH"} & env.keys()
     cmd = container_command("sha256:" + "a" * 64, "test", tmp_path, tmp_path, 60)
     assert "--network=none" in cmd and "--cap-drop=ALL" in cmd
-    assert "--read-only" in cmd and "--memory=4g" in cmd and "--pids-limit=256" in cmd
+    assert "--read-only" in cmd and "--memory=4g" in cmd and "--pids-limit=1024" in cmd
     # Docker's local driver rejects compression with just one log file.
     assert "--log-opt=max-file=1" in cmd and "--log-opt=compress=false" in cmd
     assert "--privileged" not in cmd and not any("docker.sock" in s for s in cmd)
@@ -144,7 +144,7 @@ def test_summary_math_and_tampering():
     with pytest.raises(ValueError):
         metrics(bad)
     assert spread([])["median"] is None
-    assert spread([25]) == {"n": 1, "median": 25, "min": 25, "max": 25, "iqr": None}
+    assert spread([25]) == {"n": 1, "median": None, "min": 25, "max": 25, "iqr": None}
     assert spread([0, 25, 50, 100])["iqr"] == 43.75
 
 
@@ -410,7 +410,7 @@ def test_container_venv_mount_is_executable_but_temporary_mount_is_not(tmp_path)
 
 
 def test_single_repository_iqr_is_unavailable():
-    assert spread([80])["median"] == 80
+    assert spread([80])["median"] is None
     assert spread([80])["iqr"] is None
     assert spread([20, 80])["iqr"] == 30
 
@@ -419,7 +419,7 @@ def test_no_public_runs_title_and_pooled_units(tmp_path):
     output = tmp_path / "REPORT.md"
     summarize(tmp_path / "results", output)
     text = output.read_text()
-    assert text.startswith("# Study protocol (no public runs yet)")
+    assert text.startswith("# Study protocol (no valid public results)")
     assert "Pooled by mutant" in text and "n_repos | n_mutants" in text
 
 

@@ -90,7 +90,7 @@ def test_no_public_results_title_for_failed_skipped_or_missing_reports(tmp_path,
     (tmp_path / "status.json").write_text(json.dumps({"repo": "o/r", "commit_sha": "a" * 40,
         "kind": "public", "group": "agent", "status": status, "reason": "attempt"}))
     summarize(tmp_path, tmp_path / "REPORT.md")
-    assert (tmp_path / "REPORT.md").read_text().splitlines()[0] == "# Study protocol (no public runs yet)"
+    assert (tmp_path / "REPORT.md").read_text().splitlines()[0] == "# Study protocol (no valid public results)"
 
 
 def test_completed_valid_public_report_gets_results_title(tmp_path):

@@ -22,6 +22,11 @@ def verify(root):
     assert all(not m["RW"] for m in binds)
     assert measured["n_scored"] > 0 and measured["error"] == 0
     assert status["worker"]["baseline"]["exit_code"] == 0
+    assert isolation["host_config"]["PidsLimit"] == 1024
+    resources = [json.loads(line) for line in (root / "resources.jsonl").read_text().splitlines()]
+    assert len(resources) == measured["n_mutants"]
+    assert all(r["reaped"] and r["remaining_new"] == 0 and r["subreaper"] for r in resources)
+    assert "--hash=sha256:" in (root / "harness.lock").read_text()
     print(json.dumps(measured, sort_keys=True))
 
 

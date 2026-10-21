@@ -244,3 +244,36 @@ The imported-helper recount has 10 positive-call leads (9 test_commit, 1 agent_p
 proposed rows remain unapproved; only the two explicit manifest rows are approved.
 Counts use cached pinned files and do not claim complete fresh traversal or runtime
 success. Exact-head hosted study/Docker/full-suite results are recorded in PR #7.
+
+## Failed-pilot follow-up from main 9303d11 (2026-10-21)
+
+No public repository was executed for this follow-up. The existing run 39615267652
+artifact is retained under results/diagnostic/, labelled failed pilot, not results.
+All 32 files retain their original hashes; the archive has provenance and is
+excluded even when supplied directly to the summarizer. Contrail failed extraction
+before baseline; Platelet's 24 errors among 59 mutants exceed the new 10% ceiling.
+Its old 256-PID command and resource errors are evidence consistent with exhaustion,
+not proof of the underlying process leak. No public score is accepted from that run.
+
+Local study tests: 128 passed, 1 skipped (Windows Bash syntax check). Independent
+review reproduced that result and identified an import-path mismatch in the guarded
+pytest launcher; a root-helper collection regression now covers the fix. Cleanup
+failure now records evidence and aborts instead of allowing contaminated later mutants.
+
+The final owned image build passed in 17.999 seconds, ID
+`sha256:04c2c2dd62a8e6bd879c9580eb00044f84856994afb50656229471df80683bdc`.
+The owned fixture passed through actual local-tar acquisition, worker, export and
+cleanup: 2 tests, 5 mutants, 4 killed, 1 survived, 0 errors, strength 80%.
+All 18 artifact hashes verified. Every mutant returned to its original descendant
+count: 2 -> 8 -> 2 for four mutants and 2 -> 6 -> 2 for one. The Linux subreaper
+was enabled; remaining_new was zero throughout. Isolation checks confirmed network
+none, read-only root, UID 10001, 1024 PIDs and read-only input/dependency mounts.
+The exported harness.lock has 21 hash-locked dependency entries plus the built
+owned-wheel hash. This validates the fixture, not any public candidate or its setup.
+
+An earlier intermediate owned run also passed with the same 4/1/0 outcomes. The
+first final-build invocation could not access Docker's named pipe inside the tool
+sandbox and built nothing; the permitted Docker invocation then succeeded. These
+attempts were not public runs. Local logs remain in the task's diagnostic-final-build
+and diagnostic-final-container directories; exact-head CI publishes its own fresh
+owned-fixture artifacts. Historical fixture report rows are unchanged observations.

@@ -1,0 +1,17 @@
+Looking in links: /deps, /deps
+Processing /opt/wheels/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl
+Processing /opt/wheels/greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl
+Processing /opt/wheels/pluggy-1.7.0-py3-none-any.whl
+Processing /opt/wheels/python_slugify-9.1.3-py3-none-any.whl
+Processing /opt/wheels/typing_extensions-4.16.0-py3-none-any.whl
+Processing /opt/wheels/pygments-2.21.0-py3-none-any.whl
+Processing /opt/wheels/pyee-14.0.0-py3-none-any.whl
+Processing /opt/wheels/iniconfig-2.3.1-py3-none-any.whl
+Processing /opt/wheels/playwright-1.64.0-py3-none-manylinux1_x86_64.whl
+Processing /opt/wheels/pytest-9.1.1-py3-none-any.whl
+Processing /opt/wheels/pytest_playwright-0.10.0-py3-none-any.whl
+Processing /opt/wheels/packaging-26.3-py3-none-any.whl
+Processing /opt/wheels/text_unidecode-1.3-py2.py3-none-any.whl
+Processing /opt/wheels/project_vandal-0.2.1-py3-none-any.whl
+Installing collected packages: text-unidecode, typing-extensions, python-slugify, pygments, psutil, pluggy, packaging, iniconfig, greenlet, pytest, pyee, playwright, pytest-playwright, project-vandal
+Successfully installed greenlet-3.5.6 iniconfig-2.3.1 packaging-26.3 playwright-1.64.0 pluggy-1.7.0 project-vandal-0.2.1 psutil-7.2.2 pyee-14.0.0 pygments-2.21.0 pytest-9.1.1 pytest-playwright-0.10.0 python-slugify-9.1.3 text-unidecode-1.3 typing-extensions-4.16.0

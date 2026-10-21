@@ -4,3 +4,16 @@
 !pilot/
 !pilot/**
 !summary.csv
+
+!public/
+!public/**
+!diagnostic/
+!diagnostic/**
+**/__pycache__/
+**/.pytest_cache/
+**/.cache/
+**/tmp/
+**/temp/
+**/*.pyc
+**/*.tmp
+**/*.temp

@@ -1,0 +1,860 @@
+{
+  "schema_version": 1,
+  "summary": {
+    "killed": 14,
+    "survived": 21,
+    "error": 24,
+    "not_applied": 0,
+    "skipped": 0,
+    "score": 40.0
+  },
+  "tests": [
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime-hm-group",
+        "#max-runtime-hm-group",
+        "#min-runtime-group",
+        "#max-runtime-group"
+      ],
+      "mutants": [
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "Used #runtime-format-toggle; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 0,
+        "survived": 5,
+        "error": 0,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": 0.0
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime-group",
+        "#max-runtime-group",
+        "#min-runtime-hm-group",
+        "#max-runtime-hm-group"
+      ],
+      "mutants": [
+        {
+          "strategy": "stealth_disable",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "y:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f6e7cbb9b20>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f6e7b860360>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_a9b8c1711b9841fcb8d4d040f67780b3=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-pointer=\"\" data-vandalized=\"stealth_disable\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed"
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "ait original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f2568699be0>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f2567350360>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_c229d9f1188a4856a8f0885cf9368691=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-opacity=\"\" data-vandal-original-pointer=\"\" data-vandalized=\"ghost_element\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed"
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "  - cell \"1 h 30 m\"\nE               - cell \"2020\"\nE               - cell \"7.1\"\nE               - cell \"PG-13\"\nE               - cell \"Drama\"\nE             - row \"Add to favorites Zulu Film A longer film. 2 h 30 m 2021 8.2 R Action\":\nE               - cell \"Add to favorites\":\nE                 - button \"Add to favorites\":\nE                   - img\nE               - cell \"Zulu Film A longer film.\"\nE               - cell \"2 h 30 m\"\nE               - cell \"2021\"\nE               - cell \"8.2\"\nE               - cell \"R\"\nE               - cell \"Action\"\nE         - heading \"\u2139\ufe0f Acknowledgements & Disclaimers\" [level=2]\nE         - heading \"\ud83d\udcca Data Source\" [level=3]\nE         - paragraph:\nE           - text: This product uses the\nE           - link \"TMDB API\":\nE             - /url: https://www.themoviedb.org/\nE           - text: but is not endorsed or certified by TMDB. Movie data, ratings, and Netflix availability information are provided by\nE           - link \"The Movie Database (TMDB)\":\nE             - /url: https://www.themoviedb.org/\nE           - text: .\nE         - paragraph:\nE           - img \"TMDB Logo\"\nE         - heading \"\u26a0\ufe0f Accuracy Disclaimer\" [level=3]\nE         - paragraph: Netflix availability and movie data may have a 24-48 hour lag from TMDB's updates. Regional availability varies, and content may be removed or added without notice. Always verify movie availability on Netflix before your donation appointment.\nE         - heading \"\u270d\ufe0f Commentary Attribution\" [level=3]\nE         - paragraph:\nE           - text: \"\\\"Lady Whistledown\\\" commentary is AI-generated in the style of the character from\"\nE           - emphasis: Bridgerton\nE           - text: \", a Netflix series created by Chris Van Dusen and produced by Shondaland.\"\nE           - emphasis: Bridgerton\nE           - text: is based on the novels by Julia Quinn. This is a parody/homage and is not affiliated with Netflix, Shondaland, or Julia Quinn.\nE         - heading \"\ud83e\ude78 About Platelet Donation\" [level=3]\nE         - paragraph:\nE           - text: Platelet donation typically takes 2-3 hours and helps cancer patients, trauma victims, and surgical patients. Learn more about platelet donation at\nE           - link \"American Red Cross\":\nE             - /url: https://www.redcrossblood.org/giveplatelets.html\nE           - text: .\nE         - heading \"\u26a0\ufe0f Red Cross Disclaimer\" [level=3]\nE         - paragraph: This website is not affiliated with, endorsed by, or connected to the American Red Cross or any other Red Cross organization. The use of the American Red Cross brand colors and references to platelet donation are for informational purposes only. All trademarks and brand elements belong to their respective owners.\nE       - contentinfo:\nE         - paragraph:\nE           - text: Built with \u2764\ufe0f |\nE           - link \"View on GitHub\":\nE             - /url: https://github.com/tegataiprime/Platelet-Movie\nE           - text: \"| Updated weekly\"\n\ntests/ui/test_runtime_filter_toggle.py:35: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion"
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 3,
+        "survived": 5,
+        "error": 0,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": 37.5
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime-hm-group",
+        "#max-runtime-hm-group",
+        "#min-runtime-group",
+        "#max-runtime-group"
+      ],
+      "mutants": [
+        {
+          "strategy": "stealth_disable",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "y:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7fe3e1efdc70>\ncb = <function Channel.send.<locals>.<lambda> at 0x7fe3e1bb4360>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_2e0669e43bc249f68b6bc24b1407e505=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-pointer=\"\" data-vandalized=\"stealth_disable\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed"
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "ait original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7fd18dd834d0>\ncb = <function Channel.send.<locals>.<lambda> at 0x7fd18a888360>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_af46c4ad6e54438e9cf72f158f98e6b8=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-opacity=\"\" data-vandal-original-pointer=\"\" data-vandalized=\"ghost_element\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed"
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 2,
+        "survived": 6,
+        "error": 0,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": 25.0
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime-hm-group",
+        "#min-runtime-group",
+        "#max-runtime-hm-group",
+        "#max-runtime-group"
+      ],
+      "mutants": [
+        {
+          "strategy": "stealth_disable",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "y:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f9e77331d60>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f9e74fe8a40>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_69dc6f937fd646249fa4e81572fea5b9=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-pointer=\"\" data-vandalized=\"stealth_disable\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed"
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-group",
+          "status": "survived",
+          "hint": "Used #min-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-hm-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-hm-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-group",
+          "status": "survived",
+          "hint": "Used #max-runtime-group; check assertions about its value, state, or resulting behavior.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "ait original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7fea11535c70>\ncb = <function Channel.send.<locals>.<lambda> at 0x7fea101e0400>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_e4f5be359fba4ccb9e98df19d44482cb=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-opacity=\"\" data-vandal-original-pointer=\"\" data-vandalized=\"ghost_element\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed"
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "               - img\nE                       - cell \"Zulu Film A longer film.\"\nE                       - cell \"2 h 30 m\"\nE                       - cell \"2021\"\nE                       - cell \"8.2\"\nE                       - cell \"R\"\nE                       - cell \"Action\"\nE                 - heading \"\u2139\ufe0f Acknowledgements & Disclaimers\" [level=2]\nE                 - heading \"\ud83d\udcca Data Source\" [level=3]\nE                 - paragraph:\nE                   - text: This product uses the\nE                   - link \"TMDB API\":\nE                     - /url: https://www.themoviedb.org/\nE                   - text: but is not endorsed or certified by TMDB. Movie data, ratings, and Netflix availability information are provided by\nE                   - link \"The Movie Database (TMDB)\":\nE                     - /url: https://www.themoviedb.org/\nE                   - text: .\nE                 - paragraph:\nE                   - img \"TMDB Logo\"\nE                 - heading \"\u26a0\ufe0f Accuracy Disclaimer\" [level=3]\nE                 - paragraph: Netflix availability and movie data may have a 24-48 hour lag from TMDB's updates. Regional availability varies, and content may be removed or added without notice. Always verify movie availability on Netflix before your donation appointment.\nE                 - heading \"\u270d\ufe0f Commentary Attribution\" [level=3]\nE                 - paragraph:\nE                   - text: \"\\\"Lady Whistledown\\\" commentary is AI-generated in the style of the character from\"\nE                   - emphasis: Bridgerton\nE                   - text: \", a Netflix series created by Chris Van Dusen and produced by Shondaland.\"\nE                   - emphasis: Bridgerton\nE                   - text: is based on the novels by Julia Quinn. This is a parody/homage and is not affiliated with Netflix, Shondaland, or Julia Quinn.\nE                 - heading \"\ud83e\ude78 About Platelet Donation\" [level=3]\nE                 - paragraph:\nE                   - text: Platelet donation typically takes 2-3 hours and helps cancer patients, trauma victims, and surgical patients. Learn more about platelet donation at\nE                   - link \"American Red Cross\":\nE                     - /url: https://www.redcrossblood.org/giveplatelets.html\nE                   - text: .\nE                 - heading \"\u26a0\ufe0f Red Cross Disclaimer\" [level=3]\nE                 - paragraph: This website is not affiliated with, endorsed by, or connected to the American Red Cross or any other Red Cross organization. The use of the American Red Cross brand colors and references to platelet donation are for informational purposes only. All trademarks and brand elements belong to their respective owners.\nE               - contentinfo:\nE                 - paragraph:\nE                   - text: Built with \u2764\ufe0f |\nE                   - link \"View on GitHub\":\nE                     - /url: https://github.com/tegataiprime/Platelet-Movie\nE                   - text: \"| Updated weekly\"\n\ntests/ui/test_runtime_filter_toggle.py:90: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion"
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "survived",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Test passed after confirmed mutation",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 3,
+        "survived": 5,
+        "error": 0,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": 37.5
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime-hours",
+        "#min-runtime-minutes",
+        "#max-runtime-hours",
+        "#max-runtime-minutes",
+        "#min-runtime",
+        "#max-runtime"
+      ],
+      "mutants": [
+        {
+          "strategy": "stealth_disable",
+          "selector": "#runtime-format-toggle",
+          "status": "killed",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "y:264: in native\n    return await original(frame, replacement, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:598: in _click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7fa57d5f5c70>\ncb = <function Channel.send.<locals>.<lambda> at 0x7fa57c2a0040>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.TimeoutError: Page.click: Timeout 30000ms exceeded.\nE           Call log:\nE             - waiting for locator(\"#runtime-format-toggle\").locator(\"vandal_455bbd92094f467b90bcb0aed2cab725=apply\").or_(locator(\"#runtime-format-toggle\"))\nE               - locator resolved to <button class=\"btn-secondary\" id=\"runtime-format-toggle\" data-vandal-original-pointer=\"\" data-vandalized=\"stealth_disable\">Show Runtime in Minutes</button>\nE             - attempting click action\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE               - waiting 20ms\nE               2 \u00d7 waiting for element to be visible, enabled and stable\nE                 - element is visible, enabled and stable\nE                 - scrolling into view if needed\nE                 - done scrolling\nE                 - <div class=\"filters\">\u2026</div> intercepts pointer events\nE               - retrying click action\nE                 - waiting 100ms\nE               58 \u00d7 waiting for element to be visible, enabled and stable\nE                  - element is visible, enabled and stable\nE                  - scrolling into view if needed\nE                  - done scrolling\nE                  - <div class=\"filters\">\u2026</div> intercepts pointer events\nE                - retrying click action\nE                  - waiting 500ms\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TimeoutError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "action_failed"
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-hours",
+          "status": "killed",
+          "hint": "Used #min-runtime-hours; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:45495/index.html'>\n\n    def test_default_values_convert_correctly_between_modes(site_page):\n        \"\"\"Switching modes preserves the equivalent runtime value (90m == 1h30m).\"\"\"\n        page = site_page\n    \n>       expect(page.locator(\"#min-runtime-hours\")).to_have_value(\"1\")\nE       AssertionError: Locator expected to have Value '1'\nE       Actual value:  \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#min-runtime-hours\").locator(\"vandal_34ccd3aa6fec49859eda25838a07377f=apply\").or_(locator(\"#min-runtime-hours\")) with timeout 5000ms\nE         - waiting for locator(\"#min-runtime-hours\").locator(\"vandal_34ccd3aa6fec49859eda25838a07377f=apply\").or_(locator(\"#min-runtime-hours\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"20\" value=\"1\" type=\"number\" id=\"min-runtime-hours\" data-vandal-original-val=\"\" data-vandalized=\"data_sabotage\" aria-label=\"Minimum runtime hours\"/>\nE              - unexpected value \"\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Minimum runtime hours\"\n\ntests/ui/test_runtime_filter_toggle.py:101: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion"
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-minutes",
+          "status": "killed",
+          "hint": "Used #min-runtime-minutes; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:46013/index.html'>\n\n    def test_default_values_convert_correctly_between_modes(site_page):\n        \"\"\"Switching modes preserves the equivalent runtime value (90m == 1h30m).\"\"\"\n        page = site_page\n    \n        expect(page.locator(\"#min-runtime-hours\")).to_have_value(\"1\")\n>       expect(page.locator(\"#min-runtime-minutes\")).to_have_value(\"30\")\nE       AssertionError: Locator expected to have Value '30'\nE       Actual value:  \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#min-runtime-minutes\").locator(\"vandal_dd6754d7bdb04807a93ce7fb0a815f57=apply\").or_(locator(\"#min-runtime-minutes\")) with timeout 5000ms\nE         - waiting for locator(\"#min-runtime-minutes\").locator(\"vandal_dd6754d7bdb04807a93ce7fb0a815f57=apply\").or_(locator(\"#min-runtime-minutes\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"59\" value=\"30\" type=\"number\" id=\"min-runtime-minutes\" data-vandal-original-val=\"\" data-vandalized=\"data_sabotage\" aria-label=\"Minimum runtime minutes\"/>\nE              - unexpected value \"\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Minimum runtime minutes\"\n\ntests/ui/test_runtime_filter_toggle.py:102: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion"
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-hours",
+          "status": "killed",
+          "hint": "Used #max-runtime-hours; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:45425/index.html'>\n\n    def test_default_values_convert_correctly_between_modes(site_page):\n        \"\"\"Switching modes preserves the equivalent runtime value (90m == 1h30m).\"\"\"\n        page = site_page\n    \n        expect(page.locator(\"#min-runtime-hours\")).to_have_value(\"1\")\n        expect(page.locator(\"#min-runtime-minutes\")).to_have_value(\"30\")\n>       expect(page.locator(\"#max-runtime-hours\")).to_have_value(\"2\")\nE       AssertionError: Locator expected to have Value '2'\nE       Actual value:  \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#max-runtime-hours\").locator(\"vandal_5ae13d4aa6234647bafa5f4f77634f72=apply\").or_(locator(\"#max-runtime-hours\")) with timeout 5000ms\nE         - waiting for locator(\"#max-runtime-hours\").locator(\"vandal_5ae13d4aa6234647bafa5f4f77634f72=apply\").or_(locator(\"#max-runtime-hours\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"20\" value=\"2\" type=\"number\" id=\"max-runtime-hours\" data-vandal-original-val=\"\" data-vandalized=\"data_sabotage\" aria-label=\"Maximum runtime hours\"/>\nE              - unexpected value \"\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Maximum runtime hours\"\n\ntests/ui/test_runtime_filter_toggle.py:103: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion"
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-minutes",
+          "status": "killed",
+          "hint": "Used #max-runtime-minutes; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:38679/index.html'>\n\n    def test_default_values_convert_correctly_between_modes(site_page):\n        \"\"\"Switching modes preserves the equivalent runtime value (90m == 1h30m).\"\"\"\n        page = site_page\n    \n        expect(page.locator(\"#min-runtime-hours\")).to_have_value(\"1\")\n        expect(page.locator(\"#min-runtime-minutes\")).to_have_value(\"30\")\n        expect(page.locator(\"#max-runtime-hours\")).to_have_value(\"2\")\n>       expect(page.locator(\"#max-runtime-minutes\")).to_have_value(\"40\")\nE       AssertionError: Locator expected to have Value '40'\nE       Actual value:  \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#max-runtime-minutes\").locator(\"vandal_cb979250722445a783e8200daed365b2=apply\").or_(locator(\"#max-runtime-minutes\")) with timeout 5000ms\nE         - waiting for locator(\"#max-runtime-minutes\").locator(\"vandal_cb979250722445a783e8200daed365b2=apply\").or_(locator(\"#max-runtime-minutes\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"59\" value=\"40\" type=\"number\" id=\"max-runtime-minutes\" data-vandal-original-val=\"\" data-vandalized=\"data_sabotage\" aria-label=\"Maximum runtime minutes\"/>\nE              - unexpected value \"\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Maximum runtime minutes\"\n\ntests/ui/test_runtime_filter_toggle.py:104: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion"
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime",
+          "status": "killed",
+          "hint": "Used #min-runtime; check assertions about its value, state, or resulting behavior.",
+          "details": "site_page = <Page url='http://127.0.0.1:32811/index.html'>\n\n    def test_default_values_convert_correctly_between_modes(site_page):\n        \"\"\"Switching modes preserves the equivalent runtime value (90m == 1h30m).\"\"\"\n        page = site_page\n    \n        expect(page.locator(\"#min-runtime-hours\")).to_have_value(\"1\")\n        expect(page.locator(\"#min-runtime-minutes\")).to_have_value(\"30\")\n        expect(page.locator(\"#max-runtime-hours\")).to_have_value(\"2\")\n        expect(page.locator(\"#max-runtime-minutes\")).to_have_value(\"40\")\n    \n        page.click(\"#runtime-format-toggle\")\n    \n>       expect(page.locator(\"#min-runtime\")).to_have_value(\"90\")\nE       AssertionError: Locator expected to have Value '90'\nE       Actual value:  \nE       Call log:\nE         - Expect \"to_have_value\" locator(\"#min-runtime\").locator(\"vandal_68c4793959e145b1983882ede0ebcd66=apply\").or_(locator(\"#min-runtime\")) with timeout 5000ms\nE         - waiting for locator(\"#min-runtime\").locator(\"vandal_68c4793959e145b1983882ede0ebcd66=apply\").or_(locator(\"#min-runtime\"))\nE           14 \u00d7 locator resolved to <input min=\"0\" max=\"500\" value=\"90\" type=\"number\" id=\"min-runtime\" data-vandal-original-val=\"\" data-vandalized=\"data_sabotage\"/>\nE              - unexpected value \"\"\nE       \nE       Aria snapshot:\nE       - spinbutton \"Minimum Runtime (minutes):\"\n\ntests/ui/test_runtime_filter_toggle.py:108: AssertionError",
+          "controls": {
+            "before": "passed",
+            "after": "passed"
+          },
+          "kill_reason": "assertion"
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime",
+          "status": "error",
+          "hint": "Used #max-runtime; check assertions about its value, state, or resulting behavior.",
+          "details": "Clean replay after mutation failed: Unmutated worker exited 1 without three passing phases. page = <Page url='about:blank'>, site_base_url = 'http://127.0.0.1:40701'\n\n    @pytest.fixture\n    def site_page(page, site_base_url):\n        \"\"\"A Playwright page navigated to the site's index page with mocked movie data.\n    \n        Network requests for data-*.json are intercepted and fulfilled with\n        MOCK_SITE_DATA so tests are deterministic and don't depend on (or\n        accidentally mutate) the real generated site data files.\n        \"\"\"\n    \n        def _fulfill_mock_data(route):\n            route.fulfill(\n                status=200,\n                content_type=\"application/json\",\n                body=json.dumps(MOCK_SITE_DATA),\n            )\n    \n        page.route(\"**/data-*.json*\", _fulfill_mock_data)\n>       page.goto(f\"{site_base_url}/index.html\")\n\ntests/ui/conftest.py:91: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n../venv/lib/python3.12/site-packages/vandal/instrumentation.py:324: in synchronous\n    result = original(obj, *args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:18528: in goto\n    self._sync(\n../venv/lib/python3.12/site-packages/playwright/_impl/_page.py:564: in goto\n    return await self._main_frame.goto(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:157: in goto\n    await self._channel.send(\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f00a8283860>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f00a783d620>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.Error: Page.goto: net::ERR_EMPTY_RESPONSE at http://127.0.0.1:40701/index.html\nE           Call log:\nE             - navigating to \"http://127.0.0.1:40701/index.html\", waiting until \"load\"\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: Error\n\n",
+          "controls": {
+            "before": "passed",
+            "after": "error"
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#runtime-format-toggle",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Setup or teardown did not pass: page = <Page url='about:blank'>, site_base_url = 'http://127.0.0.1:44767'\n\n    @pytest.fixture\n    def site_page(page, site_base_url):\n        \"\"\"A Playwright page navigated to the site's index page with mocked movie data.\n    \n        Network requests for data-*.json are intercepted and fulfilled with\n        MOCK_SITE_DATA so tests are deterministic and don't depend on (or\n        accidentally mutate) the real generated site data files.\n        \"\"\"\n    \n        def _fulfill_mock_data(route):\n            route.fulfill(\n                status=200,\n                content_type=\"application/json\",\n                body=json.dumps(MOCK_SITE_DATA),\n            )\n    \n        page.route(\"**/data-*.json*\", _fulfill_mock_data)\n>       page.goto(f\"{site_base_url}/index.html\")\n\ntests/ui/conftest.py:91: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n../venv/lib/python3.12/site-packages/vandal/instrumentation.py:324: in synchronous\n    result = original(obj, *args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:18528: in goto\n    self._sync(\n../venv/lib/python3.12/site-packages/playwright/_impl/_page.py:564: in goto\n    return await self._main_frame.goto(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:157: in goto\n    await self._channel.send(\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f97dd861dc0>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f97dd67d940>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.Error: Page.goto: net::ERR_EMPTY_RESPONSE at http://127.0.0.1:44767/index.html\nE           Call log:\nE             - navigating to \"http://127.0.0.1:44767/index.html\", waiting until \"load\"\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: Error\n",
+          "controls": {
+            "before": "passed",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=/ms-playwright/chromium-1248/chrome-linux64/chrome> version=156.0.8078.4>>\n\n    @pytest.fixture\n    def page(context: BrowserContext) -> Page:\n>       return context.new_page()\n               ^^^^^^^^^^^^^^^^^^\n\n../venv/lib/python3.12/site-packages/pytest_playwright/pytest_playwright.py:625: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n../venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:2746: in new_page\n    return mapping.from_impl(self._sync(self._impl_obj.new_page()))\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_browser_context.py:353: in new_page\n    return from_channel(await self._channel.send(\"newPage\", None))\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f993bff6090>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f993bd794e0>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.Error: BrowserContext.new_page: Target crashed\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: Error\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Worker timeout (including setup/teardown)",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 6,
+        "survived": 0,
+        "error": 4,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": 100.0
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime-hours",
+        "#min-runtime-minutes",
+        "#max-runtime-hours",
+        "#max-runtime-minutes",
+        "#apply-filters",
+        "#filter-error"
+      ],
+      "mutants": [
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "error",
+          "hint": "Used #runtime-format-toggle; check assertions about its value, state, or resulting behavior.",
+          "details": "Clean replay before mutation failed: Worker timeout (including setup/teardown)",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-hours",
+          "status": "error",
+          "hint": "Used #min-runtime-hours; check assertions about its value, state, or resulting behavior.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=/ms-playwright/chromium-1248/chrome-linux64/chrome> version=156.0.8078.4>>\n\n    @pytest.fixture\n    def page(context: BrowserContext) -> Page:\n>       return context.new_page()\n               ^^^^^^^^^^^^^^^^^^\n\n../venv/lib/python3.12/site-packages/pytest_playwright/pytest_playwright.py:625: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n../venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:2746: in new_page\n    return mapping.from_impl(self._sync(self._impl_obj.new_page()))\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_browser_context.py:353: in new_page\n    return from_channel(await self._channel.send(\"newPage\", None))\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f01060a9dc0>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f0105e2b6a0>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.Error: BrowserContext.new_page: Target crashed\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: Error\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime-minutes",
+          "status": "error",
+          "hint": "Used #min-runtime-minutes; check assertions about its value, state, or resulting behavior.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=/ms-playwright/chromium-1248/chrome-linux64/chrome> version=156.0.8078.4>>\n\n    @pytest.fixture\n    def page(context: BrowserContext) -> Page:\n>       return context.new_page()\n               ^^^^^^^^^^^^^^^^^^\n\n../venv/lib/python3.12/site-packages/pytest_playwright/pytest_playwright.py:625: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n../venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:2746: in new_page\n    return mapping.from_impl(self._sync(self._impl_obj.new_page()))\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_browser_context.py:353: in new_page\n    return from_channel(await self._channel.send(\"newPage\", None))\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7fc33ea84e60>\ncb = <function Channel.send.<locals>.<lambda> at 0x7fc33d7176a0>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.Error: BrowserContext.new_page: Target crashed\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: Error\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-hours",
+          "status": "error",
+          "hint": "Used #max-runtime-hours; check assertions about its value, state, or resulting behavior.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=/ms-playwright/chromium-1248/chrome-linux64/chrome> version=156.0.8078.4>>\n\n    @pytest.fixture\n    def page(context: BrowserContext) -> Page:\n>       return context.new_page()\n               ^^^^^^^^^^^^^^^^^^\n\n../venv/lib/python3.12/site-packages/pytest_playwright/pytest_playwright.py:625: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n../venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:2746: in new_page\n    return mapping.from_impl(self._sync(self._impl_obj.new_page()))\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_browser_context.py:353: in new_page\n    return from_channel(await self._channel.send(\"newPage\", None))\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f8d0dc0da00>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f8d0d88b6a0>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.Error: BrowserContext.new_page: Target crashed\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: Error\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime-minutes",
+          "status": "error",
+          "hint": "Used #max-runtime-minutes; check assertions about its value, state, or resulting behavior.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. context = <BrowserContext browser=<Browser type=<BrowserType name=chromium executable_path=/ms-playwright/chromium-1248/chrome-linux64/chrome> version=156.0.8078.4>>\n\n    @pytest.fixture\n    def page(context: BrowserContext) -> Page:\n>       return context.new_page()\n               ^^^^^^^^^^^^^^^^^^\n\n../venv/lib/python3.12/site-packages/pytest_playwright/pytest_playwright.py:625: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n../venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:2746: in new_page\n    return mapping.from_impl(self._sync(self._impl_obj.new_page()))\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_browser_context.py:353: in new_page\n    return from_channel(await self._channel.send(\"newPage\", None))\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7f2d05485dc0>\ncb = <function Channel.send.<locals>.<lambda> at 0x7f2d052094e0>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           playwright._impl._errors.Error: BrowserContext.new_page: Target crashed\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: Error\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "stealth_disable",
+          "selector": "#apply-filters",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #apply-filters; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. @pytest.fixture(scope=\"session\")\n    def site_base_url() -> Iterator[str]:\n        \"\"\"Serve the site/ directory over HTTP for the duration of the test session.\"\"\"\n        handler = partial(SimpleHTTPRequestHandler, directory=str(SITE_DIR))\n        server = ThreadingHTTPServer((\"127.0.0.1\", 0), handler)\n        port = server.server_address[1]\n    \n        thread = threading.Thread(target=server.serve_forever, daemon=True)\n>       thread.start()\n\ntests/ui/conftest.py:64: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <Thread(Thread-1 (serve_forever), initial daemon)>\n\n    def start(self):\n        \"\"\"Start the thread's activity.\n    \n        It must be called at most once per thread object. It arranges for the\n        object's run() method to be invoked in a separate thread of control.\n    \n        This method will raise a RuntimeError if called more than once on the\n        same thread object.\n    \n        \"\"\"\n        if not self._initialized:\n            raise RuntimeError(\"thread.__init__() not called\")\n    \n        if self._started.is_set():\n            raise RuntimeError(\"threads can only be started once\")\n    \n        with _active_limbo_lock:\n            _limbo[self] = self\n        try:\n>           _start_new_thread(self._bootstrap, ())\nE           RuntimeError: can't start new thread\n\n/usr/lib/python3.12/threading.py:992: RuntimeError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#filter-error",
+          "status": "error",
+          "hint": "Used #filter-error; check assertions about its value, state, or resulting behavior.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. @pytest.fixture(scope=\"session\")\n    def site_base_url() -> Iterator[str]:\n        \"\"\"Serve the site/ directory over HTTP for the duration of the test session.\"\"\"\n        handler = partial(SimpleHTTPRequestHandler, directory=str(SITE_DIR))\n        server = ThreadingHTTPServer((\"127.0.0.1\", 0), handler)\n        port = server.server_address[1]\n    \n        thread = threading.Thread(target=server.serve_forever, daemon=True)\n>       thread.start()\n\ntests/ui/conftest.py:64: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <Thread(Thread-1 (serve_forever), initial daemon)>\n\n    def start(self):\n        \"\"\"Start the thread's activity.\n    \n        It must be called at most once per thread object. It arranges for the\n        object's run() method to be invoked in a separate thread of control.\n    \n        This method will raise a RuntimeError if called more than once on the\n        same thread object.\n    \n        \"\"\"\n        if not self._initialized:\n            raise RuntimeError(\"thread.__init__() not called\")\n    \n        if self._started.is_set():\n            raise RuntimeError(\"threads can only be started once\")\n    \n        with _active_limbo_lock:\n            _limbo[self] = self\n        try:\n>           _start_new_thread(self._bootstrap, ())\nE           RuntimeError: can't start new thread\n\n/usr/lib/python3.12/threading.py:992: RuntimeError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#apply-filters",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #apply-filters; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. @pytest.fixture(scope=\"session\")\n    def site_base_url() -> Iterator[str]:\n        \"\"\"Serve the site/ directory over HTTP for the duration of the test session.\"\"\"\n        handler = partial(SimpleHTTPRequestHandler, directory=str(SITE_DIR))\n        server = ThreadingHTTPServer((\"127.0.0.1\", 0), handler)\n        port = server.server_address[1]\n    \n        thread = threading.Thread(target=server.serve_forever, daemon=True)\n>       thread.start()\n\ntests/ui/conftest.py:64: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <Thread(Thread-1 (serve_forever), initial daemon)>\n\n    def start(self):\n        \"\"\"Start the thread's activity.\n    \n        It must be called at most once per thread object. It arranges for the\n        object's run() method to be invoked in a separate thread of control.\n    \n        This method will raise a RuntimeError if called more than once on the\n        same thread object.\n    \n        \"\"\"\n        if not self._initialized:\n            raise RuntimeError(\"thread.__init__() not called\")\n    \n        if self._started.is_set():\n            raise RuntimeError(\"threads can only be started once\")\n    \n        with _active_limbo_lock:\n            _limbo[self] = self\n        try:\n>           _start_new_thread(self._bootstrap, ())\nE           RuntimeError: can't start new thread\n\n/usr/lib/python3.12/threading.py:992: RuntimeError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#apply-filters",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #apply-filters; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. @pytest.fixture(scope=\"session\")\n    def site_base_url() -> Iterator[str]:\n        \"\"\"Serve the site/ directory over HTTP for the duration of the test session.\"\"\"\n        handler = partial(SimpleHTTPRequestHandler, directory=str(SITE_DIR))\n        server = ThreadingHTTPServer((\"127.0.0.1\", 0), handler)\n        port = server.server_address[1]\n    \n        thread = threading.Thread(target=server.serve_forever, daemon=True)\n>       thread.start()\n\ntests/ui/conftest.py:64: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <Thread(Thread-1 (serve_forever), initial daemon)>\n\n    def start(self):\n        \"\"\"Start the thread's activity.\n    \n        It must be called at most once per thread object. It arranges for the\n        object's run() method to be invoked in a separate thread of control.\n    \n        This method will raise a RuntimeError if called more than once on the\n        same thread object.\n    \n        \"\"\"\n        if not self._initialized:\n            raise RuntimeError(\"thread.__init__() not called\")\n    \n        if self._started.is_set():\n            raise RuntimeError(\"threads can only be started once\")\n    \n        with _active_limbo_lock:\n            _limbo[self] = self\n        try:\n>           _start_new_thread(self._bootstrap, ())\nE           RuntimeError: can't start new thread\n\n/usr/lib/python3.12/threading.py:992: RuntimeError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 0,
+        "survived": 0,
+        "error": 9,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": null
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#min-runtime",
+        "#max-runtime",
+        "#reset-filters"
+      ],
+      "mutants": [
+        {
+          "strategy": "stealth_disable",
+          "selector": "#runtime-format-toggle",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. able-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-bqVPjc --remote-debugging-pipe --no-startup-window\nE             - <launched> pid=11628\nE             - [pid=11628][err] [1021/142512.045637:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\nE             - [pid=11628][err] [1021/142512.045708:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\nE             - [pid=11628][err] [1021/142512.045738:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\nE             - [pid=11628][err] [1021/142512.045769:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\nE             - [pid=11628][err] [1021/142512.055845:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11628][err] [1021/142512.057641:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11628] <gracefully close start>\nE             - [pid=11628] <kill>\nE             - [pid=11628] <will force kill>\nE             - [pid=11628][err] [1021/142512.058247:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type:\nE             - [pid=11628][err] [1021/142512.058310:WARNING:device/bluetooth/dbus/bluez_dbus_manager.cc:209] Floss manager service not available, cannot set Floss enable/disable.\nE             - [pid=11628][err] [1021/142512.058420:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\nE             - [pid=11628][err] [1021/142512.070757:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type:\nE             - [pid=11628][err] [1021/142512.068628:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11628] <process did exit: exitCode=null, signal=SIGKILL>\nE             - [pid=11628] starting temporary directories cleanup\nE             - [pid=11628] finished temporary directories cleanup\nE             - [pid=11628] <gracefully close end>\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TargetClosedError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#min-runtime",
+          "status": "error",
+          "hint": "Used #min-runtime; check assertions about its value, state, or resulting behavior.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. 1021/142513.562604:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11677][err] [1021/142513.563116:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11677][err] [1021/142513.563136:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11677][err] [1021/142513.563196:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11677][err] [1021/142513.563221:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11677][err] [1021/142513.563895:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11677][err] [1021/142513.566181:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type:\nE             - [pid=11677][err] [1021/142513.566240:WARNING:device/bluetooth/dbus/bluez_dbus_manager.cc:209] Floss manager service not available, cannot set Floss enable/disable.\nE             - [pid=11677][err] [1021/142513.567172:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\nE             - [pid=11677] <gracefully close start>\nE             - [pid=11677] <kill>\nE             - [pid=11677] <will force kill>\nE             - [pid=11677][err] [1021/142513.578156:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type:\nE             - [pid=11677][err] [1021/142513.586011:ERROR:content/zygote/zygote_linux.cc:623] Zygote could not fork: process_type gpu-process numfds 4 child_pid -1\nE             - [pid=11677][err] [1021/142513.586316:ERROR:content/common/zygote/zygote_communication_linux.cc:173] NOTREACHED hit. Did not receive ping from zygote child\nE             - [pid=11677][err] [1021/142513.588298:ERROR:content/browser/gpu/gpu_process_host.cc:1038] GPU process launch failed: error_code=1002\nE             - [pid=11677][err] [1021/142513.589825:WARNING:content/browser/gpu/gpu_process_host.cc:1503] The GPU process has crashed 1 time(s)\nE             - [pid=11677][err] [1021/142513.592247:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11677] <process did exit: exitCode=null, signal=SIGKILL>\nE             - [pid=11677] starting temporary directories cleanup\nE             - [pid=11677] finished temporary directories cleanup\nE             - [pid=11677] <gracefully close end>\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TargetClosedError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#max-runtime",
+          "status": "error",
+          "hint": "Used #max-runtime; check assertions about its value, state, or resulting behavior.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. d or was terminated, restarting service.\nE             - [pid=11726][err] [1021/142515.132072:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11726][err] [1021/142515.134797:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11726][err] [1021/142515.137438:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11726][err] [1021/142515.140843:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11726][err] [1021/142515.143270:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11726][err] [1021/142515.143309:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11726][err] [1021/142515.143481:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11726][err] [1021/142515.146081:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11726][err] [1021/142515.148807:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11726][err] [1021/142515.151536:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11726][err] [1021/142515.154184:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11726][err] [1021/142515.156535:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11726][err] [1021/142515.158881:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11726][err] [1021/142515.161540:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11726][err] [1021/142515.164248:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.\nE             - [pid=11726] <process did exit: exitCode=null, signal=SIGKILL>\nE             - [pid=11726] starting temporary directories cleanup\nE             - [pid=11726] finished temporary directories cleanup\nE             - [pid=11726] <gracefully close end>\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TargetClosedError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "stealth_disable",
+          "selector": "#reset-filters",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #reset-filters; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-pMeoXG --remote-debugging-pipe --no-startup-window\nE             - <launched> pid=11819\nE             - [pid=11819][err] [1021/142516.746073:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\nE             - [pid=11819][err] [1021/142516.746134:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\nE             - [pid=11819][err] [1021/142516.746162:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\nE             - [pid=11819][err] [1021/142516.746192:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\nE             - [pid=11819][err] [1021/142516.746524:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11819] <gracefully close start>\nE             - [pid=11819] <kill>\nE             - [pid=11819] <will force kill>\nE             - [pid=11819] <process did exit: exitCode=null, signal=SIGTRAP>\nE             - [pid=11819] starting temporary directories cleanup\nE             - [pid=11819] finished temporary directories cleanup\nE             - [pid=11819] <gracefully close end>\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TargetClosedError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#runtime-format-toggle",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. pid=11862\nE             - [pid=11862][err] [1021/142519.335148:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\nE             - [pid=11862][err] [1021/142519.335236:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\nE             - [pid=11862][err] [1021/142519.364041:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11862][err] [1021/142519.364133:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11862][err] [1021/142519.364227:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11862][err] [1021/142519.364252:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11862][err] [1021/142519.364272:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11862][err] [1021/142519.364429:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11862][err] [1021/142519.364459:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11862][err] [1021/142519.364631:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\nE             - [pid=11862][err] [1021/142519.364678:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\nE             - [pid=11862][err] [1021/142519.366969:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11862][err] [1021/142519.367043:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11862] <gracefully close start>\nE             - [pid=11862] <kill>\nE             - [pid=11862] <will force kill>\nE             - [pid=11862][err] [0100/000000.376511:ERROR:content/zygote/zygote_linux.cc:623] Zygote could not fork: process_type gpu-process numfds 4 child_pid -1\nE             - [pid=11862][err] [0100/000000.088822:ERROR:content/zygote/zygote_linux.cc:655] write: Connection reset by peer (104)\nE             - [pid=11862] <process did exit: exitCode=null, signal=SIGTRAP>\nE             - [pid=11862] starting temporary directories cleanup\nE             - [pid=11862] finished temporary directories cleanup\nE             - [pid=11862] <gracefully close end>\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TargetClosedError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#reset-filters",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #reset-filters; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases.       - [pid=11912][err] [1021/142521.583123:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11912][err] [1021/142521.583249:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11912][err] [1021/142521.583323:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11912][err] [1021/142521.583345:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11912][err] [1021/142521.583364:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11912][err] [1021/142521.583393:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11912][err] [1021/142521.583562:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11912][err] [1021/142521.583753:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11912][err] [1021/142521.583789:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11912][err] [1021/142521.586140:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\nE             - [pid=11912][err] [1021/142521.586183:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\nE             - [pid=11912][err] [1021/142521.586223:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\nE             - [pid=11912][err] [1021/142521.586259:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\nE             - [pid=11912][err] [1021/142521.586440:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11912][err] [1021/142521.586619:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11912] <gracefully close start>\nE             - [pid=11912] <kill>\nE             - [pid=11912] <will force kill>\nE             - [pid=11912] <process did exit: exitCode=null, signal=SIGTRAP>\nE             - [pid=11912] starting temporary directories cleanup\nE             - [pid=11912] finished temporary directories cleanup\nE             - [pid=11912] <gracefully close end>\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TargetClosedError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. eate: Resource temporarily unavailable (11)\nE           Call log:\nE             - <launching> /ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-Xl3Iyw --remote-debugging-pipe --no-startup-window\nE             - <launched> pid=11960\nE             - [pid=11960][err] [1021/142523.900667:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\nE             - [pid=11960][err] [1021/142523.900744:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\nE             - [pid=11960][err] [1021/142523.901967:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11960] <gracefully close start>\nE             - [pid=11960] <kill>\nE             - [pid=11960] <will force kill>\nE             - [pid=11960] <process did exit: exitCode=null, signal=SIGTRAP>\nE             - [pid=11960] starting temporary directories cleanup\nE             - [pid=11960] finished temporary directories cleanup\nE             - [pid=11960] <gracefully close end>\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TargetClosedError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#reset-filters",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #reset-filters; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases.          [pid=11998][err] [1021/142526.120221:FATAL:content/browser/scheduler/browser_task_executor.cc:319] Failed to start BrowserThread:IO\nE           Call log:\nE             - <launching> /ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-EGNzKj --remote-debugging-pipe --no-startup-window\nE             - <launched> pid=11998\nE             - [pid=11998][err] [1021/142526.119979:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11998][err] [1021/142526.120211:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=11998][err] [1021/142526.120221:FATAL:content/browser/scheduler/browser_task_executor.cc:319] Failed to start BrowserThread:IO\nE             - [pid=11998] <gracefully close start>\nE             - [pid=11998] <kill>\nE             - [pid=11998] <will force kill>\nE             - [pid=11998] <process did exit: exitCode=null, signal=SIGTRAP>\nE             - [pid=11998] starting temporary directories cleanup\nE             - [pid=11998] finished temporary directories cleanup\nE             - [pid=11998] <gracefully close end>\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TargetClosedError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-KbCgrd --remote-debugging-pipe --no-startup-window\nE             - <launched> pid=12033\nE             - [pid=12033][err] [1021/142528.171474:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=12033][err] [1021/142528.171582:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=12033][err] [1021/142528.171628:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=12033][err] [1021/142528.171754:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=12033][err] [1021/142528.171768:FATAL:content/browser/scheduler/browser_task_executor.cc:319] Failed to start BrowserThread:IO\nE             - [pid=12033] <gracefully close start>\nE             - [pid=12033] <kill>\nE             - [pid=12033] <will force kill>\nE             - [pid=12033] <process did exit: exitCode=null, signal=SIGTRAP>\nE             - [pid=12033] starting temporary directories cleanup\nE             - [pid=12033] finished temporary directories cleanup\nE             - [pid=12033] <gracefully close end>\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TargetClosedError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 0,
+        "survived": 0,
+        "error": 9,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": null
+      }
+    },
+    {
+      "nodeid": "tests/ui/test_runtime_filter_toggle.py::test_movies_render_from_mocked_data[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#runtime-format-toggle",
+        "#movies-tbody"
+      ],
+      "mutants": [
+        {
+          "strategy": "data_sabotage",
+          "selector": "#runtime-format-toggle",
+          "status": "error",
+          "hint": "Used #runtime-format-toggle; check assertions about its value, state, or resulting behavior.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. launch_browser = <function launch_browser.<locals>.launch at 0x7fc135e77880>\n\n    @pytest.fixture(scope=\"session\")\n    def browser(launch_browser: Callable[[], Browser]) -> Generator[Browser, None, None]:\n>       browser = launch_browser()\n                  ^^^^^^^^^^^^^^^^\n\n../venv/lib/python3.12/site-packages/pytest_playwright/pytest_playwright.py:534: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n../venv/lib/python3.12/site-packages/pytest_playwright/pytest_playwright.py:526: in launch\n    browser = browser_type.launch(**launch_options)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n../venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:4103: in launch\n    self._sync(\n../venv/lib/python3.12/site-packages/playwright/_impl/_browser_type.py:101: in launch\n    await self._channel.send(\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:78: in send\n    return await self._connection.wrap_api_call(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <playwright._impl._connection.Connection object at 0x7fc136f94e60>\ncb = <function Channel.send.<locals>.<lambda> at 0x7fc135e76660>\nis_internal = False, title = None\n\n    async def wrap_api_call(\n        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None\n    ) -> Any:\n        if self._api_zone.get():\n            return await cb()\n        task = asyncio.current_task(self._loop)\n        parsed_st = _attach_api_call_information(\n            getattr(task, \"__pw_stack__\", None) or _capture_stack_trace(),\n            is_internal,\n            title,\n        )\n        self._api_zone.set(parsed_st)\n        try:\n            return await cb()\n        except Exception as error:\n>           raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nE           Exception: BrowserType.launch: Connection closed while reading from the driver\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: Exception\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#movies-tbody",
+          "status": "error",
+          "hint": "Used #movies-tbody; check assertions about its value, state, or resulting behavior.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 1 without three passing phases. -headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-8RK5Ow --remote-debugging-pipe --no-startup-window\nE           <launched> pid=12101\nE           [pid=12101][err] [1021/142533.930097:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE           Call log:\nE             - <launching> /ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-8RK5Ow --remote-debugging-pipe --no-startup-window\nE             - <launched> pid=12101\nE             - [pid=12101][err] [1021/142533.930097:ERROR:base/threading/platform_thread_posix.cc:162] pthread_create: Resource temporarily unavailable (11)\nE             - [pid=12101] <gracefully close start>\nE             - [pid=12101] <kill>\nE             - [pid=12101] <will force kill>\nE             - [pid=12101] <process did exit: exitCode=null, signal=SIGTRAP>\nE             - [pid=12101] starting temporary directories cleanup\nE             - [pid=12101] finished temporary directories cleanup\nE             - [pid=12101] <gracefully close end>\n\n../venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:636: TargetClosedError\n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 0,
+        "survived": 0,
+        "error": 2,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": null
+      }
+    }
+  ]
+}

@@ -28,7 +28,7 @@ def container_command(image, name, inputs, deps, seconds):
             raise ValueError("Docker mount source contains a delimiter")
     return ["docker", "run", "--detach", "--pull=never", "--name", name,
             "--network=none", "--read-only", "--user=10001:10001",
-            "--cap-drop=ALL", "--security-opt=no-new-privileges", "--pids-limit=256",
+            "--cap-drop=ALL", "--security-opt=no-new-privileges", "--pids-limit=1024",
             "--cpus=2", "--memory=4g", "--memory-swap=4g", "--shm-size=256m",
             "--ulimit=nofile=1024:1024", "--ulimit=fsize=134217728:134217728",
             "--log-driver=local", "--log-opt=max-size=8m", "--log-opt=max-file=1", "--log-opt=compress=false",

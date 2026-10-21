@@ -1,2 +1,5 @@
 # The confirmation hashes exact bytes; preserve them on every checkout platform.
 repos.csv -text
+# Preserve downloaded evidence and integrity hashes across checkout platforms.
+results/diagnostic/** -text -whitespace
+results/public/** -text -whitespace
