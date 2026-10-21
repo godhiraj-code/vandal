@@ -89,3 +89,51 @@ wheel provisioning. The three selected candidates may fail offline baselines,
 particularly pyvista-js's explicit unpkg CDN check.
 
 No public agent/human comparison is available: n_agent=0, n_human=0.
+
+## Container validation and expanded protocol (2026-10-21)
+
+Docker Desktop's earlier runtime-directory startup blocker was repaired using the
+separately authorized reversible runtime-directory rename. The backup was preserved.
+The Linux engine is now available; the earlier missing-pipe observations above are
+historical, not a current blocker.
+
+Retained build attempts: `container-build-01` failed before building because an empty
+Docker configuration could not find Buildx and the fallback rejected `--progress`.
+`container-build-02` succeeded in 98.644s after specifying the installed plugin
+location without credentials. Builds 03, 04 and 05 succeeded in 2.330s, 22.456s and
+2.577s respectively. Each build record lists the exact allowlisted context hashes,
+immutable image ID, bounded command/log result and empty-proxy/credential policy.
+
+| Owned container attempt | Actual result |
+|---|---|
+| 01 | Docker logging driver rejected compression with max-file=1. No worker or baseline. Cleanup succeeded. Fixed by disabling compression for this bounded single log. |
+| 02 | Worker venv creation failed with PermissionError. No baseline. Cleanup succeeded. Manual inspection after cleanup failed; its isolation record explicitly says unavailable. |
+| 03 | Same venv failure; captured mount evidence showed `/work` was noexec. Fixed by explicitly permitting execution on bounded work tmpfs; `/tmp` stays noexec. |
+| 04 | Container exited before mount inspection. No baseline/export evidence. Cleanup succeeded. Root cause of this specific attempt was not captured. |
+| 05 | Console explicitly reported ensurepip unavailable; container exited 1. Harness reached its deadline and recorded incomplete with no score; cleanup succeeded. Fixed by adding python3.12-venv to the owned image. |
+| 06 | Real container pipeline completed: baseline 2 passed, 4 killed, 1 survived, 0 errors, 80% (n_scored=5, n_tests=2). Export and cleanup passed. |
+| 07 | Rebuilt bounded-venv worker repeated the real container pipeline: baseline 2 passed, 4 killed, 1 survived, 0 errors, 80% (n_scored=5, n_tests=2). Export and cleanup passed. |
+
+Attempt 07 image ID and source/context provenance are retained in build-05 and the
+run's status. `python -m study.verify_container` passed for both successful runs:
+network none, read-only root, UID 10001, no privileged mode, read-only input/dependency
+binds only, no GITHUB_TOKEN, empty injected proxies and confirmed cleanup. These are
+repeated checks of **one owned fixture**, never public study subjects. Two kills are
+controlled action failures, not necessarily assertion detection.
+
+The venv step now runs as a bounded subprocess so ensurepip/SystemExit failures
+produce durable worker status and a whitelisted `venv.log`. Docker client routing
+variables and HOME are retained only for Docker CLI subprocesses; candidate process
+environments do not inherit them. The final worker was rebuilt and actually tested.
+
+Independent source review at `2ca7cfe098fa65b0e123ba7c2f78bb888d36a9da`
+passed **51 study tests in 1.06s** and verified attempt 06 from raw evidence with no
+new blocking finding. Local study tests passed **51 in 1.30s**. Final publication
+checks and current-head hosted CI are recorded in the PR description after completion.
+
+Static screening now retains seven unapproved test-commit leads and explicitly marks
+pyvista-js/debim expected unscoreable. Contrail (66 calls) and talkvote (100) are
+proposed replacements; their dependency preparation and person approval remain pending.
+The full authenticated discovery CLI was not run: GITHUB_TOKEN is absent. Read-only
+connector search and source inspection are documented in the discovery audit; one
+Devin author query returned HTTP 422, preserved honestly. No public pilot occurred.

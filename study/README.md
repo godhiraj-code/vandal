@@ -11,8 +11,11 @@ python -m study.find_repos
 ```
 
 Read-only GitHub Search API discovery uses `GITHUB_TOKEN` from the host environment.
-It searches commit evidence, checks changed Python browser tests and a pinned
-license, and writes unapproved leads plus an audit of queries/errors. Bounded search
+It searches commits (including generated tests), agent PRs, guidance files and
+historical control leads, checks pinned Python browser files and licenses, and
+writes unapproved leads plus an audit of queries/errors and evidence-type counts.
+Use --mode commits, agent-prs, guidance or human for an individual route.
+The AST observable_calls screen never imports or executes candidate code. Bounded search
 is not exhaustive. No test import, collection or repository setup happens here.
 For manual evidence sources see `candidate-evidence.json` and `CANDIDATE_REVIEW.md`.
 Run discovery to a separate `--output` to avoid replacing reviewed candidate work.
@@ -20,8 +23,9 @@ Run discovery to a separate `--output` to avoid replacing reviewed candidate wor
 A **person** checks `CRITERIA.md`, source/evidence and recipes, reviews dependency
 wheels, and copies selected rows to `repos.csv` with `approved=yes`, reviewer and
 UTC `reviewed_at`. Keep unapproved/rejected candidates in the discovery audit.
-Human cohort discovery is deliberately manual until affirmative authorship evidence
-is available; missing agent metadata never assigns that group automatically.
+Historical-control discovery uses pre-2021 repository and commit dates only to
+identify unresolved leads. A person must verify affirmative authorship evidence;
+missing agent metadata never assigns the human group automatically.
 
 ## Container execution
 
@@ -100,3 +104,27 @@ Never use this host-only fallback for a third-party candidate.
 runs and method limitations. Existing output directories are never overwritten by a
 run. Choose a new results directory for repeat validation; do not combine repeat
 runs of the same repository into a larger apparent sample.
+
+
+## Owned fixture through Docker
+
+The CI `docker` job builds the same Dockerfile and exercises `container_command`,
+worker, bounded export and cleanup using a local Git tar of the committed owned
+fixture. It never fetches a public candidate. Run the equivalent locally:
+
+```sh
+mkdir fixture-wheels
+python -m study.run_study --owned-fixture --image sha256:INSPECTED_ID --wheelhouse fixture-wheels --results study/results/owned-container --seconds 600
+python -m study.verify_container study/results/owned-container
+python -m study.summarize --results study/results/owned-container --report study/OWNED_REPORT.md
+```
+
+Docker CLI processes retain DOCKER_HOST, DOCKER_CONTEXT, DOCKER_CONFIG and HOME
+for client routing/configuration only. Candidate processes receive none of these
+host values; the worker supplies its own HOME. Proxy defaults are explicitly emptied.
+The work tmpfs permits execution for the fresh venv; the temporary tmpfs retains
+noexec, nosuid and nodev. The image includes the matching Python venv package.
+Venv creation, installation, baseline and mutation are bounded and logged.
+
+Single-repository IQR is N/A. Strategy rates are explicitly pooled by mutant with
+both n_repos and n_mutants; larger suites therefore carry greater weight.

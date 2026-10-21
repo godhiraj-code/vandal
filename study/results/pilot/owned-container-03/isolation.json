@@ -1,0 +1,64 @@
+{
+  "container_id": "2d205f45c756a618cdf1ea503e33f636b889a8bae08674b03309cc11480cbed3",
+  "image": "sha256:9101f6e8a31ce87b93204351a6ce5c574d0bffa59ed68efff8af4db19e931197",
+  "user": "10001:10001",
+  "host_config": {
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "Privileged": false,
+    "CapDrop": [
+      "ALL"
+    ],
+    "SecurityOpt": [
+      "no-new-privileges"
+    ],
+    "Memory": 4294967296,
+    "MemorySwap": 4294967296,
+    "NanoCpus": 2000000000,
+    "PidsLimit": 256,
+    "Tmpfs": {
+      "/tmp": "rw,nosuid,nodev,size=256m,uid=10001,gid=10001,mode=700",
+      "/work": "rw,nosuid,nodev,size=3g,uid=10001,gid=10001,mode=700"
+    },
+    "LogConfig": {
+      "Type": "local",
+      "Config": {
+        "compress": "false",
+        "max-file": "1",
+        "max-size": "8m"
+      }
+    }
+  },
+  "mounts": [
+    {
+      "Type": "bind",
+      "Source": "C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-g384khk_\\input",
+      "Destination": "/input",
+      "RW": false
+    },
+    {
+      "Type": "bind",
+      "Source": "C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-g384khk_\\deps",
+      "Destination": "/deps",
+      "RW": false
+    }
+  ],
+  "environment_keys": [
+    "ALL_PROXY",
+    "FTP_PROXY",
+    "HTTPS_PROXY",
+    "HTTP_PROXY",
+    "LANG",
+    "LC_ALL",
+    "NO_PROXY",
+    "PATH",
+    "PLAYWRIGHT_BROWSERS_PATH",
+    "all_proxy",
+    "ftp_proxy",
+    "http_proxy",
+    "https_proxy",
+    "no_proxy"
+  ],
+  "github_token_present": false,
+  "proxy_values_empty": true
+}

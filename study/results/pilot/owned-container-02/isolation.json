@@ -1,0 +1,5 @@
+{
+  "status": "unavailable",
+  "reason": "Manual inspection occurred after harness cleanup. docker inspect reported No such object; no isolation settings or secret absence were observed.",
+  "attempted_container_id": "abe8d1fa1912dbee23a2c7fab7b6b223fa1899e0d569f77c3b0dfc279fbd047d"
+}

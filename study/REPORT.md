@@ -1,8 +1,6 @@
-# We ran mutation testing on AI written Playwright test suites
+# Study protocol and results (no public runs yet)
 
-Study protocol and observed results. This title is a research question, not evidence that a public pilot ran.
-
-Recorded runs: n=3. Public runs: n=0. Owned fixture runs: n=3. Fixtures never enter the study comparison.
+Recorded runs: n=10. Public runs: n=0. Owned fixture runs: n=10. Fixtures never enter the study comparison.
 
 Results are limited to the repositories and selected tests actually executed. No population or causal inference is justified.
 
@@ -12,6 +10,13 @@ Counts below are observed mutants, with n_tests and n_mutants shown per row. Sco
 
 | Repository / kind / group | Status | Score % (n_scored) | n_tests / n_mutants | Killed | Survived | Error | Untested mutants | Unsupported targets | Cap omissions |
 |---|---|---|---|---|---|---|---|---|---|
+| owned-local-fixture / fixture / fixture | skipped | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A |
+| owned-local-fixture / fixture / fixture | skipped | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A |
+| owned-local-fixture / fixture / fixture | skipped | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A |
+| owned-local-fixture / fixture / fixture | skipped | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A |
+| owned-local-fixture / fixture / fixture | incomplete | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A |
+| owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
+| owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
 | owned-local-fixture / fixture / fixture | skipped | N/A (n=N/A) | N/A / N/A | N/A | N/A | N/A | N/A | N/A | N/A |
 | owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
 | owned-local-fixture / fixture / fixture | unscored | N/A (n=0) | 2 / 5 | 0 | 0 | 5 | 0 | 0 | 0 |
@@ -31,15 +36,22 @@ No between-group difference can be calculated: at least one group has no eligibl
 
 ## Strategy survival
 
-Ranked by survivors, with survival rate among killed + survived and repository sample sizes. Error/untested outcomes remain outside the rate.
+Pooled by mutant, ranked by survivors; larger suites contribute more weight. Survival rate is among killed + survived. Both n_repos and n_mutants are shown. Error/untested outcomes remain outside the rate.
 
-| Group / strategy | n repos | Survived / n scored | Survival % | Errors | Untested mutants |
-|---|---|---|---|---|---|
+| Group / strategy | n_repos | n_mutants | Survived / n scored | Survival % | Errors | Untested mutants |
+|---|---|---|---|---|---|---|
 
 No eligible strategy observations (n repositories=0).
 
 ## Exclusions and limitations
 
+- owned-local-fixture: RuntimeError: container unavailable; see container.log (n runs=1).
+- owned-local-fixture: PermissionError: [Errno 13] Permission denied: '/work/venv/bin/python' (n runs=1).
+- owned-local-fixture: PermissionError: [Errno 13] Permission denied: '/work/venv/bin/python' (n runs=1).
+- owned-local-fixture: RuntimeError: owned container mount inspection failed (n runs=1).
+- owned-local-fixture: container deadline; partial output excluded (n runs=1).
+- owned-local-fixture: owned fixture excluded (n runs=1).
+- owned-local-fixture: owned fixture excluded (n runs=1).
 - owned-local-fixture: baseline timeout (n runs=1).
 - owned-local-fixture: owned fixture excluded (n runs=1).
 - owned-local-fixture: no killed/survived mutants (n runs=1).

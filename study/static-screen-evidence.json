@@ -1,0 +1,326 @@
+{
+  "retrieved_on": "2026-10-21",
+  "method": "Read-only pinned GitHub source; Python AST parse only, no imports/execution. Counts include matching syntactic call sites, including helpers, not runtime targets. SHA256 is decoded UTF-8 source bytes.",
+  "records": [
+    {
+      "repo": "dodjango/tasmota-auto-updater",
+      "commit_sha": "f08e6c7236a0f3e9ba3e3a111037677192566688",
+      "screen": {
+        "observable_calls": 6,
+        "files": {
+          "tests/e2e/test_smoke.py": {
+            "count": 6,
+            "calls": {
+              "expect": 3,
+              "get_by_text": 1,
+              "locator": 2
+            }
+          }
+        },
+        "external_host_literals": [],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "tests/e2e/test_smoke.py": "92ba497c7d0915fc448ca911fd047f0ca332d75bb42cbe75ae3715cbbfd5f3fd"
+      },
+      "evidence_url": "https://github.com/dodjango/tasmota-auto-updater/commit/f08e6c7236a0f3e9ba3e3a111037677192566688"
+    },
+    {
+      "repo": "tkoyama010/pyvista-js",
+      "commit_sha": "0a1492943dbf50e379bffa8ed1794e603ccdcc44",
+      "screen": {
+        "observable_calls": 0,
+        "files": {
+          "tests/test_browser_rendering.py": {
+            "count": 0,
+            "calls": {}
+          }
+        },
+        "external_host_literals": [
+          "unpkg.com"
+        ],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "tests/test_browser_rendering.py": "c200b2608b1a93c26d7c8d0eac14713442b35ee9f2b2bdd73b9dfc998f0046b8"
+      },
+      "evidence_url": "https://github.com/tkoyama010/pyvista-js/commit/0a1492943dbf50e379bffa8ed1794e603ccdcc44"
+    },
+    {
+      "repo": "PRIDA-TAKON/debim",
+      "commit_sha": "1d3b18e827cab56fc4376649f11c46d0415e09cd",
+      "screen": {
+        "observable_calls": 0,
+        "files": {
+          "tests/test_docs_viewer.py": {
+            "count": 0,
+            "calls": {}
+          }
+        },
+        "external_host_literals": [],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "tests/test_docs_viewer.py": "532918d5eec253deb9ff3b514b646b10998d364bd109af7556f38d8374c1bec6"
+      },
+      "evidence_url": "https://github.com/PRIDA-TAKON/debim/commit/1d3b18e827cab56fc4376649f11c46d0415e09cd"
+    },
+    {
+      "repo": "atdr/contrail",
+      "commit_sha": "2465e368b7658bd23f0d41f1473c114db3573005",
+      "screen": {
+        "observable_calls": 66,
+        "files": {
+          "tests_browser/test_passport_page.py": {
+            "count": 66,
+            "calls": {
+              "click": 18,
+              "expect": 14,
+              "get_by_role": 4,
+              "hover": 1,
+              "inner_text": 1,
+              "locator": 28
+            }
+          }
+        },
+        "external_host_literals": [],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "tests_browser/test_passport_page.py": "7ef9abf65a58dcad3bee15e693a73660ab33ebc6e56239bfc6f1f3ba55a344b5"
+      },
+      "evidence_url": "https://github.com/atdr/contrail/commit/2465e368b7658bd23f0d41f1473c114db3573005",
+      "license_url": "https://github.com/atdr/contrail/blob/2465e368b7658bd23f0d41f1473c114db3573005/LICENSE",
+      "commit_message": "test(passport): drive the generated dashboard in chromium (#77)\n\n* test(passport): drive the generated dashboard in chromium\n\nThe Python suite proves what goes into the page but never runs the ~980\nlines of authored JavaScript. tests_browser/ renders a synthetic log with\ncontrail.passport.render(), opens the file with pytest-playwright and\nexercises it: year, metric, cabin and reason controls, the ranking dialog\nincluding Escape, planned, unpriced and dateless flights, desktop and\nmobile viewports, and the #67 marker stacking and #72 departure fixes.\nAny page error, console error or non-local request fails the test.\n\nThe suite sits outside testpaths and its driver in a separate `browser`\nextra, so the Python matrix and coverage job stay browser independent.\nA new `ci / playwright` job installs Chromium only and uploads traces on\nfailure.\n\nFixes #62\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\n\n* test(passport): fail the call phase when the page misbehaves\n\npytest-playwright keeps a retain-on-failure trace only when the call\nphase fails. The page, console and network checks ran at fixture\nteardown, so a violation found only there discarded the trace that\nwould explain it. A pytest_runtest_call wrapper now raises them as the\ntest body ends; teardown still catches anything arriving later, without\nreporting the same finding twice.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Opus 5.5 <noreply@anthropic.com>",
+      "inspected_supporting_files": [
+        "tests_browser/conftest.py"
+      ]
+    },
+    {
+      "repo": "elenakulgavaya/talkvote",
+      "commit_sha": "8dc73df8b4fcd3ce6c7434a0b3793e210eb5393c",
+      "screen": {
+        "observable_calls": 100,
+        "files": {
+          "tests/contracts/frontend/test_01_talks_list.py": {
+            "count": 11,
+            "calls": {
+              "click": 1,
+              "expect": 6,
+              "locator": 4
+            }
+          },
+          "tests/contracts/frontend/test_02_filtering.py": {
+            "count": 10,
+            "calls": {
+              "expect": 4,
+              "locator": 6
+            }
+          },
+          "tests/contracts/frontend/test_03_sorting.py": {
+            "count": 1,
+            "calls": {
+              "locator": 1
+            }
+          },
+          "tests/contracts/frontend/test_04_submit_talk.py": {
+            "count": 15,
+            "calls": {
+              "click": 2,
+              "expect": 4,
+              "fill": 6,
+              "locator": 3
+            }
+          },
+          "tests/contracts/frontend/test_05_submit_validation.py": {
+            "count": 7,
+            "calls": {
+              "click": 2,
+              "expect": 2,
+              "fill": 3
+            }
+          },
+          "tests/contracts/frontend/test_06_voting.py": {
+            "count": 21,
+            "calls": {
+              "click": 6,
+              "expect": 4,
+              "locator": 11
+            }
+          },
+          "tests/contracts/frontend/test_07_admin.py": {
+            "count": 19,
+            "calls": {
+              "click": 3,
+              "expect": 4,
+              "fill": 3,
+              "locator": 9
+            }
+          },
+          "tests/contracts/frontend/test_08_talk_detail.py": {
+            "count": 16,
+            "calls": {
+              "click": 3,
+              "expect": 4,
+              "locator": 9
+            }
+          }
+        },
+        "external_host_literals": [],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "tests/contracts/frontend/test_01_talks_list.py": "a9e5591541e5cf5a920b462121455af683bb6033910016edb4430487716410a5",
+        "tests/contracts/frontend/test_02_filtering.py": "60de8f39d5fd25013328a6228fdea4c4602a9f6dfe5b20c2b71e81b07311fc54",
+        "tests/contracts/frontend/test_03_sorting.py": "398b0cb639b826978d08b80843c66fb130aeddcd0b56a851bca15d169c974aa8",
+        "tests/contracts/frontend/test_04_submit_talk.py": "f02151d6aef76ae5e265fd0b3e3b2775dc37cacd538b20ba99d3312b41951dab",
+        "tests/contracts/frontend/test_05_submit_validation.py": "33429af3b1d624a2f29179621ced62176dac6eb5e08dfe2a9b377aa48a3aa28d",
+        "tests/contracts/frontend/test_06_voting.py": "246054a1db11f927bafcc40effa2089f239511245476d431e5d87eba47376e5d",
+        "tests/contracts/frontend/test_07_admin.py": "4778a67d41337fc38cb76c3c55955344f41b6c961621d4f6f2cd518f7b5ce271",
+        "tests/contracts/frontend/test_08_talk_detail.py": "5f102691b6eaf9550702dad3f788a43237e551a1bbdb552ee478c8b8a450e0a1"
+      },
+      "evidence_url": "https://github.com/elenakulgavaya/talkvote/commit/8dc73df8b4fcd3ce6c7434a0b3793e210eb5393c",
+      "license_url": "https://github.com/elenakulgavaya/talkvote/blob/8dc73df8b4fcd3ce6c7434a0b3793e210eb5393c/LICENSE",
+      "commit_message": "Add Python Playwright contract tests for frontend\n\nPort all 20 e2e scenarios to pytest-playwright in src/frontend/tests/contracts/.\nconftest.py auto-starts backend + frontend if no PLAYWRIGHT_FRONTEND_URL is set,\nenabling tests to run against MockServer (docker) or the local dev stack.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+      "inspected_supporting_files": [
+        "tests/contracts/frontend/__init__.py",
+        "tests/contracts/frontend/conftest.py"
+      ]
+    },
+    {
+      "repo": "lastcoolnameleft/duckiehunt",
+      "commit_sha": "8c47ebbf1ef33c512ddc3b90c03070f17be3671a",
+      "screen": {
+        "observable_calls": 224,
+        "files": {
+          "tests/playwright/test_api.py": {
+            "count": 16,
+            "calls": {
+              "inner_text": 8,
+              "locator": 8
+            }
+          },
+          "tests/playwright/test_authenticated.py": {
+            "count": 23,
+            "calls": {
+              "click": 1,
+              "expect": 8,
+              "fill": 4,
+              "locator": 10
+            }
+          },
+          "tests/playwright/test_basic.py": {
+            "count": 6,
+            "calls": {
+              "click": 1,
+              "expect": 2,
+              "locator": 3
+            }
+          },
+          "tests/playwright/test_pages.py": {
+            "count": 28,
+            "calls": {
+              "expect": 10,
+              "inner_text": 3,
+              "locator": 15
+            }
+          },
+          "tests/playwright/test_photo_upload.py": {
+            "count": 39,
+            "calls": {
+              "click": 2,
+              "expect": 13,
+              "fill": 9,
+              "input_value": 2,
+              "locator": 13
+            }
+          },
+          "tests/playwright/test_redirects.py": {
+            "count": 14,
+            "calls": {
+              "click": 5,
+              "expect": 2,
+              "locator": 7
+            }
+          },
+          "tests/playwright/test_ui_components.py": {
+            "count": 50,
+            "calls": {
+              "click": 4,
+              "expect": 21,
+              "fill": 1,
+              "locator": 24
+            }
+          },
+          "tests/playwright/test_validation.py": {
+            "count": 48,
+            "calls": {
+              "click": 6,
+              "expect": 12,
+              "fill": 14,
+              "locator": 16
+            }
+          }
+        },
+        "external_host_literals": [],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "tests/playwright/test_api.py": "ad355a1e7ef2a62a16d9154f0ac0c6e068fab28d72bbac3eec3f295a660cee25",
+        "tests/playwright/test_authenticated.py": "d3a3711ae7ee740ef3cec6c1110d0f23587f31ddcb4e23eeaa80f71d192bc474",
+        "tests/playwright/test_basic.py": "737993d25cc428ca0b294df6d5b093abcfaba85b4edcf39538126864afa253c9",
+        "tests/playwright/test_pages.py": "8a243f8ebee653ee0ca0efb927209b677268dd1db0f7ccb9784969666ef8e420",
+        "tests/playwright/test_photo_upload.py": "0e18e9f58bf1f568f1bd1222aa243b2813b7a2743b7e99605adda7fe0982b2ff",
+        "tests/playwright/test_redirects.py": "dd2889fbae9e3e0b4ecf92dc189c799331e8510c9bfdb17cdc0ff7a9adfb2c56",
+        "tests/playwright/test_ui_components.py": "e0ef6e3905a9c2f0c4f83c22de52e5b8dc85028e9d9c23e7198e1508fc8195dc",
+        "tests/playwright/test_validation.py": "79059bdc194ac3e8e1ba1562301aadfb6c1d0ae079dd03a9efc84b3b459f9f41"
+      },
+      "evidence_url": "https://github.com/lastcoolnameleft/duckiehunt/commit/8c47ebbf1ef33c512ddc3b90c03070f17be3671a",
+      "license_url": "https://github.com/lastcoolnameleft/duckiehunt/blob/8c47ebbf1ef33c512ddc3b90c03070f17be3671a/license.txt",
+      "commit_message": "Add comprehensive Playwright test suite with captcha skip and teardown cleanup\n\n- Skip captcha validation when test reCAPTCHA keys are configured\n- Add 68 Playwright tests covering pages, API, redirects, validation, UI, auth\n- Tests clean up created ducks in setup/teardown for idempotency\n- Remove stale test_mark_duck.py and test_media.py\n- Update testing documentation\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>",
+      "inspected_supporting_files": [
+        "django/duck/tests/test_views.py",
+        "django/duck/views.py"
+      ]
+    },
+    {
+      "repo": "mbylinkin/currency_exchange",
+      "commit_sha": "9cd1ed741610dedb48a8d4934c8ffec0987aa31b",
+      "screen": {
+        "observable_calls": 48,
+        "files": {
+          "e2e/test_frontend.py": {
+            "count": 48,
+            "calls": {
+              "click": 10,
+              "expect": 16,
+              "fill": 14,
+              "locator": 8
+            }
+          }
+        },
+        "external_host_literals": [],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "e2e/test_frontend.py": "b7bb89b98c0bbec3729b1643db36ee3d2b3e54442614b2331d1a7c52fd747aa8"
+      },
+      "evidence_url": "https://github.com/mbylinkin/currency_exchange/commit/9cd1ed741610dedb48a8d4934c8ffec0987aa31b",
+      "license_url": "https://github.com/mbylinkin/currency_exchange/blob/9cd1ed741610dedb48a8d4934c8ffec0987aa31b/LICENSE",
+      "commit_message": "Add e2e tests against the spec's reference frontend\n\nPlaywright tests drive zhukovsd/currency-exchange-frontend (pinned commit)\nagainst a live API on a temp DB. Known spec violations are strict xfail.\nMake tests runnable without .env (pytest-env, CORS vars in pytest.ini) and\nkeep e2e out of the default pytest run.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
+      "inspected_supporting_files": [
+        "e2e/__init__.py",
+        "e2e/conftest.py",
+        "e2e/frontend.py"
+      ]
+    }
+  ],
+  "candidate_counts_by_evidence_type": {
+    "test_commit": 7,
+    "agent_pr": 0,
+    "generated_tests": 0,
+    "guidance_only": 0,
+    "historical_lead": 0
+  },
+  "approved_count": 0
+}

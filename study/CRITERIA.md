@@ -75,3 +75,19 @@ Never push, comment, open issues or contact candidate repositories. Do not execu
 their code on the host. A container is defense in depth, not a proof against hostile
 code; use a disposable Docker host for public studies. Candidate code can forge its
 own artifacts, so raw evidence still needs independent review before publication.
+
+## Static screening and discovery strata
+
+`observable_calls` is a read-only AST call-site heuristic at the pinned SHA, not a
+mutation score or proof of runtime observability. For proposed replacements require
+at least 10 matching calls plus fixture/application review for local-only runtime
+behavior. Record low/zero counts and rejected leads rather than silently dropping
+them. A source finding about CDN/setup access is not an observed baseline failure.
+
+Discovery includes test commits, generated-tests commits, agent PRs, AGENTS.md and
+CLAUDE.md guidance, and a historical-control lead mode. The historical cutoff is
+2021-01-01: repository creation, author date and committer date must all precede it.
+This is a conservative lead filter, not a claim that all earlier tests are human.
+Historical and guidance-only rows retain unresolved authorship for person review.
+Search totals, sampled hits, candidate rows and approved study subjects are different
+counts. Report evidence-type counts and missing licenses in the audit.

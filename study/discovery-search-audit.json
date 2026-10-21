@@ -1,0 +1,389 @@
+{
+  "retrieved_on": "2026-10-21",
+  "method": "Read-only connector search, at most five hits per route. Search hits are not qualified/approved candidates. Full CLI discovery was not run because GITHUB_TOKEN is absent.",
+  "queries": [
+    {
+      "kind": "agent_pr",
+      "query": "is:pr author:app/copilot-swe-agent playwright pytest",
+      "total_count": 1639,
+      "items": [
+        {
+          "url": "https://github.com/jonathanwvos/journal_compliance_templates/pull/1",
+          "repo": "https://api.github.com/repos/jonathanwvos/journal_compliance_templates"
+        },
+        {
+          "url": "https://github.com/JanaMonsota1990/playwrightPython/pull/1",
+          "repo": "https://api.github.com/repos/JanaMonsota1990/playwrightPython"
+        },
+        {
+          "url": "https://github.com/jaychawda2005/smart-web-scraper/pull/1",
+          "repo": "https://api.github.com/repos/jaychawda2005/smart-web-scraper"
+        },
+        {
+          "url": "https://github.com/mohamd-sleman/playwright-automation-framework/pull/3",
+          "repo": "https://api.github.com/repos/mohamd-sleman/playwright-automation-framework"
+        },
+        {
+          "url": "https://github.com/LogicalOutcomes/konote/pull/742",
+          "repo": "https://api.github.com/repos/LogicalOutcomes/konote"
+        }
+      ],
+      "incomplete": false
+    },
+    {
+      "kind": "agent_pr",
+      "query": "is:pr author:devin-ai-integration playwright pytest",
+      "error": "GitHub API error 422: {\"message\":\"Validation Failed\",\"errors\":[{\"message\":\"The listed users cannot be searched either because the users do not exist or you do not have permission to view the users.\",\"resource\":\"Search\",\"field\":\"q\",\"code\":\"invalid\"}],\"documentation_url\":\"https://docs.github.com/v3/search/\",\"status\":\"422\"}"
+    },
+    {
+      "kind": "agent_pr",
+      "query": "is:pr author:google-labs-jules playwright pytest",
+      "total_count": 0,
+      "items": [],
+      "incomplete": false
+    },
+    {
+      "kind": "guidance_only",
+      "query": "filename:AGENTS.md playwright test",
+      "total_count": 43776,
+      "items": [
+        {
+          "url": "https://github.com/mblode/burger/blob/a85271294a939cf49e0edf2ae4ceda90b126dca2/AGENTS.md",
+          "repo": "mblode/burger",
+          "path": "AGENTS.md"
+        },
+        {
+          "url": "https://github.com/chennqqi/godnslog/blob/b55a807b9f298fb236888df679370d4a564d3ae5/AGENTS.md",
+          "repo": "chennqqi/godnslog",
+          "path": "AGENTS.md"
+        },
+        {
+          "url": "https://github.com/Sunagatov/Iced-Latte-Frontend/blob/a95bddba8e7890b085b0835d04fe7335e2777603/AGENTS.md",
+          "repo": "Sunagatov/Iced-Latte-Frontend",
+          "path": "AGENTS.md"
+        },
+        {
+          "url": "https://github.com/noonat/intersect/blob/0c8a4b2000f264069576c4ec6d0f40f977bfd294/AGENTS.md",
+          "repo": "noonat/intersect",
+          "path": "AGENTS.md"
+        },
+        {
+          "url": "https://github.com/kyleu/projectforge/blob/15582d07f04dab48244888d01cc6f4ec646b11ef/AGENTS.md",
+          "repo": "kyleu/projectforge",
+          "path": "AGENTS.md"
+        }
+      ],
+      "incomplete": false
+    },
+    {
+      "kind": "guidance_only",
+      "query": "filename:CLAUDE.md playwright test",
+      "total_count": 52352,
+      "items": [
+        {
+          "url": "https://github.com/siriwatknp/mui-treasury/blob/1ee6192dc49e73aa194b7d70dfdd7c7bbc84612b/CLAUDE.md",
+          "repo": "siriwatknp/mui-treasury",
+          "path": "CLAUDE.md"
+        },
+        {
+          "url": "https://github.com/argyleink/prop-for-that/blob/a3c516fa2f5bf33c0de8d80730acce75cee9b42e/CLAUDE.md",
+          "repo": "argyleink/prop-for-that",
+          "path": "CLAUDE.md"
+        },
+        {
+          "url": "https://github.com/chanzuckerberg/single-cell-data-portal/blob/b1f2fc837e02347e1004e6666327880ff0ca54a7/CLAUDE.md",
+          "repo": "chanzuckerberg/single-cell-data-portal",
+          "path": "CLAUDE.md"
+        },
+        {
+          "url": "https://github.com/posit-dev/py-shinywidgets/blob/b5268aa67a1f49d8d87dbfd5bedecfc8f0bd711e/CLAUDE.md",
+          "repo": "posit-dev/py-shinywidgets",
+          "path": "CLAUDE.md"
+        },
+        {
+          "url": "https://github.com/rtk-ai/grit/blob/0f3c9d04abe9525b1884f3a0ade890e54a6d9ffe/CLAUDE.md",
+          "repo": "rtk-ai/grit",
+          "path": "CLAUDE.md"
+        }
+      ],
+      "incomplete": false
+    },
+    {
+      "kind": "generated_tests",
+      "query": "playwright \"generated tests\"",
+      "items": {
+        "commits": [
+          {
+            "sha": "04c2d2565824d97dfdee1218d33966a996cb84ff",
+            "message": "Merge pull request #78 from skambo/playwright-generated-tests\n\nPlaywright generated tests",
+            "url": "https://api.github.com/repos/skambo/kajuju-automation/commits/04c2d2565824d97dfdee1218d33966a996cb84ff",
+            "html_url": "https://github.com/skambo/kajuju-automation/commit/04c2d2565824d97dfdee1218d33966a996cb84ff",
+            "diff": null,
+            "files": null,
+            "repository_full_name": "skambo/kajuju-automation",
+            "comments": null,
+            "author": null,
+            "committer": null,
+            "created_at": "2026-08-04T17:14:08.000+03:00",
+            "git_author_email": null,
+            "display_url": "https://github.com/skambo/kajuju-automation/commit/04c2d2565824d97dfdee1218d33966a996cb84ff",
+            "display_title": "Merge pull request #78 from skambo/playwright-generated-tests"
+          },
+          {
+            "sha": "ccd4db512cc0d68b1bace2389b738fe087e3cac1",
+            "message": "Add .gitignore for Playwright artifacts\n\nIntroduce a .gitignore to exclude Playwright and Node artifacts from version control. Ignores node_modules/, test-results/, playwright-report/, blob-report/, and playwright/.cache/ and playwright/.auth/ to keep generated test reports, caches, and auth files out of the repository.",
+            "url": "https://api.github.com/repos/aryanpatil97/playwright-ecommerce-automation/commits/ccd4db512cc0d68b1bace2389b738fe087e3cac1",
+            "html_url": "https://github.com/aryanpatil97/playwright-ecommerce-automation/commit/ccd4db512cc0d68b1bace2389b738fe087e3cac1",
+            "diff": null,
+            "files": null,
+            "repository_full_name": "aryanpatil97/playwright-ecommerce-automation",
+            "comments": null,
+            "author": null,
+            "committer": null,
+            "created_at": "2026-10-05T19:30:42.000+05:30",
+            "git_author_email": null,
+            "display_url": "https://github.com/aryanpatil97/playwright-ecommerce-automation/commit/ccd4db512cc0d68b1bace2389b738fe087e3cac1",
+            "display_title": "Add .gitignore for Playwright artifacts"
+          },
+          {
+            "sha": "3fefc2e52c40f77d96aa4787bf82b9973019f296",
+            "message": "chore(build): remove generated test artifacts and exclude from deploys\n\nDelete ~160 stray Playwright MCP console logs and other generated test\noutputs that were committed to the repo, and harden .gitignore plus the\ndeploy workflow so these artifacts stay out going forward.\n\n- .gitignore: ignore .playwright-mcp/, playwright-report/, test-results/,\n  temp dirs (/tmp-*, /tmp_*, /.tmp_*), all *.log files (replacing the\n  single debug.log entry), /face-preview.png, and\n  tests/voice-recordings-results.json; drop the negation that\n  force-included the voice benchmark results file\n- deploy.yml: add matching rsync exclusions for both main and beta\n  content so artifacts, Playwright reports, npm caches, logs, and stray\n  temp/system folders (e.g. %SystemDrive%/) never reach gh-pages deploys",
+            "url": "https://api.github.com/repos/steveseguin/social_stream/commits/3fefc2e52c40f77d96aa4787bf82b9973019f296",
+            "html_url": "https://github.com/steveseguin/social_stream/commit/3fefc2e52c40f77d96aa4787bf82b9973019f296",
+            "diff": null,
+            "files": null,
+            "repository_full_name": "steveseguin/social_stream",
+            "comments": null,
+            "author": null,
+            "committer": null,
+            "created_at": "2026-09-26T03:27:56.000Z",
+            "git_author_email": null,
+            "display_url": "https://github.com/steveseguin/social_stream/commit/3fefc2e52c40f77d96aa4787bf82b9973019f296",
+            "display_title": "chore(build): remove generated test artifacts and exclude from deploys"
+          },
+          {
+            "sha": "07464cadab9b52af05b41ac629190f1db66a3620",
+            "message": "chore(test): add Playwright dependency and e2e/test:all scripts\n\nAdds @playwright/test, the test:e2e and test:all scripts, and ignores\nPlaywright's generated test-results/ and playwright-report/ output.\n\nCo-Authored-By: opencode big pickle model <noreply@opencode.ai>",
+            "url": "https://api.github.com/repos/maifeeulasad/lilac/commits/07464cadab9b52af05b41ac629190f1db66a3620",
+            "html_url": "https://github.com/maifeeulasad/lilac/commit/07464cadab9b52af05b41ac629190f1db66a3620",
+            "diff": null,
+            "files": null,
+            "repository_full_name": "maifeeulasad/lilac",
+            "comments": null,
+            "author": null,
+            "committer": null,
+            "created_at": "2026-09-22T13:12:57.000+06:00",
+            "git_author_email": null,
+            "display_url": "https://github.com/maifeeulasad/lilac/commit/07464cadab9b52af05b41ac629190f1db66a3620",
+            "display_title": "chore(test): add Playwright dependency and e2e/test:all scripts"
+          },
+          {
+            "sha": "c9db0ae8beee4a8c515724e263339fd3d838652e",
+            "message": "test: configure Playwright test environment\n\n- added custom fixture-based setup and Playwright configuration\n- added base URL and automatic frontend server startup\n- moved and ignored generated test results while keeping all 8 tests passing",
+            "url": "https://api.github.com/repos/Monash-FIT3170/2026W1-Arkhive/commits/c9db0ae8beee4a8c515724e263339fd3d838652e",
+            "html_url": "https://github.com/Monash-FIT3170/2026W1-Arkhive/commit/c9db0ae8beee4a8c515724e263339fd3d838652e",
+            "diff": null,
+            "files": null,
+            "repository_full_name": "Monash-FIT3170/2026W1-Arkhive",
+            "comments": null,
+            "author": null,
+            "committer": null,
+            "created_at": "2026-10-12T22:50:53.000+11:00",
+            "git_author_email": null,
+            "display_url": "https://github.com/Monash-FIT3170/2026W1-Arkhive/commit/c9db0ae8beee4a8c515724e263339fd3d838652e",
+            "display_title": "test: configure Playwright test environment"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "historical_lead",
+      "query": "playwright language:Python created:<2021-01-01",
+      "items": {
+        "archive_filter_applied": null,
+        "repositories": [
+          {
+            "id": "276414382",
+            "name": "playwright-python",
+            "owner": {
+              "login": "microsoft",
+              "id": 6154722,
+              "type": "Organization",
+              "avatar_url": "https://avatars.githubusercontent.com/u/6154722?v=4",
+              "url": "https://api.github.com/users/microsoft"
+            },
+            "repository_full_name": "microsoft/playwright-python",
+            "permissions": {
+              "admin": false,
+              "maintain": false,
+              "pull": true,
+              "push": false,
+              "triage": false
+            },
+            "allow_auto_merge": null,
+            "allow_merge_commit": null,
+            "allow_rebase_merge": null,
+            "allow_squash_merge": null,
+            "allow_update_branch": null,
+            "clone_url": "https://github.com/microsoft/playwright-python.git",
+            "size": 16325,
+            "default_branch": "main",
+            "git_commits_url": "https://api.github.com/repos/microsoft/playwright-python/git/commits{/sha}",
+            "git_refs_url": "https://api.github.com/repos/microsoft/playwright-python/git/refs{/sha}",
+            "git_url": "git://github.com/microsoft/playwright-python.git",
+            "master_branch": null,
+            "visibility": "public",
+            "archived": false,
+            "is_code_search_indexed": null,
+            "display_title": "microsoft/playwright-python",
+            "display_url": "https://github.com/microsoft/playwright-python"
+          },
+          {
+            "id": "323511299",
+            "name": "playwright_stealth",
+            "owner": {
+              "login": "AtuboDad",
+              "id": 12666374,
+              "type": "User",
+              "avatar_url": "https://avatars.githubusercontent.com/u/12666374?v=4",
+              "url": "https://api.github.com/users/AtuboDad"
+            },
+            "repository_full_name": "AtuboDad/playwright_stealth",
+            "permissions": {
+              "admin": false,
+              "maintain": false,
+              "pull": true,
+              "push": false,
+              "triage": false
+            },
+            "allow_auto_merge": null,
+            "allow_merge_commit": null,
+            "allow_rebase_merge": null,
+            "allow_squash_merge": null,
+            "allow_update_branch": null,
+            "clone_url": "https://github.com/AtuboDad/playwright_stealth.git",
+            "size": 654,
+            "default_branch": "main",
+            "git_commits_url": "https://api.github.com/repos/AtuboDad/playwright_stealth/git/commits{/sha}",
+            "git_refs_url": "https://api.github.com/repos/AtuboDad/playwright_stealth/git/refs{/sha}",
+            "git_url": "git://github.com/AtuboDad/playwright_stealth.git",
+            "master_branch": null,
+            "visibility": "public",
+            "archived": false,
+            "is_code_search_indexed": null,
+            "display_title": "AtuboDad/playwright_stealth",
+            "display_url": "https://github.com/AtuboDad/playwright_stealth"
+          },
+          {
+            "id": "311715246",
+            "name": "scrapy-playwright",
+            "owner": {
+              "login": "scrapy-plugins",
+              "id": 13627237,
+              "type": "Organization",
+              "avatar_url": "https://avatars.githubusercontent.com/u/13627237?v=4",
+              "url": "https://api.github.com/users/scrapy-plugins"
+            },
+            "repository_full_name": "scrapy-plugins/scrapy-playwright",
+            "permissions": {
+              "admin": false,
+              "maintain": false,
+              "pull": true,
+              "push": false,
+              "triage": false
+            },
+            "allow_auto_merge": null,
+            "allow_merge_commit": null,
+            "allow_rebase_merge": null,
+            "allow_squash_merge": null,
+            "allow_update_branch": null,
+            "clone_url": "https://github.com/scrapy-plugins/scrapy-playwright.git",
+            "size": 1178,
+            "default_branch": "main",
+            "git_commits_url": "https://api.github.com/repos/scrapy-plugins/scrapy-playwright/git/commits{/sha}",
+            "git_refs_url": "https://api.github.com/repos/scrapy-plugins/scrapy-playwright/git/refs{/sha}",
+            "git_url": "git://github.com/scrapy-plugins/scrapy-playwright.git",
+            "master_branch": null,
+            "visibility": "public",
+            "archived": false,
+            "is_code_search_indexed": null,
+            "display_title": "scrapy-plugins/scrapy-playwright",
+            "display_url": "https://github.com/scrapy-plugins/scrapy-playwright"
+          },
+          {
+            "id": "284747964",
+            "name": "playwright-pytest",
+            "owner": {
+              "login": "microsoft",
+              "id": 6154722,
+              "type": "Organization",
+              "avatar_url": "https://avatars.githubusercontent.com/u/6154722?v=4",
+              "url": "https://api.github.com/users/microsoft"
+            },
+            "repository_full_name": "microsoft/playwright-pytest",
+            "permissions": {
+              "admin": false,
+              "maintain": false,
+              "pull": true,
+              "push": false,
+              "triage": false
+            },
+            "allow_auto_merge": null,
+            "allow_merge_commit": null,
+            "allow_rebase_merge": null,
+            "allow_squash_merge": null,
+            "allow_update_branch": null,
+            "clone_url": "https://github.com/microsoft/playwright-pytest.git",
+            "size": 242,
+            "default_branch": "main",
+            "git_commits_url": "https://api.github.com/repos/microsoft/playwright-pytest/git/commits{/sha}",
+            "git_refs_url": "https://api.github.com/repos/microsoft/playwright-pytest/git/refs{/sha}",
+            "git_url": "git://github.com/microsoft/playwright-pytest.git",
+            "master_branch": null,
+            "visibility": "public",
+            "archived": false,
+            "is_code_search_indexed": null,
+            "display_title": "microsoft/playwright-pytest",
+            "display_url": "https://github.com/microsoft/playwright-pytest"
+          },
+          {
+            "id": "268629281",
+            "name": "robotframework-browser",
+            "owner": {
+              "login": "MarketSquare",
+              "id": 57290362,
+              "type": "Organization",
+              "avatar_url": "https://avatars.githubusercontent.com/u/57290362?v=4",
+              "url": "https://api.github.com/users/MarketSquare"
+            },
+            "repository_full_name": "MarketSquare/robotframework-browser",
+            "permissions": {
+              "admin": false,
+              "maintain": false,
+              "pull": true,
+              "push": false,
+              "triage": false
+            },
+            "allow_auto_merge": null,
+            "allow_merge_commit": null,
+            "allow_rebase_merge": null,
+            "allow_squash_merge": null,
+            "allow_update_branch": null,
+            "clone_url": "https://github.com/MarketSquare/robotframework-browser.git",
+            "size": 20589,
+            "default_branch": "main",
+            "git_commits_url": "https://api.github.com/repos/MarketSquare/robotframework-browser/git/commits{/sha}",
+            "git_refs_url": "https://api.github.com/repos/MarketSquare/robotframework-browser/git/refs{/sha}",
+            "git_url": "git://github.com/MarketSquare/robotframework-browser.git",
+            "master_branch": null,
+            "visibility": "public",
+            "archived": false,
+            "is_code_search_indexed": null,
+            "display_title": "MarketSquare/robotframework-browser",
+            "display_url": "https://github.com/MarketSquare/robotframework-browser"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 662B done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for mcr.microsoft.com/playwright/python:v1.64.0-noble
+#2 DONE 0.3s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 139B done
+#3 DONE 0.1s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [1/8] FROM mcr.microsoft.com/playwright/python:v1.64.0-noble@sha256:684df257a1fa0ef3fa288239819984008f560e8f8db5b635ee9e2a50cbcd2e23
+#5 resolve mcr.microsoft.com/playwright/python:v1.64.0-noble@sha256:684df257a1fa0ef3fa288239819984008f560e8f8db5b635ee9e2a50cbcd2e23 0.0s done
+#5 DONE 0.1s
+
+#4 [internal] load build context
+#4 transferring context: 152.35kB 0.0s done
+#4 DONE 0.1s
+
+#6 [5/8] COPY vandal /package/vandal/
+#6 CACHED
+
+#7 [2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3.12-venv && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [3/8] WORKDIR /opt
+#8 CACHED
+
+#9 [4/8] COPY pyproject.toml README.md LICENSE /package/
+#9 CACHED
+
+#10 [6/8] RUN python -m pip wheel --wheel-dir=/opt/wheels /package pytest-playwright==0.10.0 playwright==1.64.0
+#10 CACHED
+
+#11 [7/8] COPY study/*.py /opt/study/
+#11 DONE 0.1s
+
+#12 [8/8] RUN useradd --uid 10001 --create-home study
+#12 DONE 0.6s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 0.3s done
+#13 exporting manifest sha256:515f268261bf2988a927e7f0b27c0002b4de0f683393a396a698daac55828123 0.0s done
+#13 exporting config sha256:c1debc9877123364aa4695c6ed0aeac1e956739a187d5ff05dce2b10aa23a998 0.0s done
+#13 exporting attestation manifest sha256:2e460c3d868fdbfb1cf68f0a6149047c315b81ae946762e3aff76e3c20b56352 0.1s done
+#13 exporting manifest list sha256:cf73b33dd94b2270e3989c53eaa6ae6b876a8aae69cc0ecd5998e48ffa467dfd
+#13 exporting manifest list sha256:cf73b33dd94b2270e3989c53eaa6ae6b876a8aae69cc0ecd5998e48ffa467dfd 0.0s done
+#13 naming to docker.io/library/vandal-study:owned-validation-05 done
+#13 unpacking to docker.io/library/vandal-study:owned-validation-05 0.1s done
+#13 DONE 0.6s

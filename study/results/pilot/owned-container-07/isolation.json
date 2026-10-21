@@ -1,0 +1,77 @@
+{
+  "state": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 4559,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-21T08:34:32.580634177Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+  },
+  "container_id": "f8fa6eba0d874c4d05c437471cf49bed0ed180d77c420b96df1f8cb2c2e7a8a3",
+  "image": "sha256:cf73b33dd94b2270e3989c53eaa6ae6b876a8aae69cc0ecd5998e48ffa467dfd",
+  "user": "10001:10001",
+  "host_config": {
+    "NetworkMode": "none",
+    "ReadonlyRootfs": true,
+    "Privileged": false,
+    "CapDrop": [
+      "ALL"
+    ],
+    "SecurityOpt": [
+      "no-new-privileges"
+    ],
+    "Memory": 4294967296,
+    "MemorySwap": 4294967296,
+    "NanoCpus": 2000000000,
+    "PidsLimit": 256,
+    "Tmpfs": {
+      "/tmp": "rw,nosuid,nodev,size=256m,uid=10001,gid=10001,mode=700",
+      "/work": "rw,exec,nosuid,nodev,size=3g,uid=10001,gid=10001,mode=700"
+    },
+    "LogConfig": {
+      "Type": "local",
+      "Config": {
+        "compress": "false",
+        "max-file": "1",
+        "max-size": "8m"
+      }
+    }
+  },
+  "mounts": [
+    {
+      "Type": "bind",
+      "Source": "C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-gmrdc85q\\input",
+      "Destination": "/input",
+      "RW": false
+    },
+    {
+      "Type": "bind",
+      "Source": "C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-gmrdc85q\\deps",
+      "Destination": "/deps",
+      "RW": false
+    }
+  ],
+  "environment_keys": [
+    "ALL_PROXY",
+    "FTP_PROXY",
+    "HTTPS_PROXY",
+    "HTTP_PROXY",
+    "LANG",
+    "LC_ALL",
+    "NO_PROXY",
+    "PATH",
+    "PLAYWRIGHT_BROWSERS_PATH",
+    "all_proxy",
+    "ftp_proxy",
+    "http_proxy",
+    "https_proxy",
+    "no_proxy"
+  ],
+  "github_token_present": false,
+  "proxy_values_empty": true
+}

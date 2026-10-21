@@ -1,0 +1,20 @@
+{
+  "kind": "local Git archive of owned fixture only",
+  "result": {
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\dhira\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study",
+      "archive",
+      "--format=tar",
+      "--output=C:\\Users\\dhira\\AppData\\Local\\Temp\\vandal-study-gmrdc85q\\input\\source.tar",
+      "2ca7cfe098fa65b0e123ba7c2f78bb888d36a9da",
+      "study/fixture/test_local_app.py"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 0.059
+  }
+}
