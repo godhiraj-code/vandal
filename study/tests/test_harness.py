@@ -18,7 +18,7 @@ def candidate():
     return dict(zip(FIELDS, ["owner/repo", "a" * 40, "agent", "test_commit",
                 "https://github.com/owner/repo/commit/" + "a" * 40, "Claude adds browser tests",
                 '["tests/test_ui.py"]', "MIT", "https://github.com/owner/repo/blob/" + "a" * 40 + "/LICENSE",
-                "no", "", "", "recipes/repo.json"]))
+                "no", "", "", "recipes/repo.json", "0"]))
 
 
 def report(statuses):
@@ -143,7 +143,7 @@ def test_summary_math_and_tampering():
     with pytest.raises(ValueError):
         metrics(bad)
     assert spread([])["median"] is None
-    assert spread([25]) == {"n": 1, "median": 25, "min": 25, "max": 25, "iqr": 0}
+    assert spread([25]) == {"n": 1, "median": 25, "min": 25, "max": 25, "iqr": None}
     assert spread([0, 25, 50, 100])["iqr"] == 43.75
 
 
@@ -381,3 +381,92 @@ def test_container_venv_mount_is_executable_but_temporary_mount_is_not(tmp_path)
     temp = next(x for x in command if x.startswith("--tmpfs=/tmp:"))
     assert ":rw,exec,nosuid,nodev," in work
     assert ",exec," not in temp
+
+
+def test_single_repository_iqr_is_unavailable():
+    assert spread([80])["median"] == 80
+    assert spread([80])["iqr"] is None
+    assert spread([20, 80])["iqr"] == 30
+
+
+def test_no_public_runs_title_and_pooled_units(tmp_path):
+    output = tmp_path / "REPORT.md"
+    summarize(tmp_path / "results", output)
+    text = output.read_text()
+    assert text.startswith("# Study protocol and results (no public runs yet)")
+    assert "Pooled by mutant" in text and "n_repos | n_mutants" in text
+
+
+def test_static_screen_counts_calls_not_comments_and_reports_host_literals():
+    from study.find_repos import static_screen
+    source = '''# page.click() does not count
+from playwright.sync_api import expect
+def test_ui(page):
+    page.get_by_role("button").click()
+    expect(page.locator("#x")).to_be_visible()
+    page.locator("#x").fill("value")
+    page.check("#x")
+    page.hover("#x")
+    page.inner_text("#x")
+    page.input_value("#x")
+    page.goto("http://127.0.0.1:8000")
+    page.goto("https://cdn.example.test/app")
+'''
+    result = static_screen({"test_ui.py": source})
+    assert result["observable_calls"] == 10
+    assert result["external_host_literals"] == ["cdn.example.test"]
+    assert result["heuristic_only"] is True
+
+
+def test_license_404_is_a_missing_license_not_error():
+    import urllib.error
+    from study.find_repos import pinned_license
+    class API:
+        def get(self, *args, **kwargs):
+            raise urllib.error.HTTPError("url", 404, "missing", {}, None)
+    assert pinned_license(API(), "owner/repo", "a" * 40)["reason"] == "no license"
+
+
+def test_discovery_modes_keep_guidance_and_historical_leads_unclassified():
+    from study.find_repos import search_specs, QUERIES, PR_AUTHORS
+    specs = list(search_specs("all", QUERIES))
+    assert all(any("author:" + author in q and "is:pr" in q for _, q, _ in specs) for author in PR_AUTHORS)
+    assert any('"generated tests"' in q for _, q, _ in specs)
+    assert sum(kind == "guidance_only" for _, _, kind in specs) == 2
+    commit = {"sha": "a" * 40, "html_url": candidate()["evidence_url"], "commit": {"message": "ordinary update"},
+              "files": [{"filename": "test_ui.py"}]}
+    for kind in ("guidance_only", "historical_lead"):
+        row = parse_candidate({"full_name": "owner/repo"}, commit,
+              {"license": {"spdx_id": "MIT"}, "html_url": candidate()["license_url"]},
+              {"test_ui.py": "def test_ui(page): page.locator('#x').click()"}, evidence_kind=kind, detail="review needed")
+        assert row["approved"] == "no" and row["group"] == "unresolved"
+        assert approval_reason(row) == "authorship is unresolved"
+        assert row["observable_calls"] == "2"
+
+
+def test_discovery_agent_pr_checks_python_files_at_head():
+    import base64
+    from study.find_repos import discover
+    calls = []
+    class API:
+        def get(self, path, **kw):
+            calls.append((path, kw))
+            if path == "search/issues":
+                return {"items": [{"repository_url": "https://api.github.com/repos/owner/repo", "number": 3}]}
+            if path == "repos/owner/repo":
+                return {"full_name": "owner/repo"}
+            if path.endswith("/pulls/3"):
+                return {"head": {"sha": "a" * 40}, "html_url": "https://github.com/owner/repo/pull/3", "changed_files": 1}
+            if path.endswith("/files"):
+                return [{"filename": "test_ui.py", "status": "added"}]
+            if path.endswith("/license"):
+                assert kw["ref"] == "a" * 40
+                return {"license": {"spdx_id": "MIT"}, "html_url": candidate()["license_url"]}
+            if "/contents/" in path:
+                assert kw["ref"] == "a" * 40
+                return {"content": base64.b64encode(b"def test_ui(page): page.locator('#x').click()").decode()}
+            raise AssertionError(path)
+    rows, audit = discover(API(), [], 1, "agent-prs")
+    assert len(rows) == 1 and rows[0]["evidence_kind"] == "agent_pr"
+    assert rows[0]["observable_calls"] == "2" and rows[0]["approved"] == "no"
+    assert any(x.get("candidate") for x in audit)

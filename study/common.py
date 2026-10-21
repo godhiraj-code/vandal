@@ -8,7 +8,7 @@ from pathlib import Path, PurePosixPath
 
 FIELDS = ["repo", "commit_sha", "group", "evidence_kind", "evidence_url",
           "evidence_detail", "test_paths", "license", "license_url",
-          "approved", "reviewer", "reviewed_at", "recipe"]
+          "approved", "reviewer", "reviewed_at", "recipe", "observable_calls"]
 REPO = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]*/[A-Za-z0-9][A-Za-z0-9_.-]*\Z")
 SHA = re.compile(r"[0-9a-f]{40}\Z")
 # Conservative recognized subset, not a claim to enumerate all OSI licenses.

@@ -31,3 +31,32 @@ jobs:
           path: |
             study/results/ci-fixture
             study/CI_REPORT.md
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build owned image
+        run: |
+          docker build --pull -f study/Dockerfile -t vandal-study:ci --iidfile image-id.txt .
+          mkdir -p fixture-wheels
+      - name: Exercise local tar, worker, export and cleanup offline
+        run: python -m study.run_study --owned-fixture --image "$(cat image-id.txt)" --wheelhouse fixture-wheels --results study/results/ci-container --seconds 600
+      - name: Verify isolation and scored raw report
+        run: python -m study.verify_container study/results/ci-container
+      - name: Summarize actual fixture result
+        if: always()
+        run: python -m study.summarize --results study/results/ci-container --report study/CI_CONTAINER_REPORT.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: owned-study-container
+          path: |
+            study/results/ci-container
+            study/CI_CONTAINER_REPORT.md
+            image-id.txt

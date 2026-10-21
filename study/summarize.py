@@ -73,9 +73,9 @@ def metrics(report):
 def spread(values):
     if not values:
         return {"n": 0, "median": None, "min": None, "max": None, "iqr": None}
-    q = statistics.quantiles(values, n=4, method="inclusive") if len(values) > 1 else [values[0]] * 3
+    q = statistics.quantiles(values, n=4, method="inclusive") if len(values) > 1 else None
     return {"n": len(values), "median": statistics.median(values),
-            "min": min(values), "max": max(values), "iqr": q[2] - q[0]}
+            "min": min(values), "max": max(values), "iqr": q[2] - q[0] if q else None}
 
 
 def read_results(root):
@@ -159,8 +159,8 @@ def summarize(root, report_path):
         writer = csv.DictWriter(f, fieldnames=columns)
         writer.writeheader()
         writer.writerows(rows)
-    lines = ["# We ran mutation testing on AI written Playwright test suites", "",
-             "Study protocol and observed results. This title is a research question, not evidence that a public pilot ran.", "",
+    title = "Study protocol and results" if any(r["kind"] == "public" and r.get("n_tests", 0) for r in rows) else "Study protocol and results (no public runs yet)"
+    lines = ["# " + title, "",
              f"Recorded runs: n={len(rows)}. Public runs: n={sum(r['kind'] == 'public' for r in rows)}. "
              f"Owned fixture runs: n={sum(r['kind'] == 'fixture' for r in rows)}. Fixtures never enter the study comparison.", "",
              "Results are limited to the repositories and selected tests actually executed. No population or causal inference is justified.", "",
@@ -187,12 +187,12 @@ def summarize(root, report_path):
     else:
         lines += ["", "No between-group difference can be calculated: at least one group has no eligible observations."]
     lines += ["", "## Strategy survival", "",
-              "Ranked by survivors, with survival rate among killed + survived and repository sample sizes. Error/untested outcomes remain outside the rate.", "",
-              "| Group / strategy | n repos | Survived / n scored | Survival % | Errors | Untested mutants |", "|---|---|---|---|---|---|"]
+              "Pooled by mutant, ranked by survivors; larger suites contribute more weight. Survival rate is among killed + survived. Both n_repos and n_mutants are shown. Error/untested outcomes remain outside the rate.", "",
+              "| Group / strategy | n_repos | n_mutants | Survived / n scored | Survival % | Errors | Untested mutants |", "|---|---|---|---|---|---|---|"]
     for (group, strategy), c in sorted(strategies.items(), key=lambda item: (-item[1]["survived"], item[0])):
         n = c["killed"] + c["survived"]
         rate = c["survived"] * 100 / n if n else None
-        lines.append(f"| {cell(group)} / {cell(strategy)} | {c['n_repos']} | {c['survived']} / {n} | {cell(rate)} | {c['error']} | {c['skipped'] + c['not_applied']} |")
+        lines.append(f"| {cell(group)} / {cell(strategy)} | {c['n_repos']} | {sum(c[s] for s in STATUSES)} | {c['survived']} / {n} | {cell(rate)} | {c['error']} | {c['skipped'] + c['not_applied']} |")
     if not strategies:
         lines += ["", "No eligible strategy observations (n repositories=0)."]
     lines += ["", "## Exclusions and limitations", ""]
