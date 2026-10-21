@@ -6,8 +6,10 @@ involvement, not exclusive authorship of every selected line.
 
 A person reviews candidates.csv before approving rows in repos.csv. Discovery never
 approves inclusion. repos.proposed.csv is an unapproved review proposal; repos.csv
-is empty. Execution also requires action-time approval of the frozen manifest,
-recipes, immutable image and dependency hashes.
+contains only the two snapshots explicitly approved by Dhiraj; no public execution has occurred. Execution also requires action-time approval of the frozen manifest and recipes.
+The manual workflow human gate reviews the checkout/Dockerfile and dependency lock;
+it records the freshly built immutable image ID before execution, without claiming
+that a person reviewed that newly generated ID beforehand.
 
 ## Source eligibility and execution eligibility
 

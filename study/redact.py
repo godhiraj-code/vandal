@@ -15,12 +15,22 @@ def _redact_text(value):
                 r"/(?:Users|home)/[^/\r\n,\"'<>:]+"]
     patterns = [re.escape(p.rstrip("/\\")) + r"(?=[/\\]|$|[\s\"',])"
                  for p in sorted(homes, key=len, reverse=True) if p and Path(p).is_absolute() and p.rstrip("/\\")] + patterns
-    pattern = re.compile(boundary + "(?:" + "|".join(patterns) + ")")
+    # Protect identities as individual spans, not entire lines containing ::.
+    # Quoted/full-string IDs can contain spaces; ordinary log IDs are tokens.
+    ids = []
+    node = r"[^\r\n\"<>]*\.py::[^\s\"<>]+"
+    if re.fullmatch(node, value) and (value.startswith(("/", "tests/")) or re.match(r"[A-Za-z]:", value)) and " = " not in value:
+        # A standalone node ID is measurement data, even with spaces.
+        ids.append((0, len(value)))
+    for found in re.finditer(r"[\"']([^\r\n\"']*\.py::[^\r\n\"']+)[\"']|(?:[A-Za-z]:[\\/]|/)?[^\s\"'<>]+\.py::[^\s\"'<>]+", value):
+        ids.append(found.span(1) if found.group(1) is not None else found.span())
+    pattern = re.compile(r"(?:(?P<url>file://)(?=/)|" + boundary + ")(?:" + "|".join(patterns) + ")")
     def replace(match):
-        # Pytest identities, including absolute node IDs, are measurements.
-        token = re.split(r"[\r\n\"<>]", value[match.start():], maxsplit=1)[0]
-        return match.group(0) if "::" in token else "<HOST_HOME>"
+        if any(start <= match.start() < end for start, end in ids):
+            return match.group(0)
+        return (match.group("url") or "") + "<HOST_HOME>"
     return pattern.sub(replace, value)
+
 
 
 def host_paths(value):

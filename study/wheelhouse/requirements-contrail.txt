@@ -1,0 +1,9 @@
+hatchling
+packaging
+pluggy
+pathspec
+tomlkit
+trove-classifiers
+requests>=2.34.2
+icalendar>=7.3.0
+airportsdata>=20260902

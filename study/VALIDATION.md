@@ -210,3 +210,37 @@ REPORT.md now distinguishes one host-only and five container validations; contai
 08/09/10 repeat the same SHA. These are previously measured runs, not new executions
 in this correction. FIXTURE_ATTEMPTS.md was not regenerated. No public source was
 executed. Exact-head hosted study/Docker/full-suite results are recorded in PR #7.
+
+
+## Manual pilot preparation (no public execution)
+
+Exactly two manifest rows now carry Dhiraj Das's explicit inclusion approval at
+2026-10-21T12:20:00Z: contrail at 2465e368b7658bd23f0d41f1473c114db3573005
+and Platelet-Movie at 14664611814b126289f291ad24ee294102efb07c. Both pass approval
+and recipe validation. Execution is still prohibited in this revision. The manual
+workflow was not dispatched; environment/reviewer configuration belongs to Dhiraj.
+
+Local study tests: 101 passed, 1 skipped (Windows Bash syntax check); the actual
+Bash fetch wrapper was separately executed successfully in the existing owned Linux
+Python 3.12 image. It downloaded and hash-verified 17 binary dependency wheels and
+wrote MANIFEST.csv, exit 0 in 3.837s. The download-only container had network access
+to PyPI, read-only root, UID 10001, dropped capabilities, bounded resources, empty
+proxy variables and no candidate source or host credentials. This was dependency
+preparation, not a candidate installation, baseline or pilot. No wheels are committed.
+
+The first Linux download failed because the Windows Python 3.13 cross-target
+resolver omitted icalendar's Python 3.12 conditional typing_extensions dependency.
+Hash mode rejected it. The requested 4.16.0 wheel was downloaded and its real bytes
+and license metadata added to the lock; the subsequent Linux attempt passed. An
+intermediate host invocation had an incorrect run() argument list and raised
+TypeError before launching Docker; correcting it did not rerun candidate code.
+The failed and successful download logs remain under wheelhouse/validation/.
+
+Independent review found and fixed platform-dependent manifest line endings and
+malformed worker metadata in job summaries. The raw manifest bytes now survive Git
+checkout unchanged, and confirmation mismatch fails before acquisition or build.
+The imported-helper recount has 10 positive-call leads (9 test_commit, 1 agent_pr),
+8 meeting the 10-call floor, plus 2 rejected zero-call records. All discovery and
+proposed rows remain unapproved; only the two explicit manifest rows are approved.
+Counts use cached pinned files and do not claim complete fresh traversal or runtime
+success. Exact-head hosted study/Docker/full-suite results are recorded in PR #7.

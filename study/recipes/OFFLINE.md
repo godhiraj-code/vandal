@@ -1,9 +1,9 @@
-# Offline preparation plans — not executed or approved
+# Offline preparation plans — not executed; execution approval pending
 
 These plans refer only to the three snapshots below. They are source-derived plans,
 not installation or baseline results. No candidate has been built, imported, collected
-or run. All rows remain unapproved. Dependency version resolution, hashes and image
-IDs must be recorded and reviewed before inclusion and action-time execution.
+or run. Contrail and Platelet-Movie have explicit inclusion approval in repos.csv; execution remains separately gated. Talkvote is unapproved. Dependency versions/hashes and the Dockerfile must be reviewed before action-time
+execution; the workflow records its freshly built immutable image ID.
 
 Use a disposable acquisition environment without host credentials for preparation.
 Download platform-compatible **wheels only** for Python dependencies; do not fall
@@ -27,7 +27,11 @@ transitive dependency. Resolve against the actual image interpreter/platform, re
 the chosen versions and hashes, and reject a missing binary wheel. The already
 bundled harness pytest/Playwright wheels must remain compatible with that solution.
 
-The future dependency-acquisition step is equivalent to `pip download --only-binary=:all:`
+The reviewed 17-wheel lock and fetch script now live under study/wheelhouse/; hashes
+were measured from binary downloads without installation/imports. See PILOT.md for
+the clean, hash-enforced download and artifact procedure.
+
+The dependency-acquisition step is equivalent to `pip download --only-binary=:all:`
 for these requirements, using a constraints file matching the base image; it is not
 `pip wheel .` on the candidate. Supply only the reviewed wheels via `--wheelhouse`.
 The worker's existing offline pip install builds the pinned candidate **inside** the
@@ -53,10 +57,10 @@ tools. If project installation becomes necessary after review, its declared whee
 requirements are click>=8.1.8, requests>=2.31.0 and poetry-core>=2,<3 plus transitives;
 that would be a recipe change requiring renewed review, not an automatic fallback.
 
-**Offline risk:** site/index.html contains a remote themoviedb.org logo image and
+**Known offline deviation:** site/index.html:142 contains a remote themoviedb.org logo image and
 external hyperlinks. The selected assertions concern local controls/movie rows;
 they do not explicitly assert logo loading. Network none will block the remote
-request. Whether that affects the baseline is unknown. Do not silently vendor,
+request. Whether that affects the baseline is unknown. Do not vendor,
 stub or remove it; any such intervention must be recorded as a method change.
 
 ## 3. elenakulgavaya/talkvote

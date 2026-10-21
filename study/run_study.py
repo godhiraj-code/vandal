@@ -72,6 +72,8 @@ def wheel_hashes(wheelhouse):
     result = {}
     total = 0
     for file in sorted(wheelhouse.iterdir()):
+        if file.name == "MANIFEST.csv" and file.is_file() and not file.is_symlink():
+            continue  # Reviewed inventory metadata is never mounted or executed.
         if file.is_symlink() or not file.is_file() or file.suffix != ".whl":
             raise ValueError("wheelhouse may contain only regular .whl files")
         total += file.stat().st_size
@@ -136,7 +138,7 @@ def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes, *,
             # with incidental credentials or symlink escapes into a candidate.
             if wheel_hashes(wheelhouse) != reviewed_hashes:
                 raise ValueError("dependency wheels changed after approval")
-            for file in sorted(wheelhouse.iterdir()):
+            for file in sorted(wheelhouse.glob("*.whl")):
                 shutil.copyfile(file, deps / file.name)
             if wheel_hashes(deps) != reviewed_hashes:
                 raise ValueError("dependency wheels changed during staging")
@@ -237,16 +239,34 @@ def cleanup_confirmed(status):
         cleanup.get(key) for key in ("timed_out", "log_limited", "error"))
 
 
+def confirmation(manifest):
+    """Exact action-time token for the current manifest bytes."""
+    return "RUN " + digest(manifest)[:12]
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     source = p.add_mutually_exclusive_group()
     source.add_argument("--repos", type=Path)
     source.add_argument("--owned-fixture", action="store_true", help="only the committed in-repository fixture; never public code")
     p.add_argument("--results", type=Path)
-    p.add_argument("--image", required=True, help="reviewed local sha256 image ID")
-    p.add_argument("--wheelhouse", type=Path, required=True)
+    p.add_argument("--image", help="reviewed local sha256 image ID")
+    p.add_argument("--wheelhouse", type=Path)
+    p.add_argument("--confirm", help="exact RUN token; default remains interactive")
+    p.add_argument("--print-confirm", action="store_true", help="print manifest token without executing anything")
     p.add_argument("--seconds", type=int, default=900)
     args = p.parse_args()
+    manifest = args.repos or Path("study/repos.csv")
+    if args.print_confirm:
+        if args.owned_fixture:
+            p.error("owned fixture has no public manifest confirmation")
+        print(confirmation(manifest))
+        return
+    if args.confirm is not None:
+        if args.owned_fixture or args.confirm != confirmation(manifest):
+            p.error("action-time execution approval not given: confirm mismatch")
+    if not args.image or args.wheelhouse is None:
+        p.error("--image and --wheelhouse are required for execution")
     if not 30 <= args.seconds <= 3600:
         p.error("seconds must be 30..3600")
     if args.owned_fixture:
@@ -301,7 +321,7 @@ def main():
     reviewed_hashes = wheel_hashes(args.wheelhouse.resolve())
     print(json.dumps({"manifest_sha256": manifest_hash, "image": args.image,
                       "repositories": rows, "recipes": recipes, "wheel_sha256": reviewed_hashes}, indent=2))
-    approval = input("Person: approve executing these unknown repositories offline? Type RUN " + manifest_hash[:12] + ": ")
+    approval = args.confirm if args.confirm is not None else input("Person: approve executing these unknown repositories offline? Type RUN " + manifest_hash[:12] + ": ")
     if approval != "RUN " + manifest_hash[:12]:
         p.error("action-time execution approval not given")
     if digest(args.repos) != manifest_hash:

@@ -1,0 +1,58 @@
+Collecting airportsdata==20260905 (from -r /input/requirements-contrail.lock (line 3))
+  Downloading airportsdata-20260905-py3-none-any.whl (931 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 931.2/931.2 kB 11.0 MB/s  0:00:00
+Collecting certifi==2026.10.19 (from -r /input/requirements-contrail.lock (line 4))
+  Downloading certifi-2026.10.19-py3-none-any.whl (136 kB)
+Collecting charset-normalizer==3.5.2 (from -r /input/requirements-contrail.lock (line 5))
+  Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+Collecting hatchling==1.32.4 (from -r /input/requirements-contrail.lock (line 6))
+  Downloading hatchling-1.32.4-py3-none-any.whl (78 kB)
+Collecting icalendar==7.3.0 (from -r /input/requirements-contrail.lock (line 7))
+  Downloading icalendar-7.3.0-py3-none-any.whl (542 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 542.5/542.5 kB 13.0 MB/s  0:00:00
+Collecting idna==3.20 (from -r /input/requirements-contrail.lock (line 8))
+  Downloading idna-3.20-py3-none-any.whl (69 kB)
+Collecting packaging==26.3 (from -r /input/requirements-contrail.lock (line 9))
+  Downloading packaging-26.3-py3-none-any.whl (129 kB)
+Collecting pathspec==1.1.1 (from -r /input/requirements-contrail.lock (line 10))
+  Downloading pathspec-1.1.1-py3-none-any.whl (57 kB)
+Collecting pluggy==1.7.0 (from -r /input/requirements-contrail.lock (line 11))
+  Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+Collecting python-dateutil==2.9.0.post0 (from -r /input/requirements-contrail.lock (line 12))
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Collecting requests==2.34.2 (from -r /input/requirements-contrail.lock (line 13))
+  Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Collecting six==1.17.0 (from -r /input/requirements-contrail.lock (line 14))
+  Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+Collecting tomlkit==0.15.2 (from -r /input/requirements-contrail.lock (line 15))
+  Downloading tomlkit-0.15.2-py3-none-any.whl (52 kB)
+Collecting trove-classifiers==2026.9.21.13 (from -r /input/requirements-contrail.lock (line 16))
+  Downloading trove_classifiers-2026.9.21.13-py3-none-any.whl (14 kB)
+Collecting typing_extensions==4.16.0 (from -r /input/requirements-contrail.lock (line 17))
+  Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Collecting tzdata==2026.5 (from -r /input/requirements-contrail.lock (line 18))
+  Downloading tzdata-2026.5-py2.py3-none-any.whl (347 kB)
+Collecting urllib3==2.8.0 (from -r /input/requirements-contrail.lock (line 19))
+  Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+Saved /output/wheelhouse/airportsdata-20260905-py3-none-any.whl
+Saved /output/wheelhouse/certifi-2026.10.19-py3-none-any.whl
+Saved /output/wheelhouse/charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Saved /output/wheelhouse/hatchling-1.32.4-py3-none-any.whl
+Saved /output/wheelhouse/icalendar-7.3.0-py3-none-any.whl
+Saved /output/wheelhouse/typing_extensions-4.16.0-py3-none-any.whl
+Saved /output/wheelhouse/idna-3.20-py3-none-any.whl
+Saved /output/wheelhouse/packaging-26.3-py3-none-any.whl
+Saved /output/wheelhouse/pathspec-1.1.1-py3-none-any.whl
+Saved /output/wheelhouse/pluggy-1.7.0-py3-none-any.whl
+Saved /output/wheelhouse/python_dateutil-2.9.0.post0-py2.py3-none-any.whl
+Saved /output/wheelhouse/requests-2.34.2-py3-none-any.whl
+Saved /output/wheelhouse/urllib3-2.8.0-py3-none-any.whl
+Saved /output/wheelhouse/six-1.17.0-py2.py3-none-any.whl
+Saved /output/wheelhouse/tomlkit-0.15.2-py3-none-any.whl
+Saved /output/wheelhouse/trove_classifiers-2026.9.21.13-py3-none-any.whl
+Saved /output/wheelhouse/tzdata-2026.5-py2.py3-none-any.whl
+Successfully downloaded airportsdata certifi charset-normalizer hatchling icalendar typing_extensions idna packaging pathspec pluggy python-dateutil requests urllib3 six tomlkit trove-classifiers tzdata
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: python3 -m pip install --upgrade pip
+{"downloaded_wheels": 17}

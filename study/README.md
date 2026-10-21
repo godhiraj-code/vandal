@@ -43,9 +43,11 @@ image and dependency wheels, not merely the Dockerfile. The worker pins Playwrig
 1.64.0/pytest-playwright 0.10.0 to its browser image; it installs Vandal from this
 checkout's wheel, never an independently published release.
 
-The runner prints the exact frozen manifest and recipes and asks for action-time
-approval. **Do not automate the answer.** Approval in CSV alone is insufficient for
-an assistant to execute unknown repository code. There is no noninteractive bypass.
+The runner prints the frozen manifest and recipes and prompts for action-time approval
+by default. The explicitly requested manual workflow uses an exact `--confirm` RUN
+token plus the human-reviewed study-pilot environment; see [PILOT.md](PILOT.md).
+CSV inclusion approval alone does not authorize an assistant to execute repository
+code, and this change does not dispatch the pilot.
 
 Source acquisition uses a bounded bare Git fetch of the exact SHA in a temporary
 directory, with global/system configuration and credentials disabled; no checkout,
@@ -54,7 +56,7 @@ path escapes, duplicates and oversized trees. The source hash is retained.
 
 Install and tests run in a fresh venv inside the container, entirely offline. Supply
 reviewed, platform-compatible dependency wheels (including project build backends
-and transitives) in a dedicated directory containing only regular `.whl` files.
+and transitives) in a dedicated directory containing regular `.whl` files and optional MANIFEST.csv inventory.
 The runner copies and hashes these, never mounts an incidental user directory.
 It does not run pip/build from the candidate on the host. Missing wheels cause an
 honest installation exclusion. No dependency/download fallback enables networking.

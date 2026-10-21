@@ -40,7 +40,11 @@ def browser_file(tree, support=""):
                           and isinstance(call.func.value, ast.Name) and call.func.value.id == "page"
                           for call in ast.walk(node)) for node in ast.walk(tree))
     plugin = bool(re.search(r"pytest[-_]playwright", support))
-    return playwright or (fixture and plugin and not foreign)
+    page_object = any(isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef)) and n.name.startswith("test_")
+                      and any(a.arg == "page" for a in n.args.args)
+                      and any(isinstance(c, ast.Call) and any(isinstance(a, ast.Name) and a.id == "page" for a in c.args)
+                              for c in ast.walk(n)) for n in ast.walk(tree))
+    return playwright or ((fixture or page_object) and plugin and not foreign)
 
 
 def page_fixtures(sources):
@@ -98,6 +102,29 @@ def offline_flags(sources):
     return [dict(x) for x in {tuple(sorted(flag.items())): flag for flag in flags}.values()]
 
 
+def local_import_paths(path, tree, available):
+    found = set()
+    for node in ast.walk(tree):
+        modules = []
+        bases = [Path("."), Path("src"), Path(path).parent]
+        if isinstance(node, ast.Import):
+            modules = [a.name for a in node.names]
+        elif isinstance(node, ast.ImportFrom):
+            modules = [node.module or ""] + [(node.module + "." if node.module else "") + a.name for a in node.names if a.name != "*"]
+            if node.level:
+                base = Path(path).parent
+                for _ in range(node.level - 1):
+                    base = base.parent
+                bases = [base]
+        for module in modules:
+            for base in bases:
+                stem = base / module.replace(".", "/")
+                targets = [str(stem) + ".py", str(stem / "__init__.py")]
+                targets += [str(parent / "__init__.py") for parent in stem.parents if parent != Path(".")]
+                found.update(Path(p).as_posix() for p in targets if Path(p).as_posix() in available)
+    return sorted(found)
+
+
 def static_screen(sources, supporting_sources=None):
     """Count browser-rooted call sites only; no imports or candidate execution.
 
@@ -107,10 +134,22 @@ def static_screen(sources, supporting_sources=None):
     """
     support = supporting_sources or {}
     fixture_pages, fixture_factories = page_fixtures(support)
+    # Include statically imported local page-object modules once, without imports
+    # or evaluating their constructors. Dynamic dispatch remains a heuristic.
+    expanded = dict(sources)
+    available = set(support)
+    pending = [p for p, text in sources.items() if browser_file(_tree(text, p), "\n".join(support.values()))]
+    while pending:
+        path = pending.pop()
+        tree = _tree(expanded[path], path)
+        for helper in local_import_paths(path, tree, available):
+            if helper not in expanded:
+                expanded[helper] = support[helper]
+                pending.append(helper)
     per_file = {}
-    for path, source in sorted(sources.items()):
+    for path, source in sorted(expanded.items()):
         tree = _tree(source, path)
-        selected = browser_file(tree, "\n".join(support.values()))
+        selected = browser_file(tree, "\n".join(support.values())) or path not in sources
         names = []
         expect_names = set()
         for node in ast.walk(tree):
@@ -268,7 +307,7 @@ def parse_candidate(repo, commit, license_info, sources, *, evidence_kind=None, 
                evidence_detail=detail or "Commit modifies selected Python browser tests; " + (match.group(0) if match else kind),
                test_paths=json.dumps(selected), license=spdx, license_url=license_info["html_url"],
                approved="no", recipe="recipes/REVIEW_REQUIRED.json",
-               observable_calls=str(sum(screen["files"][p]["count"] for p in selected)),
+               observable_calls=str(screen["observable_calls"]),
                offline_risk=json.dumps(screen["offline_risk"]))
     return row
 
@@ -307,33 +346,15 @@ def supporting_at(api, repo, sha, test_paths, sources=None):
             path, source = pending.pop()
             if not path.endswith(".py"):
                 continue
-            for node in ast.walk(_tree(source, path)):
-                modules = []
-                bases = [Path("."), Path("src"), Path(path).parent]
-                if isinstance(node, ast.Import):
-                    modules = [a.name for a in node.names]
-                elif isinstance(node, ast.ImportFrom):
-                    modules = [node.module or ""] + [(node.module + "." if node.module else "") + a.name for a in node.names if a.name != "*"]
-                    if node.level:
-                        base = Path(path).parent
-                        for _ in range(node.level - 1):
-                            base = base.parent
-                        bases = [base]
-                for module in modules:
-                    for base in bases:
-                        stem = base / module.replace(".", "/")
-                        targets = [str(stem) + ".py", str(stem / "__init__.py")]
-                        targets += [str(parent / "__init__.py") for parent in stem.parents if parent != Path(".")]
-                        for candidate in targets:
-                            candidate = Path(candidate).as_posix()
-                            if candidate not in available or candidate in visited:
-                                continue
-                            if len(visited) >= 200:
-                                raise ValueError("helper scan exceeds 200 files; manual inspection required")
-                            visited.add(candidate)
-                            fetched = sources_at(api, repo, sha, [candidate])
-                            result.update(fetched)
-                            pending.extend(fetched.items())
+            for candidate in local_import_paths(path, _tree(source, path), available):
+                if candidate in visited:
+                    continue
+                if len(visited) >= 200:
+                    raise ValueError("helper scan exceeds 200 files; manual inspection required")
+                visited.add(candidate)
+                fetched = sources_at(api, repo, sha, [candidate])
+                result.update(fetched)
+                pending.extend(fetched.items())
     return result
 
 

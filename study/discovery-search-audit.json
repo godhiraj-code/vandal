@@ -23,7 +23,7 @@
           "repo": "anjo-da-maquina/Pleroma",
           "sha": "3a2718f6409aace494fc3971310c188ce55206a4",
           "url": "https://github.com/anjo-da-maquina/Pleroma/commit/3a2718f6409aace494fc3971310c188ce55206a4",
-          "title": "§BV: §11.9フェーズE - 未宣言依存関係・サプライチェーン注入の検知"
+          "title": "\u00a7BV: \u00a711.9\u30d5\u30a7\u30fc\u30baE - \u672a\u5ba3\u8a00\u4f9d\u5b58\u95a2\u4fc2\u30fb\u30b5\u30d7\u30e9\u30a4\u30c1\u30a7\u30fc\u30f3\u6ce8\u5165\u306e\u691c\u77e5"
         },
         {
           "repo": "CandleViewer/CandleViewer",
@@ -83,13 +83,13 @@
           "repo": "byronz1z/ZBSwork-octop-build",
           "sha": "11705f8da003aab2bcbdcfe1300ea8eaf8464ef3",
           "url": "https://github.com/byronz1z/ZBSwork-octop-build/commit/11705f8da003aab2bcbdcfe1300ea8eaf8464ef3",
-          "title": "[ZT-036] 升级官方 v1.0.2 正式版 → zbs0.4（含补丁 60/0004 PostgreSQL 16 客户端） (#28)"
+          "title": "[ZT-036] \u5347\u7ea7\u5b98\u65b9 v1.0.2 \u6b63\u5f0f\u7248 \u2192 zbs0.4\uff08\u542b\u8865\u4e01 60/0004 PostgreSQL 16 \u5ba2\u6237\u7aef\uff09 (#28)"
         },
         {
           "repo": "TriTue2011/web2api",
           "sha": "3530838566180ddc9a20c87e29c635d05ddf9a3e",
           "url": "https://github.com/TriTue2011/web2api/commit/3530838566180ddc9a20c87e29c635d05ddf9a3e",
-          "title": "fix(NV206/207): test fail-fast giả lập đúng chỗ, giao diện JWT trung lập, README đủ biến và đường API"
+          "title": "fix(NV206/207): test fail-fast gi\u1ea3 l\u1eadp \u0111\u00fang ch\u1ed7, giao di\u1ec7n JWT trung l\u1eadp, README \u0111\u1ee7 bi\u1ebfn v\u00e0 \u0111\u01b0\u1eddng API"
         },
         {
           "repo": "dmon3yy/BoO-26",
@@ -113,7 +113,7 @@
           "repo": "viniciusofsilva00-code/analise-de-curriculo",
           "sha": "6119aac60a14397b460b2209d0a843176f06d89e",
           "url": "https://github.com/viniciusofsilva00-code/analise-de-curriculo/commit/6119aac60a14397b460b2209d0a843176f06d89e",
-          "title": "Sistema de análise de currículos: skill /analise-de-curriculo, app claude.ai e núcleo comum"
+          "title": "Sistema de an\u00e1lise de curr\u00edculos: skill /analise-de-curriculo, app claude.ai e n\u00facleo comum"
         },
         {
           "repo": "chocitagaming-art/mma-app",
@@ -131,13 +131,13 @@
           "repo": "men16922/ta-migration-reference-pack",
           "sha": "60fe2587e77ab3af64e1c3b45434b0c46fc0c723",
           "url": "https://github.com/men16922/ta-migration-reference-pack/commit/60fe2587e77ab3af64e1c3b45434b0c46fc0c723",
-          "title": "feat: onprem-atlas kit (ESM xlsx → SQLite) + IBM Cloud-style Carbon console"
+          "title": "feat: onprem-atlas kit (ESM xlsx \u2192 SQLite) + IBM Cloud-style Carbon console"
         },
         {
           "repo": "L1Z4RD0/SS3D",
           "sha": "16879ff4af09da16709673b0ecc92e6438d28416",
           "url": "https://github.com/L1Z4RD0/SS3D/commit/16879ff4af09da16709673b0ecc92e6438d28416",
-          "title": "Corrección de sesión: login que parpadea e interfaz que desaparece"
+          "title": "Correcci\u00f3n de sesi\u00f3n: login que parpadea e interfaz que desaparece"
         },
         {
           "repo": "ward-wise/ward-wise-front-end-v2",
@@ -341,7 +341,7 @@
           "repo": "ichidoro/Asistencia",
           "sha": "b19f9551ac9b54d339303a007781e6122d33cc07",
           "url": "https://github.com/ichidoro/Asistencia/commit/b19f9551ac9b54d339303a007781e6122d33cc07",
-          "title": "Adaptación a dispositivos (etapa D): prueba automática de pantallas"
+          "title": "Adaptaci\u00f3n a dispositivos (etapa D): prueba autom\u00e1tica de pantallas"
         },
         {
           "repo": "xtruck/realX",
@@ -480,7 +480,7 @@
           "repo": "wljusa/ui-test",
           "sha": "f8a10f9b86bd2cb81e8591839076b00e2ade6b47",
           "url": "https://github.com/wljusa/ui-test/commit/f8a10f9b86bd2cb81e8591839076b00e2ade6b47",
-          "title": "抽出可公开的 Playwright + Pytest UI 自动化框架。"
+          "title": "\u62bd\u51fa\u53ef\u516c\u5f00\u7684 Playwright + Pytest UI \u81ea\u52a8\u5316\u6846\u67b6\u3002"
         },
         {
           "repo": "luminacry/Verter-Bot",
@@ -570,7 +570,7 @@
           "repo": "ebluffy/Neyra-AIAssist",
           "sha": "dc4def3f87f1b7c0359b81e61031af84c27141c1",
           "url": "https://github.com/ebluffy/Neyra-AIAssist/commit/dc4def3f87f1b7c0359b81e61031af84c27141c1",
-          "title": "feat: API hardening T0–B5 + dashboard D0, People account-first, persona (#25)"
+          "title": "feat: API hardening T0\u2013B5 + dashboard D0, People account-first, persona (#25)"
         },
         {
           "repo": "miraclebro89757/open-test",
@@ -582,7 +582,7 @@
           "repo": "zonzideka/asterun",
           "sha": "b5100562133c8c80de31f33a5555468f1ae91f37",
           "url": "https://github.com/zonzideka/asterun/commit/b5100562133c8c80de31f33a5555468f1ae91f37",
-          "title": "按平台放行 Linux x86_64 的 Antigravity CLI 1.2.0 profile (#8)"
+          "title": "\u6309\u5e73\u53f0\u653e\u884c Linux x86_64 \u7684 Antigravity CLI 1.2.0 profile (#8)"
         },
         {
           "repo": "jenieraju/quality-pilot-ui-automation",
@@ -600,7 +600,7 @@
           "repo": "code1sentinel/policy-golden-path",
           "sha": "c3042d6a37b0ff60926e6264a2e47848103ebdfa",
           "url": "https://github.com/code1sentinel/policy-golden-path/commit/c3042d6a37b0ff60926e6264a2e47848103ebdfa",
-          "title": "Risk → control statements (#25)"
+          "title": "Risk \u2192 control statements (#25)"
         },
         {
           "repo": "gyrinx-app/gyrinx",
@@ -618,7 +618,7 @@
           "repo": "wzlcarrot/VAgent",
           "sha": "6ccbce8be65eb4866aac5de4f28f7ac7ce2cb4ba",
           "url": "https://github.com/wzlcarrot/VAgent/commit/6ccbce8be65eb4866aac5de4f28f7ac7ce2cb4ba",
-          "title": "chore(repo): 运行时数据移出 git，仅保留周度黄金集样例"
+          "title": "chore(repo): \u8fd0\u884c\u65f6\u6570\u636e\u79fb\u51fa git\uff0c\u4ec5\u4fdd\u7559\u5468\u5ea6\u9ec4\u91d1\u96c6\u6837\u4f8b"
         },
         {
           "repo": "Wenfeng-GAO/councilkit",
@@ -702,7 +702,7 @@
           "repo": "jvelasca/english-tutor",
           "sha": "e55b96dad1e73455d114e530dd233984511d55cb",
           "url": "https://github.com/jvelasca/english-tutor/commit/e55b96dad1e73455d114e530dd233984511d55cb",
-          "title": "﻿release(v3.91.0): el diccionario pasa a motor de sentidos y la inversa deja de barrer la tabla"
+          "title": "\ufeffrelease(v3.91.0): el diccionario pasa a motor de sentidos y la inversa deja de barrer la tabla"
         },
         {
           "repo": "jvelasca/english-tutor",
@@ -781,13 +781,13 @@
           "repo": "raoshun/audio-server",
           "sha": "fd9c5385d4084716cf42500988a8da00a42b0c19",
           "url": "https://github.com/raoshun/audio-server/commit/fd9c5385d4084716cf42500988a8da00a42b0c19",
-          "title": "feat(frontend): 閉じるで再生停止、最小化バーを追加"
+          "title": "feat(frontend): \u9589\u3058\u308b\u3067\u518d\u751f\u505c\u6b62\u3001\u6700\u5c0f\u5316\u30d0\u30fc\u3092\u8ffd\u52a0"
         },
         {
           "repo": "raoshun/audio-server",
           "sha": "6c19072c62756e33e4350d46032961dfd205675d",
           "url": "https://github.com/raoshun/audio-server/commit/6c19072c62756e33e4350d46032961dfd205675d",
-          "title": "feat(frontend): 曲選択時に暗転モーダル再生UIと同期歌詞表示を追加する"
+          "title": "feat(frontend): \u66f2\u9078\u629e\u6642\u306b\u6697\u8ee2\u30e2\u30fc\u30c0\u30eb\u518d\u751fUI\u3068\u540c\u671f\u6b4c\u8a5e\u8868\u793a\u3092\u8ffd\u52a0\u3059\u308b"
         },
         {
           "repo": "samoletovs/mindMe",
@@ -805,7 +805,7 @@
           "repo": "raoshun/audio-server",
           "sha": "ba18ed93a4eb71b68ff6252402873a9b0538ab91",
           "url": "https://github.com/raoshun/audio-server/commit/ba18ed93a4eb71b68ff6252402873a9b0538ab91",
-          "title": "fix(ci): backend/Dockerfile の COPY config.json を削除する（Issue #5）"
+          "title": "fix(ci): backend/Dockerfile \u306e COPY config.json \u3092\u524a\u9664\u3059\u308b\uff08Issue #5\uff09"
         },
         {
           "repo": "rickmcphee/discogs-browser",
@@ -817,13 +817,13 @@
           "repo": "raoshun/audio-server",
           "sha": "8d4379c32c2609fd7a920b795bfbb58b48d6f1b5",
           "url": "https://github.com/raoshun/audio-server/commit/8d4379c32c2609fd7a920b795bfbb58b48d6f1b5",
-          "title": "ci: Docker Compose 経由の GitHub Actions ワークフローを追加"
+          "title": "ci: Docker Compose \u7d4c\u7531\u306e GitHub Actions \u30ef\u30fc\u30af\u30d5\u30ed\u30fc\u3092\u8ffd\u52a0"
         },
         {
           "repo": "raoshun/audio-server",
           "sha": "fac2e6d852b63da6c717bf5cfc6154bfbfe03384",
           "url": "https://github.com/raoshun/audio-server/commit/fac2e6d852b63da6c717bf5cfc6154bfbfe03384",
-          "title": "chore(tools): policy_linter をリポジトリ全体へ拡張し make lint・CI 配線を接続"
+          "title": "chore(tools): policy_linter \u3092\u30ea\u30dd\u30b8\u30c8\u30ea\u5168\u4f53\u3078\u62e1\u5f35\u3057 make lint\u30fbCI \u914d\u7dda\u3092\u63a5\u7d9a"
         },
         {
           "repo": "microsoft/physical-ai-toolchain",
@@ -883,19 +883,19 @@
           "repo": "Hemofektik/mirarsetena",
           "sha": "dc80f3dcb5c34719c9c40a3733ac48ec282edbb1",
           "url": "https://github.com/Hemofektik/mirarsetena/commit/dc80f3dcb5c34719c9c40a3733ac48ec282edbb1",
-          "title": "feat: Phase K — end-to-end acceptance + live-bug fixes (K.1, TDD)"
+          "title": "feat: Phase K \u2014 end-to-end acceptance + live-bug fixes (K.1, TDD)"
         },
         {
           "repo": "Hemofektik/mirarsetena",
           "sha": "47a7adcf9c9a36d30bc3bce9fb0739c254117b8d",
           "url": "https://github.com/Hemofektik/mirarsetena/commit/47a7adcf9c9a36d30bc3bce9fb0739c254117b8d",
-          "title": "feat: Phase I — frontend (I.1-I.7, TDD) + geometry routes + first-view trigger"
+          "title": "feat: Phase I \u2014 frontend (I.1-I.7, TDD) + geometry routes + first-view trigger"
         },
         {
           "repo": "anindyasundarbera/truedemo",
           "sha": "019714b7c371999188220aed91e4f664d94e42da",
           "url": "https://github.com/anindyasundarbera/truedemo/commit/019714b7c371999188220aed91e4f664d94e42da",
-          "title": "M10: the studio surface — a session, a take, and a check that awaits"
+          "title": "M10: the studio surface \u2014 a session, a take, and a check that awaits"
         },
         {
           "repo": "Sefaria/Sefaria-Project",
@@ -937,7 +937,7 @@
           "repo": "jttrs/magic-manager",
           "sha": "87e6432c8b6479659cd332947d6656ab30211dde",
           "url": "https://github.com/jttrs/magic-manager/commit/87e6432c8b6479659cd332947d6656ab30211dde",
-          "title": "feat(web): Collection view, shared multi-select + sort rule builder (iteration 2 · P1)"
+          "title": "feat(web): Collection view, shared multi-select + sort rule builder (iteration 2 \u00b7 P1)"
         },
         {
           "repo": "microsoft/physical-ai-toolchain",
@@ -961,7 +961,7 @@
           "repo": "madeinoz67/benchweave",
           "sha": "13faaec9fa577b3a854d5261fc269b03f097c2ed",
           "url": "https://github.com/madeinoz67/benchweave/commit/13faaec9fa577b3a854d5261fc269b03f097c2ed",
-          "title": "feat(ui): G2b — the read views, refusal matrix and route-mapping gate (#303) (#368)"
+          "title": "feat(ui): G2b \u2014 the read views, refusal matrix and route-mapping gate (#303) (#368)"
         },
         {
           "repo": "microsoft/physical-ai-toolchain",
@@ -985,7 +985,7 @@
           "repo": "usagiandkamex/life-helper",
           "sha": "52fbe8aed65002208747fbd67409a674d8fec53a",
           "url": "https://github.com/usagiandkamex/life-helper/commit/52fbe8aed65002208747fbd67409a674d8fec53a",
-          "title": "feat: ブラウザツールの読み取り上限を緩和し、結果を UTF-8 JSON で渡す (#66)"
+          "title": "feat: \u30d6\u30e9\u30a6\u30b6\u30c4\u30fc\u30eb\u306e\u8aad\u307f\u53d6\u308a\u4e0a\u9650\u3092\u7de9\u548c\u3057\u3001\u7d50\u679c\u3092 UTF-8 JSON \u3067\u6e21\u3059 (#66)"
         },
         {
           "repo": "jmorrison-juniper/MistHelper",
@@ -1155,7 +1155,7 @@
         },
         {
           "url": "https://github.com/animeshkundu/pyscrape/pull/1",
-          "title": "feat(pyscrape): Python 3 port — requests+lxml core, optional Playwright JS rendering, pytest, CI"
+          "title": "feat(pyscrape): Python 3 port \u2014 requests+lxml core, optional Playwright JS rendering, pytest, CI"
         },
         {
           "url": "https://github.com/Pablo060606/DualLeagueManager/pull/1",
@@ -1273,11 +1273,11 @@
         },
         {
           "url": "https://github.com/Juve-ctrl/skills-introduction-to-github/pull/1",
-          "title": "# MEDICORE NEXUS — MASTER SYSTEM BUILD PROMPT\n\n## 1. YOUR ROLE AND MISSION\n\nAct as the lead software architect, senior full-stack engineer, application security engineer, database designer, QA engineer, DevOps engineer, and technical documentation lead..."
+          "title": "# MEDICORE NEXUS \u2014 MASTER SYSTEM BUILD PROMPT\n\n## 1. YOUR ROLE AND MISSION\n\nAct as the lead software architect, senior full-stack engineer, application security engineer, database designer, QA engineer, DevOps engineer, and technical documentation lead..."
         },
         {
           "url": "https://github.com/djmahe4/ctf-katana/pull/3",
-          "title": "feat(reverse): Tri-Mode Execution Engine — SOLVE / BUILD / THINK hub"
+          "title": "feat(reverse): Tri-Mode Execution Engine \u2014 SOLVE / BUILD / THINK hub"
         },
         {
           "url": "https://github.com/rudolf1/brencher/pull/82",
@@ -1333,7 +1333,7 @@
         },
         {
           "url": "https://github.com/ChibaYuki347/dev-demo/pull/11",
-          "title": "Align manual issue→ADO sync workflow with AC-001 trigger path"
+          "title": "Align manual issue\u2192ADO sync workflow with AC-001 trigger path"
         },
         {
           "url": "https://github.com/Vikaash-dev/FREE-LLM-AGGREGATOR-/pull/10",
@@ -1407,7 +1407,7 @@
         },
         {
           "url": "https://github.com/Jul352mf/THE_Email_Scraper/pull/9",
-          "title": "[WIP] ✨ Set up Copilot instructions"
+          "title": "[WIP] \u2728 Set up Copilot instructions"
         },
         {
           "url": "https://github.com/Installsure/External-Review-Repository/pull/28",
@@ -1431,7 +1431,7 @@
         },
         {
           "url": "https://github.com/Karen86Tonoyan/browser-content-inspection-agent/pull/1",
-          "title": "Implement ALFA Agent Control System — Operational Learning Loop"
+          "title": "Implement ALFA Agent Control System \u2014 Operational Learning Loop"
         },
         {
           "url": "https://github.com/mezzyboss/church-ai/pull/2",
@@ -1483,7 +1483,7 @@
         },
         {
           "url": "https://github.com/kighaz/Smart_Library/pull/1",
-          "title": "Implement Smart Library – digitales Ausleihsystem (Flask)"
+          "title": "Implement Smart Library \u2013 digitales Ausleihsystem (Flask)"
         },
         {
           "url": "https://github.com/shand-j/python/pull/9",
@@ -1505,7 +1505,7 @@
         },
         {
           "url": "https://github.com/COG-GTM/BrowserGym/pull/77",
-          "title": "side(deps): upgrade runtime deps (Playwright 1.64, gymnasium 1.x, numpy 2, Python 3.10–3.13)"
+          "title": "side(deps): upgrade runtime deps (Playwright 1.64, gymnasium 1.x, numpy 2, Python 3.10\u20133.13)"
         },
         {
           "url": "https://github.com/COG-GTM/BrowserGym/pull/28",
@@ -1695,11 +1695,11 @@
         },
         {
           "url": "https://github.com/COG-GTM/vantage-telco/pull/20",
-          "title": "feature: Phase 0 — dev tooling, pinned deps, CI gates, modernization capture harness + baseline"
+          "title": "feature: Phase 0 \u2014 dev tooling, pinned deps, CI gates, modernization capture harness + baseline"
         },
         {
           "url": "https://github.com/rickyviank/fins_polyglot_microservices/pull/25",
-          "title": "Add comprehensive test suite for reporting-service (0% → 100% coverage)"
+          "title": "Add comprehensive test suite for reporting-service (0% \u2192 100% coverage)"
         },
         {
           "url": "https://github.com/COG-GTM/BrowserGym/pull/19",
@@ -1845,7 +1845,7 @@
         },
         {
           "url": "https://github.com/kwancer/superset/pull/4",
-          "title": "ci: optimize CI workflows for speed — caching, parallelization, redundancy removal"
+          "title": "ci: optimize CI workflows for speed \u2014 caching, parallelization, redundancy removal"
         },
         {
           "url": "https://github.com/adotak/vitadrive/pull/28",
@@ -2107,7 +2107,7 @@
     "agent_pr": 1
   },
   "candidate_rows": 10,
-  "at_least_ten_observable_calls": 7,
+  "at_least_ten_observable_calls": 8,
   "approved_rows": 0,
   "limits": "Connector searches, bounded samples; not exhaustive. No GITHUB_TOKEN available locally, so full CLI not run. Human discovery is out of scope. Guidance-only is not authored-test evidence. Search API totals vary; returned hits can overlap.",
   "manual_pr_screen": [
@@ -2160,5 +2160,7 @@
       "changed_files": 8
     }
   ],
-  "revision_screen": "Cached pinned sources rescored; two zero-call records moved to rejected_candidates.csv. No new discovery or complete helper traversal claimed."
+  "revision_screen": "Cached pinned sources rescored; two zero-call records moved to rejected_candidates.csv. No new discovery or complete helper traversal claimed.",
+  "explicit_approved_manifest_rows": 2,
+  "approval_scope": "Discovery rows remain unapproved; two separate manifest rows were explicitly approved by Dhiraj. No execution."
 }
