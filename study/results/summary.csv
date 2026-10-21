@@ -1,0 +1,4 @@
+repo,commit_sha,kind,group,status,eligible,score,n_tests,n_mutants,n_scored,killed,survived,error,not_applied,skipped,untested,untested_targets,skipped_by_cap,action_failed_kills,reason
+owned-local-fixture,86ea7e4801fdf00ae40c867ad5300a9addd11500,fixture,fixture,skipped,False,,,,,,,,,,,,,,baseline timeout
+owned-local-fixture,e886c215ebb550c2e26780008c42ea7e87560e9f,fixture,fixture,completed,False,80.0,2,5,5,4,1,0,0,0,0,0,0,2,
+owned-local-fixture,650dab65e793d443ab1bab11f90eb27f07b50e32,fixture,fixture,unscored,False,,2,5,0,0,0,5,0,0,0,0,0,0,no killed/survived mutants

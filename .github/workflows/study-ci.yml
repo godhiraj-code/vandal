@@ -1,0 +1,33 @@
+name: Study harness
+on:
+  pull_request:
+    paths: ['study/**', '.dockerignore', '.github/workflows/study-ci.yml', 'pyproject.toml']
+  push:
+    branches: [main]
+    paths: ['study/**', '.dockerignore', '.github/workflows/study-ci.yml', 'pyproject.toml']
+permissions:
+  contents: read
+jobs:
+  owned-fixture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e '.[test]' build
+      - run: python -m playwright install --with-deps chromium
+      - run: python -m pytest study/tests -q
+      - run: python -m study.fixture_smoke --results study/results/ci-fixture
+      - run: python -m study.summarize --results study/results/ci-fixture --report study/CI_REPORT.md
+      - run: python -m build --wheel
+      - name: Verify wheel excludes study
+        run: python -c "import pathlib, zipfile; w=next(pathlib.Path('dist').glob('*.whl')); names=zipfile.ZipFile(w).namelist(); assert not any(n.startswith('study/') for n in names); print(w, names)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: owned-study-fixture
+          path: |
+            study/results/ci-fixture
+            study/CI_REPORT.md

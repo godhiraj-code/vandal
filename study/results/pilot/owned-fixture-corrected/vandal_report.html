@@ -1,0 +1,155 @@
+<!doctype html><html lang='en'><meta charset='utf-8'><title>Vandal strength report</title><style>body{font-family:system-ui;margin:2rem}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:.6rem;text-align:left;overflow-wrap:anywhere}</style><h1>Vandal strength: 80.0%</h1><p>Survivors are candidates for review, not proof of missing assertions. Errors and unapplied mutations do not contribute to strength.</p><pre>{
+  &quot;killed&quot;: 4,
+  &quot;survived&quot;: 1,
+  &quot;error&quot;: 0,
+  &quot;not_applied&quot;: 0,
+  &quot;skipped&quot;: 0,
+  &quot;score&quot;: 80.0
+}</pre><table><tr><th>Strategy</th><th>Selector</th><th>Status</th><th>Hint</th><th>Details</th></tr><tr><th colspan='5'>test_local_app.py::test_counter[chromium] | baseline: passed | strength: 100.0%</th></tr><tr><td>stealth_disable</td><td>#increment</td><td>killed</td><td>A Playwright assertion ran after clicking #increment; review its outcome checks.</td><td>args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Documents\Codex\2026-10-21\task-3\vandal-study\.venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send(&quot;click&quot;, self._timeout, locals_to_params(locals()))
+..\..\..\..\Documents\Codex\2026-10-21\task-3\vandal-study\.venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x000002370B996CF0&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x000002370BD167A0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, &quot;__pw_stack__&quot;, None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f&quot;{parsed_st[&#x27;apiName&#x27;]}: {error}&quot;) from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 600ms exceeded.
+E           Call log:
+E             - waiting for locator(&quot;#increment&quot;).locator(&quot;vandal_e48417a30f174667baadc1a6fd700bca=apply&quot;).or_(locator(&quot;#increment&quot;))
+E               - locator resolved to &lt;button id=&quot;increment&quot; data-vandal-original-pointer=&quot;&quot; data-vandalized=&quot;stealth_disable&quot; onclick=&quot;document.querySelector(&#x27;#count&#x27;).textContent=&#x27;1&#x27;&quot;&gt;Add&lt;/button&gt;
+E             - attempting click action
+E               2 × waiting for element to be visible, enabled and stable
+E                 - element is visible, enabled and stable
+E                 - scrolling into view if needed
+E                 - done scrolling
+E                 - &lt;body&gt;…&lt;/body&gt; intercepts pointer events
+E               - retrying click action
+E               - waiting 20ms
+E               2 × waiting for element to be visible, enabled and stable
+E                 - element is visible, enabled and stable
+E                 - scrolling into view if needed
+E                 - done scrolling
+E                 - &lt;body&gt;…&lt;/body&gt; intercepts pointer events
+E               - retrying click action
+E                 - waiting 100ms
+E               - waiting for element to be visible, enabled and stable
+E               - element is visible, enabled and stable
+E               - scrolling into view if needed
+E               - done scrolling
+E               - &lt;body&gt;…&lt;/body&gt; intercepts pointer events
+E             - retrying click action
+E               - waiting 500ms
+
+..\..\..\..\Documents\Codex\2026-10-21\task-3\vandal-study\.venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</td></tr><tr><td>data_sabotage</td><td>#count</td><td>killed</td><td>Used #count; check assertions about its value, state, or resulting behavior.</td><td>page = &lt;Page url=&#x27;about:blank&#x27;&gt;
+
+    def test_counter(page):
+        page.set_default_timeout(600)
+        page.set_content(&#x27;&#x27;&#x27;&lt;button id=&quot;increment&quot; onclick=&quot;document.querySelector(&#x27;#count&#x27;).textContent=&#x27;1&#x27;&quot;&gt;Add&lt;/button&gt;
+                            &lt;output id=&quot;count&quot;&gt;0&lt;/output&gt;&#x27;&#x27;&#x27;)
+        page.locator(&quot;#increment&quot;).click()
+&gt;       expect(page.locator(&quot;#count&quot;)).to_have_text(&quot;1&quot;, timeout=500)
+E       AssertionError: Locator expected to have text &#x27;1&#x27;
+E       Actual value: VANDALIZED_TEXT 
+E       Call log:
+E         - Expect &quot;to_have_text&quot; locator(&quot;#count&quot;).locator(&quot;vandal_d330d4c980744c21b6189aef106dd69a=apply&quot;).or_(locator(&quot;#count&quot;)) with timeout 500ms
+E         - waiting for locator(&quot;#count&quot;).locator(&quot;vandal_d330d4c980744c21b6189aef106dd69a=apply&quot;).or_(locator(&quot;#count&quot;))
+E           6 × locator resolved to &lt;output id=&quot;count&quot; data-vandalized=&quot;data_sabotage&quot; data-vandal-original-text=&quot;VANDALIZED_TEXT&quot;&gt;VANDALIZED_TEXT&lt;/output&gt;
+E             - unexpected value &quot;VANDALIZED_TEXT&quot;
+E       
+E       Aria snapshot:
+E       - status: VANDALIZED_TEXT
+
+test_local_app.py:10: AssertionError</td></tr><tr><td>ghost_element</td><td>#increment</td><td>killed</td><td>A Playwright assertion ran after clicking #increment; review its outcome checks.</td><td>^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Documents\Codex\2026-10-21\task-3\vandal-study\.venv\Lib\site-packages\playwright\_impl\_frame.py:598: in _click
+    await self._channel.send(&quot;click&quot;, self._timeout, locals_to_params(locals()))
+..\..\..\..\Documents\Codex\2026-10-21\task-3\vandal-study\.venv\Lib\site-packages\playwright\_impl\_connection.py:78: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;playwright._impl._connection.Connection object at 0x0000027FFD7D6CF0&gt;
+cb = &lt;function Channel.send.&lt;locals&gt;.&lt;lambda&gt; at 0x0000027FFDB467A0&gt;
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -&gt; Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, &quot;__pw_stack__&quot;, None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+&gt;           raise rewrite_error(error, f&quot;{parsed_st[&#x27;apiName&#x27;]}: {error}&quot;) from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 600ms exceeded.
+E           Call log:
+E             - waiting for locator(&quot;#increment&quot;).locator(&quot;vandal_4ac617b889ac4bea813767f534b21fda=apply&quot;).or_(locator(&quot;#increment&quot;))
+E               - locator resolved to &lt;button id=&quot;increment&quot; data-vandal-original-opacity=&quot;&quot; data-vandal-original-pointer=&quot;&quot; data-vandalized=&quot;ghost_element&quot; onclick=&quot;document.querySelector(&#x27;#count&#x27;).textContent=&#x27;1&#x27;&quot;&gt;Add&lt;/button&gt;
+E             - attempting click action
+E               2 × waiting for element to be visible, enabled and stable
+E                 - element is visible, enabled and stable
+E                 - scrolling into view if needed
+E                 - done scrolling
+E                 - &lt;body&gt;…&lt;/body&gt; intercepts pointer events
+E               - retrying click action
+E               - waiting 20ms
+E               2 × waiting for element to be visible, enabled and stable
+E                 - element is visible, enabled and stable
+E                 - scrolling into view if needed
+E                 - done scrolling
+E                 - &lt;body&gt;…&lt;/body&gt; intercepts pointer events
+E               - retrying click action
+E                 - waiting 100ms
+E               - waiting for element to be visible, enabled and stable
+E               - element is visible, enabled and stable
+E               - scrolling into view if needed
+E               - done scrolling
+E               - &lt;body&gt;…&lt;/body&gt; intercepts pointer events
+E             - retrying click action
+E               - waiting 500ms
+
+..\..\..\..\Documents\Codex\2026-10-21\task-3\vandal-study\.venv\Lib\site-packages\playwright\_impl\_connection.py:636: TimeoutError</td></tr><tr><td>logic_sabotage</td><td>#increment</td><td>killed</td><td>A Playwright assertion ran after clicking #increment; review its outcome checks.</td><td>page = &lt;Page url=&#x27;about:blank&#x27;&gt;
+
+    def test_counter(page):
+        page.set_default_timeout(600)
+        page.set_content(&#x27;&#x27;&#x27;&lt;button id=&quot;increment&quot; onclick=&quot;document.querySelector(&#x27;#count&#x27;).textContent=&#x27;1&#x27;&quot;&gt;Add&lt;/button&gt;
+                            &lt;output id=&quot;count&quot;&gt;0&lt;/output&gt;&#x27;&#x27;&#x27;)
+        page.locator(&quot;#increment&quot;).click()
+&gt;       expect(page.locator(&quot;#count&quot;)).to_have_text(&quot;1&quot;, timeout=500)
+E       AssertionError: Locator expected to have text &#x27;1&#x27;
+E       Actual value: 0 
+E       Call log:
+E         - Expect &quot;to_have_text&quot; locator(&quot;#increment&quot;).locator(&quot;vandal_7f4408bf8d0f4280889c5b025bf5c21d=apply&quot;).or_(locator(&quot;#count&quot;)) with timeout 500ms
+E         - waiting for locator(&quot;#increment&quot;).locator(&quot;vandal_7f4408bf8d0f4280889c5b025bf5c21d=apply&quot;).or_(locator(&quot;#count&quot;))
+E           6 × locator resolved to &lt;output id=&quot;count&quot;&gt;0&lt;/output&gt;
+E             - unexpected value &quot;0&quot;
+E       
+E       Aria snapshot:
+E       - status: &quot;0&quot;
+
+test_local_app.py:10: AssertionError</td></tr><tr><th colspan='5'>test_local_app.py::test_label_without_assertion[chromium] | baseline: passed | strength: 0.0%</th></tr><tr><td>data_sabotage</td><td>#label</td><td>survived</td><td>Used #label; check assertions about its value, state, or resulting behavior.</td><td>Test passed after confirmed mutation</td></tr></table></html>

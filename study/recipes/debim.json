@@ -1,0 +1,7 @@
+{
+  "test_paths": ["tests/test_docs_viewer.py"],
+  "requirements": [],
+  "install_project": true,
+  "extras": [],
+  "pytest_args": ["-k", "test_spatial_transform_benchmark_execution or test_docs_viewer_transform_ground_and_scale"]
+}

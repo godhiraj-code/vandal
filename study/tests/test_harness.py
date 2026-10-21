@@ -1,0 +1,268 @@
+import io
+import json
+import sys
+import tarfile
+from pathlib import Path
+
+import pytest
+
+from study.common import FIELDS, approval_reason, safe_path, write_rows, read_rows
+from study.find_repos import parse_candidate, test_files as select_files
+from study.process import clean_env, run
+from study.run_study import container_command
+from study.summarize import counts, metrics, spread, summarize
+from study.worker import baseline_reason, extract_source, validate_recipe
+
+
+def candidate():
+    return dict(zip(FIELDS, ["owner/repo", "a" * 40, "agent", "test_commit",
+                "https://github.com/owner/repo/commit/" + "a" * 40, "Claude adds browser tests",
+                '["tests/test_ui.py"]', "MIT", "https://github.com/owner/repo/blob/" + "a" * 40 + "/LICENSE",
+                "no", "", "", "recipes/repo.json"]))
+
+
+def report(statuses):
+    mutants = [{"status": s, "strategy": "data_sabotage"} for s in statuses]
+    test = {"nodeid": "test.py::test_x", "baseline": "passed", "mutants": mutants,
+            "summary": counts(mutants), "untested_targets": ["#select"], "skipped_by_cap": 3}
+    return {"schema_version": 1, "tests": [test], "summary": counts(mutants)}
+
+
+def test_discovery_requires_test_specific_evidence_and_license():
+    commit = {"sha": "a" * 40, "html_url": candidate()["evidence_url"],
+              "commit": {"message": "Add tests\nCo-Authored-By: Claude <noreply@anthropic.com>"},
+              "files": [{"filename": "tests/test_ui.py", "status": "added"}]}
+    license_info = {"license": {"spdx_id": "MIT"}, "html_url": candidate()["license_url"]}
+    repo = {"full_name": "owner/repo", "private": False}
+    source = {"tests/test_ui.py": "from playwright.sync_api import Page\ndef test_ui(page): page.goto('/')"}
+    row = parse_candidate(repo, commit, license_info, source)
+    assert row["approved"] == "no" and row["reviewer"] == ""
+    assert json.loads(row["test_paths"]) == ["tests/test_ui.py"]
+    assert parse_candidate(repo, commit, {"license": None}, source) is None
+    commit["commit"]["message"] = "Update instructions for Claude"
+    assert parse_candidate(repo, commit, license_info, source) is None
+    assert parse_candidate(repo, commit, license_info, {"tests/test_ui.py": "def test_unit(): pass"}) is None
+
+
+def test_removed_tests_not_selected():
+    assert select_files({"files": [{"filename": "test_ui.py", "status": "removed"}]}) == []
+
+
+def test_person_review_and_csv(tmp_path):
+    row = candidate()
+    assert approval_reason(row) == "not approved by a person"
+    row.update(approved="yes", reviewer="person", reviewed_at="2026-10-21T00:00:00Z")
+    assert approval_reason(row) is None
+    path = tmp_path / "repos.csv"
+    write_rows(path, [row])
+    assert read_rows(path) == [row]
+    row["group"] = "human"
+    assert "evidence" in approval_reason(row)
+    row["evidence_kind"] = "historical_authorship"
+    assert approval_reason(row) is None
+    row["commit_sha"] = "main"
+    assert "SHA" in approval_reason(row)
+
+
+@pytest.mark.parametrize("path", [".", "../escape", "/abs", "C:/file", "a\\b", "-p", "a/../b", "a//b", "a\nfoo"])
+def test_path_rejection(path):
+    with pytest.raises(ValueError):
+        safe_path(path)
+
+
+@pytest.mark.parametrize("kind", [tarfile.SYMTYPE, tarfile.LNKTYPE, tarfile.CHRTYPE])
+def test_archive_nonregular_rejected(tmp_path, kind):
+    path = tmp_path / "source.tar"
+    with tarfile.open(path, "w") as tf:
+        entry = tarfile.TarInfo("evil")
+        entry.type = kind
+        entry.linkname = "/etc/passwd"
+        tf.addfile(entry)
+    with pytest.raises(ValueError):
+        extract_source(path, tmp_path / "dest")
+
+
+def test_archive_regular_and_traversal(tmp_path):
+    path = tmp_path / "source.tar"
+    with tarfile.open(path, "w") as tf:
+        entry = tarfile.TarInfo("tests/test_ui.py")
+        entry.size = 3
+        tf.addfile(entry, io.BytesIO(b"abc"))
+    extract_source(path, tmp_path / "dest")
+    assert (tmp_path / "dest/tests/test_ui.py").read_bytes() == b"abc"
+    with tarfile.open(path, "w") as tf:
+        tf.addfile(tarfile.TarInfo("../escape"))
+    with pytest.raises(ValueError):
+        extract_source(path, tmp_path / "dest2")
+
+
+@pytest.mark.parametrize("xml,code,expected", [
+    ("<testsuite/>", 0, "no tests"),
+    ("<testsuite><testcase><skipped/></testcase></testsuite>", 0, "skipped"),
+    ("<testsuite><testcase><failure/></testcase></testsuite>", 0, "failure/error"),
+    ("<testsuite><testcase/></testsuite>", 1, "failed"),
+    ("broken", 0, "no valid"),
+    ("<testsuite><testcase/></testsuite>", 0, None)])
+def test_baseline_skip_rules(tmp_path, xml, code, expected):
+    path = tmp_path / "baseline.xml"
+    path.write_text(xml)
+    reason = baseline_reason({"exit_code": code, "timed_out": False, "log_limited": False}, path)
+    assert reason is None if expected is None else expected in reason
+
+
+def test_container_and_environment_do_not_inherit_secrets(tmp_path, monkeypatch):
+    monkeypatch.setenv("GITHUB_TOKEN", "secret")
+    monkeypatch.setenv("AWS_SECRET_ACCESS_KEY", "secret")
+    monkeypatch.setenv("PYTHONPATH", "evil")
+    env = clean_env()
+    assert not {"GITHUB_TOKEN", "AWS_SECRET_ACCESS_KEY", "PYTHONPATH"} & env.keys()
+    cmd = container_command("sha256:" + "a" * 64, "test", tmp_path, tmp_path, 60)
+    assert "--network=none" in cmd and "--cap-drop=ALL" in cmd
+    assert "--read-only" in cmd and "--memory=4g" in cmd and "--pids-limit=256" in cmd
+    assert "--privileged" not in cmd and not any("docker.sock" in s for s in cmd)
+    assert all("readonly" in cmd[i + 1] for i, x in enumerate(cmd) if x == "--mount")
+
+
+def test_recipe_cannot_override_runner():
+    for args in [["--headed", "true"], ["--vandal-strategies", "logic_sabotage"], ["-n", "auto"]]:
+        with pytest.raises(ValueError):
+            validate_recipe({"test_paths": ["test.py"], "pytest_args": args})
+
+
+def test_summary_math_and_tampering():
+    data, _ = metrics(report(["killed", "survived", "survived", "error", "not_applied", "skipped"]))
+    assert data["score"] == pytest.approx(100 / 3)
+    assert data["untested"] == 2 and data["untested_targets"] == 1 and data["skipped_by_cap"] == 3
+    assert data["n_scored"] == 3 and data["n_mutants"] == 6
+    assert metrics(report(["error"]))[0]["score"] is None
+    bad = report(["killed"])
+    bad["summary"]["score"] = 1
+    with pytest.raises(ValueError):
+        metrics(bad)
+    assert spread([])["median"] is None
+    assert spread([25]) == {"n": 1, "median": 25, "min": 25, "max": 25, "iqr": 0}
+    assert spread([0, 25, 50, 100])["iqr"] == 43.75
+
+
+def test_fixtures_and_incomplete_runs_excluded(tmp_path):
+    for name, kind, state in [("fixture", "fixture", "completed"), ("partial", "public", "incomplete")]:
+        dest = tmp_path / name
+        dest.mkdir()
+        (dest / "status.json").write_text(json.dumps({"repo": name, "commit_sha": "a" * 40,
+           "kind": kind, "group": "agent", "status": state, "reason": "timeout" if state == "incomplete" else ""}))
+        (dest / "vandal_report.json").write_text(json.dumps(report(["killed"])))
+    rows = summarize(tmp_path, tmp_path / "REPORT.md")
+    assert not any(r["eligible"] for r in rows)
+    assert "No between-group difference" in (tmp_path / "REPORT.md").read_text()
+
+
+def test_real_process_timeout_and_log_bound(tmp_path):
+    result = run([sys.executable, "-c", "import time; time.sleep(10)"], tmp_path, tmp_path / "sleep.log", .2)
+    assert result["timed_out"] and result["seconds"] < 5
+    result = run([sys.executable, "-c", "print('x'*100000)"], tmp_path, tmp_path / "noise.log", 5, max_bytes=100)
+    assert result["log_limited"] and (tmp_path / "noise.log").stat().st_size == 100
+
+
+def test_public_results_require_review_and_detect_duplicate_repos(tmp_path):
+    from study.common import digest
+    for folder, sha in [("one", "a" * 40), ("two", "b" * 40)]:
+        destination = tmp_path / folder
+        destination.mkdir()
+        manifest = candidate()
+        manifest.update(commit_sha=sha, approved="yes", reviewer="person", reviewed_at="2026-10-21T00:00:00Z")
+        raw = destination / "vandal_report.json"
+        raw.write_text(json.dumps(report(["killed", "survived"])))
+        (destination / "status.json").write_text(json.dumps({
+            "repo": "owner/repo", "commit_sha": sha, "kind": "public", "group": "agent",
+            "status": "completed", "reason": "", "manifest": manifest,
+            "artifact_sha256": {"vandal_report.json": digest(raw)}}))
+    rows = summarize(tmp_path, tmp_path / "REPORT.md")
+    assert not any(r["eligible"] for r in rows)
+    assert all(r["status"] == "invalid" for r in rows)
+
+
+def test_baseline_deadline_and_partial_skip(tmp_path):
+    result = {"exit_code": 0, "timed_out": True, "log_limited": False}
+    assert baseline_reason(result, tmp_path / "absent") == "baseline timeout"
+    result.update(timed_out=False, log_limited=True)
+    assert "log limit" in baseline_reason(result, tmp_path / "absent")
+    result["log_limited"] = False
+    xml = tmp_path / "partial.xml"
+    xml.write_text("<testsuite><testcase/><testcase><skipped/></testcase></testsuite>")
+    assert "skipped" in baseline_reason(result, xml)
+
+
+def test_changed_wheelhouse_rejected_before_acquisition(tmp_path, monkeypatch):
+    from study.run_study import run_one
+    wheelhouse, output = tmp_path / "wheels", tmp_path / "out"
+    wheelhouse.mkdir()
+    output.mkdir()
+    (wheelhouse / "dependency.whl").write_bytes(b"changed")
+    called = []
+    monkeypatch.setattr("study.run_study.acquire", lambda *a: called.append(a))
+    monkeypatch.setattr("study.run_study.run", lambda *a, **kw: {"exit_code": 1})
+    status = run_one(candidate(), {}, "sha256:" + "a" * 64, wheelhouse, output, 30, {"dependency.whl": "reviewed"})
+    assert not called and "changed after approval" in status["reason"]
+
+
+@pytest.mark.parametrize("bad", [[], {"schema_version": 1, "tests": [42]},
+    {"schema_version": 1, "tests": [{"nodeid": "x", "baseline": "passed", "mutants": [3], "summary": {}}]}])
+def test_malformed_report_is_invalid_not_crash(tmp_path, bad):
+    dest = tmp_path / "run"
+    dest.mkdir()
+    (dest / "status.json").write_text(json.dumps({"repo": "owned", "commit_sha": "a" * 40,
+        "kind": "fixture", "group": "fixture", "status": "completed", "reason": ""}))
+    (dest / "vandal_report.json").write_text(json.dumps(bad))
+    rows = summarize(tmp_path, tmp_path / "REPORT.md")
+    assert rows[0]["status"] == "invalid" and not rows[0]["eligible"]
+
+
+@pytest.mark.parametrize("failure", ["malformed_export", "missing_docker"])
+def test_failed_export_or_cleanup_still_records_status(tmp_path, monkeypatch, failure):
+    from study.run_study import run_one
+    wheelhouse, output = tmp_path / "wheels", tmp_path / "out"
+    wheelhouse.mkdir()
+    output.mkdir()
+    def acquire(row, temporary, output, seconds):
+        (temporary / "input/source.tar").write_bytes(b"owned mock")
+    def fake_run(cmd, cwd, log, seconds, **kwargs):
+        if failure == "missing_docker":
+            raise FileNotFoundError("docker missing")
+        Path(log).write_bytes(b"not an archive" if cmd[1] == "exec" else b"owned mock")
+        return {"exit_code": 0, "timed_out": False, "log_limited": False}
+    monkeypatch.setattr("study.run_study.acquire", acquire)
+    monkeypatch.setattr("study.run_study.run", fake_run)
+    monkeypatch.setattr("study.run_study.subprocess.run", lambda *a, **kw: type("Probe", (), {"returncode": 0})())
+    result = run_one(candidate(), {}, "sha256:" + "a" * 64, wheelhouse, output, 30, {})
+    assert result["status"] == "skipped"
+    assert (output / "status.json").exists()
+    assert ("ReadError" if failure == "malformed_export" else "FileNotFoundError") in result["reason"]
+
+
+def test_approval_is_bound_to_result_repository(tmp_path):
+    from study.common import digest
+    manifest = candidate()
+    manifest.update(approved="yes", reviewer="person", reviewed_at="2026-10-21T00:00:00Z")
+    raw = tmp_path / "vandal_report.json"
+    raw.write_text(json.dumps(report(["killed"])))
+    (tmp_path / "status.json").write_text(json.dumps({
+        "repo": "different/repo", "commit_sha": "a" * 40, "kind": "public", "group": "agent",
+        "status": "completed", "reason": "", "manifest": manifest,
+        "artifact_sha256": {"vandal_report.json": digest(raw)}}))
+    rows = summarize(tmp_path, tmp_path / "REPORT.md")
+    assert rows[0]["status"] == "invalid" and "reviewed repository" in rows[0]["reason"]
+
+
+def test_source_disk_quota_excludes_staged_dependencies(tmp_path, monkeypatch):
+    from study.run_study import acquire
+    (tmp_path / "input").mkdir()
+    output = tmp_path / "out"
+    output.mkdir()
+    monitors = []
+    def fake_run(cmd, cwd, log, seconds, env, **kwargs):
+        monitors.append(kwargs["disk_root"])
+        Path(log).write_text("a" * 40 if "rev-parse" in cmd else "owned acquisition mock")
+        return {"exit_code": 0, "timed_out": False, "log_limited": False, "disk_limited": False}
+    monkeypatch.setattr("study.run_study.run", fake_run)
+    acquire(candidate(), tmp_path, output, 30)
+    assert monitors == [tmp_path / "source.git"] * 3 + [tmp_path / "input"]

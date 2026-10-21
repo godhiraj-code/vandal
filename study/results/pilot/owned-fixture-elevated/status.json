@@ -1,0 +1,68 @@
+{
+  "status": "completed",
+  "baseline": {
+    "command": [
+      "C:\\Users\\dhira\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-o",
+      "addopts=",
+      "-q",
+      "-p",
+      "no:vandal",
+      "--junitxml=C:\\Users\\dhira\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\study\\results\\pilot\\owned-fixture-elevated\\baseline.xml",
+      "--",
+      "test_local_app.py"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 4.39
+  },
+  "recipe": {
+    "test_paths": [
+      "test_local_app.py"
+    ],
+    "requirements": [],
+    "install_project": false,
+    "extras": [],
+    "pytest_args": []
+  },
+  "mutation": {
+    "command": [
+      "C:\\Users\\dhira\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-o",
+      "addopts=",
+      "-q",
+      "--vandal",
+      "--vandal-report=C:\\Users\\dhira\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\study\\results\\pilot\\owned-fixture-elevated\\vandal_report.json",
+      "--",
+      "test_local_app.py"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 5.16
+  },
+  "reason": "",
+  "repo": "owned-local-fixture",
+  "commit_sha": "650dab65e793d443ab1bab11f90eb27f07b50e32",
+  "group": "fixture",
+  "kind": "fixture",
+  "isolation": "host-only owned source; NOT container validation",
+  "fixture_sha256": "8590f787d6b7d2f524797cf1fa6cf66db03cffa5c7b41719a931df6c57f79fea",
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "artifact_sha256": {
+    "baseline.log": "d9ca69d7f00ce90561a3177185ba07559b4c90b11d44f8915683b0e597fb8841",
+    "baseline.xml": "05ce78bb8f698ffb1ae5f95f8d675802527bb1796a8ba9c5d22fbeeeada9446e",
+    "environment.txt": "6b7b8797afa1217193ed98f568201af1f96db8503fa8fe0e60510f814cd336ca",
+    "fixture-git.log": "bab2f0b12e775f172c2de5f01d6c1a849009d58240dfef54cbfe0798af6dc14d",
+    "mutation.log": "9a3dbba0cce2c46e03174da6cfd4892782a5517f63bab702050d1b72d1e08f13",
+    "vandal_report.html": "cc39c8ca60616f31784c3ede5399770aa0784352ce84c93829e7a9b776026dbf",
+    "vandal_report.json": "05fee84101bea63c1a8dd46a7d987c4c75b3974f7a13b4267c94a3e8c3d35d2c"
+  }
+}

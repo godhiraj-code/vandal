@@ -29,3 +29,7 @@ vandal_report.json
 vandal_report.html
 *_vandal_report.json
 *_vandal_report.html
+
+# Deliberate study raw evidence (not generated package artifacts).
+!study/results/pilot/**/vandal_report.json
+!study/results/pilot/**/vandal_report.html

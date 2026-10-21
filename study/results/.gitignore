@@ -1,0 +1,6 @@
+# Only deliberate validation/pilot evidence is versioned.
+*
+!.gitignore
+!pilot/
+!pilot/**
+!summary.csv
