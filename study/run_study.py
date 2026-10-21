@@ -104,7 +104,7 @@ def inspect_owned_container(name, temporary, output):
     inspected = json.loads(raw.read_text())[0]
     config, host = inspected["Config"], inspected["HostConfig"]
     environment = dict(item.split("=", 1) for item in config.get("Env", []))
-    evidence = {"container_id": inspected["Id"], "image": inspected["Image"], "user": config["User"],
+    evidence = {"state": inspected["State"], "container_id": inspected["Id"], "image": inspected["Image"], "user": config["User"],
                 "host_config": {key: host[key] for key in ("NetworkMode", "ReadonlyRootfs", "Privileged",
                     "CapDrop", "SecurityOpt", "Memory", "MemorySwap", "NanoCpus", "PidsLimit", "Tmpfs", "LogConfig")},
                 "mounts": [{key: mount[key] for key in ("Type", "Source", "Destination", "RW")}
@@ -194,6 +194,11 @@ def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes, *,
         except Exception as exc:
             status.update(status="skipped", reason=f"{type(exc).__name__}: {exc}")
         finally:
+            if container_attempted:
+                try:
+                    run(["docker", "logs", name], temporary, output / "worker-console.log", 10, env=clean_env(docker_client=True))
+                except Exception:
+                    pass  # Diagnostics must never prevent container cleanup.
             # Kill the whole container, including detached candidate children.
             try:
                 status["cleanup"] = (run(["docker", "rm", "--force", name], temporary, output / "cleanup.log", 15, env=clean_env(docker_client=True))

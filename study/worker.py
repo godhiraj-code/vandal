@@ -4,7 +4,7 @@ import json
 import os
 import tarfile
 import time
-import venv
+import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -128,7 +128,10 @@ def main():
         env.update(HOME="/work/home", TMPDIR="/tmp", PLAYWRIGHT_BROWSERS_PATH="/ms-playwright",
                    PIP_NO_INDEX="1", PIP_FIND_LINKS="/deps")
         Path(env["HOME"]).mkdir()
-        venv.EnvBuilder(with_pip=True).create("/work/venv")
+        creation = run([sys.executable, "-m", "venv", "/work/venv"], source, output / "venv.log",
+                       max(0.1, args.seconds - (time.monotonic() - started)), env)
+        if creation["exit_code"] or creation["timed_out"] or creation["log_limited"]:
+            raise RuntimeError("fresh venv creation failed or exceeded bounds; see venv.log")
         python = Path("/work/venv/bin/python")
         cmd = [str(python), "-m", "pip", "install", "--no-index", "--find-links=/deps",
                "/opt/study/vandal.whl"]

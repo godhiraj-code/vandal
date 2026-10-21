@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/playwright/python:v1.64.0-noble
+RUN apt-get update && apt-get install -y --no-install-recommends python3.12-venv && rm -rf /var/lib/apt/lists/*
 WORKDIR /opt
 # Only owned project files enter the image. Root .dockerignore is allowlist-only.
 COPY pyproject.toml README.md LICENSE /package/
