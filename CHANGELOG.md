@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Add an isolated, person-reviewed Playwright mutation study harness with pinned
+  candidate evidence, offline container execution, raw-result summaries and owned
+  fixture validation. No public repositories are included automatically.
+
 - Avoid ineffective pointer/click defaults for press, type, select_option, focus,
   dispatch_event and set_input_files. Keep data_sabotage for type; infer
   stealth_disable and ghost_element for hover, backed by browser kill tests.

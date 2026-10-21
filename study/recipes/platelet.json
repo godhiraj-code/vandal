@@ -1,0 +1,7 @@
+{
+  "test_paths": ["tests/ui/test_runtime_filter_toggle.py"],
+  "requirements": [],
+  "install_project": false,
+  "extras": [],
+  "pytest_args": []
+}

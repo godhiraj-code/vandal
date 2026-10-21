@@ -1,0 +1,177 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 662B done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for mcr.microsoft.com/playwright/python:v1.64.0-noble
+#2 DONE 0.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 139B done
+#3 DONE 0.1s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [1/8] FROM mcr.microsoft.com/playwright/python:v1.64.0-noble@sha256:684df257a1fa0ef3fa288239819984008f560e8f8db5b635ee9e2a50cbcd2e23
+#5 resolve mcr.microsoft.com/playwright/python:v1.64.0-noble@sha256:684df257a1fa0ef3fa288239819984008f560e8f8db5b635ee9e2a50cbcd2e23 0.0s done
+#5 DONE 0.1s
+
+#5 [1/8] FROM mcr.microsoft.com/playwright/python:v1.64.0-noble@sha256:684df257a1fa0ef3fa288239819984008f560e8f8db5b635ee9e2a50cbcd2e23
+#5 CACHED
+
+#4 [internal] load build context
+#4 transferring context: 151.57kB 0.0s done
+#4 DONE 0.2s
+
+#6 [2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3.12-venv && rm -rf /var/lib/apt/lists/*
+#6 0.705 Get:1 http://azure.archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+#6 0.757 Get:2 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+#6 0.771 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+#6 0.826 Get:4 http://azure.archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+#6 0.863 Get:5 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+#6 0.963 Get:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+#6 1.403 Get:7 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+#6 2.309 Get:8 http://azure.archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+#6 2.318 Get:9 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1732 kB]
+#6 2.403 Get:10 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1549 kB]
+#6 2.417 Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2170 kB]
+#6 2.507 Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [61.7 kB]
+#6 2.509 Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2231 kB]
+#6 2.583 Get:14 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+#6 2.584 Get:15 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.0 kB]
+#6 2.585 Get:16 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [669 B]
+#6 3.909 Get:17 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [2122 kB]
+#6 4.270 Get:18 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [55.6 kB]
+#6 4.272 Get:19 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1410 kB]
+#6 4.496 Fetched 33.6 MB in 4s (8247 kB/s)
+#6 4.496 Reading package lists...
+#6 5.186 Reading package lists...
+#6 5.851 Building dependency tree...
+#6 6.029 Reading state information...
+#6 6.233 The following additional packages will be installed:
+#6 6.233   python3-pip-whl python3-setuptools-whl
+#6 6.268 The following NEW packages will be installed:
+#6 6.268   python3-pip-whl python3-setuptools-whl python3.12-venv
+#6 6.351 0 upgraded, 3 newly installed, 0 to remove and 8 not upgraded.
+#6 6.351 Need to get 2429 kB of archives.
+#6 6.351 After this operation, 2777 kB of additional disk space will be used.
+#6 6.351 Get:1 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-pip-whl all 24.0+dfsg-1ubuntu1.3 [1707 kB]
+#6 6.629 Get:2 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-setuptools-whl all 68.1.2-2ubuntu1.2 [716 kB]
+#6 6.658 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3.12-venv amd64 3.12.3-1ubuntu0.17 [5684 B]
+#6 6.878 debconf: delaying package configuration, since apt-utils is not installed
+#6 6.916 Fetched 2429 kB in 0s (6413 kB/s)
+#6 6.957 Selecting previously unselected package python3-pip-whl.
+#6 6.957 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 28981 files and directories currently installed.)
+#6 7.075 Preparing to unpack .../python3-pip-whl_24.0+dfsg-1ubuntu1.3_all.deb ...
+#6 7.085 Unpacking python3-pip-whl (24.0+dfsg-1ubuntu1.3) ...
+#6 7.167 Selecting previously unselected package python3-setuptools-whl.
+#6 7.170 Preparing to unpack .../python3-setuptools-whl_68.1.2-2ubuntu1.2_all.deb ...
+#6 7.182 Unpacking python3-setuptools-whl (68.1.2-2ubuntu1.2) ...
+#6 7.267 Selecting previously unselected package python3.12-venv.
+#6 7.269 Preparing to unpack .../python3.12-venv_3.12.3-1ubuntu0.17_amd64.deb ...
+#6 7.281 Unpacking python3.12-venv (3.12.3-1ubuntu0.17) ...
+#6 7.364 Setting up python3-setuptools-whl (68.1.2-2ubuntu1.2) ...
+#6 7.397 Setting up python3-pip-whl (24.0+dfsg-1ubuntu1.3) ...
+#6 7.432 Setting up python3.12-venv (3.12.3-1ubuntu0.17) ...
+#6 DONE 7.6s
+
+#7 [3/8] WORKDIR /opt
+#7 DONE 0.1s
+
+#8 [4/8] COPY pyproject.toml README.md LICENSE /package/
+#8 DONE 0.1s
+
+#9 [5/8] COPY vandal /package/vandal/
+#9 DONE 0.1s
+
+#10 [6/8] RUN python -m pip wheel --wheel-dir=/opt/wheels /package pytest-playwright==0.10.0 playwright==1.64.0
+#10 0.574 Processing /package
+#10 0.577   Installing build dependencies: started
+#10 1.653   Installing build dependencies: finished with status 'done'
+#10 1.653   Getting requirements to build wheel: started
+#10 1.990   Getting requirements to build wheel: finished with status 'done'
+#10 1.992   Preparing metadata (pyproject.toml): started
+#10 2.121   Preparing metadata (pyproject.toml): finished with status 'done'
+#10 2.354 Collecting pytest-playwright==0.10.0
+#10 2.463   Downloading pytest_playwright-0.10.0-py3-none-any.whl.metadata (14 kB)
+#10 2.651 Collecting playwright==1.64.0
+#10 2.679   Downloading playwright-1.64.0-py3-none-manylinux1_x86_64.whl.metadata (3.3 kB)
+#10 2.798 Collecting pytest>=7.0 (from project-vandal==0.2.1)
+#10 2.825   Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+#10 3.028 Collecting psutil>=5.9 (from project-vandal==0.2.1)
+#10 3.054   Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (22 kB)
+#10 3.183 Collecting pyee<15,>=13 (from playwright==1.64.0)
+#10 3.209   Downloading pyee-14.0.0-py3-none-any.whl.metadata (1.8 kB)
+#10 3.432 Collecting greenlet<4.0.0,>=3.1.1 (from playwright==1.64.0)
+#10 3.458   Downloading greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+#10 3.596 Collecting python-slugify<10.0.0,>=6.0.0 (from pytest-playwright==0.10.0)
+#10 3.622   Downloading python_slugify-9.1.3-py3-none-any.whl.metadata (12 kB)
+#10 3.728 Collecting typing-extensions (from pyee<15,>=13->playwright==1.64.0)
+#10 3.754   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#10 3.845 Collecting iniconfig>=1.0.1 (from pytest>=7.0->project-vandal==0.2.1)
+#10 3.872   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+#10 3.966 Collecting packaging>=22 (from pytest>=7.0->project-vandal==0.2.1)
+#10 3.991   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#10 4.079 Collecting pluggy<2,>=1.5 (from pytest>=7.0->project-vandal==0.2.1)
+#10 4.106   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+#10 4.222 Collecting pygments>=2.7.2 (from pytest>=7.0->project-vandal==0.2.1)
+#10 4.248   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+#10 4.362 Collecting text-unidecode>=1.3 (from python-slugify<10.0.0,>=6.0.0->pytest-playwright==0.10.0)
+#10 4.389   Downloading text_unidecode-1.3-py2.py3-none-any.whl.metadata (2.4 kB)
+#10 4.431 Downloading playwright-1.64.0-py3-none-manylinux1_x86_64.whl (48.3 MB)
+#10 8.219    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.3/48.3 MB 12.9 MB/s  0:00:03
+#10 8.246 Downloading pytest_playwright-0.10.0-py3-none-any.whl (22 kB)
+#10 8.298 Downloading greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (621 kB)
+#10 8.385    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 621.4/621.4 kB 4.7 MB/s  0:00:00
+#10 8.469 Downloading pyee-14.0.0-py3-none-any.whl (15 kB)
+#10 8.545 Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+#10 8.643 Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+#10 8.686 Downloading python_slugify-9.1.3-py3-none-any.whl (16 kB)
+#10 8.727 Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+#10 8.768 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#10 8.823 Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (155 kB)
+#10 8.885 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#10 9.009    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 8.8 MB/s  0:00:00
+#10 9.039 Downloading text_unidecode-1.3-py2.py3-none-any.whl (78 kB)
+#10 9.083 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#10 9.187 Saved ./wheels/playwright-1.64.0-py3-none-manylinux1_x86_64.whl
+#10 9.188 Saved ./wheels/pytest_playwright-0.10.0-py3-none-any.whl
+#10 9.189 Saved ./wheels/greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl
+#10 9.190 Saved ./wheels/pyee-14.0.0-py3-none-any.whl
+#10 9.191 Saved ./wheels/pytest-9.1.1-py3-none-any.whl
+#10 9.191 Saved ./wheels/pluggy-1.7.0-py3-none-any.whl
+#10 9.192 Saved ./wheels/python_slugify-9.1.3-py3-none-any.whl
+#10 9.193 Saved ./wheels/iniconfig-2.3.1-py3-none-any.whl
+#10 9.193 Saved ./wheels/packaging-26.3-py3-none-any.whl
+#10 9.194 Saved ./wheels/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl
+#10 9.195 Saved ./wheels/pygments-2.21.0-py3-none-any.whl
+#10 9.196 Saved ./wheels/text_unidecode-1.3-py2.py3-none-any.whl
+#10 9.196 Saved ./wheels/typing_extensions-4.16.0-py3-none-any.whl
+#10 9.196 Building wheels for collected packages: project-vandal
+#10 9.198   Building wheel for project-vandal (pyproject.toml): started
+#10 9.342   Building wheel for project-vandal (pyproject.toml): finished with status 'done'
+#10 9.343   Created wheel for project-vandal: filename=project_vandal-0.2.1-py3-none-any.whl size=28439 sha256=8a3ea2393ac92046a7d5b6809b9ea0fc73d27c1250e3a50853bfb82040ffdfce
+#10 9.343   Stored in directory: /tmp/pip-ephem-wheel-cache-4fr2j8z9/wheels/63/30/46/e9fc6f15f0227db92424ba0bca6f6eb75ff3974f9d02f5f87e
+#10 9.344 Successfully built project-vandal
+#10 DONE 9.6s
+
+#11 [7/8] COPY study/*.py /opt/study/
+#11 DONE 0.1s
+
+#12 [8/8] RUN useradd --uid 10001 --create-home study
+#12 DONE 0.4s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 2.6s done
+#13 exporting manifest sha256:748e83a65ad919841a60a597c5112c927f369b4b4f492e7f49811db0e83a002b 0.0s done
+#13 exporting config sha256:aa42832c1302fd2688e15c7421adc1073f24c02f80faabb6f56dc831e0643811 0.0s done
+#13 exporting attestation manifest sha256:6ccf30a57477bd7225ab9f1a3c1ed67ca1613c4c567c8d3f2fb0625db1fd4ea3 0.1s done
+#13 exporting manifest list sha256:8f079e295ec0f68a6ae20d22c736be96763e72993e16cae2474c7731ab8aa18d
+#13 exporting manifest list sha256:8f079e295ec0f68a6ae20d22c736be96763e72993e16cae2474c7731ab8aa18d 0.0s done
+#13 naming to docker.io/library/vandal-study:owned-validation-04 done
+#13 unpacking to docker.io/library/vandal-study:owned-validation-04
+#13 unpacking to docker.io/library/vandal-study:owned-validation-04 0.6s done
+#13 DONE 3.3s

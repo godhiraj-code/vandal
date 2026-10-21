@@ -1,0 +1,7 @@
+{
+  "test_paths": ["tests/test_browser_rendering.py"],
+  "requirements": [],
+  "install_project": true,
+  "extras": [],
+  "pytest_args": []
+}

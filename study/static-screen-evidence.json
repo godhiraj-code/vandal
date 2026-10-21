@@ -1,0 +1,2034 @@
+{
+  "retrieved_on": "2026-10-21",
+  "method": "Read-only pinned UTF-8-sig source and AST receiver-chain screen; no candidate imports/execution. SHA256 hashes decoded source text. Heuristic counts are not runtime targets. Local imported helper modules in the retained cache are included once; no fresh complete traversal is claimed.",
+  "records": [
+    {
+      "repo": "dodjango/tasmota-auto-updater",
+      "sha": "f08e6c7236a0f3e9ba3e3a111037677192566688",
+      "evidence_url": "https://github.com/dodjango/tasmota-auto-updater/commit/f08e6c7236a0f3e9ba3e3a111037677192566688",
+      "license": "MIT",
+      "license_url": "https://github.com/dodjango/tasmota-auto-updater/blob/f08e6c7236a0f3e9ba3e3a111037677192566688/LICENSE",
+      "screen": {
+        "observable_calls": 6,
+        "files": {
+          "tests/e2e/test_smoke.py": {
+            "selected": true,
+            "count": 6,
+            "calls": {
+              "expect": 3,
+              "get_by_text": 1,
+              "locator": 2
+            }
+          }
+        },
+        "external_host_literals": [
+          "github.com"
+        ],
+        "offline_risk": [
+          {
+            "file": "pyproject.toml",
+            "line": 67,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "pyproject.toml",
+            "line": 68,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "pyproject.toml",
+            "line": 69,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "pyproject.toml",
+            "line": 0,
+            "kind": "setup_command",
+            "detail": "Docker or git clone mentioned in configuration"
+          },
+          {
+            "file": "tests/conftest.py",
+            "line": 100,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "tests/conftest.py",
+            "line": 101,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "tests/e2e/conftest.py",
+            "line": 26,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/e2e/conftest.py",
+            "line": 33,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/e2e/conftest.py",
+            "line": 60,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/e2e/conftest.py",
+            "line": 62,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/e2e/conftest.py",
+            "line": 63,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          }
+        ],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "tests/e2e/test_smoke.py": "92ba497c7d0915fc448ca911fd047f0ca332d75bb42cbe75ae3715cbbfd5f3fd",
+        "pyproject.toml": "d3d8b9744326bca9483192ff627789e1219142cd3e2c3a3401422e730a99ff7f",
+        "tests/conftest.py": "3adbf228f6831fbf796e80413d68f224b21f795dd4f1d3876e30a25157c17954",
+        "tests/e2e/conftest.py": "27df41289fb9335752d71878e99ef5a8c67ee48fea336321e00d7084158810ca"
+      },
+      "reviewed_paths": [
+        "pyproject.toml",
+        "tests/conftest.py",
+        "tests/e2e/conftest.py",
+        "tests/e2e/test_smoke.py"
+      ]
+    },
+    {
+      "repo": "tkoyama010/pyvista-js",
+      "sha": "0a1492943dbf50e379bffa8ed1794e603ccdcc44",
+      "evidence_url": "https://github.com/tkoyama010/pyvista-js/commit/0a1492943dbf50e379bffa8ed1794e603ccdcc44",
+      "license": "BSD-3-Clause",
+      "license_url": "https://github.com/tkoyama010/pyvista-js/blob/0a1492943dbf50e379bffa8ed1794e603ccdcc44/LICENSE",
+      "screen": {
+        "observable_calls": 0,
+        "files": {
+          "tests/test_browser_rendering.py": {
+            "selected": true,
+            "count": 0,
+            "calls": {}
+          }
+        },
+        "external_host_literals": [
+          "example.com",
+          "github.com",
+          "scientific-python.org",
+          "unpkg.com"
+        ],
+        "offline_risk": [
+          {
+            "file": "pyproject.toml",
+            "line": 15,
+            "kind": "external_host",
+            "detail": "scientific-python.org"
+          },
+          {
+            "file": "pyproject.toml",
+            "line": 65,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "pyproject.toml",
+            "line": 66,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "pyproject.toml",
+            "line": 67,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "pyproject.toml",
+            "line": 68,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "tests/conftest.py",
+            "line": 126,
+            "kind": "external_host",
+            "detail": "example.com"
+          },
+          {
+            "file": "tests/conftest.py",
+            "line": 158,
+            "kind": "external_host",
+            "detail": "unpkg.com"
+          },
+          {
+            "file": "tests/test_browser_rendering.py",
+            "line": 44,
+            "kind": "external_host",
+            "detail": "unpkg.com"
+          }
+        ],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "tests/test_browser_rendering.py": "c200b2608b1a93c26d7c8d0eac14713442b35ee9f2b2bdd73b9dfc998f0046b8",
+        "pyproject.toml": "7e8c3c3a65aeda4cc23ae4a765dc1df35403dea4a4251d497e62131610bdd661",
+        "tox.ini": "8e9fc04ac696fa9b752abffe060d8c66212d35a7c251f45bdf8595127f128300",
+        "tests/conftest.py": "edfd4f80aea5d8e62b2bd69f72362937f99425ff595b31ed1182714ae41ab692"
+      },
+      "reviewed_paths": [
+        "pyproject.toml",
+        "tests/conftest.py",
+        "tests/test_browser_rendering.py",
+        "tox.ini"
+      ]
+    },
+    {
+      "repo": "PRIDA-TAKON/debim",
+      "sha": "1d3b18e827cab56fc4376649f11c46d0415e09cd",
+      "evidence_url": "https://github.com/PRIDA-TAKON/debim/commit/1d3b18e827cab56fc4376649f11c46d0415e09cd",
+      "license": "MIT",
+      "license_url": "https://github.com/PRIDA-TAKON/debim/blob/1d3b18e827cab56fc4376649f11c46d0415e09cd/LICENSE",
+      "screen": {
+        "observable_calls": 0,
+        "files": {
+          "tests/test_docs_viewer.py": {
+            "selected": true,
+            "count": 0,
+            "calls": {}
+          }
+        },
+        "external_host_literals": [],
+        "offline_risk": [],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "tests/test_docs_viewer.py": "532918d5eec253deb9ff3b514b646b10998d364bd109af7556f38d8374c1bec6",
+        "pyproject.toml": "dce5b349e517d0f7ee35cc53fcb9b813df5af52dfdf2a0fc18f539a00a62a4cb",
+        "tests/conftest.py": "973ac44d1b2eeec6237e769efde6771785c13223b0fe9971755997b03afaf83e"
+      },
+      "reviewed_paths": [
+        "pyproject.toml",
+        "tests/conftest.py",
+        "tests/test_docs_viewer.py"
+      ]
+    },
+    {
+      "repo": "atdr/contrail",
+      "sha": "2465e368b7658bd23f0d41f1473c114db3573005",
+      "evidence_url": "https://github.com/atdr/contrail/commit/2465e368b7658bd23f0d41f1473c114db3573005",
+      "license": "MIT",
+      "license_url": "https://github.com/atdr/contrail/blob/2465e368b7658bd23f0d41f1473c114db3573005/LICENSE",
+      "screen": {
+        "observable_calls": 67,
+        "files": {
+          "src/contrail/passport/__init__.py": {
+            "selected": true,
+            "count": 0,
+            "calls": {}
+          },
+          "tests_browser/conftest.py": {
+            "selected": true,
+            "count": 1,
+            "calls": {
+              "locator": 1
+            }
+          },
+          "tests_browser/test_passport_page.py": {
+            "selected": true,
+            "count": 66,
+            "calls": {
+              "click": 18,
+              "expect": 14,
+              "get_by_role": 4,
+              "hover": 1,
+              "inner_text": 1,
+              "locator": 28
+            }
+          }
+        },
+        "external_host_literals": [
+          "github.com"
+        ],
+        "offline_risk": [
+          {
+            "file": "pyproject.toml",
+            "line": 85,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "pyproject.toml",
+            "line": 86,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "pyproject.toml",
+            "line": 87,
+            "kind": "external_host",
+            "detail": "github.com"
+          }
+        ],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "tests_browser/conftest.py": "dfc1a72f89c8119d17a71eb29f55187c6bace2b085db94a02daa4c395f608952",
+        "tests_browser/test_passport_page.py": "7ef9abf65a58dcad3bee15e693a73660ab33ebc6e56239bfc6f1f3ba55a344b5",
+        "src/contrail/passport/__init__.py": "be10c14deb33f31685c3c39599b494222d4a708ef49a4d6d056cbefed054592a",
+        "pyproject.toml": "fad0d13ce725d485930ca5d3dc7d62eb04e2dcfb2a12eb1e851e0a8c3aa644b0"
+      },
+      "reviewed_paths": [
+        "pyproject.toml",
+        "src/contrail/passport/__init__.py",
+        "tests_browser/conftest.py",
+        "tests_browser/test_passport_page.py"
+      ]
+    },
+    {
+      "repo": "elenakulgavaya/talkvote",
+      "sha": "8dc73df8b4fcd3ce6c7434a0b3793e210eb5393c",
+      "evidence_url": "https://github.com/elenakulgavaya/talkvote/commit/8dc73df8b4fcd3ce6c7434a0b3793e210eb5393c",
+      "license": "MIT",
+      "license_url": "https://github.com/elenakulgavaya/talkvote/blob/8dc73df8b4fcd3ce6c7434a0b3793e210eb5393c/LICENSE",
+      "screen": {
+        "observable_calls": 100,
+        "files": {
+          "tests/contracts/frontend/__init__.py": {
+            "selected": true,
+            "count": 0,
+            "calls": {}
+          },
+          "tests/contracts/frontend/test_01_talks_list.py": {
+            "selected": true,
+            "count": 11,
+            "calls": {
+              "click": 1,
+              "expect": 6,
+              "locator": 4
+            }
+          },
+          "tests/contracts/frontend/test_02_filtering.py": {
+            "selected": true,
+            "count": 10,
+            "calls": {
+              "expect": 4,
+              "locator": 6
+            }
+          },
+          "tests/contracts/frontend/test_03_sorting.py": {
+            "selected": true,
+            "count": 1,
+            "calls": {
+              "locator": 1
+            }
+          },
+          "tests/contracts/frontend/test_04_submit_talk.py": {
+            "selected": true,
+            "count": 15,
+            "calls": {
+              "click": 2,
+              "expect": 4,
+              "fill": 6,
+              "locator": 3
+            }
+          },
+          "tests/contracts/frontend/test_05_submit_validation.py": {
+            "selected": true,
+            "count": 7,
+            "calls": {
+              "click": 2,
+              "expect": 2,
+              "fill": 3
+            }
+          },
+          "tests/contracts/frontend/test_06_voting.py": {
+            "selected": true,
+            "count": 21,
+            "calls": {
+              "click": 6,
+              "expect": 4,
+              "locator": 11
+            }
+          },
+          "tests/contracts/frontend/test_07_admin.py": {
+            "selected": true,
+            "count": 19,
+            "calls": {
+              "click": 3,
+              "expect": 4,
+              "fill": 3,
+              "locator": 9
+            }
+          },
+          "tests/contracts/frontend/test_08_talk_detail.py": {
+            "selected": true,
+            "count": 16,
+            "calls": {
+              "click": 3,
+              "expect": 4,
+              "locator": 9
+            }
+          }
+        },
+        "external_host_literals": [],
+        "offline_risk": [
+          {
+            "file": "src/frontend/src/api/client.ts",
+            "line": 3,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "src/frontend/src/api/client.ts",
+            "line": 15,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/contracts/frontend/conftest.py",
+            "line": 29,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          }
+        ],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "tests/contracts/frontend/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/contracts/frontend/conftest.py": "05d1450874a55a571548e0fe20859a6eb53f9f285864dfc213e9d23fbd9f2d3c",
+        "tests/contracts/frontend/test_01_talks_list.py": "a9e5591541e5cf5a920b462121455af683bb6033910016edb4430487716410a5",
+        "tests/contracts/frontend/test_02_filtering.py": "60de8f39d5fd25013328a6228fdea4c4602a9f6dfe5b20c2b71e81b07311fc54",
+        "tests/contracts/frontend/test_03_sorting.py": "398b0cb639b826978d08b80843c66fb130aeddcd0b56a851bca15d169c974aa8",
+        "tests/contracts/frontend/test_04_submit_talk.py": "f02151d6aef76ae5e265fd0b3e3b2775dc37cacd538b20ba99d3312b41951dab",
+        "tests/contracts/frontend/test_05_submit_validation.py": "33429af3b1d624a2f29179621ced62176dac6eb5e08dfe2a9b377aa48a3aa28d",
+        "tests/contracts/frontend/test_06_voting.py": "246054a1db11f927bafcc40effa2089f239511245476d431e5d87eba47376e5d",
+        "tests/contracts/frontend/test_07_admin.py": "4778a67d41337fc38cb76c3c55955344f41b6c961621d4f6f2cd518f7b5ce271",
+        "tests/contracts/frontend/test_08_talk_detail.py": "5f102691b6eaf9550702dad3f788a43237e551a1bbdb552ee478c8b8a450e0a1",
+        "src/frontend/src/api/client.ts": "18565e1fabe3a5962f4f181f7d957a0548329cb78ad335a8b28311db251f9eac",
+        "src/frontend/index.html": "c489ca10e39dee2c944678c7cbe29c05c1464f0d3ad331829be0616dfe292ada",
+        "src/backend/src/app.ts": "5b86a906db6c765d5ef11d5192b4e8640c9bf37720ef176fad4421976792ddfc",
+        "src/backend/src/data/store.ts": "1613815e2981ae3a2319534233fc26478babeb871ab2e7a42dcff8750e86ff1e",
+        "tests/contracts/frontend/pytest.ini": "13aeadbc9388a40953e504535925b123daf08bbc00a5578170cf51a26dba605d",
+        "src/backend/package.json": "f912a024c08062be056f1dfabe31aebf1905d7f8e75c1c86e61c55e5ae77ac74",
+        "src/frontend/package.json": "a51195724e62938639ed15609014872208fceef2e4003cc9086f093bb6657a2d",
+        "src/backend/package-lock.json": "4782a3d44bf13fc710af74eceaf3b63fe01914902f982d794460025798205e96",
+        "src/frontend/package-lock.json": "87a955a21d3bb405425c2630b7a11fb62c630d22c1d4509f78b208da8fc65678"
+      },
+      "reviewed_paths": [
+        "src/backend/package-lock.json",
+        "src/backend/package.json",
+        "src/backend/src/app.ts",
+        "src/backend/src/data/store.ts",
+        "src/frontend/index.html",
+        "src/frontend/package-lock.json",
+        "src/frontend/package.json",
+        "src/frontend/src/api/client.ts",
+        "tests/contracts/frontend/__init__.py",
+        "tests/contracts/frontend/conftest.py",
+        "tests/contracts/frontend/pytest.ini",
+        "tests/contracts/frontend/test_01_talks_list.py",
+        "tests/contracts/frontend/test_02_filtering.py",
+        "tests/contracts/frontend/test_03_sorting.py",
+        "tests/contracts/frontend/test_04_submit_talk.py",
+        "tests/contracts/frontend/test_05_submit_validation.py",
+        "tests/contracts/frontend/test_06_voting.py",
+        "tests/contracts/frontend/test_07_admin.py",
+        "tests/contracts/frontend/test_08_talk_detail.py"
+      ]
+    },
+    {
+      "repo": "lastcoolnameleft/duckiehunt",
+      "sha": "8c47ebbf1ef33c512ddc3b90c03070f17be3671a",
+      "evidence_url": "https://github.com/lastcoolnameleft/duckiehunt/commit/8c47ebbf1ef33c512ddc3b90c03070f17be3671a",
+      "license": "MIT",
+      "license_url": "https://github.com/lastcoolnameleft/duckiehunt/blob/8c47ebbf1ef33c512ddc3b90c03070f17be3671a/license.txt",
+      "screen": {
+        "observable_calls": 224,
+        "files": {
+          "tests/playwright/test_api.py": {
+            "selected": true,
+            "count": 16,
+            "calls": {
+              "inner_text": 8,
+              "locator": 8
+            }
+          },
+          "tests/playwright/test_authenticated.py": {
+            "selected": true,
+            "count": 23,
+            "calls": {
+              "click": 1,
+              "expect": 8,
+              "fill": 4,
+              "locator": 10
+            }
+          },
+          "tests/playwright/test_basic.py": {
+            "selected": true,
+            "count": 6,
+            "calls": {
+              "click": 1,
+              "expect": 2,
+              "locator": 3
+            }
+          },
+          "tests/playwright/test_pages.py": {
+            "selected": true,
+            "count": 28,
+            "calls": {
+              "expect": 10,
+              "inner_text": 3,
+              "locator": 15
+            }
+          },
+          "tests/playwright/test_photo_upload.py": {
+            "selected": true,
+            "count": 39,
+            "calls": {
+              "click": 2,
+              "expect": 13,
+              "fill": 9,
+              "input_value": 2,
+              "locator": 13
+            }
+          },
+          "tests/playwright/test_redirects.py": {
+            "selected": true,
+            "count": 14,
+            "calls": {
+              "click": 5,
+              "expect": 2,
+              "locator": 7
+            }
+          },
+          "tests/playwright/test_ui_components.py": {
+            "selected": true,
+            "count": 50,
+            "calls": {
+              "click": 4,
+              "expect": 21,
+              "fill": 1,
+              "locator": 24
+            }
+          },
+          "tests/playwright/test_validation.py": {
+            "selected": true,
+            "count": 48,
+            "calls": {
+              "click": 6,
+              "expect": 12,
+              "fill": 14,
+              "locator": 16
+            }
+          }
+        },
+        "external_host_literals": [
+          "docs.djangoproject.com",
+          "medium.com",
+          "stackoverflow.com",
+          "www.googletagmanager.com"
+        ],
+        "offline_risk": [
+          {
+            "file": "django/duck/templates/base.html",
+            "line": 29,
+            "kind": "external_host",
+            "detail": "www.googletagmanager.com"
+          },
+          {
+            "file": "django/duck/views.py",
+            "line": 88,
+            "kind": "external_host",
+            "detail": "medium.com"
+          },
+          {
+            "file": "django/duck/views.py",
+            "line": 89,
+            "kind": "external_host",
+            "detail": "stackoverflow.com"
+          },
+          {
+            "file": "django/duck/views.py",
+            "line": 90,
+            "kind": "external_host",
+            "detail": "docs.djangoproject.com"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 20,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 28,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 33,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 44,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 49,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 60,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 68,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 77,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 86,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 99,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 112,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 121,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 132,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_api.py",
+            "line": 143,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_authenticated.py",
+            "line": 25,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_authenticated.py",
+            "line": 48,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_authenticated.py",
+            "line": 68,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_authenticated.py",
+            "line": 101,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_authenticated.py",
+            "line": 113,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_basic.py",
+            "line": 5,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_basic.py",
+            "line": 11,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_basic.py",
+            "line": 17,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_basic.py",
+            "line": 23,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_basic.py",
+            "line": 32,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 20,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 28,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 35,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 42,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 51,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 57,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 64,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 70,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 78,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 88,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 95,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 105,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 112,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 119,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 124,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_pages.py",
+            "line": 129,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_photo_upload.py",
+            "line": 25,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_photo_upload.py",
+            "line": 78,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_photo_upload.py",
+            "line": 123,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_photo_upload.py",
+            "line": 141,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_redirects.py",
+            "line": 22,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_redirects.py",
+            "line": 30,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_redirects.py",
+            "line": 37,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_redirects.py",
+            "line": 48,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_redirects.py",
+            "line": 55,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_redirects.py",
+            "line": 64,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_redirects.py",
+            "line": 74,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_redirects.py",
+            "line": 80,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_redirects.py",
+            "line": 82,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 10,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 19,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 27,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 37,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 50,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 57,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 69,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 82,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 88,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 100,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 120,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 122,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 126,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 138,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 148,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_ui_components.py",
+            "line": 150,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 24,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 60,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 71,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 88,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 119,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 151,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 184,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 189,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 195,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 200,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 210,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 220,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 228,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/playwright/test_validation.py",
+            "line": 235,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          }
+        ],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "django/duck/tests/test_views.py": "7b0ef6f4ed7042ef38c9a370ce3221e2ea9c5f9aa1996f645b28531b2d0b1c65",
+        "django/duck/views.py": "1cf757312fb05b7e3af061afcea98d3028c3b3fcf724d48a5b8e0f0bd640812a",
+        "tests/playwright/test_api.py": "ad355a1e7ef2a62a16d9154f0ac0c6e068fab28d72bbac3eec3f295a660cee25",
+        "tests/playwright/test_authenticated.py": "d3a3711ae7ee740ef3cec6c1110d0f23587f31ddcb4e23eeaa80f71d192bc474",
+        "tests/playwright/test_basic.py": "737993d25cc428ca0b294df6d5b093abcfaba85b4edcf39538126864afa253c9",
+        "tests/playwright/test_pages.py": "8a243f8ebee653ee0ca0efb927209b677268dd1db0f7ccb9784969666ef8e420",
+        "tests/playwright/test_photo_upload.py": "0e18e9f58bf1f568f1bd1222aa243b2813b7a2743b7e99605adda7fe0982b2ff",
+        "tests/playwright/test_redirects.py": "dd2889fbae9e3e0b4ecf92dc189c799331e8510c9bfdb17cdc0ff7a9adfb2c56",
+        "tests/playwright/test_ui_components.py": "e0ef6e3905a9c2f0c4f83c22de52e5b8dc85028e9d9c23e7198e1508fc8195dc",
+        "tests/playwright/test_validation.py": "79059bdc194ac3e8e1ba1562301aadfb6c1d0ae079dd03a9efc84b3b459f9f41",
+        "license.txt": "63ba77c896d82bc56ebd3625d9dc51b89a0f9b0d849c68f5c8fb000ed8e6058a",
+        "django/duck/templates/base.html": "9edfc9ffe74417085be55e3998b95f8346091f8fba672e4efc5a1f0919f5aeb8"
+      },
+      "reviewed_paths": [
+        "django/duck/templates/base.html",
+        "django/duck/tests/test_views.py",
+        "django/duck/views.py",
+        "license.txt",
+        "tests/playwright/test_api.py",
+        "tests/playwright/test_authenticated.py",
+        "tests/playwright/test_basic.py",
+        "tests/playwright/test_pages.py",
+        "tests/playwright/test_photo_upload.py",
+        "tests/playwright/test_redirects.py",
+        "tests/playwright/test_ui_components.py",
+        "tests/playwright/test_validation.py"
+      ]
+    },
+    {
+      "repo": "mbylinkin/currency_exchange",
+      "sha": "9cd1ed741610dedb48a8d4934c8ffec0987aa31b",
+      "evidence_url": "https://github.com/mbylinkin/currency_exchange/commit/9cd1ed741610dedb48a8d4934c8ffec0987aa31b",
+      "license": "MIT",
+      "license_url": "https://github.com/mbylinkin/currency_exchange/blob/9cd1ed741610dedb48a8d4934c8ffec0987aa31b/LICENSE",
+      "screen": {
+        "observable_calls": 43,
+        "files": {
+          "e2e/__init__.py": {
+            "selected": true,
+            "count": 0,
+            "calls": {}
+          },
+          "e2e/test_frontend.py": {
+            "selected": true,
+            "count": 43,
+            "calls": {
+              "click": 10,
+              "expect": 11,
+              "fill": 14,
+              "locator": 8
+            }
+          }
+        },
+        "external_host_literals": [
+          "github.com"
+        ],
+        "offline_risk": [
+          {
+            "file": "e2e/conftest.py",
+            "line": 49,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e/conftest.py",
+            "line": 105,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e/frontend.py",
+            "line": 15,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "e2e/frontend.py",
+            "line": 23,
+            "kind": "git_clone",
+            "detail": "runtime source acquisition"
+          },
+          {
+            "file": "pytest.ini",
+            "line": 9,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          }
+        ],
+        "heuristic_only": true
+      },
+      "source_sha256": {
+        "e2e/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "e2e/conftest.py": "eed401d17aeb178f15c808d6e88619d4fb7b85be95eb3fa101a4943a43cca051",
+        "e2e/frontend.py": "2aec2c9244ca37e439ce83c8e8895ed382f1e30c0419cbad7a1e36e2c4ff6238",
+        "e2e/test_frontend.py": "b7bb89b98c0bbec3729b1643db36ee3d2b3e54442614b2331d1a7c52fd747aa8",
+        "pytest.ini": "52e9a60483d5a2d0d180840f5be596fbb730249c9c7f1c1ef0d88fc4c17fa5d9"
+      },
+      "reviewed_paths": [
+        "e2e/__init__.py",
+        "e2e/conftest.py",
+        "e2e/frontend.py",
+        "e2e/test_frontend.py",
+        "pytest.ini"
+      ]
+    },
+    {
+      "repo": "alxb1t/isekai",
+      "sha": "b2c7b480263371624f17464c769577a74a113eff",
+      "evidence_url": "https://github.com/alxb1t/isekai/commit/b2c7b480263371624f17464c769577a74a113eff",
+      "license": "Apache-2.0",
+      "license_url": "https://github.com/alxb1t/isekai/blob/b2c7b480263371624f17464c769577a74a113eff/LICENSE",
+      "screen": {
+        "observable_calls": 27,
+        "files": {
+          "tests/e2e/conftest.py": {
+            "selected": true,
+            "count": 0,
+            "calls": {}
+          },
+          "tests/e2e/test_review.py": {
+            "selected": true,
+            "count": 27,
+            "calls": {
+              "click": 2,
+              "expect": 12,
+              "locator": 13
+            }
+          }
+        },
+        "external_host_literals": [
+          "github.com",
+          "nodejs.org),"
+        ],
+        "offline_risk": [
+          {
+            "file": "pyproject.toml",
+            "line": 49,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "tools/test_ui.py",
+            "line": 22,
+            "kind": "external_host",
+            "detail": "nodejs.org),"
+          }
+        ],
+        "heuristic_only": true
+      },
+      "evidence_detail": "Commit modifies selected Python browser tests; Co-Authored-By: Claude",
+      "commit_message": "test(0061-ui-groundwork): add the browser test harness\n\nvitest runs the page's composables through tools.test_ui in the gate, each\ntest bound by spec(\"<key>\") and read by test_spec_bindings. Playwright runs\nfrom pytest under tests/e2e/, against the real `isekai ui` served on the\nsuite's doubles through ISEKAI_WIRING; `make browsers` fetches Chromium and\nCI runs it before the gate. Three tests record today's review page.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nChange: 0061-ui-groundwork",
+      "license_text": "                                 Apache License\n                           Version 2.0, January 2004\n                        http://www.apache.org/licenses/\n\n   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n\n   1. Definitions.\n\n      \"License\" shall mean the terms and conditions for use, reproduction,\n      and distribution as defined by Sections 1 through 9 of this document.\n\n      \"Licensor\" shall mean the copyright owner or entity authorized by\n      the copyright owner that is granting the License.\n\n      \"Legal Entity\" shall mean the union of the acting entity and all\n      other entities that control, are controlled by, or are under common\n      control with that entity. For the purposes of this definition,\n      \"control\" means (i) the power, direct or indirect, to cause the\n      direction or management of such entity, whether by contract or\n      otherwise, or (ii) ownership of fifty percent (50%) or more of the\n      outstanding shares, or (iii) beneficial ownership of such entity.\n\n      \"You\" (or \"Your\") shall mean an individual or Legal Entity\n      exercising permissions granted by this License.\n\n      \"Source\" form shall mean the preferred form for making modifications,\n      including but not limited to software source code, documentation\n      source, and configuration files.\n\n      \"Object\" form shall mean any form resulting from mechanical\n      transformation or translation of a Source form, including but\n      not limited to compiled object code, generated documentation,\n      and conversions to other media types.\n\n      \"Work\" shall mean the work of authorship, whether in Source or\n      Object form, made available under the License, as indicated by a\n      copyright notice that is included in or attached to the work\n      (an example is provided in the Appendix below).\n\n      \"Derivative Works\" shall mean any work, whether in Source or Object\n      form, that is based on (or derived from) the Work and for which the\n      editorial revisions, annotations, elaborations, or other modifications\n      represent, as a whole, an original work of authorship. For the purposes\n      of this License, Derivative Works shall not include works that remain\n      separable from, or merely link (or bind by name) to the interfaces of,\n      the Work and Derivative Works thereof.\n\n      \"Contribution\" shall mean any work of authorship, including\n      the original version of the Work and any modifications or additions\n      to that Work or Derivative Works thereof, that is intentionally\n      submitted to Licensor for inclusion in the Work by the copyright owner\n      or by an individual or Legal Entity authorized to submit on behalf of\n      the copyright owner. For the purposes of this definition, \"submitted\"\n      means any form of electronic, verbal, or written communication sent\n      to the Licensor or its representatives, including but not limited to\n      communication on electronic mailing lists, source code control systems,\n      and issue tracking systems that are managed by, or on behalf of, the\n      Licensor for the purpose of discussing and improving the Work, but\n      excluding communication that is conspicuously marked or otherwise\n      designated in writing by the copyright owner as \"Not a Contribution.\"\n\n      \"Contributor\" shall mean Licensor and any individual or Legal Entity\n      on behalf of whom a Contribution has been received by Licensor and\n      subsequently incorporated within the Work.\n\n   2. Grant of Copyright License. Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      copyright license to reproduce, prepare Derivative Works of,\n      publicly display, publicly perform, sublicense, and distribute the\n      Work and such Derivative Works in Source or Object form.\n\n   3. Grant of Patent License. Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      (except as stated in this section) patent license to make, have made,\n      use, offer to sell, sell, import, and otherwise transfer the Work,\n      where such license applies only to those patent claims licensable\n      by such Contributor that are necessarily infringed by their\n      Contribution(s) alone or by combination of their Contribution(s)\n      with the Work to which such Contribution(s) was submitted. If You\n      institute patent litigation against any entity (including a\n      cross-claim or counterclaim in a lawsuit) alleging that the Work\n      or a Contribution incorporated within the Work constitutes direct\n      or contributory patent infringement, then any patent licenses\n      granted to You under this License for that Work shall terminate\n      as of the date such litigation is filed.\n\n   4. Redistribution. You may reproduce and distribute copies of the\n      Work or Derivative Works thereof in any medium, with or without\n      modifications, and in Source or Object form, provided that You\n      meet the following conditions:\n\n      (a) You must give any other recipients of the Work or\n          Derivative Works a copy of this License; and\n\n      (b) You must cause any modified files to carry prominent notices\n          stating that You changed the files; and\n\n      (c) You must retain, in the Source form of any Derivative Works\n          that You distribute, all copyright, patent, trademark, and\n          attribution notices from the Source form of the Work,\n          excluding those notices that do not pertain to any part of\n          the Derivative Works; and\n\n      (d) If the Work includes a \"NOTICE\" text file as part of its\n          distribution, then any Derivative Works that You distribute must\n          include a readable copy of the attribution notices contained\n          within such NOTICE file, excluding those notices that do not\n          pertain to any part of the Derivative Works, in at least one\n          of the following places: within a NOTICE text file distributed\n          as part of the Derivative Works; within the Source form or\n          documentation, if provided along with the Derivative Works; or,\n          within a display generated by the Derivative Works, if and\n          wherever such third-party notices normally appear. The contents\n          of the NOTICE file are for informational purposes only and\n          do not modify the License. You may add Your own attribution\n          notices within Derivative Works that You distribute, alongside\n          or as an addendum to the NOTICE text from the Work, provided\n          that such additional attribution notices cannot be construed\n          as modifying the License.\n\n      You may add Your own copyright statement to Your modifications and\n      may provide additional or different license terms and conditions\n      for use, reproduction, or distribution of Your modifications, or\n      for any such Derivative Works as a whole, provided Your use,\n      reproduction, and distribution of the Work otherwise complies with\n      the conditions stated in this License.\n\n   5. Submission of Contributions. Unless You explicitly state otherwise,\n      any Contribution intentionally submitted for inclusion in the Work\n      by You to the Licensor shall be under the terms and conditions of\n      this License, without any additional terms or conditions.\n      Notwithstanding the above, nothing herein shall supersede or modify\n      the terms of any separate license agreement you may have executed\n      with Licensor regarding such Contributions.\n\n   6. Trademarks. This License does not grant permission to use the trade\n      names, trademarks, service marks, or product names of the Licensor,\n      except as required for reasonable and customary use in describing the\n      origin of the Work and reproducing the content of the NOTICE file.\n\n   7. Disclaimer of Warranty. Unless required by applicable law or\n      agreed to in writing, Licensor provides the Work (and each\n      Contributor provides its Contributions) on an \"AS IS\" BASIS,\n      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\n      implied, including, without limitation, any warranties or conditions\n      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A\n      PARTICULAR PURPOSE. You are solely responsible for determining the\n      appropriateness of using or redistributing the Work and assume any\n      risks associated with Your exercise of permissions under this License.\n\n   8. Limitation of Liability. In no event and under no legal theory,\n      whether in tort (including negligence), contract, or otherwise,\n      unless required by applicable law (such as deliberate and grossly\n      negligent acts) or agreed to in writing, shall any Contributor be\n      liable to You for damages, including any direct, indirect, special,\n      incidental, or consequential damages of any character arising as a\n      result of this License or out of the use or inability to use the\n      Work (including but not limited to damages for loss of goodwill,\n      work stoppage, computer failure or malfunction, or any and all\n      other commercial damages or losses), even if such Contributor\n      has been advised of the possibility of such damages.\n\n   9. Accepting Warranty or Additional Liability. While redistributing\n      the Work or Derivative Works thereof, You may choose to offer,\n      and charge a fee for, acceptance of support, warranty, indemnity,\n      or other liability obligations and/or rights consistent with this\n      License. However, in accepting such obligations, You may act only\n      on Your own behalf and on Your sole responsibility, not on behalf\n      of any other Contributor, and only if You agree to indemnify,\n      defend, and hold each Contributor harmless for any liability\n      incurred by, or claims asserted against, such Contributor by reason\n      of your accepting any such warranty or additional liability.\n\n   END OF TERMS AND CONDITIONS\n\n   APPENDIX: How to apply the Apache License to your work.\n\n      To apply the Apache License to your work, attach the following\n      boilerplate notice, with the fields enclosed by brackets \"[]\"\n      replaced with your own identifying information. (Don't include\n      the brackets!)  The text should be enclosed in the appropriate\n      comment syntax for the file format. We also recommend that a\n      file or class name and description of purpose be included on the\n      same \"printed page\" as the copyright notice for easier\n      identification within third-party archives.\n\n   Copyright 2026 Photo to Anime contributors\n\n   Licensed under the Apache License, Version 2.0 (the \"License\");\n   you may not use this file except in compliance with the License.\n   You may obtain a copy of the License at\n\n       http://www.apache.org/licenses/LICENSE-2.0\n\n   Unless required by applicable law or agreed to in writing, software\n   distributed under the License is distributed on an \"AS IS\" BASIS,\n   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n   See the License for the specific language governing permissions and\n   limitations under the License.\n",
+      "source_sha256": {
+        "LICENSE": "79c16520fe13b107d3681a6d0d0e6df5f4e56ae48ed6594491fb2b911f309aea",
+        "pyproject.toml": "68df5bbdba96026575365ef76869144742fe7d95ff6b580b38fc2ad5737766ff",
+        "tests/e2e/test_review.py": "967f54e8a06848cbf8dfc2713a1f99f2bc2f1b28fdaa5cff0861be762228abdd",
+        "tests/test_pipeline_cli.py": "66f476ded237e27f16521950cf08683458a4ef6449d048fbe9c755a0112323bc",
+        "tests/test_spec_bindings.py": "d74aa255b19f83deef767eb31ec8dd3211e1cca8145403692795b80f2dbaef11",
+        "tests/test_test_ui.py": "ef891741808139e1a49dbb3e3be24d644c9ffc9dcd7ea1223a12e295b85b131e",
+        "tools/test_ui.py": "c10d1f6b6d85d1ffb68331c693c19716ed7cd6c22cbff7ae0f695d5667e76b77",
+        "tests/e2e/conftest.py": "8456e3cefec74bad5a676249cd94e31b1d8160d8813a4c615f2428677f01c27c",
+        "tests/conftest.py": "817e584e671281d6b5d48c8ebbc5d6e4d0cd9594848788d96a9cbae096dfcb19"
+      },
+      "reviewed_paths": [
+        "LICENSE",
+        "pyproject.toml",
+        "tests/conftest.py",
+        "tests/e2e/conftest.py",
+        "tests/e2e/test_review.py",
+        "tests/test_pipeline_cli.py",
+        "tests/test_spec_bindings.py",
+        "tests/test_test_ui.py",
+        "tools/test_ui.py"
+      ]
+    },
+    {
+      "repo": "Custom-Devin-Demos/RACK",
+      "sha": "4fd2de778a94ffb6119bad23f7b00322d548f746",
+      "evidence_url": "https://github.com/Custom-Devin-Demos/RACK/pull/5",
+      "license": "BSD-3-Clause",
+      "license_url": "https://github.com/Custom-Devin-Demos/RACK/blob/4fd2de778a94ffb6119bad23f7b00322d548f746/LICENSE",
+      "screen": {
+        "observable_calls": 94,
+        "files": {
+          "rack-ui/tests/smoke/test_rack_ui_smoke.py": {
+            "selected": true,
+            "count": 94,
+            "calls": {
+              "click": 14,
+              "expect": 34,
+              "get_by_role": 6,
+              "get_by_text": 1,
+              "inner_text": 1,
+              "locator": 38
+            }
+          }
+        },
+        "external_host_literals": [
+          "rack001"
+        ],
+        "offline_risk": [
+          {
+            "file": "rack-ui/tests/smoke/conftest.py",
+            "line": 39,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "rack-ui/tests/smoke/test_rack_ui_smoke.py",
+            "line": 21,
+            "kind": "external_host",
+            "detail": "rack001"
+          },
+          {
+            "file": "rack-ui/tests/smoke/test_rack_ui_smoke.py",
+            "line": 22,
+            "kind": "external_host",
+            "detail": "rack001"
+          }
+        ],
+        "heuristic_only": true
+      },
+      "evidence_detail": "PR authored by devin-ai-integration[bot] changes selected Python browser tests",
+      "commit_message": "Agent PR by devin-ai-integration[bot]",
+      "license_text": "BSD 3-Clause License\n\nCopyright (c) 2020, General Electric Company and Galois, Inc.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n1. Redistributions of source code must retain the above copyright notice, this\n   list of conditions and the following disclaimer.\n\n2. Redistributions in binary form must reproduce the above copyright notice,\n   this list of conditions and the following disclaimer in the documentation\n   and/or other materials provided with the distribution.\n\n3. Neither the name of the copyright holder nor the names of its\n   contributors may be used to endorse or promote products derived from\n   this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\nOR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
+      "source_sha256": {
+        "LICENSE": "8018a54706e55f98a3f535852882f03f8397aa5f39425ed19cff1b11403d9cdc",
+        "rack-ui/requirements.txt": "f0c19ec746200c99c3121af89c293f11d36d80a5ef9d2d5d1b1e7f5ffbce9cf8",
+        "rack-ui/tests/smoke/conftest.py": "6dd386920406030090e3ac4376faa5f4e3e36cd704a58ac4e71d01b62156d614",
+        "rack-ui/tests/smoke/test_rack_ui_smoke.py": "60a03197b4bd064a37300cb41aab994aea0342049f6250a3c4801dd670fae9d9"
+      },
+      "reviewed_paths": [
+        "LICENSE",
+        "rack-ui/requirements.txt",
+        "rack-ui/tests/smoke/conftest.py",
+        "rack-ui/tests/smoke/test_rack_ui_smoke.py"
+      ]
+    },
+    {
+      "repo": "madeinoz67/benchweave",
+      "sha": "13faaec9fa577b3a854d5261fc269b03f097c2ed",
+      "evidence_url": "https://github.com/madeinoz67/benchweave/commit/13faaec9fa577b3a854d5261fc269b03f097c2ed",
+      "license": "MIT",
+      "license_url": "https://github.com/madeinoz67/benchweave/blob/13faaec9fa577b3a854d5261fc269b03f097c2ed/LICENSE",
+      "screen": {
+        "observable_calls": 1,
+        "files": {
+          "tests/interfaces_ui/test_ui_browser.py": {
+            "selected": true,
+            "count": 1,
+            "calls": {
+              "locator": 1
+            }
+          }
+        },
+        "external_host_literals": [
+          "benchweave.dev",
+          "github.com",
+          "testserver"
+        ],
+        "offline_risk": [
+          {
+            "file": "pyproject.toml",
+            "line": 45,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "tests/interfaces_ui/test_ui_observe.py",
+            "line": 92,
+            "kind": "external_host",
+            "detail": "testserver"
+          },
+          {
+            "file": "tests/interfaces_ui/test_ui_observe.py",
+            "line": 92,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/interfaces_ui/test_ui_observe.py",
+            "line": 334,
+            "kind": "external_host",
+            "detail": "testserver"
+          },
+          {
+            "file": "tests/interfaces_ui/test_ui_observe.py",
+            "line": 334,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/interfaces_ui/test_ui_presentation.py",
+            "line": 62,
+            "kind": "external_host",
+            "detail": "testserver"
+          },
+          {
+            "file": "tests/interfaces_ui/test_ui_presentation.py",
+            "line": 62,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/interfaces_ui/test_ui_presentation.py",
+            "line": 170,
+            "kind": "external_host",
+            "detail": "benchweave.dev"
+          },
+          {
+            "file": "tests/interfaces_ui/test_ui_presentation.py",
+            "line": 171,
+            "kind": "external_host",
+            "detail": "benchweave.dev"
+          },
+          {
+            "file": "tests/interfaces_ui/test_ui_presentation.py",
+            "line": 172,
+            "kind": "external_host",
+            "detail": "benchweave.dev"
+          },
+          {
+            "file": "tests/interfaces_ui/test_ui_read_views.py",
+            "line": 59,
+            "kind": "external_host",
+            "detail": "testserver"
+          },
+          {
+            "file": "tests/interfaces_ui/test_ui_read_views.py",
+            "line": 59,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/interfaces_ui/test_ui_refusals.py",
+            "line": 131,
+            "kind": "external_host",
+            "detail": "testserver"
+          },
+          {
+            "file": "tests/interfaces_ui/test_ui_refusals.py",
+            "line": 131,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          }
+        ],
+        "heuristic_only": true
+      },
+      "evidence_detail": "Commit modifies selected Python browser tests; Co-authored-by: Copilot",
+      "commit_message": "feat(ui): G2b â€” the read views, refusal matrix and route-mapping gate (#303) (#368)\n\n* feat(ui): carry the full Â§C.3 refusal table and render failures through it (issue #303 G2b)\n\nG2b's first slice: ui_refusals.REFUSAL_ROWS carries ui-contract.md Â§C.3's\n15 rows (the 14 interface error codes plus no-response) as RefusalData,\npinned character-for-character against the contract table by the new\nsuite (G2a pinned the single unauthenticated row; UNAUTHENTICATED_REFUSAL\nis now a reference into the table, not a copy). The failure page renders\nthe code's own row beside the message and correlation id (GW-11: never a\nsofter code), and render_no_response carries GW-12's presentation half â€”\nsent status UNKNOWN plus the reconcile link to run_find's view (the\nmutating-form half is G3's, design D2). create_app exposes the seam as\napp.state.ui_operations so the induced-code matrix can monkeypatch the\nadapter's own operations object.\n\nRED: ModuleNotFoundError 'benchweave.interfaces.ui_refusals' (collection\nerror, exit 2) before the module existed; the failure-page arm red on\nthe row-less G2a failure.j2. GREEN: 6/6 new tests; interfaces_ui 68/68.\nruff 0; fresh-cache bare mypy 0 (347 files).\n\nRefs: .claude/deep-review/2026-10-03-issue303-g2-readonly-ui-design.md Â§2.4, Â§7-F\n\n* feat(ui): the G2b read pages â€” bench, run, request, evidence, document, artifact (issue #303 G2b)\n\nSix read routes, each the rest.py three-step translation with the Identity\nfrom the server-side session: /benches/{id} (bench_get + device_list +\nthe first events page, GW-20), /runs/{id} (run_get â€” status, outcome and\nterminal state exactly as reported, no cancel control: GW-55's render\nhalf), /requests/{id} (run_find â€” GW-12's reconcile view; control-tier in\nthe frozen catalog, so observe renders the honest forbidden row),\n/evidence/{id}, /documents/{sha256} (digest shown, content bounded by the\nadapter's one payload ceiling), /artifacts/{id} (chunked artifact_read\nwithin max_chunk_bytes with the COMPLETE digest verified before the\nresponse completes and reassembly bounded â€” GW-60/61). The three inline\nG2a unauthenticated refusals collapse into one construction site.\n\nRED: with register_read_pages neutralized on a scratch copy, 9/9\nread-view tests fail ('assert 404 == 200' on /ui/benches/sim-bench â€” the\nroutes fall through to the UI's own 404). GREEN: 9/9; interfaces_ui\n77/77. ruff 0; fresh-cache bare mypy 0 (349 files).\n\nRefs: .claude/deep-review/2026-10-03-issue303-g2-readonly-ui-design.md Â§2.4\n\n* feat(ui): device pages render plugin presentation through the gateway's own validator (issue #303 G2b)\n\nThe device page resolves the plugin's presentation attachment from\nadmitted documents â€” envelope, manifest, binding catalogue and assets,\nall content-addressed (a new read-only documents_by_schema_suffix query,\nnewest admission first) â€” and validates through\npresentation.admission.validate_attachment, the same bytes the SDK host\nuses (SW-41 parity). The gateway declares no custom panels and no named\nUI features: a required panel the host lacks renders SW-41's\npanel_unavailable refusal; an optional one renders unavailable. Readings\ntiles populate only from gateway-reported observations (GW-22): G2 has\nno observation lane, so tiles render Unavailable â€” never a submitted or\nfabricated value; staleness (GW-23) is the contract predicate on the\nobservation's own age, wired at reading_staleness and pinned at the\ncomposition seam. Dataset pages render the declaration skeleton with no\ndraw claims (design D3, #310's plot wrapper owns the draw); configuration\npages list declared presets read-only. create_app threads the content\nstore into the UI composition.\n\nRED: ModuleNotFoundError 'benchweave.interfaces.ui_presentation'\n(collection error, exit 2) before the module existed. GREEN: 5/5 new;\ninterfaces_ui 82/82; ruff 0; fresh-cache bare mypy 0 (351 files).\n\nRefs: .claude/deep-review/2026-10-03-issue303-g2-readonly-ui-design.md Â§2.4\n\n* feat(ui): the GW-10 route-mapping gate with its planted-route kill control (issue #303 G2b)\n\nui_routes.UI_ROUTES declares every mounted /ui route â€” path, methods, the\nseam operations the handler calls, and its classification (interface /\nsession / assets / shell) â€” and route_mapping_violations is the checker:\nboth directions (a mounted route without a row reds; a row without a\nroute reds), every mutating method must map to EXACTLY ONE of GW-10's\neight mutating operations (G2 mounts none â€” the session trio is flagged\nnon-interface, and the non-interface set is itself asserted complete,\nR7's scope-creep tripwire). The suite enumerates the mounted sub-app's\nown routes (this FastAPI wraps included routers lazily; the enumeration\nunwraps effective_candidates().original_route). Two kill-control arms\nprove the checker polices: a planted mutating /benches/{id}/runs POST\nand a planted undeclared read route each produce a violation naming\nthem.\n\nRED: ModuleNotFoundError 'benchweave.interfaces.ui_routes' (collection\nerror, exit 2) before the module existed. GREEN: 7/7 new (both planted\narms among them); interfaces_ui 89/89; ruff 0; fresh-cache bare mypy 0\n(353 files).\n\nRefs: .claude/deep-review/2026-10-03-issue303-g2-readonly-ui-design.md Â§7-D\n\n* test(ui): the G2b acceptance arms â€” observe-no-control, I02 /ui, the induced-code matrix (issue #303 G2b)\n\nÂ§7-E: an observe session renders every observe-tier view 200 with its\nseam data (run_find is control-tier and change_get admin-tier in the\nfrozen catalog â€” the PRD's 'every read view' resolves against the\ncatalog, each pinned at its own tier); no page carries a form or button\n(GW-55's cancel wording is G3's); a direct POST to every read path is\nrefused (the CSRF guard's 403 fires before the GET-only route table's\n405 â€” either shape is a refusal, neither reaches a handler). Â§7-C's /ui\nhalf: a posted principal is ignored (the strip shows the session's\nprincipal), the adapter constructs Identity only in the session-record\nmapping, and a cross-principal reconcile lookup renders not_found. Â§7-F's\ndata-bearing arms: artifact over the reassembly bound is\npayload_too_large (control: under-bound downloads 200), a malformed\ndocument digest is invalid_request (control: a well-formed unknown\ndigest stays not_found), the expired session renders unauthenticated\n(induced through the session store's injected clock â€” the seam the whole\nsuite freezes), and the nine read-wire-impossible classes render their\nrows via monkeypatched seam refusals, each with the uninduced control\nasserting 200 first (cursor_expired is emitter-less in the seam â€” the\narm proves the page renders the row, not an emission).\n\nRED: the suite's own discrimination is proven per-arm by the inline\ncontrols (an arm that cannot discriminate cannot pass); the underlying\nbehaviours were RED at their landing commits (f28b7a5, 58f9e09, 84ac2c8).\nGREEN: 18/18 new; interfaces_ui 107/107; ruff 0; fresh-cache bare mypy\n0 (354 files).\n\nRefs: .claude/deep-review/2026-10-03-issue303-g2-readonly-ui-design.md Â§7-C/E/F\n\n* feat(ui): the G2b browser lane, host CSS and the CON-5 amendment (issue #303 G2b)\n\nThe gateway-page browser lane (design Â§7-H's G2b half): one module-scoped\nuvicorn server on an ephemeral loopback port serving the composed gateway\nwith seeded data; axe at WCAG 2.2 AA on every gateway page template, both\nthemes (prefers-color-scheme emulation â€” D7); the planted-violation\ncontrol from G1d's lane (a stripped button must red, proving the axe\nconfiguration detects in the served context); and obligation 26's pins â€”\ninteractive targets at the 24px minimum on the rendered pages, the host\nCSS's box-shadow rules are all none (SR-B2: the host adds no glow), and\nthe host declares no token of its own (the limiting border stays the\npackage's). The lane's structural quirk is documented in-file:\nsync_playwright's driver leaves a loop in the main thread that\ncreate_app's asyncio.run pin sweep cannot coexist with, so the server\nfixture composes first (the browser fixture depends on it).\n\nThe device page's reading tiles now render through the package's Â§E.1\nreading-tile partial (contract conformance for the tile rules) instead of\nhand-rolled markup; host.css gains the read-page furniture (fact lists,\ndevice lists, the events table, document content) with colour from the\ntoken themes only. CON-5's amendment lands (the /ui session adapter is a\nthird transport over the one seam; its identity comes only from the\nserver-side session; its refusals render the contract envelope's own\ncode; I02/I09 cover it like REST and MCP â€” I09's half is G2c's). The\noperator guide gains a read-only-UI section (STE register).\n\nRED: the lane's arms red before the host CSS (the 24px arm measured\nbrowser-default link heights) and the planted-violation control reds\nagainst the stripped button â€” the measurement discriminates. GREEN:\nbrowser lane 16/16 (12 axe page-theme arms + control + 3 obligation\npins); interfaces_ui non-browser 107/107; ruff 0; fresh-cache bare mypy\n0 (355 files).\n\nRefs: .claude/deep-review/2026-10-03-issue303-g2-readonly-ui-design.md Â§7-H, Â§8\n\n* fix(content): pin admission ordering â€” a same-digest re-admission is idempotent (issue #303 G2b, lane-2 F1)\n\nput_document used INSERT OR REPLACE on the documents sha256 PK: a\nre-admission of IDENTICAL bytes deleted and re-inserted the row, minting\na fresh rowid that shadowed genuinely-newer admissions in every\nrowid-ordered read â€” the presentation-attachment resolution picked a\nSTALE envelope (the lane's three-put repro: put v1, put v2, re-put v1 ->\ncompose picked v1). The content-addressing justification in the\nresolution's docstring was false under REPLACE.\n\nThe fix is structural: ON CONFLICT(sha256) DO NOTHING. Both directions\nof the ruling are pinned â€” a re-admission of the SAME digest is\nidempotent (rowid and stored_at preserved, the first admission's row is\nimmutable for that digest); a NEW digest is a new admission (fresh\nrowid, newest). Three store-suite arms (the three-put repro, the\nidempotent re-put with the rowid/stored_at witness, the\nnew-digest-new-admission arm) plus the page-level three-put arm in the\nUI consumer suite.\n\nRED (quoted): 'the re-admitted identical v1 shadowed the newer v2\nadmission' (store + page arms); 'a same-digest re-admission minted a new\nadmission identity ((1, 2026-10-03T01:00:00Z) -> (2, 2026-10-03T09:00:00Z))'.\nGREEN: 17/17 across both suites; focused+faults 211/211 (content/ is\nstate-adjacent â€” tests/faults/ run per the fold rules); ruff 0;\nfresh-cache bare mypy 0 (355 files).\n\nRefs: lane-2 F1 (MEDIUM); .claude/deep-review/2026-10-03-issue303-g2-readonly-ui-design.md\n\n* test(ui_html): restore the canonical registration after the meta controls (issue #303 G2b battery)\n\nA latent xdist order-fragility, exposed by the F1 fold's +4 tests: the\nmeta-acceptance controls in test_artifacts_meta deliberately empty or\nshrink the module-global artifact registry and restore only some of it\n(test_empty_registry_fail_closed_pure_function leaves it EMPTY; the\none-artifact control leaves exactly one). Under pytest -n auto the\ndoc-collected row items (docs/internal/ui-contract.md::row::*) share\neach worker's process, and any row item the worker runs after the\nresidue fails 'no canonical artifact for <row>' â€” the pre-fold\ndistribution happened to be benign; the fold's test-count shift moved\n108 row items onto the poisoned worker. A module-local autouse fixture\nrestores the full canonical registration after every control (clear\nfirst: ensure_registered is sentinel-idempotent, so after the\none-artifact control a bare call would no-op). No conftest.py â€” a\nsecond conftest module collides with tests/integration/conftest.py\nunder the config-driven bare mypy build.\n\nRED: the full battery at the fold tip - 3416 tests, 108 failures, all\n'no canonical artifact for <row>' on one xdist worker. GREEN: battery\n3416/0/0, exit 0; ui_html + gate-wrapper + harness 548/548; ruff 0;\nfresh-cache bare mypy 0 (355 files).\n\nRefs: lane-2 F1 fold battery; the residue mechanism is the\nregistry-mutation hygiene class, proposed to the memory ledger\n\n* Potential fix for pull request finding 'CodeQL / Log Injection'\n\nCo-authored-by: Copilot Autofix powered by AI <62310815+github-advanced-security[bot]@users.noreply.github.com>\n\n---------\n\nCo-authored-by: Copilot Autofix powered by AI <62310815+github-advanced-security[bot]@users.noreply.github.com>",
+      "license_text": "MIT License\n\nCopyright (c) 2026 madeinoz67\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "source_sha256": {
+        "LICENSE": "d997108a0fa6723146f54caf07dc123810a9a0c843818976a5e3293ad4843437",
+        "pyproject.toml": "e0ee779ebd43d6dd2c6667af19aaaf6d3304b18dd22a778bde324fb32c0eafb2",
+        "tests/interfaces_ui/test_ui_browser.py": "fb70a26ab627953aadc47dc066ec0bb1c39adec727fd2c2896a23d27a3058121",
+        "tests/interfaces_ui/test_ui_observe.py": "3c28c3eb8a635646948b62ea6574f7e2efcf362d8f7db75df851220278a44d03",
+        "tests/interfaces_ui/test_ui_presentation.py": "82c1c2b40ae21c3941d7a35f758a352049d21507eb56078b9254425221441fac",
+        "tests/interfaces_ui/test_ui_read_views.py": "aea94889235f0790420ab04753a25803992c97c56e8211bfd543a9db36c42eba",
+        "tests/interfaces_ui/test_ui_refusals.py": "0fdc8c43b22b55b6ad36ce264f3739855915daa520a4202560f907a8ae09e8e9",
+        "tests/interfaces_ui/test_ui_route_mapping.py": "2581213f6e552b813d6a0d8be4947d6dd6ec9ba895b26550b371a04e1e05f926",
+        "tests/ui_html/test_artifacts_meta.py": "865f80a1711e12b67ae70371d0ecf0539f86a4923f48db6bde2648754fb328f7",
+        "tests/unit/test_content_store.py": "941dba3f3ac7757c10679d6ce070c4d49dc1fd430f57ce3dd41532a526a7a18c"
+      },
+      "reviewed_paths": [
+        "LICENSE",
+        "pyproject.toml",
+        "tests/interfaces_ui/test_ui_browser.py",
+        "tests/interfaces_ui/test_ui_observe.py",
+        "tests/interfaces_ui/test_ui_presentation.py",
+        "tests/interfaces_ui/test_ui_read_views.py",
+        "tests/interfaces_ui/test_ui_refusals.py",
+        "tests/interfaces_ui/test_ui_route_mapping.py",
+        "tests/ui_html/test_artifacts_meta.py",
+        "tests/unit/test_content_store.py"
+      ]
+    },
+    {
+      "repo": "streamlit/streamlit",
+      "sha": "5c9ddb507c87e154d749554b88809a5556e2fd93",
+      "evidence_url": "https://github.com/streamlit/streamlit/commit/5c9ddb507c87e154d749554b88809a5556e2fd93",
+      "license": "Apache-2.0",
+      "license_url": "https://github.com/streamlit/streamlit/blob/5c9ddb507c87e154d749554b88809a5556e2fd93/LICENSE",
+      "screen": {
+        "observable_calls": 11,
+        "files": {
+          "e2e_playwright/conftest.py": {
+            "selected": true,
+            "count": 6,
+            "calls": {
+              "click": 1,
+              "frame_locator": 2,
+              "get_by_test_id": 2,
+              "locator": 1
+            }
+          },
+          "e2e_playwright/st_data_editor_config_test.py": {
+            "selected": true,
+            "count": 5,
+            "calls": {
+              "expect": 2,
+              "get_by_test_id": 2,
+              "locator": 1
+            }
+          }
+        },
+        "external_host_literals": [
+          "api.mapbox.com",
+          "basemaps.cartocdn.com",
+          "data.streamlit.io",
+          "developer.chrome.com",
+          "events.mapbox.com",
+          "example.com",
+          "github.com",
+          "host",
+          "some-prefix.com",
+          "tiles-a.basemaps.cartocdn.com",
+          "tiles-b.basemaps.cartocdn.com",
+          "tiles-c.basemaps.cartocdn.com",
+          "tiles-d.basemaps.cartocdn.com",
+          "tiles.basemaps.cartocdn.com",
+          "www.apache.org",
+          "{host}"
+        ],
+        "offline_risk": [
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 7,
+            "kind": "external_host",
+            "detail": "www.apache.org"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 139,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 237,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 238,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 244,
+            "kind": "external_host",
+            "detail": "example.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 247,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 430,
+            "kind": "external_host",
+            "detail": "{host}"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 494,
+            "kind": "external_host",
+            "detail": "example.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 529,
+            "kind": "external_host",
+            "detail": "example.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 652,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 653,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 668,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 674,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 683,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 708,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 709,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 717,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 723,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 728,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 736,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 746,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 759,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 765,
+            "kind": "external_host",
+            "detail": "host"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 765,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 767,
+            "kind": "external_host",
+            "detail": "host"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 767,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 769,
+            "kind": "external_host",
+            "detail": "host"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 769,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 779,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 784,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 785,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 835,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 845,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 853,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 860,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 889,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 901,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 903,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 905,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 939,
+            "kind": "external_host",
+            "detail": "some-prefix.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 940,
+            "kind": "external_host",
+            "detail": "events.mapbox.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 941,
+            "kind": "external_host",
+            "detail": "api.mapbox.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 942,
+            "kind": "external_host",
+            "detail": "api.mapbox.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 943,
+            "kind": "external_host",
+            "detail": "api.mapbox.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 944,
+            "kind": "external_host",
+            "detail": "api.mapbox.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 945,
+            "kind": "external_host",
+            "detail": "api.mapbox.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 946,
+            "kind": "external_host",
+            "detail": "api.mapbox.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 947,
+            "kind": "external_host",
+            "detail": "api.mapbox.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 948,
+            "kind": "external_host",
+            "detail": "data.streamlit.io"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 949,
+            "kind": "external_host",
+            "detail": "basemaps.cartocdn.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 950,
+            "kind": "external_host",
+            "detail": "tiles.basemaps.cartocdn.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 951,
+            "kind": "external_host",
+            "detail": "tiles-a.basemaps.cartocdn.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 952,
+            "kind": "external_host",
+            "detail": "tiles-b.basemaps.cartocdn.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 953,
+            "kind": "external_host",
+            "detail": "tiles-c.basemaps.cartocdn.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 954,
+            "kind": "external_host",
+            "detail": "tiles-d.basemaps.cartocdn.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 957,
+            "kind": "external_host",
+            "detail": "api.mapbox.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 961,
+            "kind": "external_host",
+            "detail": "api.mapbox.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 1077,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 1081,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 1094,
+            "kind": "external_host",
+            "detail": "developer.chrome.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 1259,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 1261,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 1268,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 1293,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 1348,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 1362,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "e2e_playwright/conftest.py",
+            "line": 1363,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "e2e_playwright/st_data_editor_config_test.py",
+            "line": 7,
+            "kind": "external_host",
+            "detail": "www.apache.org"
+          },
+          {
+            "file": "pyproject.toml",
+            "line": 7,
+            "kind": "external_host",
+            "detail": "www.apache.org"
+          },
+          {
+            "file": "pyproject.toml",
+            "line": 170,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "pyproject.toml",
+            "line": 175,
+            "kind": "external_host",
+            "detail": "github.com"
+          }
+        ],
+        "heuristic_only": true
+      },
+      "evidence_detail": "Commit modifies selected Python browser tests; Co-authored-by: Cursor Agent <cursoragent@cursor",
+      "commit_message": "[chore] AI-assisted flaky E2E test fixes (#17517)\n\n## Summary\n\nAutomated PR to fix flaky E2E tests identified from recent CI runs.\n\nThis PR was created by the `ai-fix-flaky-e2e-tests` workflow using\n`grok-4.7-xhigh`.\n\n## Changes\n\n# Flaky E2E test fixes\n\nLooked at the top 10 flaky Playwright tests from the last 4 days. Only\ntests that failed in a local reproduction were changed. Tests already\nmarked `@pytest.mark.flaky` were left alone.\n\n## Modified\n\n### `e2e_playwright/st_data_editor_config_test.py`\n\n`test_markdown_cell_keyboard_shortcuts` (chromium)\n\nThe markdown cell overlay (`.gdg-clip-region`) sometimes never mounts\nafter a double-click. This showed up locally on chromium while reopening\nthe cell after Ctrl/Cmd+Enter save: the saved markdown was already in\nthe widget return value, and the canvas accepted the double-click\nwithout opening the overlay.\n\nAdded `_open_markdown_cell`, which double-clicks the cell and retries up\nto 3 times until the overlay is visible. Both opens in this test use\nthat helper.\n\nVerified with 10/10 passing chromium runs after the change.\n\n## Not modified\n\nThese were not changed because 25 local runs passed, or because they are\nalready marked flaky:\n\n-\n`st_sidebar_test.py::test_sidebar_stays_open_on_custom_component_popover_click_mobile`\nâ€” 25/25 chromium\n- `st_audio_input_test.py::test_audio_input_on_change_ignore` â€” 25/25\nfirefox\n- `st_toast_test.py::test_default_toast_rendering` (dark theme) â€” 25/25\nwebkit\n-\n`config/dataframe_disable_export_test.py::test_hides_csv_export_for_dataframes_and_chart_table_view`\nâ€” 25/25 webkit\n-\n`st_fragment_run_every_test.py::test_nested_fragment_run_every_can_hide_without_crash`\nâ€” 25/25 firefox and 25/25 webkit\n- `theming/custom_theme_fonts_test.py::test_custom_theme` â€” 25/25 webkit\nand 25/25 firefox\n- `st_pydeck_chart_test.py::test_globe_view` (dark theme) â€” 25/25\nchromium\n-\n`st_pydeck_chart_select_test.py::test_pydeck_chart_multiselect_interactions_and_return_values`\nâ€” already `@pytest.mark.flaky`\n-\n`st_pydeck_chart_select_test.py::test_pydeck_chart_multiselect_has_consistent_visuals`\nâ€” already `@pytest.mark.flaky`\n\n---\n*This is an automated flaky test fix by `grok-4.7-xhigh`.*\n\n<!-- CURSOR_SUMMARY -->\n---\n\n> [!NOTE]\n> **Low Risk**\n> Test-only Playwright changes with no production or runtime behavior\nimpact.\n> \n> **Overview**\n> Stabilizes the chromium-only\n**`test_markdown_cell_keyboard_shortcuts`** Playwright test for\n`st.data_editor` markdown columns.\n> \n> Adds **`_open_markdown_cell`**, which double-clicks a row and retries\n(up to 3 times) until the markdown cell overlay (`.gdg-clip-region`) is\nvisibleâ€”covering the case where the canvas accepts clicks before cells\nare interactive after a rerun, so the overlay never mounts. It also\nhandles **`PlaywrightTimeoutError`** from `click_on_cell` when the\noverlay is already up, avoiding extra clicks that would time out.\n> \n> The keyboard-shortcuts test now uses this helper for the initial open\nand for re-opening the cell after save, instead of a single\n`click_on_cell` + `get_open_cell_overlay` sequence.\n> \n> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit\n6af59b811e40cf0020b1580124d0543d268bba08. Bugbot is set up for automated\ncode reviews on this repo. Configure\n[here](https://www.cursor.com/dashboard/bugbot).</sup>\n<!-- /CURSOR_SUMMARY -->\n\n---------\n\nCo-authored-by: Streamlit Bot <core+streamlitbot-github@streamlit.io>\nCo-authored-by: Cursor Agent <cursoragent@cursor.com>\nCo-authored-by: Lukas Masuch <sfc-gh-lmasuch@users.noreply.github.com>",
+      "license_text": "                                 Apache License\n                           Version 2.0, January 2004\n                        http://www.apache.org/licenses/\n\n   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n\n   1. Definitions.\n\n      \"License\" shall mean the terms and conditions for use, reproduction,\n      and distribution as defined by Sections 1 through 9 of this document.\n\n      \"Licensor\" shall mean the copyright owner or entity authorized by\n      the copyright owner that is granting the License.\n\n      \"Legal Entity\" shall mean the union of the acting entity and all\n      other entities that control, are controlled by, or are under common\n      control with that entity. For the purposes of this definition,\n      \"control\" means (i) the power, direct or indirect, to cause the\n      direction or management of such entity, whether by contract or\n      otherwise, or (ii) ownership of fifty percent (50%) or more of the\n      outstanding shares, or (iii) beneficial ownership of such entity.\n\n      \"You\" (or \"Your\") shall mean an individual or Legal Entity\n      exercising permissions granted by this License.\n\n      \"Source\" form shall mean the preferred form for making modifications,\n      including but not limited to software source code, documentation\n      source, and configuration files.\n\n      \"Object\" form shall mean any form resulting from mechanical\n      transformation or translation of a Source form, including but\n      not limited to compiled object code, generated documentation,\n      and conversions to other media types.\n\n      \"Work\" shall mean the work of authorship, whether in Source or\n      Object form, made available under the License, as indicated by a\n      copyright notice that is included in or attached to the work\n      (an example is provided in the Appendix below).\n\n      \"Derivative Works\" shall mean any work, whether in Source or Object\n      form, that is based on (or derived from) the Work and for which the\n      editorial revisions, annotations, elaborations, or other modifications\n      represent, as a whole, an original work of authorship. For the purposes\n      of this License, Derivative Works shall not include works that remain\n      separable from, or merely link (or bind by name) to the interfaces of,\n      the Work and Derivative Works thereof.\n\n      \"Contribution\" shall mean any work of authorship, including\n      the original version of the Work and any modifications or additions\n      to that Work or Derivative Works thereof, that is intentionally\n      submitted to Licensor for inclusion in the Work by the copyright owner\n      or by an individual or Legal Entity authorized to submit on behalf of\n      the copyright owner. For the purposes of this definition, \"submitted\"\n      means any form of electronic, verbal, or written communication sent\n      to the Licensor or its representatives, including but not limited to\n      communication on electronic mailing lists, source code control systems,\n      and issue tracking systems that are managed by, or on behalf of, the\n      Licensor for the purpose of discussing and improving the Work, but\n      excluding communication that is conspicuously marked or otherwise\n      designated in writing by the copyright owner as \"Not a Contribution.\"\n\n      \"Contributor\" shall mean Licensor and any individual or Legal Entity\n      on behalf of whom a Contribution has been received by Licensor and\n      subsequently incorporated within the Work.\n\n   2. Grant of Copyright License. Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      copyright license to reproduce, prepare Derivative Works of,\n      publicly display, publicly perform, sublicense, and distribute the\n      Work and such Derivative Works in Source or Object form.\n\n   3. Grant of Patent License. Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      (except as stated in this section) patent license to make, have made,\n      use, offer to sell, sell, import, and otherwise transfer the Work,\n      where such license applies only to those patent claims licensable\n      by such Contributor that are necessarily infringed by their\n      Contribution(s) alone or by combination of their Contribution(s)\n      with the Work to which such Contribution(s) was submitted. If You\n      institute patent litigation against any entity (including a\n      cross-claim or counterclaim in a lawsuit) alleging that the Work\n      or a Contribution incorporated within the Work constitutes direct\n      or contributory patent infringement, then any patent licenses\n      granted to You under this License for that Work shall terminate\n      as of the date such litigation is filed.\n\n   4. Redistribution. You may reproduce and distribute copies of the\n      Work or Derivative Works thereof in any medium, with or without\n      modifications, and in Source or Object form, provided that You\n      meet the following conditions:\n\n      (a) You must give any other recipients of the Work or\n          Derivative Works a copy of this License; and\n\n      (b) You must cause any modified files to carry prominent notices\n          stating that You changed the files; and\n\n      (c) You must retain, in the Source form of any Derivative Works\n          that You distribute, all copyright, patent, trademark, and\n          attribution notices from the Source form of the Work,\n          excluding those notices that do not pertain to any part of\n          the Derivative Works; and\n\n      (d) If the Work includes a \"NOTICE\" text file as part of its\n          distribution, then any Derivative Works that You distribute must\n          include a readable copy of the attribution notices contained\n          within such NOTICE file, excluding those notices that do not\n          pertain to any part of the Derivative Works, in at least one\n          of the following places: within a NOTICE text file distributed\n          as part of the Derivative Works; within the Source form or\n          documentation, if provided along with the Derivative Works; or,\n          within a display generated by the Derivative Works, if and\n          wherever such third-party notices normally appear. The contents\n          of the NOTICE file are for informational purposes only and\n          do not modify the License. You may add Your own attribution\n          notices within Derivative Works that You distribute, alongside\n          or as an addendum to the NOTICE text from the Work, provided\n          that such additional attribution notices cannot be construed\n          as modifying the License.\n\n      You may add Your own copyright statement to Your modifications and\n      may provide additional or different license terms and conditions\n      for use, reproduction, or distribution of Your modifications, or\n      for any such Derivative Works as a whole, provided Your use,\n      reproduction, and distribution of the Work otherwise complies with\n      the conditions stated in this License.\n\n   5. Submission of Contributions. Unless You explicitly state otherwise,\n      any Contribution intentionally submitted for inclusion in the Work\n      by You to the Licensor shall be under the terms and conditions of\n      this License, without any additional terms or conditions.\n      Notwithstanding the above, nothing herein shall supersede or modify\n      the terms of any separate license agreement you may have executed\n      with Licensor regarding such Contributions.\n\n   6. Trademarks. This License does not grant permission to use the trade\n      names, trademarks, service marks, or product names of the Licensor,\n      except as required for reasonable and customary use in describing the\n      origin of the Work and reproducing the content of the NOTICE file.\n\n   7. Disclaimer of Warranty. Unless required by applicable law or\n      agreed to in writing, Licensor provides the Work (and each\n      Contributor provides its Contributions) on an \"AS IS\" BASIS,\n      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\n      implied, including, without limitation, any warranties or conditions\n      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A\n      PARTICULAR PURPOSE. You are solely responsible for determining the\n      appropriateness of using or redistributing the Work and assume any\n      risks associated with Your exercise of permissions under this License.\n\n   8. Limitation of Liability. In no event and under no legal theory,\n      whether in tort (including negligence), contract, or otherwise,\n      unless required by applicable law (such as deliberate and grossly\n      negligent acts) or agreed to in writing, shall any Contributor be\n      liable to You for damages, including any direct, indirect, special,\n      incidental, or consequential damages of any character arising as a\n      result of this License or out of the use or inability to use the\n      Work (including but not limited to damages for loss of goodwill,\n      work stoppage, computer failure or malfunction, or any and all\n      other commercial damages or losses), even if such Contributor\n      has been advised of the possibility of such damages.\n\n   9. Accepting Warranty or Additional Liability. While redistributing\n      the Work or Derivative Works thereof, You may choose to offer,\n      and charge a fee for, acceptance of support, warranty, indemnity,\n      or other liability obligations and/or rights consistent with this\n      License. However, in accepting such obligations, You may act only\n      on Your own behalf and on Your sole responsibility, not on behalf\n      of any other Contributor, and only if You agree to indemnify,\n      defend, and hold each Contributor harmless for any liability\n      incurred by, or claims asserted against, such Contributor by reason\n      of your accepting any such warranty or additional liability.\n\n   END OF TERMS AND CONDITIONS\n\n   APPENDIX: How to apply the Apache License to your work.\n\n      To apply the Apache License to your work, attach the following\n      boilerplate notice, with the fields enclosed by brackets \"[]\"\n      replaced with your own identifying information. (Don't include\n      the brackets!)  The text should be enclosed in the appropriate\n      comment syntax for the file format. We also recommend that a\n      file or class name and description of purpose be included on the\n      same \"printed page\" as the copyright notice for easier\n      identification within third-party archives.\n\n   Copyright [yyyy] [name of copyright owner]\n\n   Licensed under the Apache License, Version 2.0 (the \"License\");\n   you may not use this file except in compliance with the License.\n   You may obtain a copy of the License at\n\n       http://www.apache.org/licenses/LICENSE-2.0\n\n   Unless required by applicable law or agreed to in writing, software\n   distributed under the License is distributed on an \"AS IS\" BASIS,\n   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n   See the License for the specific language governing permissions and\n   limitations under the License.\n\n",
+      "source_sha256": {
+        "LICENSE": "c95bae1d1ce0235ecccd3560b772ec1efb97f348a79f0fbe0a634f0c2ccefe2c",
+        "pyproject.toml": "6e726dab1cbbc79834071e98c1f060456a9a5eb8881e5004e794b535953141e1",
+        "e2e_playwright/st_data_editor_config_test.py": "972b8504954b62849a8ccc8cdb9e03a005b7814db69210b8505cf34f3fefd515",
+        "e2e_playwright/conftest.py": "61c4074af335531147f8aedcd3eeaeaa699af38a5b4d715972d5ced6e33a551a"
+      },
+      "reviewed_paths": [
+        "LICENSE",
+        "e2e_playwright/conftest.py",
+        "e2e_playwright/st_data_editor_config_test.py",
+        "pyproject.toml"
+      ]
+    },
+    {
+      "repo": "tegataiprime/Platelet-Movie",
+      "sha": "14664611814b126289f291ad24ee294102efb07c",
+      "evidence_url": "https://github.com/tegataiprime/Platelet-Movie/commit/14664611814b126289f291ad24ee294102efb07c",
+      "license": "Apache-2.0",
+      "license_url": "https://github.com/tegataiprime/Platelet-Movie/blob/14664611814b126289f291ad24ee294102efb07c/LICENSE",
+      "screen": {
+        "observable_calls": 69,
+        "files": {
+          "tests/ui/test_runtime_filter_toggle.py": {
+            "selected": true,
+            "count": 69,
+            "calls": {
+              "click": 8,
+              "expect": 28,
+              "fill": 6,
+              "locator": 27
+            }
+          }
+        },
+        "external_host_literals": [
+          "github.com",
+          "www.redcrossblood.org",
+          "www.themoviedb.org"
+        ],
+        "offline_risk": [
+          {
+            "file": "site/index.html",
+            "line": 137,
+            "kind": "external_host",
+            "detail": "www.themoviedb.org"
+          },
+          {
+            "file": "site/index.html",
+            "line": 139,
+            "kind": "external_host",
+            "detail": "www.themoviedb.org"
+          },
+          {
+            "file": "site/index.html",
+            "line": 142,
+            "kind": "external_host",
+            "detail": "www.themoviedb.org"
+          },
+          {
+            "file": "site/index.html",
+            "line": 172,
+            "kind": "external_host",
+            "detail": "www.redcrossblood.org"
+          },
+          {
+            "file": "site/index.html",
+            "line": 192,
+            "kind": "external_host",
+            "detail": "github.com"
+          },
+          {
+            "file": "tests/ui/conftest.py",
+            "line": 57,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/ui/conftest.py",
+            "line": 75,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          },
+          {
+            "file": "tests/ui/conftest.py",
+            "line": 91,
+            "kind": "base_url",
+            "detail": "review configured browser origin"
+          }
+        ],
+        "heuristic_only": true
+      },
+      "evidence_detail": "Commit modifies selected Python browser tests; Co-authored-by: Copilot App <223556219+Copilot",
+      "commit_message": "Fix runtime filter toggle visibility bug + add Playwright UI regression suite (#85)\n\n* fix: hide inactive runtime filter input group when toggling display mode\n\nThe .filter-group { display: flex } rule had the same CSS specificity\nas the browser default [hidden] { display: none } rule, so the author\nstyle silently won and the \"hidden\" minute-only or hours+minutes\nfilter group kept rendering. This made both sets of runtime filter\ninputs visible at the same time regardless of the \"Show Runtime in\nMinutes\"/\"Show Runtime in Hrs & Mins\" toggle state.\n\nAdd a more specific .filter-group[hidden] rule so toggling the runtime\ndisplay mode correctly shows only the matching filter input group\n(min/max minutes, or min/max hours & minutes).\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\n* test: add Playwright UI regression suite for site/ (prevent filter toggle regression)\n\nAdd a browser-based UI test suite using pytest-playwright to catch\nregressions that pure unit tests can't, such as CSS rules silently\noverriding JavaScript-driven visibility toggles (the bug fixed by the\nprevious commit in this branch).\n\n- tests/ui/conftest.py: serves site/ over a local HTTP server for the\n  test session and mocks data-{region}.json network responses via\n  Playwright route interception, so tests are deterministic and never\n  read or mutate the real generated site data files.\n- tests/ui/test_runtime_filter_toggle.py: covers the runtime display\n  toggle showing only the matching filter input format (minutes-only\n  vs. hours+minutes), value conversion between formats, min/max\n  validation, reset-to-defaults, and basic movie rendering. Verified\n  these tests fail against the pre-fix CSS and pass against the fix.\n- pyproject.toml: add pytest-playwright as a dev dependency; add\n  `poe test-ui` and `poe install-browsers` tasks; exclude tests/ui\n  from the default `poe test` / coverage run since it exercises the\n  static website rather than the platelet_movie package.\n- .github/workflows/test-pr.yml, test-main.yml: install the Playwright\n  Chromium browser and run `poe test-ui` in CI.\n- README.md: document the new poe tasks and UI test suite.\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\n* Fix SonarCloud S9100: use return instead of yield in site_page fixture\n\nThe site_page fixture had no teardown logic after the yield statement,\nso SonarCloud flagged it as a code smell (no teardown in this fixture).\nSwitched to return since there is nothing to clean up after the test.\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\n* Address Copilot review feedback on PR #85\n\n- Reword the CSS comment explaining the [hidden] override: clarify it's\n  about author-vs-UA stylesheet origin at equal specificity, not rule\n  ordering.\n- Remove accidental duplicate 'poe lint' line in README examples.\n- Make the toggle-visibility regression test wait for each post-click\n  state via expect(...) before the next iteration reads it, removing a\n  potential race on slower CI runners.\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\n* Pin CI Poetry version to 2.4.1 to match poetry.lock generator\n\npoetry.lock was regenerated with Poetry 2.4.1 (added pytest-playwright),\nbut CI still installed Poetry 2.0.1. Align both workflows so 'poetry\ninstall' doesn't risk incompatibility with the lockfile format.\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\n* Pin devcontainer Poetry install to 2.4.1\n\nMatch the Poetry version now pinned in CI (test-pr.yml/test-main.yml)\nand used to generate poetry.lock, so the devcontainer, Codespaces, and\nCI all install dependencies with the same Poetry version.\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\n* Pin remaining CI workflows to Poetry 2.4.1 for consistency\n\ndeploy-github-pages.yml, pr-movie-report-test.yml, and\nweekly-movie-report.yml all still installed Poetry 2.0.1, the same\nstale pin flagged in test-pr.yml/test-main.yml. Align every workflow\nand the devcontainer on 2.4.1 (the version that generated poetry.lock)\nso all environments install dependencies consistently.\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\n* Pin devcontainer Poetry installer script to a commit SHA + checksum\n\nPreviously the devcontainer piped the mutable\nhttps://install.python-poetry.org endpoint straight into python3,\nwhich always serves whatever the latest installer script is. Instead,\nfetch install-poetry.py from a specific commit SHA of\npython-poetry/install.python-poetry.org, verify its sha256 checksum,\nthen run it. This matches this repo's existing convention of pinning\nGitHub Actions to full commit SHAs for supply-chain integrity.\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\n* Fix SonarCloud S6506: enforce HTTPS on Poetry installer curl fetch\n\nAdd --tlsv1.2 --proto \"=https\" to the curl call that downloads\ninstall-poetry.py, matching the flags already used for the Doppler\nCLI install earlier in this script. This prevents curl from silently\nfollowing a redirect to an insecure (non-HTTPS) URL.\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\n* Harden Poetry installer download in devcontainer post-create.sh\n\n- Use 'trap ... EXIT' to remove the temp installer file on any exit\n  path (success, checksum failure, or early error), not just after the\n  final rm at the end of the script.\n- Add curl's -f flag so an HTTP error response (e.g. 404) fails fast\n  with a clear curl error instead of silently writing an error page to\n  disk and only failing later at the checksum comparison step.\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\n* Fix README manual pytest example to exclude tests/ui\n\nThe 'Running Tests Manually' example ran 'pytest tests/ ...' directly,\nwhich would also collect tests/ui and can fail unless Playwright's\nChromium browser is installed. Add --ignore=tests/ui (matching the\npoe test task) and a note pointing to the UI test section.\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\n* Remove hard-coded PR number references, describe the fix instead\n\nBoth the test module docstring and the README's UI test coverage list\nreferenced 'PR #85' directly. Replace with a description of the actual\nCSS specificity fix so the docs/tests stay accurate if backported or\nreferenced outside this PR.\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\n* Polish comments and formatting for continuity\n\n- Align the new poe task entries (test-ui, install-browsers) with the\n  rest of the [tool.poe.tasks] table's column formatting, which had\n  drifted out of alignment.\n- Clarify the devcontainer Poetry-install comment: distinguish the\n  installer *script*'s pinned commit SHA from the Poetry *package*\n  version pinned via --version, and note it should stay in sync with\n  the version pinned in the CI workflows.\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\n---------\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>",
+      "license_text": "                                 Apache License\n                           Version 2.0, January 2004\n                        http://www.apache.org/licenses/\n\n   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n\n   1. Definitions.\n\n      \"License\" shall mean the terms and conditions for use, reproduction,\n      and distribution as defined by Sections 1 through 9 of this document.\n\n      \"Licensor\" shall mean the copyright owner or entity authorized by\n      the copyright owner that is granting the License.\n\n      \"Legal Entity\" shall mean the union of the acting entity and all\n      other entities that control, are controlled by, or are under common\n      control with that entity. For the purposes of this definition,\n      \"control\" means (i) the power, direct or indirect, to cause the\n      direction or management of such entity, whether by contract or\n      otherwise, or (ii) ownership of fifty percent (50%) or more of the\n      outstanding shares, or (iii) beneficial ownership of such entity.\n\n      \"You\" (or \"Your\") shall mean an individual or Legal Entity\n      exercising permissions granted by this License.\n\n      \"Source\" form shall mean the preferred form for making modifications,\n      including but not limited to software source code, documentation\n      source, and configuration files.\n\n      \"Object\" form shall mean any form resulting from mechanical\n      transformation or translation of a Source form, including but\n      not limited to compiled object code, generated documentation,\n      and conversions to other media types.\n\n      \"Work\" shall mean the work of authorship, whether in Source or\n      Object form, made available under the License, as indicated by a\n      copyright notice that is included in or attached to the work\n      (an example is provided in the Appendix below).\n\n      \"Derivative Works\" shall mean any work, whether in Source or Object\n      form, that is based on (or derived from) the Work and for which the\n      editorial revisions, annotations, elaborations, or other modifications\n      represent, as a whole, an original work of authorship. For the purposes\n      of this License, Derivative Works shall not include works that remain\n      separable from, or merely link (or bind by name) to the interfaces of,\n      the Work and Derivative Works thereof.\n\n      \"Contribution\" shall mean any work of authorship, including\n      the original version of the Work and any modifications or additions\n      to that Work or Derivative Works thereof, that is intentionally\n      submitted to Licensor for inclusion in the Work by the copyright owner\n      or by an individual or Legal Entity authorized to submit on behalf of\n      the copyright owner. For the purposes of this definition, \"submitted\"\n      means any form of electronic, verbal, or written communication sent\n      to the Licensor or its representatives, including but not limited to\n      communication on electronic mailing lists, source code control systems,\n      and issue tracking systems that are managed by, or on behalf of, the\n      Licensor for the purpose of discussing and improving the Work, but\n      excluding communication that is conspicuously marked or otherwise\n      designated in writing by the copyright owner as \"Not a Contribution.\"\n\n      \"Contributor\" shall mean Licensor and any individual or Legal Entity\n      on behalf of whom a Contribution has been received by Licensor and\n      subsequently incorporated within the Work.\n\n   2. Grant of Copyright License. Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      copyright license to reproduce, prepare Derivative Works of,\n      publicly display, publicly perform, sublicense, and distribute the\n      Work and such Derivative Works in Source or Object form.\n\n   3. Grant of Patent License. Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      (except as stated in this section) patent license to make, have made,\n      use, offer to sell, sell, import, and otherwise transfer the Work,\n      where such license applies only to those patent claims licensable\n      by such Contributor that are necessarily infringed by their\n      Contribution(s) alone or by combination of their Contribution(s)\n      with the Work to which such Contribution(s) was submitted. If You\n      institute patent litigation against any entity (including a\n      cross-claim or counterclaim in a lawsuit) alleging that the Work\n      or a Contribution incorporated within the Work constitutes direct\n      or contributory patent infringement, then any patent licenses\n      granted to You under this License for that Work shall terminate\n      as of the date such litigation is filed.\n\n   4. Redistribution. You may reproduce and distribute copies of the\n      Work or Derivative Works thereof in any medium, with or without\n      modifications, and in Source or Object form, provided that You\n      meet the following conditions:\n\n      (a) You must give any other recipients of the Work or\n          Derivative Works a copy of this License; and\n\n      (b) You must cause any modified files to carry prominent notices\n          stating that You changed the files; and\n\n      (c) You must retain, in the Source form of any Derivative Works\n          that You distribute, all copyright, patent, trademark, and\n          attribution notices from the Source form of the Work,\n          excluding those notices that do not pertain to any part of\n          the Derivative Works; and\n\n      (d) If the Work includes a \"NOTICE\" text file as part of its\n          distribution, then any Derivative Works that You distribute must\n          include a readable copy of the attribution notices contained\n          within such NOTICE file, excluding those notices that do not\n          pertain to any part of the Derivative Works, in at least one\n          of the following places: within a NOTICE text file distributed\n          as part of the Derivative Works; within the Source form or\n          documentation, if provided along with the Derivative Works; or,\n          within a display generated by the Derivative Works, if and\n          wherever such third-party notices normally appear. The contents\n          of the NOTICE file are for informational purposes only and\n          do not modify the License. You may add Your own attribution\n          notices within Derivative Works that You distribute, alongside\n          or as an addendum to the NOTICE text from the Work, provided\n          that such additional attribution notices cannot be construed\n          as modifying the License.\n\n      You may add Your own copyright statement to Your modifications and\n      may provide additional or different license terms and conditions\n      for use, reproduction, or distribution of Your modifications, or\n      for any such Derivative Works as a whole, provided Your use,\n      reproduction, and distribution of the Work otherwise complies with\n      the conditions stated in this License.\n\n   5. Submission of Contributions. Unless You explicitly state otherwise,\n      any Contribution intentionally submitted for inclusion in the Work\n      by You to the Licensor shall be under the terms and conditions of\n      this License, without any additional terms or conditions.\n      Notwithstanding the above, nothing herein shall supersede or modify\n      the terms of any separate license agreement you may have executed\n      with Licensor regarding such Contributions.\n\n   6. Trademarks. This License does not grant permission to use the trade\n      names, trademarks, service marks, or product names of the Licensor,\n      except as required for reasonable and customary use in describing the\n      origin of the Work and reproducing the content of the NOTICE file.\n\n   7. Disclaimer of Warranty. Unless required by applicable law or\n      agreed to in writing, Licensor provides the Work (and each\n      Contributor provides its Contributions) on an \"AS IS\" BASIS,\n      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\n      implied, including, without limitation, any warranties or conditions\n      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A\n      PARTICULAR PURPOSE. You are solely responsible for determining the\n      appropriateness of using or redistributing the Work and assume any\n      risks associated with Your exercise of permissions under this License.\n\n   8. Limitation of Liability. In no event and under no legal theory,\n      whether in tort (including negligence), contract, or otherwise,\n      unless required by applicable law (such as deliberate and grossly\n      negligent acts) or agreed to in writing, shall any Contributor be\n      liable to You for damages, including any direct, indirect, special,\n      incidental, or consequential damages of any character arising as a\n      result of this License or out of the use or inability to use the\n      Work (including but not limited to damages for loss of goodwill,\n      work stoppage, computer failure or malfunction, or any and all\n      other commercial damages or losses), even if such Contributor\n      has been advised of the possibility of such damages.\n\n   9. Accepting Warranty or Additional Liability. While redistributing\n      the Work or Derivative Works thereof, You may choose to offer,\n      and charge a fee for, acceptance of support, warranty, indemnity,\n      or other liability obligations and/or rights consistent with this\n      License. However, in accepting such obligations, You may act only\n      on Your own behalf and on Your sole responsibility, not on behalf\n      of any other Contributor, and only if You agree to indemnify,\n      defend, and hold each Contributor harmless for any liability\n      incurred by, or claims asserted against, such Contributor by reason\n      of your accepting any such warranty or additional liability.\n\n   END OF TERMS AND CONDITIONS\n\n   APPENDIX: How to apply the Apache License to your work.\n\n      To apply the Apache License to your work, attach the following\n      boilerplate notice, with the fields enclosed by brackets \"[]\"\n      replaced with your own identifying information. (Don't include\n      the brackets!)  The text should be enclosed in the appropriate\n      comment syntax for the file format. We also recommend that a\n      file or class name and description of purpose be included on the\n      same \"printed page\" as the copyright notice for easier\n      identification within third-party archives.\n\n   Copyright [yyyy] [name of copyright owner]\n\n   Licensed under the Apache License, Version 2.0 (the \"License\");\n   you may not use this file except in compliance with the License.\n   You may obtain a copy of the License at\n\n       http://www.apache.org/licenses/LICENSE-2.0\n\n   Unless required by applicable law or agreed to in writing, software\n   distributed under the License is distributed on an \"AS IS\" BASIS,\n   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n   See the License for the specific language governing permissions and\n   limitations under the License.\n",
+      "source_sha256": {
+        "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "pyproject.toml": "361f8d7091a81b0377f986ce6f79dd33cab64d6d621242dd2568c0b52cd16478",
+        "tests/ui/test_runtime_filter_toggle.py": "49471a546c251113c418e100cfbeb387004957c3a4c0483fe31bc78715e89e41",
+        "tests/ui/conftest.py": "5d02a12ca2bfd49825df93587bea8191911aa7762c537418f52ec211733ab9e2",
+        "site/index.html": "5c41e7508a7b3d360a606024f89735b7771052f0847b22028a52b3143570fa2d"
+      },
+      "reviewed_paths": [
+        "LICENSE",
+        "pyproject.toml",
+        "site/index.html",
+        "tests/ui/conftest.py",
+        "tests/ui/test_runtime_filter_toggle.py"
+      ]
+    }
+  ]
+}

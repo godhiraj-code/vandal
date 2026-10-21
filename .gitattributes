@@ -1,0 +1,2 @@
+# Preserve raw evidence bytes so recorded SHA-256 hashes survive Git checkouts.
+study/results/pilot/** -text -whitespace

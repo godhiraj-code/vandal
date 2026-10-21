@@ -1,0 +1,2166 @@
+{
+  "retrieved_on": "2026-10-21",
+  "scope": "agent suites only; read-only bounded discovery, no approvals or execution",
+  "commit_queries": [
+    {
+      "query": "playwright pytest \"Co-Authored-By: Claude\"",
+      "requested": 60,
+      "returned": 60,
+      "hits": [
+        {
+          "repo": "bricef/narrate",
+          "sha": "0655ec0896c3692e6f4bab8d2d91c6f109a8b378",
+          "url": "https://github.com/bricef/narrate/commit/0655ec0896c3692e6f4bab8d2d91c6f109a8b378",
+          "title": "CI: check every pull request, forks' included (#93)"
+        },
+        {
+          "repo": "JulianSilvaMorales/Proyecto_Inventario_Videojuegos",
+          "sha": "f5f16b56ec7192e541c6f50352d9b132f2bf5027",
+          "url": "https://github.com/JulianSilvaMorales/Proyecto_Inventario_Videojuegos/commit/f5f16b56ec7192e541c6f50352d9b132f2bf5027",
+          "title": "test(E8): pruebas con base desechable, flujo E2E y comando probar"
+        },
+        {
+          "repo": "anjo-da-maquina/Pleroma",
+          "sha": "3a2718f6409aace494fc3971310c188ce55206a4",
+          "url": "https://github.com/anjo-da-maquina/Pleroma/commit/3a2718f6409aace494fc3971310c188ce55206a4",
+          "title": "\u00a7BV: \u00a711.9\u30d5\u30a7\u30fc\u30baE - \u672a\u5ba3\u8a00\u4f9d\u5b58\u95a2\u4fc2\u30fb\u30b5\u30d7\u30e9\u30a4\u30c1\u30a7\u30fc\u30f3\u6ce8\u5165\u306e\u691c\u77e5"
+        },
+        {
+          "repo": "CandleViewer/CandleViewer",
+          "sha": "d20673569939ad72f02acd5f04ed3f35c6fcdb15",
+          "url": "https://github.com/CandleViewer/CandleViewer/commit/d20673569939ad72f02acd5f04ed3f35c6fcdb15",
+          "title": "feat(backend-platform): freeze cv.v1: wire-contract golden, spec parity, ADR-0005 Amendment 2 (#572) (#3987)"
+        },
+        {
+          "repo": "youngroknroll/takulife",
+          "sha": "07b7186e9d964f08dc3efca63f249f6aa8131f07",
+          "url": "https://github.com/youngroknroll/takulife/commit/07b7186e9d964f08dc3efca63f249f6aa8131f07",
+          "title": "build(deps): Raise pillow to 13.0.0 and bump certifi for audit"
+        },
+        {
+          "repo": "OWASP/BLT",
+          "sha": "df5216741bd991bde90f42c076f8f6cc760a670c",
+          "url": "https://github.com/OWASP/BLT/commit/df5216741bd991bde90f42c076f8f6cc760a670c",
+          "title": "blt-university: one header; Courses / Labs / Progress / Security Trends / Instructors and Request course / Enroll now move into the shared bar"
+        },
+        {
+          "repo": "OWASP/BLT",
+          "sha": "bf8ed3a4cc0c2e6b68cdc8910f8a72cfcdd61adf",
+          "url": "https://github.com/OWASP/BLT/commit/bf8ed3a4cc0c2e6b68cdc8910f8a72cfcdd61adf",
+          "title": "blt-safecloak: one header; Video Chat / Secure Notes / Consent, Source code and Start Secure Call move into the shared bar"
+        },
+        {
+          "repo": "OWASP/BLT",
+          "sha": "5974539b940a77a01947cf6e12d33d9e4b233ee0",
+          "url": "https://github.com/OWASP/BLT/commit/5974539b940a77a01947cf6e12d33d9e4b233ee0",
+          "title": "blt-pages: one header; its links, Report Bug and Sign in move into the shared bar"
+        },
+        {
+          "repo": "flightdeckhq/flightdeck",
+          "sha": "63f58b507a6c1635fed0629d335ea1c87f39408c",
+          "url": "https://github.com/flightdeckhq/flightdeck/commit/63f58b507a6c1635fed0629d335ea1c87f39408c",
+          "title": "chore: cut the integration cycle time with a configurable reconciler tick and a parallel suite (#74)"
+        },
+        {
+          "repo": "naresh4687/Isha_web",
+          "sha": "525f020217a47a5b7ef1f5ca2777da5fcb6f9a97",
+          "url": "https://github.com/naresh4687/Isha_web/commit/525f020217a47a5b7ef1f5ca2777da5fcb6f9a97",
+          "title": "Anvaya: e-commerce platform with analytics and ML recommendations"
+        },
+        {
+          "repo": "willow-memory/willows-grove",
+          "sha": "17657079a577472b4abae4662fd1fba52f098a39",
+          "url": "https://github.com/willow-memory/willows-grove/commit/17657079a577472b4abae4662fd1fba52f098a39",
+          "title": "ci: the e2e steps that journal have the one script beside"
+        },
+        {
+          "repo": "SeroGoingCrazy/duo-lol",
+          "sha": "2ab5c373f6370f24beff480c332b305fbd06e604",
+          "url": "https://github.com/SeroGoingCrazy/duo-lol/commit/2ab5c373f6370f24beff480c332b305fbd06e604",
+          "title": "feat: privacy policy, terms, Riot notice, riot.txt, CI and deploy config"
+        },
+        {
+          "repo": "byronz1z/ZBSwork-octop-build",
+          "sha": "11705f8da003aab2bcbdcfe1300ea8eaf8464ef3",
+          "url": "https://github.com/byronz1z/ZBSwork-octop-build/commit/11705f8da003aab2bcbdcfe1300ea8eaf8464ef3",
+          "title": "[ZT-036] \u5347\u7ea7\u5b98\u65b9 v1.0.2 \u6b63\u5f0f\u7248 \u2192 zbs0.4\uff08\u542b\u8865\u4e01 60/0004 PostgreSQL 16 \u5ba2\u6237\u7aef\uff09 (#28)"
+        },
+        {
+          "repo": "TriTue2011/web2api",
+          "sha": "3530838566180ddc9a20c87e29c635d05ddf9a3e",
+          "url": "https://github.com/TriTue2011/web2api/commit/3530838566180ddc9a20c87e29c635d05ddf9a3e",
+          "title": "fix(NV206/207): test fail-fast gi\u1ea3 l\u1eadp \u0111\u00fang ch\u1ed7, giao di\u1ec7n JWT trung l\u1eadp, README \u0111\u1ee7 bi\u1ebfn v\u00e0 \u0111\u01b0\u1eddng API"
+        },
+        {
+          "repo": "dmon3yy/BoO-26",
+          "sha": "615494ca0c4112be4f522fba06d252a878284f0e",
+          "url": "https://github.com/dmon3yy/BoO-26/commit/615494ca0c4112be4f522fba06d252a878284f0e",
+          "title": "M0: foundations, art bar and technical spikes for Ballad of Orpheus"
+        },
+        {
+          "repo": "CurateLabs/xyg",
+          "sha": "b2705b73edf4f702da80b323b2193ed61602b1b7",
+          "url": "https://github.com/CurateLabs/xyg/commit/b2705b73edf4f702da80b323b2193ed61602b1b7",
+          "title": "fix(ci): produce packaged WASM assets before every consumer and make Release surfaces observe every hard job (#1005, #1008) (#1018)"
+        },
+        {
+          "repo": "dperygin/StitchPro-Studio",
+          "sha": "4b4d5aea29750c32f972d635e4f5bda1c8118ac3",
+          "url": "https://github.com/dperygin/StitchPro-Studio/commit/4b4d5aea29750c32f972d635e4f5bda1c8118ac3",
+          "title": "Scaffold StitchPro Studio monorepo"
+        },
+        {
+          "repo": "viniciusofsilva00-code/analise-de-curriculo",
+          "sha": "6119aac60a14397b460b2209d0a843176f06d89e",
+          "url": "https://github.com/viniciusofsilva00-code/analise-de-curriculo/commit/6119aac60a14397b460b2209d0a843176f06d89e",
+          "title": "Sistema de an\u00e1lise de curr\u00edculos: skill /analise-de-curriculo, app claude.ai e n\u00facleo comum"
+        },
+        {
+          "repo": "chocitagaming-art/mma-app",
+          "sha": "2d0a111d65faff5f49d8e71ae14417934d453a71",
+          "url": "https://github.com/chocitagaming-art/mma-app/commit/2d0a111d65faff5f49d8e71ae14417934d453a71",
+          "title": "fix(megatest): el E2E solo aprueba si quien contesta es su build y su commit [t1-7-4]"
+        },
+        {
+          "repo": "hass-energy/haeo",
+          "sha": "00dea704d1220beeda836e6069b87c2022372785",
+          "url": "https://github.com/hass-energy/haeo/commit/00dea704d1220beeda836e6069b87c2022372785",
+          "title": "Make guide screenshots deterministic (#574)"
+        },
+        {
+          "repo": "men16922/ta-migration-reference-pack",
+          "sha": "60fe2587e77ab3af64e1c3b45434b0c46fc0c723",
+          "url": "https://github.com/men16922/ta-migration-reference-pack/commit/60fe2587e77ab3af64e1c3b45434b0c46fc0c723",
+          "title": "feat: onprem-atlas kit (ESM xlsx \u2192 SQLite) + IBM Cloud-style Carbon console"
+        },
+        {
+          "repo": "L1Z4RD0/SS3D",
+          "sha": "16879ff4af09da16709673b0ecc92e6438d28416",
+          "url": "https://github.com/L1Z4RD0/SS3D/commit/16879ff4af09da16709673b0ecc92e6438d28416",
+          "title": "Correcci\u00f3n de sesi\u00f3n: login que parpadea e interfaz que desaparece"
+        },
+        {
+          "repo": "ward-wise/ward-wise-front-end-v2",
+          "sha": "9494730f1c00aadee867cb9a6f8a07a86749f817",
+          "url": "https://github.com/ward-wise/ward-wise-front-end-v2/commit/9494730f1c00aadee867cb9a6f8a07a86749f817",
+          "title": "chore: bootstrap test framework (pytest + pytest-playwright)"
+        },
+        {
+          "repo": "Marius-Juston/agent-harness",
+          "sha": "36c1f41062b7cd2a84efe71b1df39c84bd122d02",
+          "url": "https://github.com/Marius-Juston/agent-harness/commit/36c1f41062b7cd2a84efe71b1df39c84bd122d02",
+          "title": "README: animated terminal demo of the full loop, and the missing step after `claude` (#368) (#369)"
+        },
+        {
+          "repo": "CandleViewer/CandleViewer",
+          "sha": "5536a57ca73e93579186dfc165986d995afcee28",
+          "url": "https://github.com/CandleViewer/CandleViewer/commit/5536a57ca73e93579186dfc165986d995afcee28",
+          "title": "test(frontend-platform): scan /settings/appearance (R-203) in the a11y gate (#3939)"
+        },
+        {
+          "repo": "ll9391556-art/hiba-ecom-saas-new",
+          "sha": "e524c548769110fa55604816484e10645b8826cb",
+          "url": "https://github.com/ll9391556-art/hiba-ecom-saas-new/commit/e524c548769110fa55604816484e10645b8826cb",
+          "title": "refactor(F5): replace inline event handlers with data-on-* + delegated listeners"
+        },
+        {
+          "repo": "dylans-01/Intelliq",
+          "sha": "ecd311b1950332df21c5ac07951fc1b165eead16",
+          "url": "https://github.com/dylans-01/Intelliq/commit/ecd311b1950332df21c5ac07951fc1b165eead16",
+          "title": "Add documentation, status report, screenshots and CI workflow"
+        },
+        {
+          "repo": "ll9391556-art/hiba-ecom-saas-new",
+          "sha": "089531741443bf984464c64dd59a89196cdbfea2",
+          "url": "https://github.com/ll9391556-art/hiba-ecom-saas-new/commit/089531741443bf984464c64dd59a89196cdbfea2",
+          "title": "refactor(F4): feature pages reuse the shared core.js + api.js"
+        },
+        {
+          "repo": "ll9391556-art/hiba-ecom-saas-new",
+          "sha": "d33b9bec062b0749aab33a8c3a67b0232bd93cfc",
+          "url": "https://github.com/ll9391556-art/hiba-ecom-saas-new/commit/d33b9bec062b0749aab33a8c3a67b0232bd93cfc",
+          "title": "refactor(F3): public storefront becomes its own page (static/shop.html)"
+        },
+        {
+          "repo": "senegrom/GridPuzzle",
+          "sha": "b8b400897ed4a9ad9be3aef83d7bb57113f1aade",
+          "url": "https://github.com/senegrom/GridPuzzle/commit/b8b400897ed4a9ad9be3aef83d7bb57113f1aade",
+          "title": "Fix the fifth review's CI findings: Playwright 1.64.1, cached external pictures, Pillow and pytest floors, derived gate checks (#145)"
+        },
+        {
+          "repo": "kvpatil/fintor",
+          "sha": "8b2ef482909be393a5395e381c62c53204bc2c0f",
+          "url": "https://github.com/kvpatil/fintor/commit/8b2ef482909be393a5395e381c62c53204bc2c0f",
+          "title": "feat(deploy): containerise for Cloud Run, and fix the auth bug it exposed"
+        },
+        {
+          "repo": "mde-pach/claude-forge",
+          "sha": "b6d5a53f32b5ae02b984901b873afaf8327001d6",
+          "url": "https://github.com/mde-pach/claude-forge/commit/b6d5a53f32b5ae02b984901b873afaf8327001d6",
+          "title": "Packs: close agent loopholes, add version-drift rules and typescript/react"
+        },
+        {
+          "repo": "ll9391556-art/hiba-ecom-saas-new",
+          "sha": "02979bd492c1d0289aab39f4b57044908b0c8aad",
+          "url": "https://github.com/ll9391556-art/hiba-ecom-saas-new/commit/02979bd492c1d0289aab39f4b57044908b0c8aad",
+          "title": "refactor(F2): split app.js verbatim into 13 ordered classic scripts"
+        },
+        {
+          "repo": "fhempy/fhempy",
+          "sha": "f0a431a9b80d1aa0d24dab0a1c9660cfc7604a45",
+          "url": "https://github.com/fhempy/fhempy/commit/f0a431a9b80d1aa0d24dab0a1c9660cfc7604a45",
+          "title": "fix(deps): update libraries (greeclimate, pyTibber, httpx, kia, websockets, ...) (#720)"
+        },
+        {
+          "repo": "ll9391556-art/hiba-ecom-saas-new",
+          "sha": "fc15276dcf727ee161fdacad61ef9759e7fd1add",
+          "url": "https://github.com/ll9391556-art/hiba-ecom-saas-new/commit/fc15276dcf727ee161fdacad61ef9759e7fd1add",
+          "title": "refactor(F1): move index.html CSS and JS verbatim into static files"
+        },
+        {
+          "repo": "dheerajcse9-tech/ziro",
+          "sha": "445c9547a41c9022fc7ac28ea7f5a9da4e672d9a",
+          "url": "https://github.com/dheerajcse9-tech/ziro/commit/445c9547a41c9022fc7ac28ea7f5a9da4e672d9a",
+          "title": "Add documentation, test evidence and deployment configuration"
+        },
+        {
+          "repo": "danialrahimian/telegram-ads-",
+          "sha": "677489e5872a48e4d5dd183865314cb330f6a905",
+          "url": "https://github.com/danialrahimian/telegram-ads-/commit/677489e5872a48e4d5dd183865314cb330f6a905",
+          "title": "v2.0.0: rebuild as Telegram Ads Manager (multi-account, React + shadcn, bot API attribution)"
+        },
+        {
+          "repo": "pmixay/ReSense",
+          "sha": "3b73bbe07e1c83cc706e2bca7ab6361c2f2c3862",
+          "url": "https://github.com/pmixay/ReSense/commit/3b73bbe07e1c83cc706e2bca7ab6361c2f2c3862",
+          "title": "Claude/p1 work list verification o1hdlh (#51)"
+        },
+        {
+          "repo": "Miguel-Soares1/stonks-ai2.0",
+          "sha": "9b7aaf14c0de0ef3b3566d222e7427b6a3194f6e",
+          "url": "https://github.com/Miguel-Soares1/stonks-ai2.0/commit/9b7aaf14c0de0ef3b3566d222e7427b6a3194f6e",
+          "title": "test: testes ponta a ponta do app desktop e CI no GitHub Actions"
+        },
+        {
+          "repo": "nik121212T/proxy-rotator",
+          "sha": "0b6dd334c496033072dd2ce14f3f874a1ac1de42",
+          "url": "https://github.com/nik121212T/proxy-rotator/commit/0b6dd334c496033072dd2ce14f3f874a1ac1de42",
+          "title": "fix(deps): split runtime vs dev requirements to unblock Windows installs"
+        },
+        {
+          "repo": "debug-RyanLopes/sistema-de-agendamento",
+          "sha": "40991b67f2b1aca3aea874abdee5e1ee539b495e",
+          "url": "https://github.com/debug-RyanLopes/sistema-de-agendamento/commit/40991b67f2b1aca3aea874abdee5e1ee539b495e",
+          "title": "ci: GitHub Actions com lint e testes"
+        },
+        {
+          "repo": "debug-RyanLopes/sistema-de-agendamento",
+          "sha": "4d3d370b4d313fecccefcc2a15d8682dd2c8d9ce",
+          "url": "https://github.com/debug-RyanLopes/sistema-de-agendamento/commit/4d3d370b4d313fecccefcc2a15d8682dd2c8d9ce",
+          "title": "test: testes de navegador com Playwright"
+        },
+        {
+          "repo": "rakeshkumarpanda/brainy-bytes",
+          "sha": "9b358a01e349cf6bdf67c1f1341dbe39b34fd507",
+          "url": "https://github.com/rakeshkumarpanda/brainy-bytes/commit/9b358a01e349cf6bdf67c1f1341dbe39b34fd507",
+          "title": "Add Playwright for Python and interview questions to API Automation Testing"
+        },
+        {
+          "repo": "rickmcphee/discogs-browser",
+          "sha": "455b575dbbccab0df7491b3ae91e026d473fb956",
+          "url": "https://github.com/rickmcphee/discogs-browser/commit/455b575dbbccab0df7491b3ae91e026d473fb956",
+          "title": "chore: promote this week's dependency updates to main (#448)"
+        },
+        {
+          "repo": "alxb1t/isekai",
+          "sha": "b2c7b480263371624f17464c769577a74a113eff",
+          "url": "https://github.com/alxb1t/isekai/commit/b2c7b480263371624f17464c769577a74a113eff",
+          "title": "test(0061-ui-groundwork): add the browser test harness"
+        },
+        {
+          "repo": "bilal-feroz/Streetmend",
+          "sha": "39294b16a4341ffd7b05d4f30b2c1455ab81783e",
+          "url": "https://github.com/bilal-feroz/Streetmend/commit/39294b16a4341ffd7b05d4f30b2c1455ab81783e",
+          "title": "Fix issues found in independent review"
+        },
+        {
+          "repo": "peppigminze/Cypher",
+          "sha": "4fcb445093c0921f5b92c55d62c5f05c19e5a206",
+          "url": "https://github.com/peppigminze/Cypher/commit/4fcb445093c0921f5b92c55d62c5f05c19e5a206",
+          "title": "Doku und Testlauf: Sicherheitsmodell nachgefuehrt, pytest --basetemp fest"
+        },
+        {
+          "repo": "GabrielMacielZavarize/Jarvis-AI",
+          "sha": "28f70b2d040e0fbc72b48867bf1f3aacaa5373ab",
+          "url": "https://github.com/GabrielMacielZavarize/Jarvis-AI/commit/28f70b2d040e0fbc72b48867bf1f3aacaa5373ab",
+          "title": "Junta o branch do CI no GitHub Actions"
+        },
+        {
+          "repo": "mattmalcher/mcp-app-shiny",
+          "sha": "e15529c0260413015fb35211f444c98b6e963cf9",
+          "url": "https://github.com/mattmalcher/mcp-app-shiny/commit/e15529c0260413015fb35211f444c98b6e963cf9",
+          "title": "Build the test fixture View in Python; run pytest suites without Node"
+        },
+        {
+          "repo": "GabrielMacielZavarize/Jarvis-AI",
+          "sha": "c7a5f9b3def16ce36d03b5f549b184f93b7138a1",
+          "url": "https://github.com/GabrielMacielZavarize/Jarvis-AI/commit/c7a5f9b3def16ce36d03b5f549b184f93b7138a1",
+          "title": "CI no GitHub Actions: pytest, vitest, build e testes visuais do HUD"
+        },
+        {
+          "repo": "kelvin78901/AIVideoGenerationAgent",
+          "sha": "621d12537e2db57e184882f1701ad8cc85130079",
+          "url": "https://github.com/kelvin78901/AIVideoGenerationAgent/commit/621d12537e2db57e184882f1701ad8cc85130079",
+          "title": "Confirm the novel before there are episodes (step 12d)"
+        },
+        {
+          "repo": "QubitMan-hub/Q-NET",
+          "sha": "dd2ce449bb4fb5e12cc02efd6f8ff41beb7e6625",
+          "url": "https://github.com/QubitMan-hub/Q-NET/commit/dd2ce449bb4fb5e12cc02efd6f8ff41beb7e6625",
+          "title": "Ceiling rounding for propagation delays, GUI build-from-scratch e2e, benchmark"
+        },
+        {
+          "repo": "vigneshtj27/friday",
+          "sha": "93dee132aea5e5642f028880b477bad10c876cb5",
+          "url": "https://github.com/vigneshtj27/friday/commit/93dee132aea5e5642f028880b477bad10c876cb5",
+          "title": "Make patchright the default driver; add portal preflight check + one-use override"
+        },
+        {
+          "repo": "narthelix/ci-scripts",
+          "sha": "16757a7807f89b16c9d656e2f3957e06481e4736",
+          "url": "https://github.com/narthelix/ci-scripts/commit/16757a7807f89b16c9d656e2f3957e06481e4736",
+          "title": "feat(test-results): test sonuclari is ozetine ve Loki'ye (narthelix/ops#2089 T17) (#39)"
+        },
+        {
+          "repo": "HenryDMcGee/internship-watch",
+          "sha": "ab73a317e32d83993677aacf2020481f8261b558",
+          "url": "https://github.com/HenryDMcGee/internship-watch/commit/ab73a317e32d83993677aacf2020481f8261b558",
+          "title": "Phase 9: Budgets dialog redesign, dollars-only billing (#131)"
+        },
+        {
+          "repo": "ichidoro/Asistencia",
+          "sha": "b19f9551ac9b54d339303a007781e6122d33cc07",
+          "url": "https://github.com/ichidoro/Asistencia/commit/b19f9551ac9b54d339303a007781e6122d33cc07",
+          "title": "Adaptaci\u00f3n a dispositivos (etapa D): prueba autom\u00e1tica de pantallas"
+        },
+        {
+          "repo": "xtruck/realX",
+          "sha": "ccc03a0e569c1fe04fafa72292fab144ef7a22f2",
+          "url": "https://github.com/xtruck/realX/commit/ccc03a0e569c1fe04fafa72292fab144ef7a22f2",
+          "title": "CI: run the browser tests in their own job, in parallel"
+        },
+        {
+          "repo": "B-macs/Health_project",
+          "sha": "2f6680b905e3a91a603773eec82d0afb14efb677",
+          "url": "https://github.com/B-macs/Health_project/commit/2f6680b905e3a91a603773eec82d0afb14efb677",
+          "title": "Phase 9: five of the six items before the switch-over"
+        },
+        {
+          "repo": "Loefbijter/loefsys",
+          "sha": "9079dde96f920a9288a2b37eb002c1e996e7e526",
+          "url": "https://github.com/Loefbijter/loefsys/commit/9079dde96f920a9288a2b37eb002c1e996e7e526",
+          "title": "Release the rework: Dutch by default, redesign, activity managers, single settings (#186)"
+        },
+        {
+          "repo": "peppigminze/Cypher",
+          "sha": "1c9c9f5f83ec7b5a669b0af3308568c54055f11a",
+          "url": "https://github.com/peppigminze/Cypher/commit/1c9c9f5f83ec7b5a669b0af3308568c54055f11a",
+          "title": "FIX2 Punkt 3: Abschluss - Testand, Commits, offene Punkte"
+        }
+      ]
+    },
+    {
+      "query": "playwright pytest \"Co-authored-by: Cursor\"",
+      "requested": 60,
+      "returned": 60,
+      "hits": [
+        {
+          "repo": "LJMoffat81/scot-land",
+          "sha": "8568435d41237ed897bfb9796da995a04e11baa2",
+          "url": "https://github.com/LJMoffat81/scot-land/commit/8568435d41237ed897bfb9796da995a04e11baa2",
+          "title": "V14-SPEC-A2b: 2023 NOT_SCORED + reconcile + T21 via main (#233)"
+        },
+        {
+          "repo": "oudontabetai1-lab/Vulix",
+          "sha": "5040b3662326bbdc25ce98865e33c7756549a104",
+          "url": "https://github.com/oudontabetai1-lab/Vulix/commit/5040b3662326bbdc25ce98865e33c7756549a104",
+          "title": "Isolate Playwright BrowserContext per worker in concurrent scan (#222)"
+        },
+        {
+          "repo": "jwwalker-readeum/trajectory-generator",
+          "sha": "73f0f26de1d1f4741f4580ee58339a1ffcdc80d0",
+          "url": "https://github.com/jwwalker-readeum/trajectory-generator/commit/73f0f26de1d1f4741f4580ee58339a1ffcdc80d0",
+          "title": "Fix G-Load chart rendering with resilient annotation handling (#9)"
+        },
+        {
+          "repo": "jentic/jentic-one",
+          "sha": "a21666ed9f7f731b80952656c6f9c771985eb2d9",
+          "url": "https://github.com/jentic/jentic-one/commit/a21666ed9f7f731b80952656c6f9c771985eb2d9",
+          "title": "ci(ci.yml): parallel tests, pass-marker skips, and PR/main/nightly tiers (#1900)"
+        },
+        {
+          "repo": "piyushtater158-cpu/brand-deal-inbox-triage",
+          "sha": "cb42ebb212f1009594c7e2df569f6881fdf6c820",
+          "url": "https://github.com/piyushtater158-cpu/brand-deal-inbox-triage/commit/cb42ebb212f1009594c7e2df569f6881fdf6c820",
+          "title": "Fix browser field edits, vendor HTMX, unique DM IDs, Indian Rs tiles; add container smoke and browser tests"
+        },
+        {
+          "repo": "Apeloff1/Skeleton",
+          "sha": "7bb6178a039dd8cbb612b39e994c621dee86d85f",
+          "url": "https://github.com/Apeloff1/Skeleton/commit/7bb6178a039dd8cbb612b39e994c621dee86d85f",
+          "title": "Train a 199 MiB game corpus with an adaptive ratchet (#4156)"
+        },
+        {
+          "repo": "CBIIT/commons-automation",
+          "sha": "0493292e2f0463c27a54210d7b46a6d716903615",
+          "url": "https://github.com/CBIIT/commons-automation/commit/0493292e2f0463c27a54210d7b46a6d716903615",
+          "title": "Apply C3DC filters through UI clicks matching Katalon facet flow."
+        },
+        {
+          "repo": "CBIIT/commons-automation",
+          "sha": "1599a2a373e78c5230e22a24dc378e30e3d30b44",
+          "url": "https://github.com/CBIIT/commons-automation/commit/1599a2a373e78c5230e22a24dc378e30e3d30b44",
+          "title": "Initial commit: Playwright pytest commons-automation framework."
+        },
+        {
+          "repo": "tman012/luma",
+          "sha": "95e06557a58daeb5953e98ab6441df008f701bf9",
+          "url": "https://github.com/tman012/luma/commit/95e06557a58daeb5953e98ab6441df008f701bf9",
+          "title": "feat: typo-tolerant fuzzy search for library and TMDb (#3)"
+        },
+        {
+          "repo": "streamlit/streamlit",
+          "sha": "5c9ddb507c87e154d749554b88809a5556e2fd93",
+          "url": "https://github.com/streamlit/streamlit/commit/5c9ddb507c87e154d749554b88809a5556e2fd93",
+          "title": "[chore] AI-assisted flaky E2E test fixes (#17517)"
+        },
+        {
+          "repo": "ramza2/ai-modelops",
+          "sha": "8baa6ab1e775e9bb8a5409b77b0b101a600486c5",
+          "url": "https://github.com/ramza2/ai-modelops/commit/8baa6ab1e775e9bb8a5409b77b0b101a600486c5",
+          "title": "test: P1-8L isolated Admin UI browser Switch E2E (#76)"
+        },
+        {
+          "repo": "jvelasca/Bolsa_V1",
+          "sha": "59bd4601418ebf001c36bb6a13c746c635568611",
+          "url": "https://github.com/jvelasca/Bolsa_V1/commit/59bd4601418ebf001c36bb6a13c746c635568611",
+          "title": "v2.88.137 POST-TAG: cita del Release tag CI VERDE del sello (run 38871657998) tras mover el tag al commit del fix del sello BY_FILL"
+        },
+        {
+          "repo": "ManpreetS2/CareerPilot",
+          "sha": "ea13536ded11a7b41b48ce8029fa5104be2625f2",
+          "url": "https://github.com/ManpreetS2/CareerPilot/commit/ea13536ded11a7b41b48ce8029fa5104be2625f2",
+          "title": "fix: Chrome extension reliability for public release (#141)"
+        },
+        {
+          "repo": "Yarkiller/digest_cds",
+          "sha": "e1440af15dfee7dfd8429832a5e6449a01a364dd",
+          "url": "https://github.com/Yarkiller/digest_cds/commit/e1440af15dfee7dfd8429832a5e6449a01a364dd",
+          "title": "feat(18-03): let the email-preview CTA escape the sandbox (D-11, T-18-05)"
+        },
+        {
+          "repo": "yangreat/minicoder",
+          "sha": "cfa0c120c2046aa353411e7eb19d74e1cf71c870",
+          "url": "https://github.com/yangreat/minicoder/commit/cfa0c120c2046aa353411e7eb19d74e1cf71c870",
+          "title": "feat: MiniCoder coding agent runtime with React/TS web console"
+        },
+        {
+          "repo": "sachinchandra/aloof",
+          "sha": "ae5340462e355d8da74c206fdaedc28642abc69b",
+          "url": "https://github.com/sachinchandra/aloof/commit/ae5340462e355d8da74c206fdaedc28642abc69b",
+          "title": "DevOps basics: CI workflow, Dependabot, pinned requirements, health endpoints (#1)"
+        },
+        {
+          "repo": "jvelasca/Bolsa_V1",
+          "sha": "2a4a3d49b0ed17173fb09d85172feff39542df89",
+          "url": "https://github.com/jvelasca/Bolsa_V1/commit/2a4a3d49b0ed17173fb09d85172feff39542df89",
+          "title": "v2.88.122 POST-TAG: cita de Release tag CI 38392092094 (verde 12m57s, replay-repro reproduce, sin migracion)"
+        },
+        {
+          "repo": "wljusa/ui-test",
+          "sha": "f8a10f9b86bd2cb81e8591839076b00e2ade6b47",
+          "url": "https://github.com/wljusa/ui-test/commit/f8a10f9b86bd2cb81e8591839076b00e2ade6b47",
+          "title": "\u62bd\u51fa\u53ef\u516c\u5f00\u7684 Playwright + Pytest UI \u81ea\u52a8\u5316\u6846\u67b6\u3002"
+        },
+        {
+          "repo": "luminacry/Verter-Bot",
+          "sha": "4442b5cdac4a7fdd0b9309aacb214e4dce6bfa28",
+          "url": "https://github.com/luminacry/Verter-Bot/commit/4442b5cdac4a7fdd0b9309aacb214e4dce6bfa28",
+          "title": "P0: monorepo foundation, quality gates, and shadcn WebUI shell (#2)"
+        },
+        {
+          "repo": "paulwong888/ai-auto-test-all",
+          "sha": "a56ad2a4e04d1c23b8dfdaf6e438df5f83879213",
+          "url": "https://github.com/paulwong888/ai-auto-test-all/commit/a56ad2a4e04d1c23b8dfdaf6e438df5f83879213",
+          "title": "Add project run env, optional Run video, and 5GBB Cashier flow."
+        },
+        {
+          "repo": "streamlit/streamlit",
+          "sha": "6dc8be27ebc04247db202245111ee2c9cfb51a69",
+          "url": "https://github.com/streamlit/streamlit/commit/6dc8be27ebc04247db202245111ee2c9cfb51a69",
+          "title": "[chore] Update Python lock (#17425)"
+        },
+        {
+          "repo": "roamkit-net/roamkit-docs",
+          "sha": "7f389d0381b3f94b13332241628421ca5fb49464",
+          "url": "https://github.com/roamkit-net/roamkit-docs/commit/7f389d0381b3f94b13332241628421ca5fb49464",
+          "title": "release: promote develop to main (#186)"
+        },
+        {
+          "repo": "roamkit-net/roamkit-docs",
+          "sha": "495ea3c8efbe900c0786cda746c84f3277932b35",
+          "url": "https://github.com/roamkit-net/roamkit-docs/commit/495ea3c8efbe900c0786cda746c84f3277932b35",
+          "title": "release: promote develop to main (#184)"
+        },
+        {
+          "repo": "code1sentinel/policy-golden-path",
+          "sha": "cdcae62b43bdf5618c69dd0e05394fec8e865bb9",
+          "url": "https://github.com/code1sentinel/policy-golden-path/commit/cdcae62b43bdf5618c69dd0e05394fec8e865bb9",
+          "title": "Add agent skills and trim AGENTS.md for headless Cursor agents (#32)"
+        },
+        {
+          "repo": "abid822/pytest-playwright",
+          "sha": "6aa7487cc9029a99a1d4586170616b4ecf1631b1",
+          "url": "https://github.com/abid822/pytest-playwright/commit/6aa7487cc9029a99a1d4586170616b4ecf1631b1",
+          "title": "Harden the Pytest Playwright framework with a real POM."
+        },
+        {
+          "repo": "roamkit-net/roamkit-docs",
+          "sha": "96d742b7c480e146dbf46d3f9f1ed40655c1dcab",
+          "url": "https://github.com/roamkit-net/roamkit-docs/commit/96d742b7c480e146dbf46d3f9f1ed40655c1dcab",
+          "title": "release: promote develop to main (#181)"
+        },
+        {
+          "repo": "jvelasca/Bolsa_V1",
+          "sha": "2ae69962a7c86fc3fb08a9962fd5220fa5e86326",
+          "url": "https://github.com/jvelasca/Bolsa_V1/commit/2ae69962a7c86fc3fb08a9962fd5220fa5e86326",
+          "title": "feat(auto+e2e): integridad AUTO v2.88.106 - ciclo de vida E2E S5, politica P&L detail-only y etiquetas economicas"
+        },
+        {
+          "repo": "jsfakian/Django---Hotel-Management-System",
+          "sha": "06a5bf4bb179b46a61d0050ec758cab1e0e46b9c",
+          "url": "https://github.com/jsfakian/Django---Hotel-Management-System/commit/06a5bf4bb179b46a61d0050ec758cab1e0e46b9c",
+          "title": "Ignore Playwright e2e tests in deploy workflow pytest steps."
+        },
+        {
+          "repo": "jsfakian/Django---Hotel-Management-System",
+          "sha": "7559b8ef192f2c074efc9a238acd11a320870e1c",
+          "url": "https://github.com/jsfakian/Django---Hotel-Management-System/commit/7559b8ef192f2c074efc9a238acd11a320870e1c",
+          "title": "Skip Playwright e2e collection in CI pytest runs."
+        },
+        {
+          "repo": "ckmah/milume",
+          "sha": "770faaa9175471701dbc9740144178543e8bbf6e",
+          "url": "https://github.com/ckmah/milume/commit/770faaa9175471701dbc9740144178543e8bbf6e",
+          "title": "Serve Inspect volume zarr through the widget comm (#121)"
+        },
+        {
+          "repo": "roamkit-net/roamkit-docs",
+          "sha": "f8508e4840b19ffce84bc6f08ecac93200960c96",
+          "url": "https://github.com/roamkit-net/roamkit-docs/commit/f8508e4840b19ffce84bc6f08ecac93200960c96",
+          "title": "release: promote develop to main (#179)"
+        },
+        {
+          "repo": "roamkit-net/roamkit-docs",
+          "sha": "933199fc820f9a1b0c3d99eedc6a635a549d8580",
+          "url": "https://github.com/roamkit-net/roamkit-docs/commit/933199fc820f9a1b0c3d99eedc6a635a549d8580",
+          "title": "release: promote develop to production 2026-10-09 (#176)"
+        },
+        {
+          "repo": "ebluffy/Neyra-AIAssist",
+          "sha": "dc4def3f87f1b7c0359b81e61031af84c27141c1",
+          "url": "https://github.com/ebluffy/Neyra-AIAssist/commit/dc4def3f87f1b7c0359b81e61031af84c27141c1",
+          "title": "feat: API hardening T0\u2013B5 + dashboard D0, People account-first, persona (#25)"
+        },
+        {
+          "repo": "miraclebro89757/open-test",
+          "sha": "9c098b684aa85171aaf11cf9b6e4684a0ca1b329",
+          "url": "https://github.com/miraclebro89757/open-test/commit/9c098b684aa85171aaf11cf9b6e4684a0ca1b329",
+          "title": "feat(web): run results, self-heal review and report panels for the SDET workbench"
+        },
+        {
+          "repo": "zonzideka/asterun",
+          "sha": "b5100562133c8c80de31f33a5555468f1ae91f37",
+          "url": "https://github.com/zonzideka/asterun/commit/b5100562133c8c80de31f33a5555468f1ae91f37",
+          "title": "\u6309\u5e73\u53f0\u653e\u884c Linux x86_64 \u7684 Antigravity CLI 1.2.0 profile (#8)"
+        },
+        {
+          "repo": "jenieraju/quality-pilot-ui-automation",
+          "sha": "b4d5d60b86c6159fe31c73bea0fa56e6b3fdb329",
+          "url": "https://github.com/jenieraju/quality-pilot-ui-automation/commit/b4d5d60b86c6159fe31c73bea0fa56e6b3fdb329",
+          "title": "Initial QualityPilot UI automation suite for Luminai."
+        },
+        {
+          "repo": "cdasadiya/chiransh_foods",
+          "sha": "c0164ee5a573b8766de63433622457c68606201b",
+          "url": "https://github.com/cdasadiya/chiransh_foods/commit/c0164ee5a573b8766de63433622457c68606201b",
+          "title": "Add a pinned requirements.txt for the full Python stack. (#8)"
+        },
+        {
+          "repo": "code1sentinel/policy-golden-path",
+          "sha": "c3042d6a37b0ff60926e6264a2e47848103ebdfa",
+          "url": "https://github.com/code1sentinel/policy-golden-path/commit/c3042d6a37b0ff60926e6264a2e47848103ebdfa",
+          "title": "Risk \u2192 control statements (#25)"
+        },
+        {
+          "repo": "gyrinx-app/gyrinx",
+          "sha": "04379403a704ae347e400cf9b1d6659943db6edc",
+          "url": "https://github.com/gyrinx-app/gyrinx/commit/04379403a704ae347e400cf9b1d6659943db6edc",
+          "title": "fix: label each N26 React host with data-react-name (#2815)"
+        },
+        {
+          "repo": "mohamd764/shadow-dom-booking-scraper",
+          "sha": "6bb06780c39dbd9313f9fcea214300c1cc42b70f",
+          "url": "https://github.com/mohamd764/shadow-dom-booking-scraper/commit/6bb06780c39dbd9313f9fcea214300c1cc42b70f",
+          "title": "Turn the one-off scraper into a reusable shadow-DOM package (#1)"
+        },
+        {
+          "repo": "wzlcarrot/VAgent",
+          "sha": "6ccbce8be65eb4866aac5de4f28f7ac7ce2cb4ba",
+          "url": "https://github.com/wzlcarrot/VAgent/commit/6ccbce8be65eb4866aac5de4f28f7ac7ce2cb4ba",
+          "title": "chore(repo): \u8fd0\u884c\u65f6\u6570\u636e\u79fb\u51fa git\uff0c\u4ec5\u4fdd\u7559\u5468\u5ea6\u9ec4\u91d1\u96c6\u6837\u4f8b"
+        },
+        {
+          "repo": "Wenfeng-GAO/councilkit",
+          "sha": "c1b9c6e8a4dd6f980297f17688fd3ff0a7fc5cfe",
+          "url": "https://github.com/Wenfeng-GAO/councilkit/commit/c1b9c6e8a4dd6f980297f17688fd3ff0a7fc5cfe",
+          "title": "fix(verify): reject a playwright count of failed tests"
+        },
+        {
+          "repo": "medlars/verdictui",
+          "sha": "f8f557ccd74e543117bfb330364a51f173966dd6",
+          "url": "https://github.com/medlars/verdictui/commit/f8f557ccd74e543117bfb330364a51f173966dd6",
+          "title": "ci: budget the Playwright install apart from the PM test suite (CIS-9DD618AC) (#80)"
+        },
+        {
+          "repo": "miraclebro89757/open-test",
+          "sha": "831fa6471670dd87861d7778f64d8e22bdd45d51",
+          "url": "https://github.com/miraclebro89757/open-test/commit/831fa6471670dd87861d7778f64d8e22bdd45d51",
+          "title": "Plan recording that produces Playwright and HAR-based pytest scripts with repeatable setup and cleanup."
+        },
+        {
+          "repo": "D-sorganization/AffineDrift",
+          "sha": "fb377e96dc33ee80b655284aef066f8acfb7caf1",
+          "url": "https://github.com/D-sorganization/AffineDrift/commit/fb377e96dc33ee80b655284aef066f8acfb7caf1",
+          "title": "chore(web): consolidate second batch of nine reviewed web PRs (2026-09-30) (#4704)"
+        },
+        {
+          "repo": "grammysfan1/vo_test_repository",
+          "sha": "f5ef8623c04bb9113ff318a456c03241e02e57ab",
+          "url": "https://github.com/grammysfan1/vo_test_repository/commit/f5ef8623c04bb9113ff318a456c03241e02e57ab",
+          "title": "Add a Playwright pytest framework for qapractice.com."
+        },
+        {
+          "repo": "colton-kubozoa/grokbot-test-automation",
+          "sha": "ebd4fb03b66c78919e4997761d6a2538ca8e5655",
+          "url": "https://github.com/colton-kubozoa/grokbot-test-automation/commit/ebd4fb03b66c78919e4997761d6a2538ca8e5655",
+          "title": "ci: split required unit tests from browser site report (#18)"
+        },
+        {
+          "repo": "aldemirkonuk/RestaurantAIAutomation",
+          "sha": "dc7d4f523f053f6326b4c27f47b208a2de84ab55",
+          "url": "https://github.com/aldemirkonuk/RestaurantAIAutomation/commit/dc7d4f523f053f6326b4c27f47b208a2de84ab55",
+          "title": "batch: 34 PRs scoped 2026-09-29 in one merge (24 included, 10 dropped; founder 2026-09-29) (#534)"
+        },
+        {
+          "repo": "colton-kubozoa/grokbot-test-automation",
+          "sha": "cac24a55617d922dde50f768399ee1a83025cba1",
+          "url": "https://github.com/colton-kubozoa/grokbot-test-automation/commit/cac24a55617d922dde50f768399ee1a83025cba1",
+          "title": "ci: upload results/latest.json as browser-test-results artifact (#14)"
+        },
+        {
+          "repo": "jvelasca/Bolsa_V1",
+          "sha": "190e4e3aeb3454133e551e7f80c22cde496d2c28",
+          "url": "https://github.com/jvelasca/Bolsa_V1/commit/190e4e3aeb3454133e551e7f80c22cde496d2c28",
+          "title": "docs(v2.88.7): cita POST-TAG del CI del tag v2.88.7-beta"
+        },
+        {
+          "repo": "colton-kubozoa/grokbot-test-automation",
+          "sha": "20a2ee67380de79cc774e9a52bb318ed3ce71d94",
+          "url": "https://github.com/colton-kubozoa/grokbot-test-automation/commit/20a2ee67380de79cc774e9a52bb318ed3ce71d94",
+          "title": "Scaffold Playwright + pytest home-page smoke (Fixes #3) (#7)"
+        },
+        {
+          "repo": "colton-kubozoa/grokbot-test-automation",
+          "sha": "fc58a768b7807613e48e80466a6b8781fb47b542",
+          "url": "https://github.com/colton-kubozoa/grokbot-test-automation/commit/fc58a768b7807613e48e80466a6b8781fb47b542",
+          "title": "ci: GitHub Actions pipeline for Playwright + pytest POC (#2)"
+        },
+        {
+          "repo": "jvelasca/english-tutor",
+          "sha": "fa2a15a2605fc9c821ea7f278e46295e8fdca6ae",
+          "url": "https://github.com/jvelasca/english-tutor/commit/fa2a15a2605fc9c821ea7f278e46295e8fdca6ae",
+          "title": "release(v3.92.0): el fallo de Listening pasa a ser evidencia de dificultad y el circuito pedagogico se cierra"
+        },
+        {
+          "repo": "jvelasca/Bolsa_V1",
+          "sha": "27264aabba3ec5c23516fd47c862a3e1317c6643",
+          "url": "https://github.com/jvelasca/Bolsa_V1/commit/27264aabba3ec5c23516fd47c862a3e1317c6643",
+          "title": "docs(v2.88.5): cita POST-TAG del CI del tag v2.88.5-beta"
+        },
+        {
+          "repo": "jvelasca/english-tutor",
+          "sha": "e55b96dad1e73455d114e530dd233984511d55cb",
+          "url": "https://github.com/jvelasca/english-tutor/commit/e55b96dad1e73455d114e530dd233984511d55cb",
+          "title": "\ufeffrelease(v3.91.0): el diccionario pasa a motor de sentidos y la inversa deja de barrer la tabla"
+        },
+        {
+          "repo": "jvelasca/english-tutor",
+          "sha": "a2c698c02eb1c9013f0e8c48243e25007ae0df19",
+          "url": "https://github.com/jvelasca/english-tutor/commit/a2c698c02eb1c9013f0e8c48243e25007ae0df19",
+          "title": "release(v3.90.0): el objetivo del dia deja de ser solo minutos - plan diario por unidades o tiempo, repaso antes que nuevo y metricas honestas"
+        },
+        {
+          "repo": "jvelasca/Bolsa_V1",
+          "sha": "a6c44b77e446c1e62d0ad0bdeb9f47441398fc6e",
+          "url": "https://github.com/jvelasca/Bolsa_V1/commit/a6c44b77e446c1e62d0ad0bdeb9f47441398fc6e",
+          "title": "docs(v2.88.3): cita POST-TAG del CI del tag v2.88.3-beta (Release tag CI 36558405748 SUCCESS; python 3040/37, lifecycle-pg 220 passed)"
+        },
+        {
+          "repo": "jvelasca/english-tutor",
+          "sha": "efe4d450395dabc6f21cba20a06fe1d4b6cb4932",
+          "url": "https://github.com/jvelasca/english-tutor/commit/efe4d450395dabc6f21cba20a06fe1d4b6cb4932",
+          "title": "release(v3.88.0): la espera se ve, el diccionario dice los 2-3 significados principales, la cache de diccionario se precalienta y se mide, y se estudia el diccionario offline (solo estudio, sin empaquetar)"
+        },
+        {
+          "repo": "jeroenniesen/EnergyManagementSystem",
+          "sha": "80aa5fb8b9847c6d7ba0c0d9fab454aa520798c4",
+          "url": "https://github.com/jeroenniesen/EnergyManagementSystem/commit/80aa5fb8b9847c6d7ba0c0d9fab454aa520798c4",
+          "title": "fix(control): handmatige override via plan validator (#135) (#153)"
+        },
+        {
+          "repo": "edboyle212/shiprate-enforcer",
+          "sha": "9c8f3762e4ee771fec10478d9ce038d55043eed2",
+          "url": "https://github.com/edboyle212/shiprate-enforcer/commit/9c8f3762e4ee771fec10478d9ce038d55043eed2",
+          "title": "docs: add enterprise remediation plan with measured test baseline"
+        }
+      ]
+    },
+    {
+      "query": "playwright pytest \"Co-authored-by: Copilot\"",
+      "requested": 60,
+      "returned": 60,
+      "hits": [
+        {
+          "repo": "rickmcphee/discogs-browser",
+          "sha": "455b575dbbccab0df7491b3ae91e026d473fb956",
+          "url": "https://github.com/rickmcphee/discogs-browser/commit/455b575dbbccab0df7491b3ae91e026d473fb956",
+          "title": "chore: promote this week's dependency updates to main (#448)"
+        },
+        {
+          "repo": "JohannesPfennigbauer/cropstar",
+          "sha": "2f36bc2559c6ca4e05ec9a8b89981fd4f5eb06d0",
+          "url": "https://github.com/JohannesPfennigbauer/cropstar/commit/2f36bc2559c6ca4e05ec9a8b89981fd4f5eb06d0",
+          "title": "Add sign-up, sign-in and password management (Stage 3, issue #3)"
+        },
+        {
+          "repo": "pkchat55/requirement-automation",
+          "sha": "59eb8a27b8b3a110d65f03b3a9870db77f2479b1",
+          "url": "https://github.com/pkchat55/requirement-automation/commit/59eb8a27b8b3a110d65f03b3a9870db77f2479b1",
+          "title": "Initial commit: requirement-to-test automation suite"
+        },
+        {
+          "repo": "dmgrok/agent-plugins",
+          "sha": "40326a5f7777ae4d799e38223b19fa344428b10e",
+          "url": "https://github.com/dmgrok/agent-plugins/commit/40326a5f7777ae4d799e38223b19fa344428b10e",
+          "title": "fix: harden provider intake, add tests and CI, fix install docs"
+        },
+        {
+          "repo": "vanduc2514/hackathon-circle-misthos",
+          "sha": "132ef338b8a911d0e0935cfc9250a6e69bbd0945",
+          "url": "https://github.com/vanduc2514/hackathon-circle-misthos/commit/132ef338b8a911d0e0935cfc9250a6e69bbd0945",
+          "title": "feat: publish from connected repositories and issues (#199) (#207)"
+        },
+        {
+          "repo": "vanduc2514/hackathon-circle-misthos",
+          "sha": "6cd6af60207584da379b7f4bf38597f262ecea19",
+          "url": "https://github.com/vanduc2514/hackathon-circle-misthos/commit/6cd6af60207584da379b7f4bf38597f262ecea19",
+          "title": "feat: one way in, the sign-in gate: a wallet, GitHub, then a side (#193)"
+        },
+        {
+          "repo": "raoshun/audio-server",
+          "sha": "fd9c5385d4084716cf42500988a8da00a42b0c19",
+          "url": "https://github.com/raoshun/audio-server/commit/fd9c5385d4084716cf42500988a8da00a42b0c19",
+          "title": "feat(frontend): \u9589\u3058\u308b\u3067\u518d\u751f\u505c\u6b62\u3001\u6700\u5c0f\u5316\u30d0\u30fc\u3092\u8ffd\u52a0"
+        },
+        {
+          "repo": "raoshun/audio-server",
+          "sha": "6c19072c62756e33e4350d46032961dfd205675d",
+          "url": "https://github.com/raoshun/audio-server/commit/6c19072c62756e33e4350d46032961dfd205675d",
+          "title": "feat(frontend): \u66f2\u9078\u629e\u6642\u306b\u6697\u8ee2\u30e2\u30fc\u30c0\u30eb\u518d\u751fUI\u3068\u540c\u671f\u6b4c\u8a5e\u8868\u793a\u3092\u8ffd\u52a0\u3059\u308b"
+        },
+        {
+          "repo": "samoletovs/mindMe",
+          "sha": "aee4db691e38b3e55272a1e1ee68ce4063d0f9f8",
+          "url": "https://github.com/samoletovs/mindMe/commit/aee4db691e38b3e55272a1e1ee68ce4063d0f9f8",
+          "title": "Send canonical UUID request IDs to assist routes (#29)"
+        },
+        {
+          "repo": "samoletovs/mindMe",
+          "sha": "49805c80b56d7aac69ff0629293c949954c29b92",
+          "url": "https://github.com/samoletovs/mindMe/commit/49805c80b56d7aac69ff0629293c949954c29b92",
+          "title": "Redesign task console as an AI-first workspace (#27)"
+        },
+        {
+          "repo": "raoshun/audio-server",
+          "sha": "ba18ed93a4eb71b68ff6252402873a9b0538ab91",
+          "url": "https://github.com/raoshun/audio-server/commit/ba18ed93a4eb71b68ff6252402873a9b0538ab91",
+          "title": "fix(ci): backend/Dockerfile \u306e COPY config.json \u3092\u524a\u9664\u3059\u308b\uff08Issue #5\uff09"
+        },
+        {
+          "repo": "rickmcphee/discogs-browser",
+          "sha": "63e8aa7fff3ae77e9ec3388a556feb252410560b",
+          "url": "https://github.com/rickmcphee/discogs-browser/commit/63e8aa7fff3ae77e9ec3388a556feb252410560b",
+          "title": "chore: promote this week's dependency updates to main (#436)"
+        },
+        {
+          "repo": "raoshun/audio-server",
+          "sha": "8d4379c32c2609fd7a920b795bfbb58b48d6f1b5",
+          "url": "https://github.com/raoshun/audio-server/commit/8d4379c32c2609fd7a920b795bfbb58b48d6f1b5",
+          "title": "ci: Docker Compose \u7d4c\u7531\u306e GitHub Actions \u30ef\u30fc\u30af\u30d5\u30ed\u30fc\u3092\u8ffd\u52a0"
+        },
+        {
+          "repo": "raoshun/audio-server",
+          "sha": "fac2e6d852b63da6c717bf5cfc6154bfbfe03384",
+          "url": "https://github.com/raoshun/audio-server/commit/fac2e6d852b63da6c717bf5cfc6154bfbfe03384",
+          "title": "chore(tools): policy_linter \u3092\u30ea\u30dd\u30b8\u30c8\u30ea\u5168\u4f53\u3078\u62e1\u5f35\u3057 make lint\u30fbCI \u914d\u7dda\u3092\u63a5\u7d9a"
+        },
+        {
+          "repo": "microsoft/physical-ai-toolchain",
+          "sha": "9000e45894138cc8c6e2f37357b251e8c8c1e97a",
+          "url": "https://github.com/microsoft/physical-ai-toolchain/commit/9000e45894138cc8c6e2f37357b251e8c8c1e97a",
+          "title": "feat(data): export LeRobot datasets with trajectory edits and subtasks (#1826)"
+        },
+        {
+          "repo": "keyboard-studio/keyboard-studio",
+          "sha": "ac8784443033e733bb9d3a2762190adb4986d5fd",
+          "url": "https://github.com/keyboard-studio/keyboard-studio/commit/ac8784443033e733bb9d3a2762190adb4986d5fd",
+          "title": "feat(engine): generated context normalization step for pasted composed/decomposed text (#1956)"
+        },
+        {
+          "repo": "microsoft/hve-core",
+          "sha": "e648f6d96380e32219a716ca40530131a3e631fa",
+          "url": "https://github.com/microsoft/hve-core/commit/e648f6d96380e32219a716ca40530131a3e631fa",
+          "title": "feat(skills): add accessible animated demos and repair publication (#3148)"
+        },
+        {
+          "repo": "Hemofektik/mirarsetena",
+          "sha": "8944d4d7f03a3676eeb606a58d560a66fd01ebc2",
+          "url": "https://github.com/Hemofektik/mirarsetena/commit/8944d4d7f03a3676eeb606a58d560a66fd01ebc2",
+          "title": "Localized POI pins, remembered settings, controls that show the truth"
+        },
+        {
+          "repo": "Hemofektik/mirarsetena",
+          "sha": "e3daeb49033366b7b9345c343dcf6975ebafbf84",
+          "url": "https://github.com/Hemofektik/mirarsetena/commit/e3daeb49033366b7b9345c343dcf6975ebafbf84",
+          "title": "POIs as dots with always-visible, non-overlapping labels"
+        },
+        {
+          "repo": "Hemofektik/mirarsetena",
+          "sha": "ac7acfb415fff86c6b4d1acc825bb7d3cbac3f32",
+          "url": "https://github.com/Hemofektik/mirarsetena/commit/ac7acfb415fff86c6b4d1acc825bb7d3cbac3f32",
+          "title": "ES/EN language switch, resolution purpose panel, layer help tooltips"
+        },
+        {
+          "repo": "microsoft/playwright-pytest",
+          "sha": "63a07cd950d2af1fee598e78e8018b8009257f75",
+          "url": "https://github.com/microsoft/playwright-pytest/commit/63a07cd950d2af1fee598e78e8018b8009257f75",
+          "title": "feat: make pytest-base-url an optional dependency (#334)"
+        },
+        {
+          "repo": "mjtpena/fde-ai-solution-accelerator",
+          "sha": "4495986ecec3ef6675d8dfef6b8e8712df234e0a",
+          "url": "https://github.com/mjtpena/fde-ai-solution-accelerator/commit/4495986ecec3ef6675d8dfef6b8e8712df234e0a",
+          "title": "Promote merged M4 stack to main (#84)"
+        },
+        {
+          "repo": "Hemofektik/mirarsetena",
+          "sha": "2da6be853159e6304a9fbdbb08dc892950cf8238",
+          "url": "https://github.com/Hemofektik/mirarsetena/commit/2da6be853159e6304a9fbdbb08dc892950cf8238",
+          "title": "Fix white-on-white UI, boot race and tile-template bugs; restyle panel"
+        },
+        {
+          "repo": "Hemofektik/mirarsetena",
+          "sha": "dc80f3dcb5c34719c9c40a3733ac48ec282edbb1",
+          "url": "https://github.com/Hemofektik/mirarsetena/commit/dc80f3dcb5c34719c9c40a3733ac48ec282edbb1",
+          "title": "feat: Phase K \u2014 end-to-end acceptance + live-bug fixes (K.1, TDD)"
+        },
+        {
+          "repo": "Hemofektik/mirarsetena",
+          "sha": "47a7adcf9c9a36d30bc3bce9fb0739c254117b8d",
+          "url": "https://github.com/Hemofektik/mirarsetena/commit/47a7adcf9c9a36d30bc3bce9fb0739c254117b8d",
+          "title": "feat: Phase I \u2014 frontend (I.1-I.7, TDD) + geometry routes + first-view trigger"
+        },
+        {
+          "repo": "anindyasundarbera/truedemo",
+          "sha": "019714b7c371999188220aed91e4f664d94e42da",
+          "url": "https://github.com/anindyasundarbera/truedemo/commit/019714b7c371999188220aed91e4f664d94e42da",
+          "title": "M10: the studio surface \u2014 a session, a take, and a check that awaits"
+        },
+        {
+          "repo": "Sefaria/Sefaria-Project",
+          "sha": "211f64e2b3a0a1f6fbca8f8bc99f6479f1a9a300",
+          "url": "https://github.com/Sefaria/Sefaria-Project/commit/211f64e2b3a0a1f6fbca8f8bc99f6479f1a9a300",
+          "title": "Sidebar ads: target by page type alongside keywords (#3687)"
+        },
+        {
+          "repo": "tinkerologie/ha-vault",
+          "sha": "2a7b1407efd09d7bfa99be20287eed290d82babb",
+          "url": "https://github.com/tinkerologie/ha-vault/commit/2a7b1407efd09d7bfa99be20287eed290d82babb",
+          "title": "feat: add Vault Lovelace dashboard cards, Playwright tests, and HA 2026+ modernization (#63)"
+        },
+        {
+          "repo": "anindyasundarbera/truedemo",
+          "sha": "87b7435c1db5f5c358bce808a8edd0034076c77c",
+          "url": "https://github.com/anindyasundarbera/truedemo/commit/87b7435c1db5f5c358bce808a8edd0034076c77c",
+          "title": "Initial import of vidkit as a standalone project"
+        },
+        {
+          "repo": "rickmcphee/discogs-browser",
+          "sha": "364b6f603bac7705a6e11f88192f38b4144ef140",
+          "url": "https://github.com/rickmcphee/discogs-browser/commit/364b6f603bac7705a6e11f88192f38b4144ef140",
+          "title": "chore: promote this week's dependency updates to main (#419)"
+        },
+        {
+          "repo": "jmorrison-juniper/MistHelper",
+          "sha": "cb61a0b8f45db3e216b17ec0c2ad40c6deb1dc21",
+          "url": "https://github.com/jmorrison-juniper/MistHelper/commit/cb61a0b8f45db3e216b17ec0c2ad40c6deb1dc21",
+          "title": "fix(upgrade-portal): repair picker table defects (#3786)"
+        },
+        {
+          "repo": "jttrs/magic-manager",
+          "sha": "ec568d7fe29f6b0c2a4713db987c6455ef7170b8",
+          "url": "https://github.com/jttrs/magic-manager/commit/ec568d7fe29f6b0c2a4713db987c6455ef7170b8",
+          "title": "feat(collection): filter by Scryfall Tagger function"
+        },
+        {
+          "repo": "jttrs/magic-manager",
+          "sha": "87e6432c8b6479659cd332947d6656ab30211dde",
+          "url": "https://github.com/jttrs/magic-manager/commit/87e6432c8b6479659cd332947d6656ab30211dde",
+          "title": "feat(web): Collection view, shared multi-select + sort rule builder (iteration 2 \u00b7 P1)"
+        },
+        {
+          "repo": "microsoft/physical-ai-toolchain",
+          "sha": "30cbb1bab28fb70d9b7caa652db069cf706f1832",
+          "url": "https://github.com/microsoft/physical-ai-toolchain/commit/30cbb1bab28fb70d9b7caa652db069cf706f1832",
+          "title": "security(build): roll up open Dependabot PRs with compatibility fixes (#1823)"
+        },
+        {
+          "repo": "efbulle/cartes_multicouches",
+          "sha": "e4246e764d97416e4478cb22725a67ba42e4a676",
+          "url": "https://github.com/efbulle/cartes_multicouches/commit/e4246e764d97416e4478cb22725a67ba42e4a676",
+          "title": "Add Open Graph preview for LinkedIn sharing (#8)"
+        },
+        {
+          "repo": "fredgis/FabricAtlas",
+          "sha": "d14dc6484fe0b04285ba43e405afda36c239087f",
+          "url": "https://github.com/fredgis/FabricAtlas/commit/d14dc6484fe0b04285ba43e405afda36c239087f",
+          "title": "Clean repository root artifacts"
+        },
+        {
+          "repo": "madeinoz67/benchweave",
+          "sha": "13faaec9fa577b3a854d5261fc269b03f097c2ed",
+          "url": "https://github.com/madeinoz67/benchweave/commit/13faaec9fa577b3a854d5261fc269b03f097c2ed",
+          "title": "feat(ui): G2b \u2014 the read views, refusal matrix and route-mapping gate (#303) (#368)"
+        },
+        {
+          "repo": "microsoft/physical-ai-toolchain",
+          "sha": "b5b8936217ff97443c028c6020a2ccd688106cf4",
+          "url": "https://github.com/microsoft/physical-ai-toolchain/commit/b5b8936217ff97443c028c6020a2ccd688106cf4",
+          "title": "feat(infrastructure): harden GPU pools, Azure ML, and OSMO 6.3 upgrades (#1788)"
+        },
+        {
+          "repo": "SCHUNK-SE-Co-KG/TARATool",
+          "sha": "c7d9ac83f9274c23a6b3d6b65e44385502cacf49",
+          "url": "https://github.com/SCHUNK-SE-Co-KG/TARATool/commit/c7d9ac83f9274c23a6b3d6b65e44385502cacf49",
+          "title": "TARA-0116: CI-Bugfix - tests/requirements.txt (PyYAML) auch im Unit-Test-Job installieren"
+        },
+        {
+          "repo": "microsoft/gametheory",
+          "sha": "f4a1e7fe553c5f516218144a67f8203b28a23cc3",
+          "url": "https://github.com/microsoft/gametheory/commit/f4a1e7fe553c5f516218144a67f8203b28a23cc3",
+          "title": "Patch the dependencies flagged by Dependabot"
+        },
+        {
+          "repo": "usagiandkamex/life-helper",
+          "sha": "52fbe8aed65002208747fbd67409a674d8fec53a",
+          "url": "https://github.com/usagiandkamex/life-helper/commit/52fbe8aed65002208747fbd67409a674d8fec53a",
+          "title": "feat: \u30d6\u30e9\u30a6\u30b6\u30c4\u30fc\u30eb\u306e\u8aad\u307f\u53d6\u308a\u4e0a\u9650\u3092\u7de9\u548c\u3057\u3001\u7d50\u679c\u3092 UTF-8 JSON \u3067\u6e21\u3059 (#66)"
+        },
+        {
+          "repo": "jmorrison-juniper/MistHelper",
+          "sha": "de2adad4d1d600e30f8cccc39e3ad9fe33046890",
+          "url": "https://github.com/jmorrison-juniper/MistHelper/commit/de2adad4d1d600e30f8cccc39e3ad9fe33046890",
+          "title": "test(upgrade-portal): add the operator journey harness and the parity matrix (#3264)"
+        },
+        {
+          "repo": "SCHUNK-SE-Co-KG/TARATool",
+          "sha": "4ef6089874b192127e4258484d036996c9b058c8",
+          "url": "https://github.com/SCHUNK-SE-Co-KG/TARATool/commit/4ef6089874b192127e4258484d036996c9b058c8",
+          "title": "TARA-0112: Drei Teststufen unit/integration/e2e (#197)"
+        },
+        {
+          "repo": "ani1797/cl-idp",
+          "sha": "c3e4288efbf9c1a2a4c021453ee7af13dd0953b9",
+          "url": "https://github.com/ani1797/cl-idp/commit/c3e4288efbf9c1a2a4c021453ee7af13dd0953b9",
+          "title": "Reskin app to Canada Life IDP design system with auth, RBAC, and new screens"
+        },
+        {
+          "repo": "SCHUNK-SE-Co-KG/TARATool",
+          "sha": "e759571dc899629418e73d5c2879baa0134db2c9",
+          "url": "https://github.com/SCHUNK-SE-Co-KG/TARATool/commit/e759571dc899629418e73d5c2879baa0134db2c9",
+          "title": "TARA-0111: Finaler Red-Green-Nachweis (P-04b/P-06b) (#196)"
+        },
+        {
+          "repo": "smuniharish/feedback-manager",
+          "sha": "d8cb5496dc76f1c17d486734545de60748fa1616",
+          "url": "https://github.com/smuniharish/feedback-manager/commit/d8cb5496dc76f1c17d486734545de60748fa1616",
+          "title": "Add real-world integration examples: Postgres store, Streamlit UI, MCP agents, HITL, and overrides"
+        },
+        {
+          "repo": "eizorerad/sc-hub",
+          "sha": "2a6a737d6bdf7be31f9af393655542a43180c58b",
+          "url": "https://github.com/eizorerad/sc-hub/commit/2a6a737d6bdf7be31f9af393655542a43180c58b",
+          "title": "Feat/bench (#2)"
+        },
+        {
+          "repo": "RadhePandey/member_services",
+          "sha": "90b212d9ff1996ef83b2512e6074f9e710e56a74",
+          "url": "https://github.com/RadhePandey/member_services/commit/90b212d9ff1996ef83b2512e6074f9e710e56a74",
+          "title": "Add full IT equipment claim E2E automation with execution management and reporting"
+        },
+        {
+          "repo": "camunda/api-test-generator",
+          "sha": "0e3b7b7286818c863fd03dcb246eea0609c82fa2",
+          "url": "https://github.com/camunda/api-test-generator/commit/0e3b7b7286818c863fd03dcb246eea0609c82fa2",
+          "title": "fix: real-toolchain-validated python-sdk emitter fixes (#574)"
+        },
+        {
+          "repo": "lzocateli/containers",
+          "sha": "e5bc9743b3f15433635e9534c1b4683d24ae2d38",
+          "url": "https://github.com/lzocateli/containers/commit/e5bc9743b3f15433635e9534c1b4683d24ae2d38",
+          "title": "ci: bump pytest from 8.3.4 to 9.0.3 in /playwright-e2e (#109)"
+        },
+        {
+          "repo": "jamesmorrissey11/AssetTrack",
+          "sha": "447b16390f48619bbf557811257424af8e9cc26e",
+          "url": "https://github.com/jamesmorrissey11/AssetTrack/commit/447b16390f48619bbf557811257424af8e9cc26e",
+          "title": "Add Copilot lifecycle hooks for automatic test enforcement"
+        },
+        {
+          "repo": "jamesmorrissey11/AssetTrack",
+          "sha": "19210fa30ae6097945218f99c4e978121618f869",
+          "url": "https://github.com/jamesmorrissey11/AssetTrack/commit/19210fa30ae6097945218f99c4e978121618f869",
+          "title": "docs: add test backfill delegation brief"
+        },
+        {
+          "repo": "kubeshop/testkube-docs",
+          "sha": "05c94f9b6330ffe3dea8d13b0df3e28015e9677a",
+          "url": "https://github.com/kubeshop/testkube-docs/commit/05c94f9b6330ffe3dea8d13b0df3e28015e9677a",
+          "title": "docs: [TKC-6705] document rerunning only the test cases that failed (#649)"
+        },
+        {
+          "repo": "igzibo/igzibo.github.io",
+          "sha": "57988d23f35915cf84fe6725f01586e247dd8f04",
+          "url": "https://github.com/igzibo/igzibo.github.io/commit/57988d23f35915cf84fe6725f01586e247dd8f04",
+          "title": "Feat: Updated the baseline because of the intentional change to the candidate profile"
+        },
+        {
+          "repo": "canonical/pqf",
+          "sha": "efce6c27ae5f7b87a0c7c88e5292b84fabc0bf87",
+          "url": "https://github.com/canonical/pqf/commit/efce6c27ae5f7b87a0c7c88e5292b84fabc0bf87",
+          "title": "Introduce versioned PQF framework contracts and UX (#33)"
+        },
+        {
+          "repo": "bamr87/fredgar-ai",
+          "sha": "b03cd989bc07187f430a2bce9bab4d9ea95a3ddc",
+          "url": "https://github.com/bamr87/fredgar-ai/commit/b03cd989bc07187f430a2bce9bab4d9ea95a3ddc",
+          "title": "feat(frontend): finance-pro highlights, derived ratios, period change, recently viewed (#2)"
+        },
+        {
+          "repo": "marcelo-lara/ai-light-song-v2",
+          "sha": "5b97ac139809c4690ee09e49edef7b28939e31dd",
+          "url": "https://github.com/marcelo-lara/ai-light-song-v2/commit/5b97ac139809c4690ee09e49edef7b28939e31dd",
+          "title": "Refinement v3.1 (#17)"
+        },
+        {
+          "repo": "SCHUNK-SE-Co-KG/TARATool",
+          "sha": "893e27d814383e75cabb99117bcdc4a3d40f9216",
+          "url": "https://github.com/SCHUNK-SE-Co-KG/TARATool/commit/893e27d814383e75cabb99117bcdc4a3d40f9216",
+          "title": "feat: TARA-0101 Green - Kein eigenstaendiger Arbeitsbeginn bei /init (P-23)"
+        },
+        {
+          "repo": "Aloqacpu/qa-playwright-pytest-pom",
+          "sha": "56f6f4b311f9ec0c1c64af08c5b38abbff8b920f",
+          "url": "https://github.com/Aloqacpu/qa-playwright-pytest-pom/commit/56f6f4b311f9ec0c1c64af08c5b38abbff8b920f",
+          "title": "Avoid pytest-playwright option collision"
+        },
+        {
+          "repo": "lhotakj/kinetiqo",
+          "sha": "4108764f873210d4dc8606e4224daa15756f59a7",
+          "url": "https://github.com/lhotakj/kinetiqo/commit/4108764f873210d4dc8606e4224daa15756f59a7",
+          "title": "v2. mega stats & poster (#21)"
+        }
+      ]
+    }
+  ],
+  "pr_queries": [
+    {
+      "author": "app/copilot-swe-agent",
+      "page": 1,
+      "per_page": 30,
+      "total_count": 1637,
+      "incomplete_results": false,
+      "returned": 30,
+      "hits": [
+        {
+          "url": "https://github.com/jonathanwvos/journal_compliance_templates/pull/1",
+          "title": "CI: install Playwright Chromium in `validate` workflow before pytest"
+        },
+        {
+          "url": "https://github.com/JanaMonsota1990/playwrightPython/pull/1",
+          "title": "Scaffold minimal Python + Playwright automation framework"
+        },
+        {
+          "url": "https://github.com/jaychawda2005/smart-web-scraper/pull/1",
+          "title": "Add deterministic pytest backend suite with mocked external dependencies and coverage reporting"
+        },
+        {
+          "url": "https://github.com/mohamd-sleman/playwright-automation-framework/pull/3",
+          "title": "Stabilize root pytest discovery for the Full-Stack QA workflow"
+        },
+        {
+          "url": "https://github.com/LogicalOutcomes/konote/pull/742",
+          "title": "Guard private QA scenario checkout and configure test environment in qa-scenarios workflow"
+        },
+        {
+          "url": "https://github.com/charles2ke/charles2ke/pull/43",
+          "title": "Refresh README repository links"
+        },
+        {
+          "url": "https://github.com/charles2ke/charles2ke/pull/44",
+          "title": "Fix CI ruff failure: replace `dt.timezone.utc` with `dt.UTC` (UP017)"
+        },
+        {
+          "url": "https://github.com/greystone-dan/LitIntelproject/pull/146",
+          "title": "Improve responsive layouts across generated research pages"
+        },
+        {
+          "url": "https://github.com/phdwight/divitracker/pull/26",
+          "title": "Add comprehensive UI tests with pytest-bdd and Playwright"
+        },
+        {
+          "url": "https://github.com/lpohsien/finance-tracker/pull/12",
+          "title": "Add Dockerized test suite with pytest, httpx, and Playwright"
+        },
+        {
+          "url": "https://github.com/animeshkundu/pyscrape/pull/1",
+          "title": "feat(pyscrape): Python 3 port \u2014 requests+lxml core, optional Playwright JS rendering, pytest, CI"
+        },
+        {
+          "url": "https://github.com/Pablo060606/DualLeagueManager/pull/1",
+          "title": "Reorganize DualLeagueManager: proper src/ structure, working Flask app + pytest"
+        },
+        {
+          "url": "https://github.com/michaeldigiacomi/specterdefence/pull/42",
+          "title": "Modernize SpecterDefence: Upgrade dependencies, harden CI/CD, improve DX, and add security scanning"
+        },
+        {
+          "url": "https://github.com/nos86/mcp-lcsc/pull/1",
+          "title": "Build FastMCP stdio server for LCSC component lookup and datasheet extraction"
+        },
+        {
+          "url": "https://github.com/brucestull/playwright-example/pull/1",
+          "title": "Add Flask tech gadget store with pytest and Playwright E2E testing"
+        },
+        {
+          "url": "https://github.com/mohankv1518-dot/Genamet/pull/1",
+          "title": "Add Playwright CI workflow and headless mode support"
+        },
+        {
+          "url": "https://github.com/shevtsova/shevtsova/pull/2",
+          "title": "Add Playwright Python UI test scaffold (zignaly_ui_tests)"
+        },
+        {
+          "url": "https://github.com/allegartz/playwright-python/pull/1",
+          "title": "Implement comprehensive Playwright Python automated web testing framework"
+        },
+        {
+          "url": "https://github.com/sriramsundaresan/agentdemo/pull/1",
+          "title": "Build the conversational banking architecture demo"
+        },
+        {
+          "url": "https://github.com/GeoAziz/EthAI-Guard/pull/11",
+          "title": "Establish Selenium + Pytest E2E testing infrastructure"
+        },
+        {
+          "url": "https://github.com/vaibhavsonawane/web-e2e-tester/pull/1",
+          "title": "Scaffold full FastAPI + Playwright Web E2E testing platform from placeholder repo"
+        },
+        {
+          "url": "https://github.com/TechniKsawery/Test-Case-y-SklepCzekolada/pull/2",
+          "title": "Enable Playwright tests to run in cloud/CI environments"
+        },
+        {
+          "url": "https://github.com/QE-at-CGI-FI/pft-intro-to-pipelines/pull/1",
+          "title": "Create GitHub Actions pipeline for Python Playwright tests"
+        },
+        {
+          "url": "https://github.com/jasal-dev/python-pw-runner/pull/11",
+          "title": "Implement Python Playwright Test Runner MVP with React frontend"
+        },
+        {
+          "url": "https://github.com/krishnara1201/experimentation_copilot/pull/5",
+          "title": "Establish baseline test platform across backend, frontend, E2E, and CI"
+        },
+        {
+          "url": "https://github.com/xfdb88/solid-carnival/pull/1",
+          "title": "Implement Instagram Profile Scraper with Playwright, httpx, and comprehensive features"
+        },
+        {
+          "url": "https://github.com/replaymap44-commits/Static-saas/pull/6",
+          "title": "Add Playwright web scraping bot for Rockstar Social Club"
+        },
+        {
+          "url": "https://github.com/durangogt/aggravation/pull/53",
+          "title": "Add Playwright automation for AI agent game testing"
+        },
+        {
+          "url": "https://github.com/orgchrono/vhs-capture-scripts/pull/1",
+          "title": "Fix Windows build workflow dependency bootstrap for pytest job"
+        },
+        {
+          "url": "https://github.com/angeleyesffx/qa-automation-toolkit/pull/1",
+          "title": "Add production-grade Playwright + Cucumber TypeScript framework with cross-browser CI"
+        }
+      ]
+    },
+    {
+      "author": "app/copilot-swe-agent",
+      "page": 2,
+      "per_page": 30,
+      "total_count": 1637,
+      "incomplete_results": false,
+      "returned": 30,
+      "hits": [
+        {
+          "url": "https://github.com/BhavyaSoneji/MATRIVA/pull/141",
+          "title": "Fix backend CI failure in week-based dating fallback"
+        },
+        {
+          "url": "https://github.com/replaymap44-commits/Static-saas/pull/5",
+          "title": "Add Python Playwright web scraping bot for Rockstar Social Club"
+        },
+        {
+          "url": "https://github.com/replaymap44-commits/Static-saas/pull/9",
+          "title": "Add Python Playwright bot for Rockstar Social Club"
+        },
+        {
+          "url": "https://github.com/amusinski/test-engineering-portfolio/pull/1",
+          "title": "Bootstrap test-engineering-portfolio with agents, Playwright framework, scaffolding, and case studies"
+        },
+        {
+          "url": "https://github.com/SuiYunsy/midscene/pull/14",
+          "title": "TypeScript to Python migration plan for midscene packages"
+        },
+        {
+          "url": "https://github.com/sanaddiab6-del/GRC_SC/pull/9",
+          "title": "Rewrite `.github/copilot-instructions.md` to match the actual Django/SvelteKit codebase"
+        },
+        {
+          "url": "https://github.com/codekaa1ciu1/directgraph-engine/pull/2",
+          "title": "Convert implementation from Node.js/Express to Python/FastAPI"
+        },
+        {
+          "url": "https://github.com/Juve-ctrl/skills-introduction-to-github/pull/1",
+          "title": "# MEDICORE NEXUS \u2014 MASTER SYSTEM BUILD PROMPT\n\n## 1. YOUR ROLE AND MISSION\n\nAct as the lead software architect, senior full-stack engineer, application security engineer, database designer, QA engineer, DevOps engineer, and technical documentation lead..."
+        },
+        {
+          "url": "https://github.com/djmahe4/ctf-katana/pull/3",
+          "title": "feat(reverse): Tri-Mode Execution Engine \u2014 SOLVE / BUILD / THINK hub"
+        },
+        {
+          "url": "https://github.com/rudolf1/brencher/pull/82",
+          "title": "Refactor app concurrency to asyncio TaskGroup orchestration"
+        },
+        {
+          "url": "https://github.com/b-iurea/ministack/pull/4",
+          "title": "Add PR-focused Python matrix CI and Docker health smoke workflow"
+        },
+        {
+          "url": "https://github.com/pablotoledo/local-jina-reader/pull/2",
+          "title": "feat: implement Phase 1 scaffold (FastAPI + Playwright + Redis + Docker Compose)"
+        },
+        {
+          "url": "https://github.com/phall2020-ui/solar-predictive-maintenance/pull/2",
+          "title": "Add Playwright E2E tests for Monthly Reporting Data module"
+        },
+        {
+          "url": "https://github.com/P4X-ng/osv/pull/155",
+          "title": "Add project type detection to Playwright test workflow"
+        },
+        {
+          "url": "https://github.com/tnglemongrass/aider/pull/20",
+          "title": "Add `/models` endpoint discovery for dynamic model listing"
+        },
+        {
+          "url": "https://github.com/radiorabe/mkdocs-theme-rabe/pull/1",
+          "title": "feat: create mkdocs-theme-rabe Python package"
+        },
+        {
+          "url": "https://github.com/jrlampa/plugin_autocad/pull/28",
+          "title": "CI/CD fixes, backend clean code, and merge conflict resolution"
+        },
+        {
+          "url": "https://github.com/corruptspower-maker/Master-Chief-Executive-Agent/pull/1",
+          "title": "Phase 1 corrections: escalation tier rename, MISSING_MCP_TOOL reason, remove Playwright, update configs"
+        },
+        {
+          "url": "https://github.com/HelloAGit/GenomeDesk/pull/1",
+          "title": "GenomeDesk v2: Dashboard, AI Research Assistant, Security and Documentation"
+        },
+        {
+          "url": "https://github.com/SuiYunsy/midscene/pull/3",
+          "title": "Add Python mspy scaffold for core/cli/shared/web-integration"
+        },
+        {
+          "url": "https://github.com/ilyesHamdiii/cti-internship/pull/4",
+          "title": "Stabilize CI/DevSecOps workflows with explicit gating, deterministic test wiring, and truthful deployment/security states"
+        },
+        {
+          "url": "https://github.com/rudolf1/apartments_search/pull/2",
+          "title": "Apartment search application with Playwright automation, authentication, dependency injection notifications, and Docker support"
+        },
+        {
+          "url": "https://github.com/ChibaYuki347/dev-demo/pull/11",
+          "title": "Align manual issue\u2192ADO sync workflow with AC-001 trigger path"
+        },
+        {
+          "url": "https://github.com/Vikaash-dev/FREE-LLM-AGGREGATOR-/pull/10",
+          "title": "Fix critical issues: Make ML dependencies optional, fix syntax errors, and improve security"
+        },
+        {
+          "url": "https://github.com/inanc-can/teduco-ai/pull/20",
+          "title": "Add comprehensive testing strategy and infrastructure"
+        },
+        {
+          "url": "https://github.com/liuhongke985/smartwin/pull/1",
+          "title": "feat: create complete project management infrastructure (W1-W2 phase)"
+        },
+        {
+          "url": "https://github.com/Notas-a-Mano-serie-de-libros/3_notas-a-mano-sobre-analisis-de-complejidad-computacional/pull/18",
+          "title": "Pin playwright to 1.63.0 in requirements-lock.txt to fix Colab validation CI"
+        },
+        {
+          "url": "https://github.com/Jacquesngw1/fluffy-fiesta/pull/2",
+          "title": "Fix CI: install project package so `geo_audit` is importable"
+        },
+        {
+          "url": "https://github.com/egpbos/test_dianna_877/pull/1",
+          "title": "Replace notebook CI reproductions with dashboard CI failure reproduction workflow"
+        },
+        {
+          "url": "https://github.com/Installsure/installsure-new-build/pull/3",
+          "title": "Implement InstallSure Golden Path v1.1: Complete CI/CD, Security, and Testing Infrastructure"
+        }
+      ]
+    },
+    {
+      "author": "app/copilot-swe-agent",
+      "page": 3,
+      "per_page": 30,
+      "total_count": 1637,
+      "incomplete_results": false,
+      "returned": 29,
+      "hits": [
+        {
+          "url": "https://github.com/HakjunMIN/aicc-oss-harness/pull/21",
+          "title": "Add GET /healthz readiness endpoint"
+        },
+        {
+          "url": "https://github.com/pairing4good/spring-petclinic/pull/47",
+          "title": "[WIP] Implement Comprehensive Playwright End-to-End Tests"
+        },
+        {
+          "url": "https://github.com/vishaltailor01/-QA-Langchain/pull/1",
+          "title": "[WIP] Add initial implementation for QA tool supporting STLC"
+        },
+        {
+          "url": "https://github.com/YairTurambar/sat-tariff-scraper/pull/19",
+          "title": "Preserva las rutas de navegadores al simular otras plataformas"
+        },
+        {
+          "url": "https://github.com/levisatto83/pricehistory/pull/1",
+          "title": "Implement price monitoring system with scraping, storage, notifications, and API"
+        },
+        {
+          "url": "https://github.com/mr-carlitos/opinion-voice-poc/pull/1",
+          "title": "Expand offline test coverage across backend, browser, and diagnostic scripts"
+        },
+        {
+          "url": "https://github.com/domfahey/pdfviewer/pull/42",
+          "title": "Refactor test suite into module-based structure with edge case separation"
+        },
+        {
+          "url": "https://github.com/Santi-a-ux/Web_Liquidacion_Definitiva0-main/pull/15",
+          "title": "Add comprehensive test report with presentation-ready statistics (REPORTE_PRUEBAS.md)"
+        },
+        {
+          "url": "https://github.com/Jul352mf/THE_Email_Scraper/pull/9",
+          "title": "[WIP] \u2728 Set up Copilot instructions"
+        },
+        {
+          "url": "https://github.com/Installsure/External-Review-Repository/pull/28",
+          "title": "Implement complete InstallSure production-ready infrastructure with testing, CI/CD, and comprehensive documentation"
+        },
+        {
+          "url": "https://github.com/husamhilal/aitour26-BRK442-github-copilot-as-an-ai-agent-in-the-developer-workflow/pull/2",
+          "title": "Add plain HTML/CSS/JS UI with category support to Product Store demo app"
+        },
+        {
+          "url": "https://github.com/Smiths165/Google-maps-screper/pull/1",
+          "title": "Add Google Maps business scraper with CSV export"
+        },
+        {
+          "url": "https://github.com/the-ride-never-ends/get_law_from_contracted_repos/pull/2",
+          "title": "Add Gherkin v6 feature files with black box testing and implemented pytest tests"
+        },
+        {
+          "url": "https://github.com/Pablo060606/DualLeagueManager/pull/2",
+          "title": "[WIP] Fix execution issues and add GitHub Actions CI"
+        },
+        {
+          "url": "https://github.com/Karen86Tonoyan/browser-content-inspection-agent/pull/1",
+          "title": "Implement ALFA Agent Control System \u2014 Operational Learning Loop"
+        },
+        {
+          "url": "https://github.com/mezzyboss/church-ai/pull/2",
+          "title": "Add initial Python dependencies"
+        },
+        {
+          "url": "https://github.com/nntan90/qa-skill-suite/pull/1",
+          "title": "feat: Professional QA Skill Suite improvements - CI/CD, new skills, templates, docs"
+        },
+        {
+          "url": "https://github.com/vargasgustavo/JOAOTESTE/pull/1",
+          "title": "feat: V0 SaaS restaurant table & queue management platform"
+        },
+        {
+          "url": "https://github.com/eddmtzarias/TE-explico/pull/3",
+          "title": "Complete production infrastructure for TOKRAGGCORP system"
+        },
+        {
+          "url": "https://github.com/Takuya338/Flask/pull/1",
+          "title": "Add white/black/blue centered UI design via CSS"
+        },
+        {
+          "url": "https://github.com/ahmedsza/zavademo/pull/11",
+          "title": "Add BDD feature specifications for Zava application"
+        },
+        {
+          "url": "https://github.com/youh4ck3dme/V4-prototype-icoatlas/pull/1",
+          "title": "Security: Fix CORS wildcard, add security headers, rate limiting, and webhook verification"
+        },
+        {
+          "url": "https://github.com/ADLIB-Mrani/secon-ebook/pull/1",
+          "title": "Implement full-stack e-book generation platform with multi-source aggregation"
+        },
+        {
+          "url": "https://github.com/Pythonnoobob/chinesestudy/pull/2",
+          "title": "docs: Add website testing guidance"
+        },
+        {
+          "url": "https://github.com/karlicoss/promnesia/pull/480",
+          "title": "Add comprehensive end-to-end test improvements: analysis, utilities, and documentation"
+        },
+        {
+          "url": "https://github.com/siaexit/my-household-account-/pull/1",
+          "title": "Scaffold household ledger monorepo: Next.js web, FastAPI API, tests, docker-compose, AWS infra"
+        },
+        {
+          "url": "https://github.com/poaudet/pkb-stack/pull/8",
+          "title": "Implement Capture UI foundations and core"
+        },
+        {
+          "url": "https://github.com/kighaz/Smart_Library/pull/1",
+          "title": "Implement Smart Library \u2013 digitales Ausleihsystem (Flask)"
+        },
+        {
+          "url": "https://github.com/shand-j/python/pull/9",
+          "title": "Add OpenClaw configuration UI for zero-knowledge deployment"
+        }
+      ]
+    },
+    {
+      "author": "app/devin-ai-integration",
+      "page": 1,
+      "per_page": 30,
+      "total_count": 482,
+      "incomplete_results": false,
+      "returned": 30,
+      "hits": [
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/uc-finance-app-automations/pull/54",
+          "title": "Add Playwright e2e regression suite and GitHub Actions CI"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/77",
+          "title": "side(deps): upgrade runtime deps (Playwright 1.64, gymnasium 1.x, numpy 2, Python 3.10\u20133.13)"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/28",
+          "title": "Fix action_exec_timeout parsing for Playwright >= 1.41 error messages"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/69",
+          "title": "MCP server: pin env/Playwright calls to one thread and serialize tool calls"
+        },
+        {
+          "url": "https://github.com/Sayedardhi/banking-test-demo/pull/16",
+          "title": "test(frontend): unit, integration and Playwright customer journeys on a source-built stack"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2054",
+          "title": "test(incidents): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/wnsan/attachment-assert-tool/pull/1",
+          "title": "Playwright integrations: pytest plugin/fixture and @playwright/test matcher"
+        },
+        {
+          "url": "https://github.com/Custom-Devin-Demos/RACK/pull/5",
+          "title": "Add rack-ui Playwright smoke suite, one-command runner and CI job"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/42",
+          "title": "Assert task kwarg propagation in registration tests; add frozen_partial unit test"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/67",
+          "title": "Add tests for the MCP server tool wrapper (sfind-f0b40e7b)"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2049",
+          "title": "test(sharing): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/devin-alok/superset/pull/18",
+          "title": "fix(reports): log swallowed exceptions in Playwright browser cleanup"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2071",
+          "title": "test(browsing): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/nandu-cog-demos/commercial-engines/pull/1",
+          "title": "NO-196: Engine compliance view and mandatory SB release gate"
+        },
+        {
+          "url": "https://github.com/kramsagar/AIArchitect/pull/2",
+          "title": "Fix Devin Review findings + add Playwright UAT, regression suites and committed test reports"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2067",
+          "title": "test(electron): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/25",
+          "title": "Fix: declare frame_mark_elements.js loop counter locally (stop leaking window.i)"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/63",
+          "title": "side(tooling): uv workspace + lock, ruff baseline, pre-commit, CI py3.10-3.13 matrix, Makefile targets"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2068",
+          "title": "test(search): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2050",
+          "title": "test(search): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/57",
+          "title": "Add direct Chat tests; fix classic chatbox and JS string encoding in add_message"
+        },
+        {
+          "url": "https://github.com/Cognition-Devin-Workshop-temp/uc-spring-boot-upgrade-microservice-extraction/pull/8",
+          "title": "feat: Migrate Selenium/Java E2E test framework to Python Playwright"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2069",
+          "title": "test(sharing): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/vishaljetly/page-object-python-selenium/pull/1",
+          "title": "Migrate login tests from Selenium to Playwright; repoint to saucedemo.com"
+        },
+        {
+          "url": "https://github.com/jordantab/cognition-take-home/pull/2",
+          "title": "Add test suites, CI, schema-drift guard and pre-commit hooks"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2070",
+          "title": "test(collaboration): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2063",
+          "title": "test(files): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/pun97it/superset/pull/9",
+          "title": "fix(reports): commit permalink before Playwright screenshot capture"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2047",
+          "title": "test(browsing): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/44",
+          "title": "WebArena: offline unit tests for GenericWebArenaTask.validate/__init__; fix task_id error message"
+        }
+      ]
+    },
+    {
+      "author": "app/devin-ai-integration",
+      "page": 2,
+      "per_page": 30,
+      "total_count": 482,
+      "incomplete_results": false,
+      "returned": 30,
+      "hits": [
+        {
+          "url": "https://github.com/vparl/victor-cognition-takehome/pull/15",
+          "title": "fix(deps): add playwright to development dependencies"
+        },
+        {
+          "url": "https://github.com/qadevtips/QA-and-Dev-Tips/pull/1",
+          "title": "Add pytest unit tests for the Python modules (0% -> 95%/72% coverage)"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2046",
+          "title": "test(docs): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/dsalvadorjasin/devin-remediation-service/pull/23",
+          "title": "ECS migration phase 1: task definitions + local ECS runtime emulation with live e2e evidence"
+        },
+        {
+          "url": "https://github.com/COG-GTM/AgentLab/pull/62",
+          "title": "feature: add AGENTS.md with Unit Testing Agent instructions"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/34",
+          "title": "Extract fenced python code after leading prose in PythonActionSet.to_python_code (sfind-bfcf0205)"
+        },
+        {
+          "url": "https://github.com/pun97it/superset/pull/20",
+          "title": "fix(reports): commit permalink before Playwright screenshot"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2051",
+          "title": "test(admin): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/hands0924/databricks-fmapi-task-benchmark/pull/2",
+          "title": "Add unit tests for the lowest-coverage modules"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2045",
+          "title": "test(auth): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/37",
+          "title": "WebArena-Lite: surface evaluator helper errors instead of scoring 0, add request timeouts"
+        },
+        {
+          "url": "https://github.com/thanhdicode/Hackathon_2026/pull/1",
+          "title": "chore(architecture): normalize foundation, install all deps, and fix hero demo runtime"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2065",
+          "title": "test(docs): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/greytrash/edugrey/pull/6",
+          "title": "Add comprehensive unit tests for midjourney_invoice_downloader (100% coverage)"
+        },
+        {
+          "url": "https://github.com/pun97it/superset/pull/22",
+          "title": "fix(reports): commit permalink to DB before Playwright screenshot"
+        },
+        {
+          "url": "https://github.com/sn-poc/advanced-selenium-webdriver/pull/1",
+          "title": "Migrate Java Selenium WebDriver tests to Python Playwright"
+        },
+        {
+          "url": "https://github.com/COG-GTM/vantage-telco/pull/20",
+          "title": "feature: Phase 0 \u2014 dev tooling, pinned deps, CI gates, modernization capture harness + baseline"
+        },
+        {
+          "url": "https://github.com/rickyviank/fins_polyglot_microservices/pull/25",
+          "title": "Add comprehensive test suite for reporting-service (0% \u2192 100% coverage)"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/19",
+          "title": "visualwebarena: share BLIP-2 captioning model across episodes, load lazily"
+        },
+        {
+          "url": "https://github.com/wandemcphill/Global-Talent-Exchange/pull/250",
+          "title": "chore: lock backend deps, clear npm audit/eslint/ruff/bandit, remove tracked artifacts"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2053",
+          "title": "test(electron): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/18",
+          "title": "side(mcp): modernize BrowserGym MCP server (FastMCP, stdio + Streamable HTTP, structured observations)"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/uc-spring-boot-upgrade-microservice-extraction/pull/211",
+          "title": "feat: Python Test Automation Platform with Auto-Healing, Object Spy, Migration & Export"
+        },
+        {
+          "url": "https://github.com/tedfoley-cog/adms-test-automation-demo/pull/1",
+          "title": "Lift Tier 1 coverage and characterize RTGENACE before trusting the port"
+        },
+        {
+          "url": "https://github.com/rickyviank/fins_polyglot_microservices/pull/26",
+          "title": "Add comprehensive test suite for reporting-service (unit, contract, integration, E2E)"
+        },
+        {
+          "url": "https://github.com/sruthikilari/superset/pull/19",
+          "title": "fix(config): enable rate limiting unless SUPERSET_ENV=development"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/72",
+          "title": "Add tests for untested action primitives (select_option, drag_and_drop, upload_file, scroll_at, autocomplete fill, last-tab close, forced check)"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/65",
+          "title": "Test observation marking edge cases; strip BrowserGym ids from multi-line ARIA values"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/54",
+          "title": "Test ExpArgs.run error/truncation paths and summary stats aggregation"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2052",
+          "title": "test(collaboration): e2e QA test pyramid"
+        }
+      ]
+    },
+    {
+      "author": "app/devin-ai-integration",
+      "page": 3,
+      "per_page": 30,
+      "total_count": 482,
+      "incomplete_results": false,
+      "returned": 30,
+      "hits": [
+        {
+          "url": "https://github.com/bbeamon/devin_ai_playground/pull/7",
+          "title": "Keep Data Explorer / Backtest / Optimizer settings when switching pages"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/48",
+          "title": "Add offline unit tests for VisualWebArena task validate()/setup()"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/36",
+          "title": "AssistantBench: unit-test log-distance number scoring, fix scores > 1 for negative answers"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/26",
+          "title": "bug: add timeout to VisualWebArena goal image download (sfind-4ffc32d1)"
+        },
+        {
+          "url": "https://github.com/claypilat/superset/pull/6",
+          "title": "fix(tests): pass required message arg to PlaywrightTimeout constructor"
+        },
+        {
+          "url": "https://github.com/vparl/victor-cognition-takehome/pull/10",
+          "title": "fix(tests): pass message arg to PlaywrightTimeout() for CI compatibility"
+        },
+        {
+          "url": "https://github.com/tedfoley-cog/adms-test-automation-demo/pull/2",
+          "title": "Fix demo scaffold issues found in the dry run"
+        },
+        {
+          "url": "https://github.com/SellerPush/ai-tools-db/pull/4",
+          "title": "test: add unit test suite for update_ai_tools (0% -> 99% coverage)"
+        },
+        {
+          "url": "https://github.com/vparl/victor-cognition-takehome/pull/13",
+          "title": "fix(tests): pass message arg to PlaywrightTimeout in test"
+        },
+        {
+          "url": "https://github.com/akhayyum22/superset/pull/65",
+          "title": "fix(deps): upgrade Flask to 3.1.3 for PYSEC-2026-2151"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2064",
+          "title": "test(admin): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/Sayedardhi/banking-test-demo/pull/11",
+          "title": "userservice: authentication test coverage (unit, PostgreSQL integration, E2E-gated CI)"
+        },
+        {
+          "url": "https://github.com/vparl/victor-cognition-takehome/pull/12",
+          "title": "fix(test): pass required message arg to PlaywrightTimeout in CI-failing test"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/33",
+          "title": "VWA: add timeouts to classifieds reset POST and goal-image download"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/41",
+          "title": "AssistantBench: branch-level question_scorer tests + fix scorer crashes (sfind-bc14baaa)"
+        },
+        {
+          "url": "https://github.com/muhenan/xiaohongshu-mcp-python/pull/2",
+          "title": "Add unit tests for all modules (60 tests)"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/13",
+          "title": "side(experiments): modernize browsergym-experiments + atomic step-result saving"
+        },
+        {
+          "url": "https://github.com/Rafull225/vc-prospect-2026/pull/5",
+          "title": "fix: CORS-less 500s, non-ASCII API key crash, health probe semantics, 422 messages"
+        },
+        {
+          "url": "https://github.com/SachetCognition/bank-demo/pull/11",
+          "title": "Workstream 5: CI/CD & Documentation"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/49",
+          "title": "Test benchmark warm-up utils; don't crash when the massage sub-process dies without reporting"
+        },
+        {
+          "url": "https://github.com/e2b-dev/E2B/pull/1742",
+          "title": "test: add opt-in e2e tier scaffolding for the SDK test suites (1/4)"
+        },
+        {
+          "url": "https://github.com/kwancer/superset/pull/4",
+          "title": "ci: optimize CI workflows for speed \u2014 caching, parallelization, redundancy removal"
+        },
+        {
+          "url": "https://github.com/adotak/vitadrive/pull/28",
+          "title": "test(e2e): Playwright browser tests against a seeded server, run in CI"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/15",
+          "title": "side(chat-ui): rebuild in-episode chatbox as one accessible, self-contained page"
+        },
+        {
+          "url": "https://github.com/Regantih/gridsignal/pull/6",
+          "title": "GridSignal app: React flight deck (3D multi-market scene) and FastAPI layer over the engine, one container, CI and e2e"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/68",
+          "title": "Add offline tests for WebArenaInstance.full_reset"
+        },
+        {
+          "url": "https://github.com/Cognition-Partner-Workshops/otterworks/pull/2048",
+          "title": "test(files): e2e QA test pyramid"
+        },
+        {
+          "url": "https://github.com/juliettejahan/superset/pull/94",
+          "title": "test(db_engine_specs): improve coverage for DrillEngineSpec"
+        },
+        {
+          "url": "https://github.com/dsalvadorjasin/llm-router/pull/10",
+          "title": "upstream: route by prompt affinity instead of round-robin"
+        },
+        {
+          "url": "https://github.com/COG-GTM/BrowserGym/pull/43",
+          "title": "Add unit tests for prune_html, overlay_som, _get_coord_str and the _process_bid guard"
+        }
+      ]
+    },
+    {
+      "author": "google-labs-jules",
+      "page": 1,
+      "per_page": 30,
+      "total_count": 0,
+      "incomplete_results": false,
+      "returned": 0,
+      "hits": []
+    },
+    {
+      "author": "google-labs-jules",
+      "page": 2,
+      "per_page": 30,
+      "total_count": 0,
+      "incomplete_results": false,
+      "returned": 0,
+      "hits": []
+    },
+    {
+      "author": "google-labs-jules",
+      "page": 3,
+      "per_page": 30,
+      "total_count": 0,
+      "incomplete_results": false,
+      "returned": 0,
+      "hits": []
+    }
+  ],
+  "manual_screen": [
+    {
+      "repo": "tegataiprime/Platelet-Movie",
+      "sha": "14664611814b126289f291ad24ee294102efb07c",
+      "license_metadata": "Apache-2.0",
+      "status": "pinned source screen follows"
+    },
+    {
+      "repo": "piyushtater158-cpu/brand-deal-inbox-triage",
+      "sha": "cb42ebb212f1009594c7e2df569f6881fdf6c820",
+      "license_metadata": "no license",
+      "status": "no license; not included"
+    },
+    {
+      "repo": "ward-wise/ward-wise-front-end-v2",
+      "sha": "9494730f1c00aadee867cb9a6f8a07a86749f817",
+      "license_metadata": "no license",
+      "status": "no license; not included"
+    },
+    {
+      "repo": "alxb1t/isekai",
+      "sha": "b2c7b480263371624f17464c769577a74a113eff",
+      "license_metadata": "Apache-2.0",
+      "status": "pinned source screen follows"
+    },
+    {
+      "repo": "mattmalcher/mcp-app-shiny",
+      "sha": "e15529c0260413015fb35211f444c98b6e963cf9",
+      "license_metadata": "MIT",
+      "status": "pinned source screen follows"
+    },
+    {
+      "repo": "ramza2/ai-modelops",
+      "sha": "8baa6ab1e775e9bb8a5409b77b0b101a600486c5",
+      "license_metadata": "no license",
+      "status": "no license; not included"
+    },
+    {
+      "repo": "raoshun/audio-server",
+      "sha": "fd9c5385d4084716cf42500988a8da00a42b0c19",
+      "license_metadata": "no license",
+      "status": "no license; not included"
+    },
+    {
+      "repo": "jttrs/magic-manager",
+      "sha": "87e6432c8b6479659cd332947d6656ab30211dde",
+      "license_metadata": "no license",
+      "status": "no license; not included"
+    },
+    {
+      "repo": "streamlit/streamlit",
+      "sha": "5c9ddb507c87e154d749554b88809a5556e2fd93",
+      "license_metadata": "Apache-2.0",
+      "status": "pinned source screen follows"
+    },
+    {
+      "repo": "gyrinx-app/gyrinx",
+      "sha": "04379403a704ae347e400cf9b1d6659943db6edc",
+      "license_metadata": "Apache-2.0",
+      "status": "pinned source screen follows"
+    },
+    {
+      "repo": "CBIIT/commons-automation",
+      "sha": "1599a2a373e78c5230e22a24dc378e30e3d30b44",
+      "license_metadata": "no license",
+      "status": "no license; not included"
+    },
+    {
+      "repo": "jwwalker-readeum/trajectory-generator",
+      "sha": "73f0f26de1d1f4741f4580ee58339a1ffcdc80d0",
+      "license_metadata": "no license",
+      "status": "no license; not included"
+    },
+    {
+      "repo": "madeinoz67/benchweave",
+      "sha": "13faaec9fa577b3a854d5261fc269b03f097c2ed",
+      "license_metadata": "MIT",
+      "status": "pinned source screen follows"
+    },
+    {
+      "repo": "SCHUNK-SE-Co-KG/TARATool",
+      "sha": "4ef6089874b192127e4258484d036996c9b058c8",
+      "license_metadata": "NOASSERTION",
+      "status": "license not verified; not included"
+    }
+  ],
+  "other_routes": [
+    {
+      "kind": "guidance_only",
+      "query": "filename:AGENTS.md playwright test",
+      "total_count": 43776,
+      "items": [
+        {
+          "url": "https://github.com/mblode/burger/blob/a85271294a939cf49e0edf2ae4ceda90b126dca2/AGENTS.md",
+          "repo": "mblode/burger",
+          "path": "AGENTS.md"
+        },
+        {
+          "url": "https://github.com/chennqqi/godnslog/blob/b55a807b9f298fb236888df679370d4a564d3ae5/AGENTS.md",
+          "repo": "chennqqi/godnslog",
+          "path": "AGENTS.md"
+        },
+        {
+          "url": "https://github.com/Sunagatov/Iced-Latte-Frontend/blob/a95bddba8e7890b085b0835d04fe7335e2777603/AGENTS.md",
+          "repo": "Sunagatov/Iced-Latte-Frontend",
+          "path": "AGENTS.md"
+        },
+        {
+          "url": "https://github.com/noonat/intersect/blob/0c8a4b2000f264069576c4ec6d0f40f977bfd294/AGENTS.md",
+          "repo": "noonat/intersect",
+          "path": "AGENTS.md"
+        },
+        {
+          "url": "https://github.com/kyleu/projectforge/blob/15582d07f04dab48244888d01cc6f4ec646b11ef/AGENTS.md",
+          "repo": "kyleu/projectforge",
+          "path": "AGENTS.md"
+        }
+      ],
+      "incomplete": false,
+      "returned": 5
+    },
+    {
+      "kind": "guidance_only",
+      "query": "filename:CLAUDE.md playwright test",
+      "total_count": 52352,
+      "items": [
+        {
+          "url": "https://github.com/siriwatknp/mui-treasury/blob/1ee6192dc49e73aa194b7d70dfdd7c7bbc84612b/CLAUDE.md",
+          "repo": "siriwatknp/mui-treasury",
+          "path": "CLAUDE.md"
+        },
+        {
+          "url": "https://github.com/argyleink/prop-for-that/blob/a3c516fa2f5bf33c0de8d80730acce75cee9b42e/CLAUDE.md",
+          "repo": "argyleink/prop-for-that",
+          "path": "CLAUDE.md"
+        },
+        {
+          "url": "https://github.com/chanzuckerberg/single-cell-data-portal/blob/b1f2fc837e02347e1004e6666327880ff0ca54a7/CLAUDE.md",
+          "repo": "chanzuckerberg/single-cell-data-portal",
+          "path": "CLAUDE.md"
+        },
+        {
+          "url": "https://github.com/posit-dev/py-shinywidgets/blob/b5268aa67a1f49d8d87dbfd5bedecfc8f0bd711e/CLAUDE.md",
+          "repo": "posit-dev/py-shinywidgets",
+          "path": "CLAUDE.md"
+        },
+        {
+          "url": "https://github.com/rtk-ai/grit/blob/0f3c9d04abe9525b1884f3a0ade890e54a6d9ffe/CLAUDE.md",
+          "repo": "rtk-ai/grit",
+          "path": "CLAUDE.md"
+        }
+      ],
+      "incomplete": false,
+      "returned": 5
+    },
+    {
+      "kind": "generated_tests",
+      "query": "playwright \"generated tests\"",
+      "items": [
+        {
+          "repo": "skambo/kajuju-automation",
+          "sha": "04c2d2565824d97dfdee1218d33966a996cb84ff",
+          "url": "https://github.com/skambo/kajuju-automation/commit/04c2d2565824d97dfdee1218d33966a996cb84ff",
+          "title": "Merge pull request #78 from skambo/playwright-generated-tests"
+        },
+        {
+          "repo": "aryanpatil97/playwright-ecommerce-automation",
+          "sha": "ccd4db512cc0d68b1bace2389b738fe087e3cac1",
+          "url": "https://github.com/aryanpatil97/playwright-ecommerce-automation/commit/ccd4db512cc0d68b1bace2389b738fe087e3cac1",
+          "title": "Add .gitignore for Playwright artifacts"
+        },
+        {
+          "repo": "steveseguin/social_stream",
+          "sha": "3fefc2e52c40f77d96aa4787bf82b9973019f296",
+          "url": "https://github.com/steveseguin/social_stream/commit/3fefc2e52c40f77d96aa4787bf82b9973019f296",
+          "title": "chore(build): remove generated test artifacts and exclude from deploys"
+        },
+        {
+          "repo": "maifeeulasad/lilac",
+          "sha": "07464cadab9b52af05b41ac629190f1db66a3620",
+          "url": "https://github.com/maifeeulasad/lilac/commit/07464cadab9b52af05b41ac629190f1db66a3620",
+          "title": "chore(test): add Playwright dependency and e2e/test:all scripts"
+        },
+        {
+          "repo": "Monash-FIT3170/2026W1-Arkhive",
+          "sha": "c9db0ae8beee4a8c515724e263339fd3d838652e",
+          "url": "https://github.com/Monash-FIT3170/2026W1-Arkhive/commit/c9db0ae8beee4a8c515724e263339fd3d838652e",
+          "title": "test: configure Playwright test environment"
+        }
+      ],
+      "returned": 5
+    }
+  ],
+  "candidate_counts_by_evidence_type": {
+    "test_commit": 9,
+    "agent_pr": 1
+  },
+  "candidate_rows": 10,
+  "at_least_ten_observable_calls": 8,
+  "approved_rows": 0,
+  "limits": "Connector searches, bounded samples; not exhaustive. No GITHUB_TOKEN available locally, so full CLI not run. Human discovery is out of scope. Guidance-only is not authored-test evidence. Search API totals vary; returned hits can overlap.",
+  "manual_pr_screen": [
+    {
+      "repo": "brucestull/playwright-example",
+      "sha": "a6b57f07fe807ce3470b520248d804b2f5774d9d",
+      "pr": "https://github.com/brucestull/playwright-example/pull/1",
+      "author": "Copilot",
+      "license_metadata": "no license",
+      "changed_files": 13
+    },
+    {
+      "repo": "phdwight/divitracker",
+      "sha": "2f0651b9af0dc48616db965c8ce33e505956920f",
+      "pr": "https://github.com/phdwight/divitracker/pull/26",
+      "author": "Copilot",
+      "license_metadata": "no license",
+      "changed_files": 21
+    },
+    {
+      "repo": "lpohsien/finance-tracker",
+      "sha": "4fbfcc602c8c416c7a0f9c26a2573238526656e5",
+      "pr": "https://github.com/lpohsien/finance-tracker/pull/12",
+      "author": "Copilot",
+      "license_metadata": "no license",
+      "changed_files": 25
+    },
+    {
+      "repo": "durangogt/aggravation",
+      "sha": "a7b8c8ea0876b84bbde3dba1bd79c55493fb8b9f",
+      "pr": "https://github.com/durangogt/aggravation/pull/53",
+      "author": "Copilot",
+      "license_metadata": "no license",
+      "changed_files": 15
+    },
+    {
+      "repo": "Cognition-Partner-Workshops/uc-finance-app-automations",
+      "sha": "c045d56af39522c38e1de2dcd3d098fc1932bd50",
+      "pr": "https://github.com/Cognition-Partner-Workshops/uc-finance-app-automations/pull/54",
+      "author": "devin-ai-integration[bot]",
+      "license_metadata": "Apache-2.0",
+      "changed_files": 14
+    },
+    {
+      "repo": "Custom-Devin-Demos/RACK",
+      "sha": "4fd2de778a94ffb6119bad23f7b00322d548f746",
+      "pr": "https://github.com/Custom-Devin-Demos/RACK/pull/5",
+      "author": "devin-ai-integration[bot]",
+      "license_metadata": "BSD-3-Clause",
+      "changed_files": 8
+    }
+  ],
+  "revision_screen": "Cached pinned sources rescored; two zero-call records moved to rejected_candidates.csv. No new discovery or complete helper traversal claimed.",
+  "explicit_approved_manifest_rows": 2,
+  "approval_scope": "Discovery rows remain unapproved; two separate manifest rows were explicitly approved by Dhiraj. No execution."
+}

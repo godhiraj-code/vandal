@@ -1,0 +1,12 @@
+..                                                                       [100%]Vandal: study/fixture/test_local_app.py::test_counter[chromium] | stealth_disable | #increment
+Vandal: study/fixture/test_local_app.py::test_counter[chromium] | data_sabotage | #count
+Vandal: study/fixture/test_local_app.py::test_counter[chromium] | ghost_element | #increment
+Vandal: study/fixture/test_local_app.py::test_counter[chromium] | logic_sabotage | #increment
+Vandal: study/fixture/test_local_app.py::test_label_without_assertion[chromium] | data_sabotage | #label
+
+=============================== Vandal strength ================================
+80.0% | 4 killed, 1 survived, 0 error, 0 not applied, 0 skipped
+study/fixture/test_local_app.py::test_counter[chromium]: passed, 100.0%, 0 skipped by cap
+study/fixture/test_local_app.py::test_label_without_assertion[chromium]: passed, 0.0%, 0 skipped by cap
+SURVIVED study/fixture/test_local_app.py::test_label_without_assertion[chromium] | data_sabotage | #label | Used #label; check assertions about its value, state, or resulting behavior.
+2 passed in 13.41s

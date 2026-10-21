@@ -1,0 +1,7 @@
+{
+  "test_paths": ["tests/e2e/test_smoke.py"],
+  "requirements": ["requirements.txt"],
+  "install_project": false,
+  "extras": [],
+  "pytest_args": ["-m", "e2e"]
+}

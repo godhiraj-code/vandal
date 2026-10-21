@@ -1,0 +1,14 @@
+run_path,validation_mode,repo,commit_sha,kind,group,status,eligible,score,n_tests,n_mutants,n_scored,killed,survived,error,not_applied,skipped,untested,untested_targets,skipped_by_cap,action_failed_kills,reason
+pilot/owned-container-01,container,owned-local-fixture,51fe01045e3f37683eb60d014213fe68448a7875,fixture,fixture,skipped,False,,,,,,,,,,,,,,RuntimeError: container unavailable; see container.log
+pilot/owned-container-02,container,owned-local-fixture,d3747dd9e609b6e10eaa938ffd3313468882c543,fixture,fixture,skipped,False,,,,,,,,,,,,,,PermissionError: [Errno 13] Permission denied: '/work/venv/bin/python'
+pilot/owned-container-03,container,owned-local-fixture,d3747dd9e609b6e10eaa938ffd3313468882c543,fixture,fixture,skipped,False,,,,,,,,,,,,,,PermissionError: [Errno 13] Permission denied: '/work/venv/bin/python'
+pilot/owned-container-04,container,owned-local-fixture,d5cbb81a67350c6c228bf517e66af24ebc5fec78,fixture,fixture,skipped,False,,,,,,,,,,,,,,RuntimeError: owned container mount inspection failed
+pilot/owned-container-05,container,owned-local-fixture,d5cbb81a67350c6c228bf517e66af24ebc5fec78,fixture,fixture,incomplete,False,,,,,,,,,,,,,,container deadline; partial output excluded
+pilot/owned-container-06,container,owned-local-fixture,d5cbb81a67350c6c228bf517e66af24ebc5fec78,fixture,fixture,completed,False,80.0,2,5,5,4,1,0,0,0,0,0,0,2,
+pilot/owned-container-07,container,owned-local-fixture,2ca7cfe098fa65b0e123ba7c2f78bb888d36a9da,fixture,fixture,completed,False,80.0,2,5,5,4,1,0,0,0,0,0,0,2,
+pilot/owned-container-08,container,owned-local-fixture,c34637afac674437101cf90b7a67423c86fc8732,fixture,fixture,completed,False,80.0,2,5,5,4,1,0,0,0,0,0,0,2,
+pilot/owned-container-09,container,owned-local-fixture,c34637afac674437101cf90b7a67423c86fc8732,fixture,fixture,completed,False,80.0,2,5,5,4,1,0,0,0,0,0,0,2,
+pilot/owned-container-10,container,owned-local-fixture,c34637afac674437101cf90b7a67423c86fc8732,fixture,fixture,completed,False,80.0,2,5,5,4,1,0,0,0,0,0,0,2,
+pilot/owned-fixture,host-only,owned-local-fixture,86ea7e4801fdf00ae40c867ad5300a9addd11500,fixture,fixture,skipped,False,,,,,,,,,,,,,,baseline timeout
+pilot/owned-fixture-corrected,host-only,owned-local-fixture,e886c215ebb550c2e26780008c42ea7e87560e9f,fixture,fixture,completed,False,80.0,2,5,5,4,1,0,0,0,0,0,0,2,
+pilot/owned-fixture-elevated,host-only,owned-local-fixture,650dab65e793d443ab1bab11f90eb27f07b50e32,fixture,fixture,unscored,False,,2,5,0,0,0,5,0,0,0,0,0,0,no killed/survived mutants

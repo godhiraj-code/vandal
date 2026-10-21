@@ -1,0 +1,203 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 538B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for mcr.microsoft.com/playwright/python:v1.64.0-noble
+#2 DONE 0.7s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 139B done
+#3 DONE 0.1s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [1/7] FROM mcr.microsoft.com/playwright/python:v1.64.0-noble@sha256:684df257a1fa0ef3fa288239819984008f560e8f8db5b635ee9e2a50cbcd2e23
+#5 resolve mcr.microsoft.com/playwright/python:v1.64.0-noble@sha256:684df257a1fa0ef3fa288239819984008f560e8f8db5b635ee9e2a50cbcd2e23
+#5 resolve mcr.microsoft.com/playwright/python:v1.64.0-noble@sha256:684df257a1fa0ef3fa288239819984008f560e8f8db5b635ee9e2a50cbcd2e23 0.0s done
+#5 DONE 0.4s
+
+#4 [internal] load build context
+#4 transferring context: 136.41kB 0.0s done
+#4 DONE 0.2s
+
+#5 [1/7] FROM mcr.microsoft.com/playwright/python:v1.64.0-noble@sha256:684df257a1fa0ef3fa288239819984008f560e8f8db5b635ee9e2a50cbcd2e23
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 0B / 856.10MB 0.2s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 0B / 96.11MB 0.2s
+#5 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 0B / 29.77MB 0.2s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 0B / 46.27MB 0.2s
+#5 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 3.15MB / 29.77MB 0.5s
+#5 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 5.24MB / 29.77MB 0.6s
+#5 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 7.34MB / 29.77MB 0.8s
+#5 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 10.49MB / 29.77MB 1.1s
+#5 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 12.58MB / 29.77MB 1.2s
+#5 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 14.68MB / 29.77MB 1.4s
+#5 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 17.83MB / 29.77MB 1.5s
+#5 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 19.92MB / 29.77MB 1.7s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 3.15MB / 46.27MB 1.7s
+#5 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 22.02MB / 29.77MB 2.1s
+#5 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 25.17MB / 29.77MB 2.3s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 5.24MB / 96.11MB 2.4s
+#5 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 27.26MB / 29.77MB 2.4s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 6.29MB / 46.27MB 2.6s
+#5 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 29.77MB / 29.77MB 2.7s done
+#5 extracting sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 10.49MB / 96.11MB 3.5s
+#5 extracting sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 0.8s done
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 9.44MB / 46.27MB 3.9s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 15.73MB / 96.11MB 4.2s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 42.99MB / 856.10MB 4.7s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 12.58MB / 46.27MB 4.5s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 20.97MB / 96.11MB 5.1s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 15.73MB / 46.27MB 5.1s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 26.21MB / 96.11MB 5.7s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 18.87MB / 46.27MB 6.3s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 31.46MB / 96.11MB 6.6s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 22.02MB / 46.27MB 6.9s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 36.70MB / 96.11MB 7.4s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 25.17MB / 46.27MB 7.4s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 28.31MB / 46.27MB 7.8s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 41.94MB / 96.11MB 8.1s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 32.51MB / 46.27MB 8.4s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 47.19MB / 96.11MB 8.7s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 87.03MB / 856.10MB 9.3s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 53.48MB / 96.11MB 9.2s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 58.72MB / 96.11MB 9.6s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 35.65MB / 46.27MB 9.6s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 39.85MB / 46.27MB 10.1s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 65.01MB / 96.11MB 10.4s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 42.99MB / 46.27MB 10.5s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 70.02MB / 96.11MB 11.0s
+#5 sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 46.27MB / 46.27MB 11.0s done
+#5 extracting sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 76.55MB / 96.11MB 11.6s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 81.79MB / 96.11MB 12.3s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 87.03MB / 96.11MB 12.6s
+#5 extracting sha256:9b77611ed79ee341455390253e569d9d254e4846062181b38466165a80d05992 1.8s done
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 93.32MB / 96.11MB 13.1s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 130.02MB / 856.10MB 13.4s
+#5 sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 96.11MB / 96.11MB 13.5s done
+#5 extracting sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381
+#5 extracting sha256:d0e36571370c8073473e9db9eed37455780efe1dcc3242aafd44b4c37fb39381 0.4s done
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 176.16MB / 856.10MB 15.9s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 219.15MB / 856.10MB 18.0s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 262.14MB / 856.10MB 21.2s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 305.14MB / 856.10MB 24.3s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 348.13MB / 856.10MB 27.5s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 392.17MB / 856.10MB 30.8s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 435.16MB / 856.10MB 33.8s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 479.20MB / 856.10MB 36.2s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 523.24MB / 856.10MB 38.7s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 566.23MB / 856.10MB 41.9s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 610.27MB / 856.10MB 45.0s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 654.31MB / 856.10MB 48.5s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 698.35MB / 856.10MB 51.6s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 741.34MB / 856.10MB 54.3s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 785.38MB / 856.10MB 57.8s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 828.38MB / 856.10MB 60.9s
+#5 sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 856.10MB / 856.10MB 64.3s done
+#5 extracting sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58
+#5 extracting sha256:5fd7f2aee39fdcecf880f279ceb8bde709ab7027251a27de936912754d777b58 14.9s done
+#5 DONE 79.6s
+
+#6 [2/7] WORKDIR /opt
+#6 DONE 1.4s
+
+#7 [3/7] COPY pyproject.toml README.md LICENSE /package/
+#7 DONE 0.2s
+
+#8 [4/7] COPY vandal /package/vandal/
+#8 DONE 0.2s
+
+#9 [5/7] RUN python -m pip wheel --wheel-dir=/opt/wheels /package pytest-playwright==0.10.0 playwright==1.64.0
+#9 1.198 Processing /package
+#9 1.199   Installing build dependencies: started
+#9 2.424   Installing build dependencies: finished with status 'done'
+#9 2.425   Getting requirements to build wheel: started
+#9 2.825   Getting requirements to build wheel: finished with status 'done'
+#9 2.826   Preparing metadata (pyproject.toml): started
+#9 3.088   Preparing metadata (pyproject.toml): finished with status 'done'
+#9 3.296 Collecting pytest-playwright==0.10.0
+#9 3.424   Downloading pytest_playwright-0.10.0-py3-none-any.whl.metadata (14 kB)
+#9 3.569 Collecting playwright==1.64.0
+#9 3.598   Downloading playwright-1.64.0-py3-none-manylinux1_x86_64.whl.metadata (3.3 kB)
+#9 3.688 Collecting pytest>=7.0 (from project-vandal==0.2.1)
+#9 3.716   Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+#9 3.842 Collecting psutil>=5.9 (from project-vandal==0.2.1)
+#9 3.872   Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (22 kB)
+#9 3.958 Collecting pyee<15,>=13 (from playwright==1.64.0)
+#9 3.985   Downloading pyee-14.0.0-py3-none-any.whl.metadata (1.8 kB)
+#9 4.165 Collecting greenlet<4.0.0,>=3.1.1 (from playwright==1.64.0)
+#9 4.191   Downloading greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+#9 4.256 Collecting python-slugify<10.0.0,>=6.0.0 (from pytest-playwright==0.10.0)
+#9 4.284   Downloading python_slugify-9.1.3-py3-none-any.whl.metadata (12 kB)
+#9 4.347 Collecting typing-extensions (from pyee<15,>=13->playwright==1.64.0)
+#9 4.373   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#9 4.448 Collecting iniconfig>=1.0.1 (from pytest>=7.0->project-vandal==0.2.1)
+#9 4.474   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+#9 4.541 Collecting packaging>=22 (from pytest>=7.0->project-vandal==0.2.1)
+#9 4.567   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#9 4.628 Collecting pluggy<2,>=1.5 (from pytest>=7.0->project-vandal==0.2.1)
+#9 4.654   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+#9 4.717 Collecting pygments>=2.7.2 (from pytest>=7.0->project-vandal==0.2.1)
+#9 4.744   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+#9 4.804 Collecting text-unidecode>=1.3 (from python-slugify<10.0.0,>=6.0.0->pytest-playwright==0.10.0)
+#9 4.829   Downloading text_unidecode-1.3-py2.py3-none-any.whl.metadata (2.4 kB)
+#9 4.872 Downloading playwright-1.64.0-py3-none-manylinux1_x86_64.whl (48.3 MB)
+#9 8.594    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.3/48.3 MB 13.1 MB/s  0:00:03
+#9 8.621 Downloading pytest_playwright-0.10.0-py3-none-any.whl (22 kB)
+#9 8.661 Downloading greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (621 kB)
+#9 8.728    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 621.4/621.4 kB 7.7 MB/s  0:00:00
+#9 8.755 Downloading pyee-14.0.0-py3-none-any.whl (15 kB)
+#9 8.803 Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+#9 8.870 Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+#9 8.914 Downloading python_slugify-9.1.3-py3-none-any.whl (16 kB)
+#9 8.975 Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+#9 9.033 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#9 9.084 Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (155 kB)
+#9 9.149 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#9 9.274    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 10.3 MB/s  0:00:00
+#9 9.316 Downloading text_unidecode-1.3-py2.py3-none-any.whl (78 kB)
+#9 9.403 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#9 9.614 Saved ./wheels/playwright-1.64.0-py3-none-manylinux1_x86_64.whl
+#9 9.615 Saved ./wheels/pytest_playwright-0.10.0-py3-none-any.whl
+#9 9.618 Saved ./wheels/greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl
+#9 9.618 Saved ./wheels/pyee-14.0.0-py3-none-any.whl
+#9 9.619 Saved ./wheels/pytest-9.1.1-py3-none-any.whl
+#9 9.619 Saved ./wheels/pluggy-1.7.0-py3-none-any.whl
+#9 9.619 Saved ./wheels/python_slugify-9.1.3-py3-none-any.whl
+#9 9.620 Saved ./wheels/iniconfig-2.3.1-py3-none-any.whl
+#9 9.620 Saved ./wheels/packaging-26.3-py3-none-any.whl
+#9 9.621 Saved ./wheels/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl
+#9 9.637 Saved ./wheels/pygments-2.21.0-py3-none-any.whl
+#9 9.638 Saved ./wheels/text_unidecode-1.3-py2.py3-none-any.whl
+#9 9.640 Saved ./wheels/typing_extensions-4.16.0-py3-none-any.whl
+#9 9.640 Building wheels for collected packages: project-vandal
+#9 9.644   Building wheel for project-vandal (pyproject.toml): started
+#9 9.980   Building wheel for project-vandal (pyproject.toml): finished with status 'done'
+#9 9.981   Created wheel for project-vandal: filename=project_vandal-0.2.1-py3-none-any.whl size=28439 sha256=d87291b6e6951807105fd77fbc99f5a91528ba666a432988fe3c079491ab3791
+#9 9.981   Stored in directory: /tmp/pip-ephem-wheel-cache-c0c2t_r7/wheels/63/30/46/e9fc6f15f0227db92424ba0bca6f6eb75ff3974f9d02f5f87e
+#9 9.983 Successfully built project-vandal
+#9 DONE 10.3s
+
+#10 [6/7] COPY study/*.py /opt/study/
+#10 DONE 0.1s
+
+#11 [7/7] RUN useradd --uid 10001 --create-home study
+#11 DONE 0.6s
+
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 3.3s done
+#12 exporting manifest sha256:02ca9bf33dae5d6780ada9b8fefbcf947e13a165efb28c8d1922924282eacd65 0.0s done
+#12 exporting config sha256:5f51860ac5baabc0efa1b797847f9a42dce6da5d9ca7d3d2732b7cebc0123ae0 0.0s done
+#12 exporting attestation manifest sha256:877d1690433ff4ecfc4422bf98dc9fa63f4db03fc583aa43795f824da52766ff
+#12 exporting attestation manifest sha256:877d1690433ff4ecfc4422bf98dc9fa63f4db03fc583aa43795f824da52766ff 0.1s done
+#12 exporting manifest list sha256:9101f6e8a31ce87b93204351a6ce5c574d0bffa59ed68efff8af4db19e931197 0.0s done
+#12 naming to docker.io/library/vandal-study:owned-validation-02
+#12 naming to docker.io/library/vandal-study:owned-validation-02 0.0s done
+#12 unpacking to docker.io/library/vandal-study:owned-validation-02
+#12 unpacking to docker.io/library/vandal-study:owned-validation-02 1.1s done
+#12 DONE 4.7s

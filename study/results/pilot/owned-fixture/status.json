@@ -1,0 +1,45 @@
+{
+  "status": "skipped",
+  "baseline": {
+    "command": [
+      "<HOST_HOME>\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-o",
+      "addopts=",
+      "-q",
+      "-p",
+      "no:vandal",
+      "--junitxml=<HOST_HOME>\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study\\study\\results\\pilot\\owned-fixture\\baseline.xml",
+      "--",
+      "test_local_app.py"
+    ],
+    "exit_code": 1,
+    "timed_out": true,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 180.076
+  },
+  "recipe": {
+    "test_paths": [
+      "test_local_app.py"
+    ],
+    "requirements": [],
+    "install_project": false,
+    "extras": [],
+    "pytest_args": []
+  },
+  "reason": "baseline timeout",
+  "repo": "owned-local-fixture",
+  "commit_sha": "86ea7e4801fdf00ae40c867ad5300a9addd11500",
+  "group": "fixture",
+  "kind": "fixture",
+  "isolation": "host-only owned source; NOT container validation",
+  "fixture_sha256": "8590f787d6b7d2f524797cf1fa6cf66db03cffa5c7b41719a931df6c57f79fea",
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "artifact_sha256": {
+    "baseline.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "environment.txt": "6b7b8797afa1217193ed98f568201af1f96db8503fa8fe0e60510f814cd336ca",
+    "fixture-git.log": "53f6db3f4d35dba44fe93c2ff2ebeb3209ffbc5ef94933bc1c8b9d0f29a6aa0e"
+  }
+}

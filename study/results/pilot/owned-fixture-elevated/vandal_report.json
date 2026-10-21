@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "summary": {
+    "killed": 0,
+    "survived": 0,
+    "error": 5,
+    "not_applied": 0,
+    "skipped": 0,
+    "score": null
+  },
+  "tests": [
+    {
+      "nodeid": "test_local_app.py::test_counter[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#increment",
+        "#count"
+      ],
+      "mutants": [
+        {
+          "strategy": "stealth_disable",
+          "selector": "#increment",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #increment; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 4 without three passing phases. \n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "data_sabotage",
+          "selector": "#count",
+          "status": "error",
+          "hint": "Used #count; check assertions about its value, state, or resulting behavior.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 4 without three passing phases. \n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "ghost_element",
+          "selector": "#increment",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #increment; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 4 without three passing phases. \n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        },
+        {
+          "strategy": "logic_sabotage",
+          "selector": "#increment",
+          "status": "error",
+          "hint": "A Playwright assertion ran after clicking #increment; review its outcome checks.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 4 without three passing phases. \n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 0,
+        "survived": 0,
+        "error": 4,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": null
+      }
+    },
+    {
+      "nodeid": "test_local_app.py::test_label_without_assertion[chromium]",
+      "baseline": "passed",
+      "targets": [
+        "#label"
+      ],
+      "mutants": [
+        {
+          "strategy": "data_sabotage",
+          "selector": "#label",
+          "status": "error",
+          "hint": "Used #label; check assertions about its value, state, or resulting behavior.",
+          "details": "Clean replay before mutation failed: Unmutated worker exited 4 without three passing phases. \n\n",
+          "controls": {
+            "before": "error",
+            "after": "not_run"
+          }
+        }
+      ],
+      "untested_targets": [],
+      "skipped_by_cap": 0,
+      "summary": {
+        "killed": 0,
+        "survived": 0,
+        "error": 1,
+        "not_applied": 0,
+        "skipped": 0,
+        "score": null
+      }
+    }
+  ]
+}

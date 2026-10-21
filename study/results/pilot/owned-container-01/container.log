@@ -1,0 +1,4 @@
+9be6fbdffaab54d6d92ac643f3469057d3be312f3083a18b1593d85a34eec04b
+docker: Error response from daemon: failed to create task for container: failed to initialize logging driver: compression cannot be enabled when max file count is 1
+
+Run 'docker run --help' for more information

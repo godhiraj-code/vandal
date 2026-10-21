@@ -1,0 +1,76 @@
+{
+  "method": "Only baseline XML hostname attributes replaced with runner; all other XML elements, identities, outcome counts and raw mutant reports unchanged. Status integrity maps updated. Original hashes reference ff68569.",
+  "verified_original_artifact_hashes": 120,
+  "changed": [
+    {
+      "path": "owned-container-06/baseline.xml",
+      "original_sha256": "41095c335dc619a3a684ddd86d6c68a543455d0cf71f645b2ff3c540e3fc2aca",
+      "sanitized_sha256": "42ef9e9fc382545fe3283d0a0f30fdb9ca2afae79748d501512b4857b114bb7f"
+    },
+    {
+      "path": "owned-container-06/status.json",
+      "original_sha256": "ce805612f60f277261b70587aa7aab26c172318bede17a21b393b41ccb5b2c93",
+      "sanitized_sha256": "061091a18e843fa2ab63d66ec8f11955b1b2b40c040b995f9238278055fbfde4"
+    },
+    {
+      "path": "owned-container-07/baseline.xml",
+      "original_sha256": "991d9dcf2782a49482b0c089c1357357d48e3a744d6c59ba5633ce8843ccc9de",
+      "sanitized_sha256": "4a516d1381277bf7f5fbcad87dec17e3cab4301d5e9142aff273af55c0434865"
+    },
+    {
+      "path": "owned-container-07/status.json",
+      "original_sha256": "595ba03c882aa11ea88b24013fe08c52dfdabe466b41dc6105dd1b60a7f887af",
+      "sanitized_sha256": "ba272790083bb9bac5ac21055039a5daf0f7f548a84b132cbcf697dc2ed4ba9e"
+    },
+    {
+      "path": "owned-container-08/baseline.xml",
+      "original_sha256": "e2826c83d1148d96554bc2562d85532bc24cdb38a083a09a4ff4d6205019cd5c",
+      "sanitized_sha256": "50ed1e5966ef08857769e15dd42e9efc7779620aa2cbc20c6ff5a227bf2d4d89"
+    },
+    {
+      "path": "owned-container-08/status.json",
+      "original_sha256": "180429df1114c79b7ba9ff278b524781fd444971b1268046517fd897cbfeb655",
+      "sanitized_sha256": "721a39a2b80b3173fe85f30bf3f0d13c2cee6b78d18011e803a835674a689f91"
+    },
+    {
+      "path": "owned-container-09/baseline.xml",
+      "original_sha256": "819e2cb8d6320eebde910a4f099bf99b9e514bdff9152da0b0cb33b00f2d0b5b",
+      "sanitized_sha256": "38ca6fbf74e52b11f8a32cb729d07e58cd3eea351c83737555523d89ec12e4e4"
+    },
+    {
+      "path": "owned-container-09/status.json",
+      "original_sha256": "25735c3c8e14fbfb06e6d3300ed4fa40096cb145c48e49ba6631e60e0e086404",
+      "sanitized_sha256": "15a60a31fc2f6b376ca0cbcc7501e02c19bb7e464d66cf918e1d811691d75334"
+    },
+    {
+      "path": "owned-container-10/baseline.xml",
+      "original_sha256": "9525bf0e4cd5ba53169be14f8c7c07a4cdba6a4e73d206a8fd68a33a30289ee8",
+      "sanitized_sha256": "4ffcd82e157c556804a6d7303a0b3d5f728ff2ac52b547d0fd26030105e49b11"
+    },
+    {
+      "path": "owned-container-10/status.json",
+      "original_sha256": "c7ea5e6c7ac8875ca781ed646a78a03ce8e6c33d69017b3c4b5019eee18fb4ed",
+      "sanitized_sha256": "5d082929a174150cd322116c0136e1944d186376f81c2c651d3c44bfb3de7531"
+    },
+    {
+      "path": "owned-fixture-corrected/baseline.xml",
+      "original_sha256": "2c2faa6b37d1f737eebdd9a50c76e91d5b032d41989d8c61b8452226a34db2e0",
+      "sanitized_sha256": "e959e8c22a684ceb9220272eaea025cb6921e226f4c304db68bcef4f24effae0"
+    },
+    {
+      "path": "owned-fixture-corrected/status.json",
+      "original_sha256": "86715a10fdbc812d5a07aa170d894c16b76dccae26d2316197b5eb883a0f1a48",
+      "sanitized_sha256": "f643ca0840ae47211347ed851dd98d6634a3f7702a1bed4e59e9031b6ee14f3c"
+    },
+    {
+      "path": "owned-fixture-elevated/baseline.xml",
+      "original_sha256": "05ce78bb8f698ffb1ae5f95f8d675802527bb1796a8ba9c5d22fbeeeada9446e",
+      "sanitized_sha256": "18108567a49f40196ec149c572878bb25644013675569734e86c81297f5e69a5"
+    },
+    {
+      "path": "owned-fixture-elevated/status.json",
+      "original_sha256": "ae82ea6f1425b6ebf554d520f3f6efd91bb4fdd4aa5f691883b7efd4a7528783",
+      "sanitized_sha256": "1cecce7a27089e6edd8213354b7d87cb0192c2306fec75a13484074ef6f11358"
+    }
+  ]
+}

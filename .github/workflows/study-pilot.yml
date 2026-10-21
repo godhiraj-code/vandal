@@ -1,0 +1,74 @@
+name: Manual study pilot
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: Exact RUN token printed for study/repos.csv
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: study-pilot
+  cancel-in-progress: false
+jobs:
+  pilot:
+    runs-on: ubuntu-24.04
+    environment: study-pilot
+    permissions:
+      contents: read
+    timeout-minutes: 60
+    steps:
+      - name: Require configured environment reviewer gate
+        env:
+          GATE: ${{ vars.STUDY_PILOT_GATE }}
+        run: |
+          if [ "$GATE" != "reviewer-configured" ]; then
+            echo "Study pilot blocked: configure the required reviewer and set STUDY_PILOT_GATE=reviewer-configured only inside the study-pilot environment."
+            exit 1
+          fi
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        id: checkout
+        with:
+          persist-credentials: false
+      - name: Validate exact confirmation and approved manifest before preparation
+        env:
+          CONFIRM: ${{ inputs.confirm }}
+        run: env -i PATH="$PATH" python3 -m study.pilot preflight --confirm "$CONFIRM"
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+      - name: Build owned image and record immutable ID
+        run: |
+          mkdir -p "$RUNNER_TEMP/study-home" "$RUNNER_TEMP/study-docker"
+          env -i PATH="$PATH" HOME="$RUNNER_TEMP/study-home" DOCKER_CONFIG="$RUNNER_TEMP/study-docker" \
+            docker build --pull -f study/Dockerfile --iidfile study/pilot-image-id.txt .
+          cat study/pilot-image-id.txt
+      - name: Download reviewed binary wheelhouse without credentials
+        run: bash study/wheelhouse/fetch.sh --dest wheelhouse
+      - name: Run approved pinned repositories inside offline containers only
+        env:
+          CONFIRM: ${{ inputs.confirm }}
+        run: |
+          env -i PATH="$PATH" HOME="$RUNNER_TEMP/study-home" DOCKER_CONFIG="$RUNNER_TEMP/study-docker" \
+            python -m study.run_study --repos study/repos.csv --confirm "$CONFIRM" \
+            --image "$(cat study/pilot-image-id.txt)" --wheelhouse wheelhouse \
+            --results study/results/public --seconds 900
+      - name: Regenerate report and job summary from recorded outcomes
+        if: always() && steps.checkout.outcome == 'success'
+        run: |
+          python3 -m study.summarize --results study/results --report study/REPORT.md
+          python3 -m study.pilot summary
+          cat study/PILOT_SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always() && steps.checkout.outcome == 'success'
+        with:
+          name: study-pilot-${{ github.run_id }}
+          if-no-files-found: error
+          path: |
+            study/results/public/**
+            study/results/summary.csv
+            study/REPORT.md
+            wheelhouse/MANIFEST.csv
+            study/pilot-image-id.txt
+            study/PILOT_SUMMARY.md

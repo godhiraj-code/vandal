@@ -1,0 +1,18 @@
+<!doctype html><html lang='en'><meta charset='utf-8'><title>Vandal strength report</title><style>body{font-family:system-ui;margin:2rem}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:.6rem;text-align:left;overflow-wrap:anywhere}</style><h1>Vandal strength: N/A</h1><p>Survivors are candidates for review, not proof of missing assertions. Errors and unapplied mutations do not contribute to strength.</p><pre>{
+  &quot;killed&quot;: 0,
+  &quot;survived&quot;: 0,
+  &quot;error&quot;: 5,
+  &quot;not_applied&quot;: 0,
+  &quot;skipped&quot;: 0,
+  &quot;score&quot;: null
+}</pre><table><tr><th>Strategy</th><th>Selector</th><th>Status</th><th>Hint</th><th>Details</th></tr><tr><th colspan='5'>test_local_app.py::test_counter[chromium] | baseline: passed | strength: N/A</th></tr><tr><td>stealth_disable</td><td>#increment</td><td>error</td><td>A Playwright assertion ran after clicking #increment; review its outcome checks.</td><td>Clean replay before mutation failed: Unmutated worker exited 4 without three passing phases. 
+
+</td></tr><tr><td>data_sabotage</td><td>#count</td><td>error</td><td>Used #count; check assertions about its value, state, or resulting behavior.</td><td>Clean replay before mutation failed: Unmutated worker exited 4 without three passing phases. 
+
+</td></tr><tr><td>ghost_element</td><td>#increment</td><td>error</td><td>A Playwright assertion ran after clicking #increment; review its outcome checks.</td><td>Clean replay before mutation failed: Unmutated worker exited 4 without three passing phases. 
+
+</td></tr><tr><td>logic_sabotage</td><td>#increment</td><td>error</td><td>A Playwright assertion ran after clicking #increment; review its outcome checks.</td><td>Clean replay before mutation failed: Unmutated worker exited 4 without three passing phases. 
+
+</td></tr><tr><th colspan='5'>test_local_app.py::test_label_without_assertion[chromium] | baseline: passed | strength: N/A</th></tr><tr><td>data_sabotage</td><td>#label</td><td>error</td><td>Used #label; check assertions about its value, state, or resulting behavior.</td><td>Clean replay before mutation failed: Unmutated worker exited 4 without three passing phases. 
+
+</td></tr></table></html>

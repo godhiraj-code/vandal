@@ -1,0 +1,20 @@
+{
+  "kind": "local Git archive of owned fixture only",
+  "result": {
+    "command": [
+      "git",
+      "-C",
+      "<HOST_HOME>\\Documents\\Codex\\2026-10-21\\task-3\\vandal-study",
+      "archive",
+      "--format=tar",
+      "--output=<HOST_TEMP>\\vandal-study-g384khk_\\input\\source.tar",
+      "d3747dd9e609b6e10eaa938ffd3313468882c543",
+      "study/fixture/test_local_app.py"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 0.055
+  }
+}

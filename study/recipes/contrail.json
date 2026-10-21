@@ -1,0 +1,11 @@
+{
+  "test_paths": [
+    "tests_browser/test_passport_page.py"
+  ],
+  "requirements": [],
+  "install_project": true,
+  "extras": [
+    "browser"
+  ],
+  "pytest_args": []
+}

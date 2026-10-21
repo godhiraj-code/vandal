@@ -1,0 +1,129 @@
+# Reproducible Playwright mutation study
+
+Run commands from the repository root. Python 3.9+ runs the host harness; the Docker
+image uses the Python/runtime bundled in Playwright's noble image. Study code and
+results are excluded from the wheel by the existing explicit `packages = ["vandal"]`.
+
+## Discover and review
+
+```sh
+python -m study.find_repos
+```
+
+Read-only GitHub Search API discovery uses `GITHUB_TOKEN` from the host environment.
+It searches commits (including generated tests), agent PRs, guidance files and
+checks pinned Python browser files and licenses, and
+writes unapproved leads plus an audit of queries/errors and evidence-type counts.
+Use --mode commits, agent-prs or guidance for an individual route. The default searches three pages per query.
+The AST observable_calls screen never imports or executes candidate code. Bounded search
+is not exhaustive. No test import, collection or repository setup happens here.
+For manual evidence sources see `candidate-evidence.json` and `CANDIDATE_REVIEW.md`.
+Run discovery to a separate `--output` to avoid replacing reviewed candidate work.
+
+A **person** checks `CRITERIA.md`, source/evidence and recipes, reviews dependency
+wheels, and copies selected rows to `repos.csv` with `approved=yes`, reviewer and
+UTC `reviewed_at`. Keep unapproved/rejected candidates in the discovery audit.
+The study is descriptive and agent-only. No human control group or historical listing mode is used. See repos.proposed.csv and recipes/OFFLINE.md for the unapproved shortlist and setup plans.
+
+## Container execution
+
+Build only the owned harness/package image; `.dockerignore` allows just required
+source files and excludes credentials, `.git`, venvs and results:
+
+```sh
+docker build -f study/Dockerfile -t vandal-study .
+docker image inspect vandal-study --format '{{.Id}}'
+python -m study.run_study --image sha256:REPLACE_WITH_INSPECTED_ID --wheelhouse /path/to/reviewed-wheels
+python -m study.summarize
+```
+
+Record the build log and image ID; the upstream base tag and unconstrained package
+dependencies can change between builds. For reproducibility retain the immutable
+image and dependency wheels, not merely the Dockerfile. The worker pins Playwright
+1.64.0/pytest-playwright 0.10.0 to its browser image; it installs Vandal from this
+checkout's wheel, never an independently published release.
+
+The runner prints the frozen manifest and recipes and prompts for action-time approval
+by default. The explicitly requested manual workflow uses an exact `--confirm` RUN
+token plus the human-reviewed study-pilot environment; see [PILOT.md](PILOT.md).
+CSV inclusion approval alone does not authorize an assistant to execute repository
+code, and this change does not dispatch the pilot.
+
+Source acquisition uses a bounded bare Git fetch of the exact SHA in a temporary
+directory, with global/system configuration and credentials disabled; no checkout,
+hooks, filters or submodules execute. Archive extraction rejects links, devices,
+path escapes, duplicates and oversized trees. The source hash is retained.
+
+Install and tests run in a fresh venv inside the container, entirely offline. Supply
+reviewed, platform-compatible dependency wheels (including project build backends
+and transitives) in a dedicated directory containing regular `.whl` files and optional MANIFEST.csv inventory.
+The runner copies and hashes these, never mounts an incidental user directory.
+It does not run pip/build from the candidate on the host. Missing wheels cause an
+honest installation exclusion. No dependency/download fallback enables networking.
+
+Resource policy: unprivileged UID, read-only root, no capabilities or privilege
+escalation, no network, no host IPC/PID sharing, no Docker socket, two CPUs, 4 GiB
+RAM/no additional swap, 256 PIDs, 3 GiB work tmpfs, 256 MiB temporary tmpfs and shared
+memory, file-size/descriptor limits, bounded logs and per-repository deadline.
+Only read-only source/recipe and dependency inputs are mounted. No host credentials
+or `GITHUB_TOKEN` enter a container, and no candidate output is written through a
+host bind mount. Whitelisted regular artifacts are exported through bounded tar
+data; the entire container is forcibly removed after collection. Cleanup failures
+remain in status/logs, exclude the result and stop subsequent repositories until
+operator attention. Explicit empty proxy environment flags override Docker CLI
+[automatic proxy injection](https://docs.docker.com/engine/cli/proxy/), which could
+otherwise copy host-configured proxy credentials into a container.
+
+The standalone baseline disables Vandal. Both phases clear repository `addopts`,
+use identical reviewed `-m`/`-k` selection, and pass only explicit test files.
+This avoids hidden parallelism/strategy/reporter options and is a disclosed method
+change. Project fixtures handle local app startup. No application-specific secrets,
+external services or arbitrary setup shell commands are accepted. Install, baseline
+and mutation output, environment freeze and raw report are retained. All skipped
+tests invalidate the baseline; this deliberately favors fully runnable selections.
+
+## Validation without Docker
+
+```sh
+python -m pip install -e '.[test]' build
+python -m pytest study/tests -q
+python -m study.fixture_smoke
+python -m study.summarize
+python -m build --wheel
+```
+
+`fixture_smoke` executes only the small owned fixture hardwired in this repository,
+in a newly initialized local fixture Git repository, using the task venv. It has no
+arbitrary source/path execution option. Its scores are real harness measurements
+and always excluded from public cohort analysis. It exercises the same real pytest
+baseline/mutation/report path, **not** Docker acquisition, installation, namespace
+isolation or container export. A successful fixture is not a successful public pilot.
+Never use this host-only fallback for a third-party candidate.
+
+`summary.csv` is machine-readable; `REPORT.md` includes public exclusions and method limitations. Earlier failed owned-fixture attempts are retained in `FIXTURE_ATTEMPTS.md`. Existing output directories are never overwritten by a
+run. Choose a new results directory for repeat validation; do not combine repeat
+runs of the same repository into a larger apparent sample.
+
+
+## Owned fixture through Docker
+
+The CI `docker` job builds the same Dockerfile and exercises `container_command`,
+worker, bounded export and cleanup using a local Git tar of the committed owned
+fixture. It never fetches a public candidate. Run the equivalent locally:
+
+```sh
+mkdir fixture-wheels
+python -m study.run_study --owned-fixture --image sha256:INSPECTED_ID --wheelhouse fixture-wheels --results study/results/owned-container --seconds 600
+python -m study.verify_container study/results/owned-container
+python -m study.summarize --results study/results/owned-container --report study/OWNED_REPORT.md
+```
+
+Docker CLI processes retain DOCKER_HOST, DOCKER_CONTEXT, DOCKER_CONFIG and HOME
+for client routing/configuration only. Candidate processes receive none of these
+host values; the worker supplies its own HOME. Proxy defaults are explicitly emptied.
+The work tmpfs permits execution for the fresh venv; the temporary tmpfs retains
+noexec, nosuid and nodev. The image includes the matching Python venv package.
+Venv creation, installation, baseline and mutation are bounded and logged.
+
+Single-repository IQR is N/A. Strategy rates are explicitly pooled by mutant with
+both n_repos and n_mutants; larger suites therefore carry greater weight.
