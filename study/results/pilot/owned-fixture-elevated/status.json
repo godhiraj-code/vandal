@@ -58,7 +58,7 @@
   "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
   "artifact_sha256": {
     "baseline.log": "d9ca69d7f00ce90561a3177185ba07559b4c90b11d44f8915683b0e597fb8841",
-    "baseline.xml": "05ce78bb8f698ffb1ae5f95f8d675802527bb1796a8ba9c5d22fbeeeada9446e",
+    "baseline.xml": "18108567a49f40196ec149c572878bb25644013675569734e86c81297f5e69a5",
     "environment.txt": "6b7b8797afa1217193ed98f568201af1f96db8503fa8fe0e60510f814cd336ca",
     "fixture-git.log": "bab2f0b12e775f172c2de5f01d6c1a849009d58240dfef54cbfe0798af6dc14d",
     "mutation.log": "9a3dbba0cce2c46e03174da6cfd4892782a5517f63bab702050d1b72d1e08f13",

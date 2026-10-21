@@ -3,6 +3,7 @@ import argparse
 import csv
 import json
 import math
+import os
 import statistics
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -82,7 +83,8 @@ def read_results(root):
     rows, strategies, seen = [], defaultdict(Counter), set()
     for path in sorted(root.rglob("status.json")):
         row = {"repo": str(path.parent.relative_to(root)), "commit_sha": "", "kind": "unknown",
-               "group": "unknown", "status": "invalid", "reason": "", "eligible": False}
+               "group": "unknown", "status": "invalid", "reason": "", "eligible": False,
+               "run_path": path.parent.relative_to(root).as_posix(), "validation_mode": "unknown"}
         try:
             status = json.loads(path.read_text(encoding="utf-8"))
             if not isinstance(status, dict):
@@ -90,6 +92,8 @@ def read_results(root):
             row.update({k: status[k] for k in ("repo", "commit_sha", "kind", "group", "status", "reason")})
             if any(not isinstance(row[k], str) for k in ("repo", "commit_sha", "kind", "group", "status", "reason")):
                 raise ValueError("invalid status field types")
+            row["validation_mode"] = ("host-only" if "host-only" in status.get("isolation", "")
+                                      else "container" if status.get("container_command") else "unknown")
             identity = row["repo"].lower()
             if row["kind"] == "public" and identity in seen:
                 for previous in rows:
@@ -149,7 +153,9 @@ def cell(value):
     return str(value).replace("|", "\\|").replace("\n", " ")
 
 
-def summarize(root, report_path):
+def summarize(root, report_path, *, write_fixture_attempts=False):
+    if write_fixture_attempts and (os.environ.get("CI") or os.environ.get("GITHUB_ACTIONS")):
+        raise ValueError("fixture history must never be rewritten from CI")
     rows, strategies = read_results(root)
     failures = [r for r in rows if r["kind"] == "fixture" and r["status"] != "completed"]
     visible = [r for r in rows if r not in failures]
@@ -157,8 +163,9 @@ def summarize(root, report_path):
     failure_lines = ["# Earlier owned-fixture attempts", "", "Historical validation failures; excluded from the descriptive public study.", ""]
     failure_lines += [f"- {cell(r['repo'])}: {cell(r['status'])}; {cell(r['reason'])} (n attempts=1)." for r in failures]
     failure_lines += ["", f"Failed/incomplete owned-fixture attempts: n={len(failures)}. Raw artifacts remain under results/pilot/; see VALIDATION.md for the chronological record.", ""]
-    failure_path.write_text("\n".join(failure_lines), encoding="utf-8")
-    columns = ["repo", "commit_sha", "kind", "group", "status", "eligible", "score",
+    if write_fixture_attempts:
+        failure_path.write_text("\n".join(failure_lines), encoding="utf-8")
+    columns = ["run_path", "validation_mode", "repo", "commit_sha", "kind", "group", "status", "eligible", "score",
                "n_tests", "n_mutants", "n_scored", *STATUSES, "untested", "untested_targets",
                "skipped_by_cap", "action_failed_kills", "reason"]
     root.mkdir(parents=True, exist_ok=True)
@@ -166,7 +173,7 @@ def summarize(root, report_path):
         writer = csv.DictWriter(f, fieldnames=columns)
         writer.writeheader()
         writer.writerows(rows)
-    title = "Study protocol and results" if any(r["kind"] == "public" for r in rows) else "Study protocol and results (no public runs yet)"
+    title = "Study protocol and results" if any(r["kind"] == "public" and r["status"] == "completed" for r in rows) else "Study protocol (no public runs yet)"
     lines = ["# " + title, "",
              f"Public agent-suite sample: n={sum(r['eligible'] for r in rows)} repositories. Public attempts: n={sum(r['kind'] == 'public' for r in rows)}.", "",
              "This is a descriptive study of agent-written suites only. No comparison population or causal claim is defined.", "",
@@ -174,12 +181,18 @@ def summarize(root, report_path):
              "Results are limited to the repositories and selected tests actually executed. No population or causal inference is justified.", "",
              "## Per repository", "",
              "Counts below are observed mutants, with n_tests and n_mutants shown per row. Score is 100 × killed / n_scored; n_scored = killed + survived. N/A means no observation, not zero.", "",
-             "| Repository / kind / group | Status | Score % (n_scored) | n_tests / n_mutants | Killed | Survived | Error | Untested mutants | Unsupported targets | Cap omissions |",
-             "|---|---|---|---|---|---|---|---|---|---|"]
-    for r in visible:
-        lines.append("| " + " | ".join(map(cell, [f"{r['repo']} / {r['kind']} / {r['group']}", r["status"],
-            f"{cell(r.get('score'))} (n={cell(r.get('n_scored'))})", f"{cell(r.get('n_tests'))} / {cell(r.get('n_mutants'))}",
-            *[r.get(k) for k in ("killed", "survived", "error", "untested", "untested_targets", "skipped_by_cap")]])) + " |")
+             ]
+    fixture_counts = Counter((r["validation_mode"], r["commit_sha"]) for r in visible if r["kind"] == "fixture")
+    for mode, heading in (("public", "Public repositories"), ("host-only", "Host-only owned fixture validation"), ("container", "Container owned fixture validation"), ("unknown", "Other recorded validation")):
+        group = [r for r in visible if (r["kind"] == "public" if mode == "public" else r["kind"] != "public" and r["validation_mode"] == mode)]
+        if not group and mode != "public":
+            continue
+        lines += ["", f"### {heading} (n={len(group)} runs)", "", "| Repository / artifact directory / pinned SHA | Status | Score % (n_scored) | n_tests / n_mutants | Killed | Survived | Error | Untested mutants | Unsupported targets | Cap omissions |", "|---|---|---|---|---|---|---|---|---|---|"]
+        for r in group:
+            repeat = f"(repeat runs at this SHA: n={fixture_counts[(mode, r['commit_sha'])]})" if fixture_counts[(mode, r["commit_sha"])] > 1 else ""
+            lines.append("| " + " | ".join(map(cell, [f"{r['repo']} / {r['run_path']} / {r['commit_sha']} {repeat}", r["status"],
+                f"{cell(r.get('score'))} (n={cell(r.get('n_scored'))})", f"{cell(r.get('n_tests'))} / {cell(r.get('n_mutants'))}",
+                *[r.get(k) for k in ("killed", "survived", "error", "untested", "untested_targets", "skipped_by_cap")]])) + " |")
     lines += ["", "Untested mutants = not_applied + skipped. Unsupported targets and cap omissions are separate units and are not added to that count or score denominator.", "",
               "## Descriptive agent-suite results", "",
               "One complete, scored observation per repository; repository-weighted median, inclusive-quartile IQR and min-max spread. Guidance-only provenance, incomplete runs, invalid reports and owned fixtures are excluded. IQR is N/A below two repositories.", "",
@@ -204,7 +217,7 @@ def summarize(root, report_path):
     lines += ["", "Selection is a convenience sample from bounded GitHub search, not a random sample. Visible co-authorship is evidence of agent involvement, not exclusive agent authorship. Only test-specific agent involvement is in scope; guidance alone cannot establish authorship.", "",
               "Offline, no-secret execution selects for self-contained suites; external CDNs, services and complex install requirements can cause exclusions. All-skip and partially skipped baselines are excluded. A single baseline cannot establish lack of flakiness.", "",
               "Default Vandal strategies and its per-test cap depend on observed interactions. Scores across different apps, assertions, targets and strategy mixes are not directly comparable. Controlled action failures count as kills and need not imply an outcome assertion. Mutant errors remain visible but outside the score denominator.", "",
-              "Candidate processes can tamper with their own in-container reports. Stored hashes detect later changes, not dishonest execution. Independently inspect raw logs and source before publication. No claim that container isolation or its Docker integration has been validated follows from a host-only fixture test.", ""]
+              "Candidate processes can tamper with their own in-container reports. Stored hashes detect later changes, not dishonest execution. Independently inspect raw logs and source before publication. The host-only validation row exercises the owned baseline and mutation run without a container. The separately labelled container rows exercise the Docker harness; repeated runs of the same fixture are not independent study subjects. Neither category is a public repository result.", ""]
     report_path.write_text("\n".join(lines), encoding="utf-8")
     return rows
 
@@ -213,8 +226,9 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--results", type=Path, default=Path("study/results"))
     p.add_argument("--report", type=Path, default=Path("study/REPORT.md"))
+    p.add_argument("--write-fixture-attempts", action="store_true", help="explicitly regenerate historical fixture failure log; forbidden in CI")
     args = p.parse_args()
-    summarize(args.results, args.report)
+    summarize(args.results, args.report, write_fixture_attempts=args.write_fixture_attempts)
 
 
 if __name__ == "__main__":

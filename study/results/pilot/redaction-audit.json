@@ -137,5 +137,7 @@
       "original_sha256": "3269e1b3ba0ea5e02f443447498b99c61104c9ffef28da27e10e4952d84346b3",
       "sanitized_sha256": "ae82ea6f1425b6ebf554d520f3f6efd91bb4fdd4aa5f691883b7efd4a7528783"
     }
-  ]
+  ],
+  "snapshot": "ff68569a9fb0edda037fa8b8d92490249dae920a",
+  "subsequent_metadata_redaction": "hostname-redaction-audit.json records subsequent hostname/status hash changes; original sanitized hashes apply to the named snapshot."
 }

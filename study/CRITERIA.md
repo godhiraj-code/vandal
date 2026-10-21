@@ -16,15 +16,16 @@ recipes, immutable image and dependency hashes.
 - Actual Python pytest browser tests using Playwright, with exact paths. A Python
   backend and TypeScript browser tests alone do not qualify.
 - Test-specific authored evidence: a commit adding/changing the selected tests with
-  agent co-authorship, an agent-authored PR containing those tests, or an explicit
-  statement that those tests were generated. Preserve links/diffs and disclose
+  agent co-authorship or an agent-authored PR containing those tests. A generic
+  "generated tests" statement is weak, unresolved provenance and cannot alone
+  establish agent authorship. Preserve links/diffs and disclose
   mixed authorship, including agent edits to an existing suite.
 - AGENTS.md/CLAUDE.md is guidance_only provenance. It identifies review leads but
   cannot establish authored-test eligibility. Missing agent metadata establishes
   nothing about authorship. Historical control discovery is out of scope and removed.
 - Proposed mutation-study replacements require at least 10 observable call sites.
-  Retain lower/zero-count leads and their reasons without counting them toward that
-  screening target. Static calls do not guarantee mutants or a passing baseline.
+  Retain positive lower-count leads without counting them toward that target;
+  zero-call entries belong in rejected_candidates.csv, never candidates.csv. Static calls do not guarantee mutants or a passing baseline.
 - A baseline must pass headlessly with every selected test exercised, no credentials,
   display server or external network. Partial skips/xfails, empty collection and
   missing dependencies/services are exclusions. Static qualification and executable
@@ -36,7 +37,8 @@ Read source as utf-8-sig. Select files importing Playwright, or using the pytest
 fixture with a pinned pytest-playwright declaration in supporting files. Count only
 tracked Page/Locator receiver chains, locator/get_by results and imported Playwright
 expect arguments. Simple fixture-returned pages and page-returning factories, aliases
-and Page/Locator annotations are recognized. Selenium/Appium and ordinary Python
+and Page/Locator annotations are recognized, along with page-object self.page
+fields, lexical nested helpers, frame_locator and loops over locator.all(). Selenium/Appium and ordinary Python
 objects do not qualify merely by having similarly named methods.
 
 This is conservative AST analysis, not type checking or runtime evidence. Helpers
@@ -46,8 +48,9 @@ returns and Python shadowing may still cause misses or false positives.
 Read ancestor conftest.py, pytest.ini, setup.cfg, tox.ini, pyproject.toml and
 requirements files at the same SHA. Record external host literals, base_url and
 --base-url, subprocess git clone, Docker use and availability checks as offline_risk.
-Review imported setup helpers/application assets separately; the CLI does not follow
-those exhaustively. Metadata/documentation URLs and graph identifiers can be false
+The CLI follows statically imported repository-local Python helpers recursively
+using the pinned Git tree, including relative and src-layout imports, with a 200-file
+bound. Dynamic imports and application assets still require manual review. Metadata/documentation URLs and graph identifiers can be false
 positives. Localhost settings are review flags, not external dependencies. An empty
 risk list is not proof of offline compatibility. Never describe a source risk as an
 observed baseline failure.

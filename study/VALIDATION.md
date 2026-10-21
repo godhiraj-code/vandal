@@ -187,3 +187,26 @@ risk; talkvote needs a bounded hashed Node-asset staging extension that is not y
 implemented. No source risk is presented as an observed baseline failure. The
 Docker runtime backup was preserved. Exact publication head, remote parity and new
 head CI conclusions are recorded in PR #7 after checks finish.
+
+
+## Evidence and discovery correction
+
+The study-only revision adds narrow absolute-home redaction, node-ID preservation,
+neutral baseline hostnames, explicit non-CI fixture-history regeneration, completed-
+public-only results titles, recursive pinned helper risk scans and richer receiver
+tracking. Generic generated-test wording is weak unresolved provenance. Zero-call
+records now live in rejected_candidates.csv, outside the 10-row candidate manifest.
+Seven positive-call leads still meet the 10-call replacement floor; all are unapproved.
+
+Local study regression tests: 86 passed in 1.57s. Independent review identified
+space-containing node IDs and package initializers; both gained regression cases.
+All 120 existing artifact hashes were verified before and after neutralizing seven
+baseline XML hostnames. XML identities/outcome fields and raw mutant reports were
+unchanged; hostname-redaction-audit.json retains before/after hashes for those XML
+files and their seven status integrity maps. The older redaction audit is explicitly
+bound to ff68569, with the subsequent metadata audit linked.
+
+REPORT.md now distinguishes one host-only and five container validations; container
+08/09/10 repeat the same SHA. These are previously measured runs, not new executions
+in this correction. FIXTURE_ATTEMPTS.md was not regenerated. No public source was
+executed. Exact-head hosted study/Docker/full-suite results are recorded in PR #7.

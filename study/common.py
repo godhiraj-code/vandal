@@ -45,7 +45,7 @@ def candidate_reason(row):
         return "license requires explicit OSI verification/support"
     if row.get("group") != "agent":
         return "authorship is unresolved"
-    allowed = {"agent": {"test_commit", "agent_pr", "generated_tests"}}
+    allowed = {"agent": {"test_commit", "agent_pr"}}
     if row.get("evidence_kind") not in allowed[row["group"]]:
         return "authorship evidence does not support group"
     for key in ("evidence_url", "license_url"):

@@ -1,21 +1,36 @@
 """Redact host locations in retained evidence without changing measured outcomes."""
 import json
+import os
 import re
+from pathlib import Path
+
+
+def _redact_text(value):
+    # Match only the beginning of an absolute path token, never an internal
+    # component (including /work/home) or relative tests/home paths.
+    boundary = r"(?<![\w./\\:~+-])"
+    homes = {os.environ.get("HOME", ""), str(Path.home())}
+    homes.update(str(Path(p).resolve()) for p in tuple(homes) if p and Path(p).is_absolute())
+    patterns = [r"(?i:[A-Z]:[\\/]+Users[\\/]+[^\\/\r\n,\"'<>:]+)",
+                r"/(?:Users|home)/[^/\r\n,\"'<>:]+"]
+    patterns = [re.escape(p.rstrip("/\\")) + r"(?=[/\\]|$|[\s\"',])"
+                 for p in sorted(homes, key=len, reverse=True) if p and Path(p).is_absolute() and p.rstrip("/\\")] + patterns
+    pattern = re.compile(boundary + "(?:" + "|".join(patterns) + ")")
+    def replace(match):
+        # Pytest identities, including absolute node IDs, are measurements.
+        token = re.split(r"[\r\n\"<>]", value[match.start():], maxsplit=1)[0]
+        return match.group(0) if "::" in token else "<HOST_HOME>"
+    return pattern.sub(replace, value)
 
 
 def host_paths(value):
     if isinstance(value, dict):
-        return {key: host_paths(item) for key, item in value.items()}
+        return {key: item if key in {"nodeid", "nodeids"} else host_paths(item) for key, item in value.items()}
     if isinstance(value, list):
         return [host_paths(item) for item in value]
     if not isinstance(value, str):
         return value
-    # Handle native Windows, JSON-escaped text, and Docker Desktop's Linux view.
-    value = re.sub(r"(?i)[A-Z]:[\\/]+Users[\\/]+[^\\/\s]+[\\/]+AppData[\\/]+Local[\\/]+Temp", "<HOST_TEMP>", value)
-    value = re.sub(r"(?i)/run/desktop/mnt/host/[a-z]/Users/[^/]+/AppData/Local/Temp", "<HOST_TEMP>", value)
-    value = re.sub(r"(?i)[A-Z]:[\\/]+Users[\\/]+[^\\/\s]+", "<HOST_HOME>", value)
-    value = re.sub(r"/(?:home|Users)/[^/\s,\"']+", "<HOST_HOME>", value)
-    return re.sub(r"/tmp/vandal-study-[^/\s,\"']+", "<HOST_RUN>", value)
+    return _redact_text(value)
 
 
 def redact_file(path):
@@ -42,6 +57,8 @@ def redact_file(path):
         updated = json.dumps(redacted, indent=2, ensure_ascii=False) + "\n"
     else:
         updated = host_paths(source)
+        if path.name == "baseline.xml":
+            updated = re.sub(r'\bhostname=("[^"]*"|\x27[^\x27]*\x27)', 'hostname="runner"', updated)
         if updated == source:
             return False
     path.write_bytes(updated.encode("utf-8"))

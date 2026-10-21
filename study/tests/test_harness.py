@@ -34,7 +34,7 @@ def test_discovery_requires_test_specific_evidence_and_license():
               "files": [{"filename": "tests/test_ui.py", "status": "added"}]}
     license_info = {"license": {"spdx_id": "MIT"}, "html_url": candidate()["license_url"]}
     repo = {"full_name": "owner/repo", "private": False}
-    source = {"tests/test_ui.py": "from playwright.sync_api import Page\ndef test_ui(page): page.goto('/')"}
+    source = {"tests/test_ui.py": "from playwright.sync_api import Page\ndef test_ui(page): page.locator('x').click()"}
     row = parse_candidate(repo, commit, license_info, source)
     assert row["approved"] == "no" and row["reviewer"] == ""
     assert json.loads(row["test_paths"]) == ["tests/test_ui.py"]
@@ -419,7 +419,7 @@ def test_no_public_runs_title_and_pooled_units(tmp_path):
     output = tmp_path / "REPORT.md"
     summarize(tmp_path / "results", output)
     text = output.read_text()
-    assert text.startswith("# Study protocol and results (no public runs yet)")
+    assert text.startswith("# Study protocol (no public runs yet)")
     assert "Pooled by mutant" in text and "n_repos | n_mutants" in text
 
 
@@ -490,6 +490,8 @@ def test_discovery_agent_pr_checks_python_files_at_head():
             if path.endswith("/license"):
                 assert kw["ref"] == "a" * 40
                 return {"license": {"spdx_id": "MIT"}, "html_url": candidate()["license_url"]}
+            if "/git/trees/" in path:
+                return {"tree": []}
             if "/contents/" in path:
                 assert kw["ref"] == "a" * 40
                 return {"content": base64.b64encode(b"from playwright.sync_api import Page\ndef test_ui(page): page.locator('#x').click()").decode()}

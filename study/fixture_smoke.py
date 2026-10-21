@@ -45,6 +45,11 @@ def main():
                   isolation="host-only owned source; NOT container validation",
                   fixture_sha256=digest(fixture), python=sys.version,
                   reason=status.get("reason", ""))
+    from study.redact import host_paths, redact_file
+    for artifact in output.iterdir():
+        if artifact.is_file():
+            redact_file(artifact)
+    status = host_paths(status)
     status["artifact_sha256"] = {f.name: digest(f) for f in output.iterdir() if f.is_file()}
     write_json(output / "status.json", status)
     print(status["status"], status["reason"])

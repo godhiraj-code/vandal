@@ -14,10 +14,11 @@ from pathlib import Path
 
 from study.common import FIELDS, LICENSES, SHA, write_json, write_rows
 
-AGENT = re.compile(r"co-authored-by:.*(?:claude|codex|copilot|cursor|devin|jules|anthropic-code-agent)|generated tests|tests? (?:were )?generated(?: by| with)?", re.I)
+AGENT = re.compile(r"co-authored-by:.*(?:claude|codex|copilot|cursor|devin|jules|anthropic-code-agent)", re.I)
+GENERATED = re.compile(r"generated tests|tests? (?:were )?generated(?: by| with)?", re.I)
 QUERIES = ['playwright pytest "Co-Authored-By: Claude"', 'playwright pytest "Co-authored-by: Cursor"', 'playwright pytest "Co-authored-by: Copilot"', 'playwright "generated tests"']
 PR_AUTHORS = ("app/copilot-swe-agent", "app/devin-ai-integration", "google-labs-jules")
-OBSERVABLE = {"locator", "expect", "click", "fill", "check", "hover", "inner_text", "input_value"}
+OBSERVABLE = {"locator", "frame_locator", "expect", "click", "fill", "check", "hover", "inner_text", "input_value"}
 
 
 def _tree(source, path):
@@ -70,7 +71,11 @@ def offline_flags(sources):
         source = source.lstrip("\ufeff")
         for number, line in enumerate(source.splitlines(), 1):
             for url in re.findall(r"https?://[^\s\"'<>]+", line):
-                host = urllib.parse.urlparse(url).hostname
+                try:
+                    host = urllib.parse.urlparse(url).hostname
+                except ValueError:
+                    flags.append({"file": path, "line": number, "kind": "malformed_url", "detail": "URL requires manual review"})
+                    continue
                 if host and host not in {"localhost", "127.0.0.1", "::1"}:
                     flags.append({"file": path, "line": number, "kind": "external_host", "detail": host})
             if re.search(r"base[_-]url", line, re.I):
@@ -83,9 +88,9 @@ def offline_flags(sources):
                 literals = " ".join(str(x.value) for x in ast.walk(node) if isinstance(x, ast.Constant) and isinstance(x.value, str))
                 function = ast.unparse(node.func)
                 # Inspect arguments as data, including argv lists and shell strings.
-                if "git" in literals and "clone" in literals:
+                if ("git" in literals and "clone" in literals) or function.endswith(".clone_from"):
                     flags.append({"file": path, "line": node.lineno, "kind": "git_clone", "detail": "runtime source acquisition"})
-                if re.search(r"\bdocker\b", literals) or function.startswith("docker."):
+                if re.search(r"\bdocker\b", literals) or "docker" in function.lower():
                     kind = "docker_availability" if any(x in function + " " + literals for x in ("which", "info", "version", "ping", "from_env")) else "docker_use"
                     flags.append({"file": path, "line": node.lineno, "kind": kind, "detail": "requires Docker/runtime review"})
         elif re.search(r"\bdocker\b|git\s+clone", source):
@@ -116,26 +121,27 @@ def static_screen(sources, supporting_sources=None):
             def __init__(self):
                 self.roots = set()
                 self.factories = set()
+                self.attributes = set()
 
             def rooted(self, node):
                 if isinstance(node, ast.Name):
                     return node.id in self.roots
                 if isinstance(node, ast.Attribute):
-                    return self.rooted(node.value)
+                    return ast.unparse(node) in self.attributes or self.rooted(node.value)
                 if isinstance(node, ast.Call):
                     if isinstance(node.func, ast.Name) and node.func.id in self.factories:
                         return True
                     if isinstance(node.func, ast.Name) and node.func.id in expect_names:
                         return bool(node.args) and self.rooted(node.args[0])
-                    if isinstance(node.func, ast.Attribute) and (node.func.attr in {"locator", "nth", "filter"} or node.func.attr.startswith("get_by_")):
+                    if isinstance(node.func, ast.Attribute) and (node.func.attr in {"locator", "frame_locator", "nth", "filter", "all"} or node.func.attr.startswith("get_by_")):
                         return self.rooted(node.func.value)
                 return False
 
             def visit_FunctionDef(self, node):
                 saved, saved_factories = self.roots, self.factories
-                self.roots = {a.arg for a in node.args.args if a.arg in fixture_pages
+                self.roots = (saved - {a.arg for a in node.args.args}) | {a.arg for a in node.args.args if a.arg in fixture_pages
                               or (a.annotation and ast.unparse(a.annotation).split(".")[-1] in {"Page", "Locator"})}
-                self.factories = {a.arg for a in node.args.args if a.arg in fixture_factories}
+                self.factories = (saved_factories - {a.arg for a in node.args.args}) | {a.arg for a in node.args.args if a.arg in fixture_factories}
                 for statement in node.body:
                     self.visit(statement)
                 self.roots = saved
@@ -143,9 +149,40 @@ def static_screen(sources, supporting_sources=None):
 
             visit_AsyncFunctionDef = visit_FunctionDef
 
+            def visit_ClassDef(self, node):
+                saved = self.attributes
+                self.attributes = set()
+                # Establish page-object fields from constructor arguments before
+                # visiting methods, irrespective of method definition order.
+                constructor = next((n for n in node.body if isinstance(n, ast.FunctionDef) and n.name == "__init__"), None)
+                if constructor:
+                    self.visit(constructor)
+                for statement in node.body:
+                    if statement is not constructor:
+                        self.visit(statement)
+                self.attributes = saved
+
+            def visit_For(self, node):
+                self.visit(node.iter)
+                saved = self.roots.copy()
+                if isinstance(node.target, ast.Name):
+                    self.roots.discard(node.target.id)
+                    if isinstance(node.iter, ast.Call) and isinstance(node.iter.func, ast.Attribute) and node.iter.func.attr == "all" and self.rooted(node.iter.func.value):
+                        self.roots.add(node.target.id)
+                for statement in node.body + node.orelse:
+                    self.visit(statement)
+                self.roots = saved
+
+            visit_AsyncFor = visit_For
+
             def visit_Assign(self, node):
                 self.visit(node.value)
                 for target in node.targets:
+                    if isinstance(target, ast.Attribute):
+                        if self.rooted(node.value):
+                            self.attributes.add(ast.unparse(target))
+                        else:
+                            self.attributes.discard(ast.unparse(target))
                     if isinstance(target, ast.Name):
                         if self.rooted(node.value):
                             self.roots.add(target.id)
@@ -213,19 +250,22 @@ def parse_candidate(repo, commit, license_info, sources, *, evidence_kind=None, 
     selected = [p for p in test_files(commit) if p in screen["files"] and screen["files"][p]["selected"]
                 and re.search(r"\bdef test_", sources[p])]
     spdx = (license_info.get("license") or {}).get("spdx_id")
-    match = AGENT.search(message)
+    strong = AGENT.search(message)
+    match = strong or GENERATED.search(message)
     if repo.get("private") or spdx not in LICENSES or not selected or (not evidence_kind and not match):
         return None
     # Risks in unrelated changed unit tests must not be attributed to this selection.
     screen = static_screen({p: sources[p] for p in selected}, supporting_sources)
+    if not screen["observable_calls"]:
+        return None
     sha = commit["sha"]
     if not SHA.fullmatch(sha):
         raise ValueError("GitHub returned a non-pinned commit")
-    kind = evidence_kind or ("generated_tests" if not match.group(0).lower().startswith("co-authored") else "test_commit")
+    kind = evidence_kind or ("test_commit" if strong else "generated_tests")
     row = dict.fromkeys(FIELDS, "")
-    row.update(repo=repo["full_name"], commit_sha=sha, group="unresolved" if kind == "guidance_only" else "agent",
+    row.update(repo=repo["full_name"], commit_sha=sha, group="unresolved" if kind in {"guidance_only", "generated_tests"} else "agent",
                evidence_kind=kind, evidence_url=evidence_url or commit["html_url"],
-               evidence_detail=detail or "Commit modifies selected Python browser tests; " + match.group(0),
+               evidence_detail=detail or "Commit modifies selected Python browser tests; " + (match.group(0) if match else kind),
                test_paths=json.dumps(selected), license=spdx, license_url=license_info["html_url"],
                approved="no", recipe="recipes/REVIEW_REQUIRED.json",
                observable_calls=str(sum(screen["files"][p]["count"] for p in selected)),
@@ -241,7 +281,7 @@ def sources_at(api, repo, sha, paths):
     return sources
 
 
-def supporting_at(api, repo, sha, test_paths):
+def supporting_at(api, repo, sha, test_paths, sources=None):
     """Read config/fixtures at the same SHA, never import them. Missing is normal."""
     candidates = set()
     for test in test_paths:
@@ -255,6 +295,45 @@ def supporting_at(api, repo, sha, test_paths):
         except urllib.error.HTTPError as exc:
             if exc.code != 404:
                 raise
+    # Resolve only repository-local imports, using a pinned tree as an allowlist.
+    seeds = {**(sources or sources_at(api, repo, sha, test_paths)), **result}
+    if any(path.endswith(".py") and any(isinstance(n, (ast.Import, ast.ImportFrom)) for n in ast.walk(_tree(text, path))) for path, text in seeds.items()):
+        tree = api.get(f"repos/{repo}/git/trees/{sha}", recursive=1)
+        if tree.get("truncated"):
+            raise ValueError("helper tree truncated; manual inspection required")
+        available = {x["path"] for x in tree["tree"] if x["type"] == "blob" and x["path"].endswith(".py")}
+        pending, visited = list(seeds.items()), set(seeds)
+        while pending:
+            path, source = pending.pop()
+            if not path.endswith(".py"):
+                continue
+            for node in ast.walk(_tree(source, path)):
+                modules = []
+                bases = [Path("."), Path("src"), Path(path).parent]
+                if isinstance(node, ast.Import):
+                    modules = [a.name for a in node.names]
+                elif isinstance(node, ast.ImportFrom):
+                    modules = [node.module or ""] + [(node.module + "." if node.module else "") + a.name for a in node.names if a.name != "*"]
+                    if node.level:
+                        base = Path(path).parent
+                        for _ in range(node.level - 1):
+                            base = base.parent
+                        bases = [base]
+                for module in modules:
+                    for base in bases:
+                        stem = base / module.replace(".", "/")
+                        targets = [str(stem) + ".py", str(stem / "__init__.py")]
+                        targets += [str(parent / "__init__.py") for parent in stem.parents if parent != Path(".")]
+                        for candidate in targets:
+                            candidate = Path(candidate).as_posix()
+                            if candidate not in available or candidate in visited:
+                                continue
+                            if len(visited) >= 200:
+                                raise ValueError("helper scan exceeds 200 files; manual inspection required")
+                            visited.add(candidate)
+                            fetched = sources_at(api, repo, sha, [candidate])
+                            result.update(fetched)
+                            pending.extend(fetched.items())
     return result
 
 
@@ -335,7 +414,7 @@ def discover(api, queries, pages, mode="commits"):
                         audit.append({"repo": repo, "sha": sha, "evidence_kind": kind or "test_commit", "candidate": False, "reason": "no license"})
                         continue
                     sources = sources_at(api, repo, sha, test_files(commit))
-                    support = supporting_at(api, repo, sha, list(sources))
+                    support = supporting_at(api, repo, sha, list(sources), sources)
                     row = parse_candidate(metadata, commit, license_info, sources, evidence_kind=kind, evidence_url=evidence, detail=detail, supporting_sources=support)
                     if row:
                         rows.append(row)

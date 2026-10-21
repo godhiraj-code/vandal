@@ -1,4 +1,4 @@
-# Study protocol and results (no public runs yet)
+# Study protocol (no public runs yet)
 
 Public agent-suite sample: n=0 repositories. Public attempts: n=0.
 
@@ -12,14 +12,27 @@ Results are limited to the repositories and selected tests actually executed. No
 
 Counts below are observed mutants, with n_tests and n_mutants shown per row. Score is 100 × killed / n_scored; n_scored = killed + survived. N/A means no observation, not zero.
 
-| Repository / kind / group | Status | Score % (n_scored) | n_tests / n_mutants | Killed | Survived | Error | Untested mutants | Unsupported targets | Cap omissions |
+
+### Public repositories (n=0 runs)
+
+| Repository / artifact directory / pinned SHA | Status | Score % (n_scored) | n_tests / n_mutants | Killed | Survived | Error | Untested mutants | Unsupported targets | Cap omissions |
 |---|---|---|---|---|---|---|---|---|---|
-| owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
-| owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
-| owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
-| owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
-| owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
-| owned-local-fixture / fixture / fixture | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
+
+### Host-only owned fixture validation (n=1 runs)
+
+| Repository / artifact directory / pinned SHA | Status | Score % (n_scored) | n_tests / n_mutants | Killed | Survived | Error | Untested mutants | Unsupported targets | Cap omissions |
+|---|---|---|---|---|---|---|---|---|---|
+| owned-local-fixture / pilot/owned-fixture-corrected / e886c215ebb550c2e26780008c42ea7e87560e9f  | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
+
+### Container owned fixture validation (n=5 runs)
+
+| Repository / artifact directory / pinned SHA | Status | Score % (n_scored) | n_tests / n_mutants | Killed | Survived | Error | Untested mutants | Unsupported targets | Cap omissions |
+|---|---|---|---|---|---|---|---|---|---|
+| owned-local-fixture / pilot/owned-container-06 / d5cbb81a67350c6c228bf517e66af24ebc5fec78  | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
+| owned-local-fixture / pilot/owned-container-07 / 2ca7cfe098fa65b0e123ba7c2f78bb888d36a9da  | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
+| owned-local-fixture / pilot/owned-container-08 / c34637afac674437101cf90b7a67423c86fc8732 (repeat runs at this SHA: n=3) | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
+| owned-local-fixture / pilot/owned-container-09 / c34637afac674437101cf90b7a67423c86fc8732 (repeat runs at this SHA: n=3) | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
+| owned-local-fixture / pilot/owned-container-10 / c34637afac674437101cf90b7a67423c86fc8732 (repeat runs at this SHA: n=3) | completed | 80.0000 (n=5) | 2 / 5 | 4 | 1 | 0 | 0 | 0 | 0 |
 
 Untested mutants = not_applied + skipped. Unsupported targets and cap omissions are separate units and are not added to that count or score denominator.
 
@@ -57,4 +70,4 @@ Offline, no-secret execution selects for self-contained suites; external CDNs, s
 
 Default Vandal strategies and its per-test cap depend on observed interactions. Scores across different apps, assertions, targets and strategy mixes are not directly comparable. Controlled action failures count as kills and need not imply an outcome assertion. Mutant errors remain visible but outside the score denominator.
 
-Candidate processes can tamper with their own in-container reports. Stored hashes detect later changes, not dishonest execution. Independently inspect raw logs and source before publication. No claim that container isolation or its Docker integration has been validated follows from a host-only fixture test.
+Candidate processes can tamper with their own in-container reports. Stored hashes detect later changes, not dishonest execution. Independently inspect raw logs and source before publication. The host-only validation row exercises the owned baseline and mutation run without a container. The separately labelled container rows exercise the Docker harness; repeated runs of the same fixture are not independent study subjects. Neither category is a public repository result.

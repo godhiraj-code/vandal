@@ -105,13 +105,15 @@ def test_bom_decoding_and_support_reads_use_pinned_sha():
     assert all(any(path.endswith(name) for path, _ in calls) for name in ("setup.cfg", "tox.ini", "pyproject.toml"))
 
 
-def test_failed_fixture_history_is_separate_and_human_run_is_ineligible(tmp_path):
+def test_explicit_fixture_history_keeps_failure_out_of_main_report(tmp_path, monkeypatch):
+    monkeypatch.delenv("CI", raising=False)
+    monkeypatch.delenv("GITHUB_ACTIONS", raising=False)
     from study.summarize import summarize
     failed = tmp_path / "failed"
     failed.mkdir()
     (failed / "status.json").write_text(json.dumps({"repo": "owned", "commit_sha": "a" * 40,
         "kind": "fixture", "group": "fixture", "status": "incomplete", "reason": "early fixture failure"}))
-    summarize(tmp_path, tmp_path / "REPORT.md")
+    summarize(tmp_path, tmp_path / "REPORT.md", write_fixture_attempts=True)
     assert "early fixture failure" not in (tmp_path / "REPORT.md").read_text()
     assert "early fixture failure" in (tmp_path / "FIXTURE_ATTEMPTS.md").read_text()
     assert "human" not in (tmp_path / "REPORT.md").read_text().lower()
