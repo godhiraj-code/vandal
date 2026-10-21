@@ -362,3 +362,22 @@ def test_owned_mode_has_fixed_source_and_does_not_review_public_rows(tmp_path, m
     row, recipe, kwargs = seen[0]
     assert row["repo"] == "owned-local-fixture" and row["group"] == "fixture"
     assert recipe["test_paths"] == [OWNED_TEST] and kwargs == {"owned_fixture": True}
+
+
+def test_docker_client_context_never_reaches_candidate_environment(monkeypatch):
+    client_keys = ("DOCKER_HOST", "DOCKER_CONTEXT", "DOCKER_CONFIG", "HOME")
+    for key in client_keys:
+        monkeypatch.setenv(key, "client-only-" + key)
+    monkeypatch.setenv("GITHUB_TOKEN", "never-forward")
+    monkeypatch.setenv("HTTPS_PROXY", "never-forward")
+    assert all(clean_env(docker_client=True)[key] == "client-only-" + key for key in client_keys)
+    assert not set(client_keys) & clean_env().keys()
+    assert not {"GITHUB_TOKEN", "HTTPS_PROXY"} & clean_env(docker_client=True).keys()
+
+
+def test_container_venv_mount_is_executable_but_temporary_mount_is_not(tmp_path):
+    command = container_command("sha256:" + "a" * 64, "fixture", tmp_path, tmp_path, 60)
+    work = next(x for x in command if x.startswith("--tmpfs=/work:"))
+    temp = next(x for x in command if x.startswith("--tmpfs=/tmp:"))
+    assert ":rw,exec,nosuid,nodev," in work
+    assert ",exec," not in temp

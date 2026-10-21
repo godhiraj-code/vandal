@@ -9,11 +9,14 @@ from pathlib import Path
 MAX_LOG = 8 * 1024 * 1024
 
 
-def clean_env():
+def clean_env(*, docker_client=False):
     # Deliberate allowlist: no GitHub/cloud/SSH credentials, proxies, Python hooks,
     # pip configuration, pytest options, or inherited display/server variables.
     env = {k: os.environ[k] for k in ("PATH", "SYSTEMROOT", "WINDIR", "COMSPEC",
            "TEMP", "TMP", "LOCALAPPDATA") if k in os.environ}
+    if docker_client:
+        # Client routing/config only. Never use this environment for candidate code.
+        env.update({k: os.environ[k] for k in ("DOCKER_HOST", "DOCKER_CONTEXT", "DOCKER_CONFIG", "HOME") if k in os.environ})
     env.update(PYTHONUTF8="1", PIP_CONFIG_FILE=os.devnull,
                PIP_DISABLE_PIP_VERSION_CHECK="1", GIT_CONFIG_NOSYSTEM="1",
                GIT_CONFIG_GLOBAL=os.devnull, GIT_TERMINAL_PROMPT="0")

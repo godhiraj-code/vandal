@@ -32,7 +32,7 @@ def container_command(image, name, inputs, deps, seconds):
             "--cpus=2", "--memory=4g", "--memory-swap=4g", "--shm-size=256m",
             "--ulimit=nofile=1024:1024", "--ulimit=fsize=134217728:134217728",
             "--log-driver=local", "--log-opt=max-size=8m", "--log-opt=max-file=1", "--log-opt=compress=false",
-            "--tmpfs=/work:rw,nosuid,nodev,size=3g,uid=10001,gid=10001,mode=700",
+            "--tmpfs=/work:rw,exec,nosuid,nodev,size=3g,uid=10001,gid=10001,mode=700",
             "--tmpfs=/tmp:rw,nosuid,nodev,size=256m,uid=10001,gid=10001,mode=700",
             *["--env=" + key + "=" for key in PROXY_KEYS],
             "--mount", f"type=bind,src={inputs},dst=/input,readonly",
@@ -95,6 +95,29 @@ def acquire_owned_fixture(row, temporary, output, seconds):
     write_json(output / "acquisition.json", {"kind": "local Git archive of owned fixture only", "result": result})
 
 
+def inspect_owned_container(name, temporary, output):
+    """Capture bounded, sanitized isolation evidence before the fixture is removed."""
+    raw = temporary / "inspect.json"
+    result = run(["docker", "inspect", name], temporary, raw, 10, env=clean_env(docker_client=True), max_bytes=512 * 1024)
+    if result["exit_code"] or result["timed_out"] or result["log_limited"]:
+        raise RuntimeError("owned container inspection failed")
+    inspected = json.loads(raw.read_text())[0]
+    config, host = inspected["Config"], inspected["HostConfig"]
+    environment = dict(item.split("=", 1) for item in config.get("Env", []))
+    evidence = {"container_id": inspected["Id"], "image": inspected["Image"], "user": config["User"],
+                "host_config": {key: host[key] for key in ("NetworkMode", "ReadonlyRootfs", "Privileged",
+                    "CapDrop", "SecurityOpt", "Memory", "MemorySwap", "NanoCpus", "PidsLimit", "Tmpfs", "LogConfig")},
+                "mounts": [{key: mount[key] for key in ("Type", "Source", "Destination", "RW")}
+                           for mount in inspected["Mounts"]],
+                "environment_keys": sorted(environment), "github_token_present": "GITHUB_TOKEN" in environment,
+                "proxy_values_empty": all(environment.get(key) == "" for key in PROXY_KEYS)}
+    write_json(output / "isolation.json", evidence)
+    probe = "import json; print(json.dumps([x.strip() for x in open('/proc/mounts') if x.split()[1] in ('/work','/tmp','/')]))"
+    result = run(["docker", "exec", name, "python", "-c", probe], temporary, output / "mounts.log", 10, env=clean_env(docker_client=True))
+    if result["exit_code"] or result["timed_out"] or result["log_limited"]:
+        raise RuntimeError("owned container mount inspection failed")
+
+
 def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes, *, owned_fixture=False):
     name = "vandal-study-" + uuid.uuid4().hex
     container_attempted = False
@@ -129,13 +152,15 @@ def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes, *,
             command = container_command(image, name, inputs, deps, remaining)
             status["container_command"] = command
             container_attempted = True
-            result = run(command, temporary, output / "container.log", 30)
+            result = run(command, temporary, output / "container.log", 30, env=clean_env(docker_client=True))
             if result["exit_code"] or result["timed_out"]:
                 raise RuntimeError("container unavailable; see container.log")
+            if owned_fixture:
+                inspect_owned_container(name, temporary, output)
             finished = False
             while time.monotonic() < deadline:
                 probe = subprocess.run(["docker", "exec", name, "test", "-f", "/work/done"],
-                                       env=clean_env(), stdout=subprocess.DEVNULL,
+                                       env=clean_env(docker_client=True), stdout=subprocess.DEVNULL,
                                        stderr=subprocess.DEVNULL, timeout=10)
                 if probe.returncode == 0:
                     finished = True
@@ -144,7 +169,7 @@ def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes, *,
             # Export regular whitelisted files while tmpfs is alive, even on timeout.
             export = temporary / "artifacts.tar"
             copied = run(["docker", "exec", name, "python", "-m", "study.export"],
-                         temporary, export, 20, max_bytes=33 * 1024 * 1024)
+                         temporary, export, 20, env=clean_env(docker_client=True), max_bytes=33 * 1024 * 1024)
             if copied["exit_code"] == 0 and not copied["log_limited"]:
                 artifacts = temporary / "artifacts"
                 artifacts.mkdir()
@@ -171,7 +196,7 @@ def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes, *,
         finally:
             # Kill the whole container, including detached candidate children.
             try:
-                status["cleanup"] = (run(["docker", "rm", "--force", name], temporary, output / "cleanup.log", 15)
+                status["cleanup"] = (run(["docker", "rm", "--force", name], temporary, output / "cleanup.log", 15, env=clean_env(docker_client=True))
                                      if container_attempted else {"exit_code": 0, "not_required": True})
             except Exception as exc:
                 status["cleanup"] = {"error": f"{type(exc).__name__}: {exc}"}
