@@ -2,6 +2,7 @@
 import json
 import sys
 from pathlib import Path
+from study.common import digest
 from study.run_study import cleanup_confirmed
 from study.summarize import metrics
 
@@ -27,6 +28,10 @@ def verify(root):
     assert len(resources) == measured["n_mutants"]
     assert all(r["reaped"] and r["remaining_new"] == 0 and r["subreaper"] for r in resources)
     assert "--hash=sha256:" in (root / "harness.lock").read_text()
+    installed = status["worker"]["harness_install"]
+    assert installed["exit_code"] == 0 and installed["seconds"] >= 0
+    assert not installed["timed_out"] and not installed["log_limited"]
+    assert installed["lock_sha256"] == digest(root / "harness.lock")
     print(json.dumps(measured, sort_keys=True))
 
 

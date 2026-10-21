@@ -1,0 +1,106 @@
+........                                                                 [100%]Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium] | data_sabotage | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium] | data_sabotage | #min-runtime-hm-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium] | data_sabotage | #max-runtime-hm-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium] | data_sabotage | #min-runtime-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium] | data_sabotage | #max-runtime-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium] | stealth_disable | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium] | data_sabotage | #min-runtime-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium] | data_sabotage | #max-runtime-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium] | data_sabotage | #min-runtime-hm-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium] | data_sabotage | #max-runtime-hm-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium] | ghost_element | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium] | logic_sabotage | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium] | data_sabotage | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | stealth_disable | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | data_sabotage | #min-runtime-hm-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | data_sabotage | #max-runtime-hm-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | data_sabotage | #min-runtime-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | data_sabotage | #max-runtime-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | ghost_element | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | logic_sabotage | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | data_sabotage | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium] | stealth_disable | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium] | data_sabotage | #min-runtime-hm-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium] | data_sabotage | #min-runtime-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium] | data_sabotage | #max-runtime-hm-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium] | data_sabotage | #max-runtime-group
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium] | ghost_element | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium] | logic_sabotage | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium] | data_sabotage | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium] | stealth_disable | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium] | data_sabotage | #min-runtime-hours
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium] | data_sabotage | #min-runtime-minutes
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium] | data_sabotage | #max-runtime-hours
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium] | data_sabotage | #max-runtime-minutes
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium] | data_sabotage | #min-runtime
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium] | data_sabotage | #max-runtime
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium] | ghost_element | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium] | logic_sabotage | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium] | data_sabotage | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium] | data_sabotage | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium] | data_sabotage | #min-runtime-hours
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium] | data_sabotage | #min-runtime-minutes
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium] | data_sabotage | #max-runtime-hours
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium] | data_sabotage | #max-runtime-minutes
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium] | stealth_disable | #apply-filters
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium] | data_sabotage | #filter-error
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium] | ghost_element | #apply-filters
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium] | logic_sabotage | #apply-filters
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium] | stealth_disable | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium] | data_sabotage | #min-runtime
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium] | data_sabotage | #max-runtime
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium] | stealth_disable | #reset-filters
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium] | ghost_element | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium] | ghost_element | #reset-filters
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium] | logic_sabotage | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium] | logic_sabotage | #reset-filters
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium] | data_sabotage | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_movies_render_from_mocked_data[chromium] | data_sabotage | #runtime-format-toggle
+Vandal: tests/ui/test_runtime_filter_toggle.py::test_movies_render_from_mocked_data[chromium] | data_sabotage | #movies-tbody
+
+=============================== warnings summary ===============================
+../venv/lib/python3.12/site-packages/_pytest/config/__init__.py:1345
+  /work/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:1345: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; vandal
+    self._mark_plugins_for_rewrite(hook, disable_autoload)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=============================== Vandal strength ================================
+50.8% | 30 killed, 29 survived, 0 error, 0 not applied, 0 skipped
+tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium]: passed, 0.0%, 0 skipped by cap
+tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium]: passed, 37.5%, 0 skipped by cap
+tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium]: passed, 25.0%, 0 skipped by cap
+tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium]: passed, 37.5%, 0 skipped by cap
+tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium]: passed, 80.0%, 0 skipped by cap
+tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium]: passed, 55.6%, 0 skipped by cap
+tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium]: passed, 88.9%, 0 skipped by cap
+tests/ui/test_runtime_filter_toggle.py::test_movies_render_from_mocked_data[chromium]: passed, 50.0%, 0 skipped by cap
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium] | data_sabotage | #runtime-format-toggle | Used #runtime-format-toggle; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium] | data_sabotage | #min-runtime-hm-group | Used #min-runtime-hm-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium] | data_sabotage | #max-runtime-hm-group | Used #max-runtime-hm-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium] | data_sabotage | #min-runtime-group | Used #min-runtime-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_default_mode_shows_only_hours_minutes_inputs[chromium] | data_sabotage | #max-runtime-group | Used #max-runtime-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium] | data_sabotage | #min-runtime-group | Used #min-runtime-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium] | data_sabotage | #max-runtime-group | Used #max-runtime-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium] | data_sabotage | #min-runtime-hm-group | Used #min-runtime-hm-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium] | data_sabotage | #max-runtime-hm-group | Used #max-runtime-hm-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_toggle_switches_to_minutes_only_inputs[chromium] | data_sabotage | #runtime-format-toggle | A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | data_sabotage | #min-runtime-hm-group | Used #min-runtime-hm-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | data_sabotage | #max-runtime-hm-group | Used #max-runtime-hm-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | data_sabotage | #min-runtime-group | Used #min-runtime-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | data_sabotage | #max-runtime-group | Used #max-runtime-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | logic_sabotage | #runtime-format-toggle | A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_toggle_back_restores_hours_minutes_inputs[chromium] | data_sabotage | #runtime-format-toggle | A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium] | data_sabotage | #min-runtime-hm-group | Used #min-runtime-hm-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium] | data_sabotage | #min-runtime-group | Used #min-runtime-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium] | data_sabotage | #max-runtime-hm-group | Used #max-runtime-hm-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium] | data_sabotage | #max-runtime-group | Used #max-runtime-group; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_only_one_filter_input_format_visible_at_a_time[chromium] | data_sabotage | #runtime-format-toggle | A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium] | logic_sabotage | #runtime-format-toggle | A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_default_values_convert_correctly_between_modes[chromium] | data_sabotage | #runtime-format-toggle | A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium] | data_sabotage | #runtime-format-toggle | Used #runtime-format-toggle; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium] | data_sabotage | #min-runtime-minutes | Used #min-runtime-minutes; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium] | data_sabotage | #max-runtime-hours | Used #max-runtime-hours; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_apply_filters_rejects_min_greater_than_max[chromium] | data_sabotage | #max-runtime-minutes | Used #max-runtime-minutes; check assertions about its value, state, or resulting behavior.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_reset_filters_restores_defaults[chromium] | data_sabotage | #runtime-format-toggle | A Playwright assertion ran after clicking #runtime-format-toggle; review its outcome checks.
+SURVIVED tests/ui/test_runtime_filter_toggle.py::test_movies_render_from_mocked_data[chromium] | data_sabotage | #runtime-format-toggle | Used #runtime-format-toggle; check assertions about its value, state, or resulting behavior.
+8 passed, 1 warning in 724.72s (0:12:04)

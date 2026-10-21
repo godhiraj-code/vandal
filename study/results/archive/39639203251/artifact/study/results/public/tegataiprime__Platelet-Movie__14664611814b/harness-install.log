@@ -1,0 +1,26 @@
+Looking in links: /deps, /opt/wheels
+Processing /opt/wheels/project_vandal-0.2.1-py3-none-any.whl (from -r /opt/harness.lock (line 22))
+Processing /opt/wheels/distlib-0.4.4-py2.py3-none-any.whl (from -r /opt/harness.lock (line 1))
+Processing /opt/wheels/filelock-4.2.4-py3-none-any.whl (from -r /opt/harness.lock (line 2))
+Processing /opt/wheels/greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (from -r /opt/harness.lock (line 3))
+Processing /opt/wheels/iniconfig-2.3.1-py3-none-any.whl (from -r /opt/harness.lock (line 4))
+Processing /deps/packaging-26.3-py3-none-any.whl (from -r /opt/harness.lock (line 5))
+Processing /opt/wheels/pip-26.2.2-py3-none-any.whl (from -r /opt/harness.lock (line 6))
+Processing /opt/wheels/platformdirs-4.13.5-py3-none-any.whl (from -r /opt/harness.lock (line 7))
+Processing /opt/wheels/playwright-1.64.0-py3-none-manylinux1_x86_64.whl (from -r /opt/harness.lock (line 8))
+Processing /deps/pluggy-1.7.0-py3-none-any.whl (from -r /opt/harness.lock (line 9))
+Processing /opt/wheels/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (from -r /opt/harness.lock (line 10))
+Processing /opt/wheels/pyee-14.0.0-py3-none-any.whl (from -r /opt/harness.lock (line 11))
+Processing /opt/wheels/pygments-2.21.0-py3-none-any.whl (from -r /opt/harness.lock (line 12))
+Processing /opt/wheels/pytest-9.1.1-py3-none-any.whl (from -r /opt/harness.lock (line 13))
+Processing /opt/wheels/pytest_playwright-0.10.0-py3-none-any.whl (from -r /opt/harness.lock (line 14))
+Processing /opt/wheels/python_discovery-1.6.4-py3-none-any.whl (from -r /opt/harness.lock (line 15))
+Processing /opt/wheels/python_slugify-9.1.3-py3-none-any.whl (from -r /opt/harness.lock (line 16))
+Processing /opt/wheels/setuptools-84.2.1-py3-none-any.whl (from -r /opt/harness.lock (line 17))
+Processing /opt/wheels/text_unidecode-1.3-py2.py3-none-any.whl (from -r /opt/harness.lock (line 18))
+Processing /deps/typing_extensions-4.16.0-py3-none-any.whl (from -r /opt/harness.lock (line 19))
+Processing /opt/wheels/virtualenv-21.14.12-py3-none-any.whl (from -r /opt/harness.lock (line 20))
+Processing /opt/wheels/wheel-0.48.0-py3-none-any.whl (from -r /opt/harness.lock (line 21))
+Installing collected packages: text-unidecode, distlib, typing_extensions, setuptools, python-slugify, Pygments, psutil, pluggy, platformdirs, pip, packaging, iniconfig, greenlet, filelock, wheel, python-discovery, pytest, pyee, virtualenv, playwright, pytest-playwright, project-vandal
+
+Successfully installed Pygments-2.21.0 distlib-0.4.4 filelock-4.2.4 greenlet-3.5.6 iniconfig-2.3.1 packaging-26.3 pip-26.2.2 platformdirs-4.13.5 playwright-1.64.0 pluggy-1.7.0 project-vandal-0.2.1 psutil-7.2.2 pyee-14.0.0 pytest-9.1.1 pytest-playwright-0.10.0 python-discovery-1.6.4 python-slugify-9.1.3 setuptools-84.2.1 text-unidecode-1.3 typing_extensions-4.16.0 virtualenv-21.14.12 wheel-0.48.0

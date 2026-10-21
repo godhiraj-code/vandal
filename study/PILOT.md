@@ -91,6 +91,30 @@ secrets or token expressions are supplied to shell commands or containers.
 
 ## Inspect and retain artifacts afterwards
 
+Recipes may set `"budget_seconds": 1800` for a larger suite. The integer range is
+30–3600 seconds. A recipe's value takes precedence over the runner's `--seconds`
+fallback (900 by default); owned-fixture validation continues to use the CLI
+budget. This is a per-repository acquisition/container budget, not a per-test
+allowance. Installation and baseline consume it too. The workflow's 60-minute
+job timeout still bounds the whole pilot. Review recipe budgets with the input
+manifest before execution; increasing a budget does not approve or run a repo.
+
+Both preflight and the runner allow at most **10 manifest rows** and enforce
+**600 + sum(budget_seconds + 60 for each recipe) <= 3000 seconds**, using each
+recipe's effective budget. This reserves 600 seconds for setup and 60 seconds of
+teardown per repository. Exactly 3000 is allowed, leaving 600 seconds below the
+60-minute job timeout. Two default 900-second recipes total 2520 seconds; two
+1140-second recipes total exactly 3000, while budgets of 1140 and 1141 fail.
+Ten 180-second recipes fit exactly; eleven rows fail even with smaller budgets.
+Use the same `--seconds` fallback in preflight and the runner when overriding it.
+Every value must be an integer from 30 through 3600; booleans and floats are invalid.
+`budget_seconds` is the canonical recipe field. Legacy `seconds` remains supported
+with identical validation; providing both fields is rejected as ambiguous.
+
+Future worker-status.json files include the measured harness installation exit
+code, elapsed seconds, timeout/log-limit flags, installation method and lock hash.
+PILOT_SUMMARY.md displays scores to one decimal without changing raw reports.
+
 The job summary lists image ID and each selected repository's status, baseline exit
 result, score and sample size. Missing observations say not run/not observed/N/A.
 The artifact contains public raw results/logs, regenerated REPORT.md and summary.csv,
@@ -102,7 +126,19 @@ manifest/SHA correspondence, cleanup status and artifact_sha256 maps before acce
 numbers. Candidate code can falsify its own reports; hashes only detect later edits.
 Keep failures and deviations. Copy the inspected files into the corresponding study/
 paths in a separate local review checkout, preserving existing evidence rather than
-overwriting another run. Recompute `python -m study.summarize`, review the diff, then
+overwriting another run. Retained artifacts belong under `study/results/archive/RUN_ID/`,
+outside the live `study/results/public/**` upload tree. Never put an old artifact
+inside live results: it would be re-uploaded and could duplicate a new run.
+
+Normal `python -m study.summarize` scans live results and excludes the archive
+tree. To reproduce the retained pilot report, run
+`python -m study.summarize --archive-run 39639203251`. This explicitly selects
+that archive's public attempts instead of live public attempts; owned-fixture
+history remains separate. The committed REPORT.md and summary.csv use this
+historical selection. Neither selection combines old and new public runs.
+The original extracted `artifact/` files and ARTIFACT_MANIFEST.json remain byte
+exact; paths inside them describe the original downloaded artifact and must not
+be rewritten. Review the newly generated report diff, then
 commit only the reviewed reports/raw evidence/manifest/image/summary in a separate
 results commit. Do not commit wheel binaries. Any such results commit/push requires
 the human's subsequent instruction; the workflow never performs it automatically.

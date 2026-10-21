@@ -484,7 +484,7 @@ def test_discovery_agent_pr_checks_python_files_at_head():
             if path == "repos/owner/repo":
                 return {"full_name": "owner/repo"}
             if path.endswith("/pulls/3"):
-                return {"head": {"sha": "a" * 40}, "html_url": "https://github.com/owner/repo/pull/3", "changed_files": 1}
+                return {"head": {"sha": "a" * 40}, "html_url": "https://github.com/owner/repo/pull/3", "changed_files": 1, "user": {"login": "Copilot"}}
             if path.endswith("/files"):
                 return [{"filename": "test_ui.py", "status": "added"}]
             if path.endswith("/license"):

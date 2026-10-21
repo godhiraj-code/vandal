@@ -1,0 +1,3 @@
+created virtual environment CPython3.12.3.final.0-64-x86_64 in 42ms
+  creator CPython3Posix(dest=/work/venv, clear=False, no_vcs_ignore=False, venv_redirect=None, global=False)
+  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator,XonshActivator

@@ -1,4 +1,6 @@
 run_path,validation_mode,repo,commit_sha,kind,group,status,eligible,score,n_tests,n_mutants,n_scored,killed,survived,error,not_applied,skipped,error_rate,untested,untested_targets,skipped_by_cap,action_failed_kills,reason
+archive/39639203251/artifact/study/results/public/atdr__contrail__2465e368b765,container,atdr/contrail,2465e368b7658bd23f0d41f1473c114db3573005,public,agent,skipped,False,,,,,,,,,,,,,,,baseline failed (pytest exit 1); see baseline.log
+archive/39639203251/artifact/study/results/public/tegataiprime__Platelet-Movie__14664611814b,container,tegataiprime/Platelet-Movie,14664611814b126289f291ad24ee294102efb07c,public,agent,completed,True,50.847457627118644,8,59,59,30,29,0,0,0,0.0,0,0,0,15,
 pilot/owned-container-01,container,owned-local-fixture,51fe01045e3f37683eb60d014213fe68448a7875,fixture,fixture,skipped,False,,,,,,,,,,,,,,,RuntimeError: container unavailable; see container.log
 pilot/owned-container-02,container,owned-local-fixture,d3747dd9e609b6e10eaa938ffd3313468882c543,fixture,fixture,skipped,False,,,,,,,,,,,,,,,PermissionError: [Errno 13] Permission denied: '/work/venv/bin/python'
 pilot/owned-container-03,container,owned-local-fixture,d3747dd9e609b6e10eaa938ffd3313468882c543,fixture,fixture,skipped,False,,,,,,,,,,,,,,,PermissionError: [Errno 13] Permission denied: '/work/venv/bin/python'

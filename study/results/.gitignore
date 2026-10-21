@@ -9,6 +9,8 @@
 !public/**
 !diagnostic/
 !diagnostic/**
+!archive/
+!archive/**
 **/__pycache__/
 **/.pytest_cache/
 **/.cache/

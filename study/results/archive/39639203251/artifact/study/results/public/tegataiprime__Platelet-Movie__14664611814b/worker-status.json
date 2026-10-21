@@ -1,0 +1,63 @@
+{
+  "status": "completed",
+  "baseline": {
+    "command": [
+      "/work/venv/bin/python",
+      "-m",
+      "pytest",
+      "-o",
+      "addopts=",
+      "-q",
+      "-p",
+      "no:vandal",
+      "--junitxml=/work/out/baseline.xml",
+      "tests/ui/test_runtime_filter_toggle.py"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 2.859
+  },
+  "recipe": {
+    "test_paths": [
+      "tests/ui/test_runtime_filter_toggle.py"
+    ],
+    "requirements": [],
+    "install_project": false,
+    "extras": [],
+    "pytest_args": []
+  },
+  "mutation": {
+    "command": [
+      "/work/venv/bin/python",
+      "/opt/study/pytest_entry.py",
+      "-o",
+      "addopts=",
+      "-q",
+      "--vandal",
+      "--vandal-report=/work/out/vandal_report.json",
+      "tests/ui/test_runtime_filter_toggle.py"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 725.051
+  },
+  "reason": "",
+  "installation": {
+    "command": [
+      "/work/venv/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 0.251
+  },
+  "skipped_links": []
+}

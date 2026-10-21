@@ -1,0 +1,70 @@
+[
+  {
+    "command": [
+      "git",
+      "-c",
+      "init.templateDir=",
+      "init",
+      "--bare",
+      "/tmp/vandal-study-ol3ri69q/source.git"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 0.051
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/tmp/vandal-study-ol3ri69q/source.git",
+      "-c",
+      "credential.helper=",
+      "-c",
+      "core.hooksPath=/dev/null",
+      "-c",
+      "protocol.file.allow=never",
+      "fetch",
+      "--depth=1",
+      "--no-tags",
+      "https://github.com/atdr/contrail.git",
+      "2465e368b7658bd23f0d41f1473c114db3573005"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 0.808
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/tmp/vandal-study-ol3ri69q/source.git",
+      "rev-parse",
+      "FETCH_HEAD"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 0.051
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/tmp/vandal-study-ol3ri69q/source.git",
+      "archive",
+      "--format=tar",
+      "--output=/tmp/vandal-study-ol3ri69q/input/source.tar",
+      "2465e368b7658bd23f0d41f1473c114db3573005"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 0.051
+  }
+]

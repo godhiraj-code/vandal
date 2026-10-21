@@ -150,6 +150,8 @@ def test_unrelated_diagnostic_directory_remains_eligible(tmp_path):
     ('study/results/public/owner/__pycache__/x.pyc', True),
     ('study/results/public/owner/tmp/x', True),
     ('study/results/public/owner/scratch.tmp', True),
+    ('study/results/archive/123/artifact/status.json', False),
+    ('study/results/archive/123/artifact/__pycache__/x.pyc', True),
 ])
 def test_git_ignore_allows_public_evidence_but_not_caches(path, ignored):
     result = subprocess.run(['git', 'check-ignore', '--no-index', '-q', path], cwd=ROOT)

@@ -5,17 +5,19 @@ import json
 from pathlib import Path
 
 from study.common import approval_reason, paths, read_rows
+from study.budget import cli_seconds, validate_run_budget
 from study.run_study import confirmation
 from study.summarize import read_results
 from study.worker import validate_recipe
 
 
-def preflight(manifest, confirm):
+def preflight(manifest, confirm, seconds=900):
     if confirm != confirmation(manifest):
         raise ValueError("confirm must exactly match the manifest RUN token")
     rows = read_rows(manifest)
     if not rows:
         raise ValueError("manifest has no approved rows")
+    recipes = []
     for row in rows:
         reason = approval_reason(row)
         if reason:
@@ -26,6 +28,8 @@ def preflight(manifest, confirm):
         recipe = validate_recipe(json.loads(recipe_path.read_text()))
         if recipe["test_paths"] != paths(row["test_paths"]):
             raise ValueError("recipe differs from reviewed selection")
+        recipes.append(recipe)
+    validate_run_budget(recipes, seconds)
     return rows
 
 
@@ -53,7 +57,7 @@ def summary(manifest, results, image_file, destination):
                     baseline = "exit=" + str(record.get("exit_code", "unknown")) + "; timeout=" + str(record.get("timed_out", "unknown"))
             except (OSError, ValueError, TypeError, AttributeError, RecursionError):
                 baseline = "unavailable: malformed evidence"
-        score = str(row["score"]) if row.get("eligible") and row.get("score") is not None else "N/A"
+        score = f"{row['score']:.1f}" if row.get("eligible") and row.get("score") is not None else "N/A"
         values = [selected["repo"] + " / " + selected["commit_sha"], row.get("status", "not run"), baseline,
                   score + " (n=" + str(row.get("n_scored", "N/A")) + ")", row.get("reason", "no recorded attempt")]
         lines.append("| " + " | ".join(safe(v) for v in values) + " |")
@@ -65,12 +69,13 @@ def main():
     parser.add_argument("action", choices=["preflight", "summary"])
     parser.add_argument("--repos", type=Path, default=Path("study/repos.csv"))
     parser.add_argument("--confirm")
+    parser.add_argument("--seconds", type=cli_seconds, default=900)
     parser.add_argument("--results", type=Path, default=Path("study/results/public"))
     parser.add_argument("--image", type=Path, default=Path("study/pilot-image-id.txt"))
     parser.add_argument("--output", type=Path, default=Path("study/PILOT_SUMMARY.md"))
     args = parser.parse_args()
     if args.action == "preflight":
-        print("Validated approved rows:", len(preflight(args.repos, args.confirm)))
+        print("Validated approved rows:", len(preflight(args.repos, args.confirm, args.seconds)))
     else:
         summary(args.repos, args.results, args.image, args.output)
 

@@ -1,0 +1,183 @@
+{
+  "repo": "atdr/contrail",
+  "commit_sha": "2465e368b7658bd23f0d41f1473c114db3573005",
+  "group": "agent",
+  "manifest": {
+    "repo": "atdr/contrail",
+    "commit_sha": "2465e368b7658bd23f0d41f1473c114db3573005",
+    "group": "agent",
+    "evidence_kind": "test_commit",
+    "evidence_url": "https://github.com/atdr/contrail/commit/2465e368b7658bd23f0d41f1473c114db3573005",
+    "evidence_detail": "Test-specific agent co-authored commit; static screen only, runtime and preparation unverified.",
+    "test_paths": "[\"tests_browser/test_passport_page.py\"]",
+    "license": "MIT",
+    "license_url": "https://github.com/atdr/contrail/blob/2465e368b7658bd23f0d41f1473c114db3573005/LICENSE",
+    "approved": "yes",
+    "reviewer": "Dhiraj Das",
+    "reviewed_at": "2026-10-21T12:20:00Z",
+    "recipe": "recipes/contrail.json",
+    "observable_calls": "67",
+    "offline_risk": "[{\"file\": \"pyproject.toml\", \"line\": 85, \"kind\": \"external_host\", \"detail\": \"github.com\"}, {\"file\": \"pyproject.toml\", \"line\": 86, \"kind\": \"external_host\", \"detail\": \"github.com\"}, {\"file\": \"pyproject.toml\", \"line\": 87, \"kind\": \"external_host\", \"detail\": \"github.com\"}]"
+  },
+  "image": "sha256:6f4ee9b5ad3d1632743d1e14f15b77267387e7d13bd7388be5838921d57e179b",
+  "kind": "public",
+  "started_at": "2026-10-21T16:57:01.232520+00:00",
+  "status": "skipped",
+  "reason": "baseline failed (pytest exit 1); see baseline.log",
+  "dependency_sha256": {
+    "airportsdata-20260905-py3-none-any.whl": "d7eaa9a57d373b0adaaae0d52da2af0bb0edf73f7baa170f7c415d3342bf4868",
+    "certifi-2026.10.19-py3-none-any.whl": "42d35340cc5b9ba78e818ddbff0c5b1c2b779de448a340fd1b989f5fa8670e1b",
+    "charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl": "3d31298449090ab8d47b7b1b2a555ff73cac7ed438a08b7ac160980c7ebed649",
+    "hatchling-1.32.4-py3-none-any.whl": "08ecf7548fb48205e7f213d70c71e67b8271b7242093dc3f1da578b42c734a2c",
+    "icalendar-7.3.0-py3-none-any.whl": "8355acfe17be81b368f0b1e3740817cea9b56ea889931f8f1a87c62f2d28db0b",
+    "idna-3.20-py3-none-any.whl": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c",
+    "packaging-26.3-py3-none-any.whl": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c",
+    "pathspec-1.1.1-py3-none-any.whl": "a00ce642f577bf7f473932318056212bc4f8bfdf53128c78bbd5af0b9b20b189",
+    "pluggy-1.7.0-py3-none-any.whl": "7dd7b0d8832ba3cb632c306926ded123429211b83641b35dc5c41ad2d34f9bec",
+    "python_dateutil-2.9.0.post0-py2.py3-none-any.whl": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427",
+    "requests-2.34.2-py3-none-any.whl": "2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0",
+    "six-1.17.0-py2.py3-none-any.whl": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+    "tomlkit-0.15.2-py3-none-any.whl": "05562412163a3037b94497385fb7f9204c637bc605af7a48199e41cf2272f437",
+    "trove_classifiers-2026.9.21.13-py3-none-any.whl": "8b1ff4f9c191b1040b71c37f1e445ab99732911e3cd91de52838453a854d7a17",
+    "typing_extensions-4.16.0-py3-none-any.whl": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+    "tzdata-2026.5-py2.py3-none-any.whl": "b683bd1b6659ddcd810ff02ad09ba821d4bf1065072805063eb35c49617905ac",
+    "urllib3-2.8.0-py3-none-any.whl": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3"
+  },
+  "recipe_sha256": "5f7d14af8ddd945fe2951c46c8baf7b1405bdb3ae079870d4e59ab1244f316df",
+  "source_sha256": "0b1d75c456ccdc0ef70bec3ce0029250afd9c6cee59c24376184f5092f1c93b1",
+  "container_command": [
+    "docker",
+    "run",
+    "--detach",
+    "--pull=never",
+    "--name",
+    "vandal-study-63758d386cc24096bbe26b38dfc66820",
+    "--network=none",
+    "--read-only",
+    "--user=10001:10001",
+    "--cap-drop=ALL",
+    "--security-opt=no-new-privileges",
+    "--pids-limit=1024",
+    "--cpus=2",
+    "--memory=4g",
+    "--memory-swap=4g",
+    "--shm-size=256m",
+    "--ulimit=nofile=1024:1024",
+    "--ulimit=fsize=134217728:134217728",
+    "--log-driver=local",
+    "--log-opt=max-size=8m",
+    "--log-opt=max-file=1",
+    "--log-opt=compress=false",
+    "--tmpfs=/work:rw,exec,nosuid,nodev,size=3g,uid=10001,gid=10001,mode=700",
+    "--tmpfs=/tmp:rw,nosuid,nodev,size=256m,uid=10001,gid=10001,mode=700",
+    "--env=HTTP_PROXY=",
+    "--env=HTTPS_PROXY=",
+    "--env=FTP_PROXY=",
+    "--env=ALL_PROXY=",
+    "--env=NO_PROXY=",
+    "--env=http_proxy=",
+    "--env=https_proxy=",
+    "--env=ftp_proxy=",
+    "--env=all_proxy=",
+    "--env=no_proxy=",
+    "--mount",
+    "type=bind,src=/tmp/vandal-study-ol3ri69q/input,dst=/input,readonly",
+    "--mount",
+    "type=bind,src=/tmp/vandal-study-ol3ri69q/deps,dst=/deps,readonly",
+    "sha256:6f4ee9b5ad3d1632743d1e14f15b77267387e7d13bd7388be5838921d57e179b",
+    "python",
+    "-m",
+    "study.worker",
+    "--seconds",
+    "899"
+  ],
+  "worker": {
+    "status": "skipped",
+    "baseline": {
+      "command": [
+        "/work/venv/bin/python",
+        "-m",
+        "pytest",
+        "-o",
+        "addopts=",
+        "-q",
+        "-p",
+        "no:vandal",
+        "--junitxml=/work/out/baseline.xml",
+        "tests_browser/test_passport_page.py"
+      ],
+      "exit_code": 1,
+      "timed_out": false,
+      "log_limited": false,
+      "disk_limited": false,
+      "seconds": 11.926
+    },
+    "recipe": {
+      "test_paths": [
+        "tests_browser/test_passport_page.py"
+      ],
+      "requirements": [],
+      "install_project": true,
+      "extras": [
+        "browser"
+      ],
+      "pytest_args": []
+    },
+    "reason": "baseline failed (pytest exit 1); see baseline.log",
+    "installation": {
+      "command": [
+        "/work/venv/bin/python",
+        "-m",
+        "pip",
+        "install",
+        "--no-index",
+        "--find-links=/deps",
+        "/work/source[browser]"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "log_limited": false,
+      "disk_limited": false,
+      "seconds": 1.704
+    },
+    "skipped_links": [
+      {
+        "path": "CLAUDE.md",
+        "target": "AGENTS.md",
+        "reason": "documentation outside recipe runtime scope"
+      }
+    ]
+  },
+  "cleanup": {
+    "command": [
+      "docker",
+      "rm",
+      "--force",
+      "vandal-study-63758d386cc24096bbe26b38dfc66820"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 0.101
+  },
+  "evidence_redaction": "Host paths redacted before artifact hashing; measured outcomes unchanged.",
+  "artifact_sha256": {
+    "acquire-2.log": "c7d1a91c50d4ab44f308cd42caf11776afdbabe6ccd763f6b103c80d0a7d3b45",
+    "acquire-3.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "worker-console.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "container.log": "b71283ce1029ca8da1637f5874072d1dd832dcc635dd56abfc730dfe58c36ff2",
+    "worker-status.json": "96dd7d95bdfc4e575d383f452ee7141831fe59945a2040734e1879262da1a6f5",
+    "cleanup.log": "8f5e152039b9d4aa4f5019e61d78d1ea54f7f8ba708de6752531d21d57792216",
+    "environment.txt": "5c20329a551af317992f9f0cc287f0bb3e98ed5d077355fb97d25aa547c63b18",
+    "venv.log": "7f66f7ebc30570e04a8e7afb613a41be14c596356cfe7965ac8410a7a8ef9aa6",
+    "baseline.log": "16b696a64c093db6bde61e17538296b46aa6cbb10b459b63d56d7b93dcfda4a6",
+    "baseline.xml": "1638f01d1051fcf33bffac17d3769cce14dae16c036bc829ecb09bc104500317",
+    "harness.lock": "60dc222024cc783791c2343f591153432516a175e0e2e857b29c642f20cdc45d",
+    "install.log": "28a22a75613793c00ebb8a8309d0480e65e8e3064647a46763ecef65490f28c8",
+    "acquisition.json": "bdbd79d88d7bd63fb4f2cedb55a99c275fdb04c08a077cd272c88ffa2184fbde",
+    "acquire-1.log": "c6687744c695d81b055bd2196a5dfc7a6f6a43022cf4b78255b516c566b35633",
+    "harness-install.log": "50172314665b235c69dcee8dc4dbf54f021ee21bc7fffe6c33f977273a645bc0",
+    "acquire-0.log": "68747941f7831733f01bd2efe8d891cd71a0b7da86cd0cf956af2cd5e34c18bd"
+  }
+}

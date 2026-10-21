@@ -1,0 +1,57 @@
+{
+  "status": "skipped",
+  "baseline": {
+    "command": [
+      "/work/venv/bin/python",
+      "-m",
+      "pytest",
+      "-o",
+      "addopts=",
+      "-q",
+      "-p",
+      "no:vandal",
+      "--junitxml=/work/out/baseline.xml",
+      "tests_browser/test_passport_page.py"
+    ],
+    "exit_code": 1,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 11.926
+  },
+  "recipe": {
+    "test_paths": [
+      "tests_browser/test_passport_page.py"
+    ],
+    "requirements": [],
+    "install_project": true,
+    "extras": [
+      "browser"
+    ],
+    "pytest_args": []
+  },
+  "reason": "baseline failed (pytest exit 1); see baseline.log",
+  "installation": {
+    "command": [
+      "/work/venv/bin/python",
+      "-m",
+      "pip",
+      "install",
+      "--no-index",
+      "--find-links=/deps",
+      "/work/source[browser]"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 1.704
+  },
+  "skipped_links": [
+    {
+      "path": "CLAUDE.md",
+      "target": "AGENTS.md",
+      "reason": "documentation outside recipe runtime scope"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "test_paths": ["tests/browser/test_smoke.py"],
+  "source_paths": ["meow_now", "tests/conftest.py"],
+  "install_project": true,
+  "extras": ["browser"],
+  "budget_seconds": 1800
+}

@@ -1,0 +1,70 @@
+[
+  {
+    "command": [
+      "git",
+      "-c",
+      "init.templateDir=",
+      "init",
+      "--bare",
+      "/tmp/vandal-study-id63bbk9/source.git"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 0.051
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/tmp/vandal-study-id63bbk9/source.git",
+      "-c",
+      "credential.helper=",
+      "-c",
+      "core.hooksPath=/dev/null",
+      "-c",
+      "protocol.file.allow=never",
+      "fetch",
+      "--depth=1",
+      "--no-tags",
+      "https://github.com/tegataiprime/Platelet-Movie.git",
+      "14664611814b126289f291ad24ee294102efb07c"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 0.559
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/tmp/vandal-study-id63bbk9/source.git",
+      "rev-parse",
+      "FETCH_HEAD"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 0.054
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/tmp/vandal-study-id63bbk9/source.git",
+      "archive",
+      "--format=tar",
+      "--output=/tmp/vandal-study-id63bbk9/input/source.tar",
+      "14664611814b126289f291ad24ee294102efb07c"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "log_limited": false,
+    "disk_limited": false,
+    "seconds": 0.051
+  }
+]

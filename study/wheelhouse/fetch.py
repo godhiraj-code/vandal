@@ -31,8 +31,12 @@ def manifest(directory, metadata):
     return rows
 
 
-def download(directory):
+def download(directory, profile="contrail"):
+    if profile not in {"contrail", "meow-now"}:
+        raise ValueError("unknown reviewed wheel profile")
     root = Path(__file__).resolve().parent
+    constraints = "constraints.txt" if profile == "contrail" else "constraints-meow-now.txt"
+    metadata = "LOCK_METADATA.json" if profile == "contrail" else "LOCK_METADATA-meow-now.json"
     directory.mkdir(parents=True, exist_ok=False)
     with tempfile.TemporaryDirectory(prefix="study-pip-home-") as home:
         env = {"PATH": os.environ.get("PATH", ""), "HOME": home,
@@ -44,14 +48,15 @@ def download(directory):
                    "--require-hashes", "--only-binary=:all:", "--python-version", "3.12",
                    "--implementation", "cp", "--abi", "cp312",
                    "--platform", "manylinux_2_28_x86_64", "--platform", "manylinux2014_x86_64",
-                   "-c", str(root / "constraints.txt"), "-r", str(root / "requirements-contrail.lock"),
+                   "-c", str(root / constraints), "-r", str(root / f"requirements-{profile}.lock"),
                    "-d", str(directory.resolve())]
         subprocess.run(command, env=env, cwd=home, check=True, timeout=600)
-    return manifest(directory, json.loads((root / "LOCK_METADATA.json").read_text())["wheels"])
+    return manifest(directory, json.loads((root / metadata).read_text(encoding="utf-8"))["wheels"])
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dest", type=Path, default=Path("wheelhouse"))
+    parser.add_argument("--profile", choices=("contrail", "meow-now"), default="contrail")
     args = parser.parse_args()
-    print(json.dumps({"downloaded_wheels": len(download(args.dest))}))
+    print(json.dumps({"downloaded_wheels": len(download(args.dest, args.profile))}))

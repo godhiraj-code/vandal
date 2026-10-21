@@ -1,8 +1,11 @@
-# Offline preparation plans — not executed; execution approval pending
+# Offline preparation plans and retained pilot status
 
-These plans refer only to the three snapshots below. They are source-derived plans,
-not installation or baseline results. No candidate has been built, imported, collected
-or run. Contrail and Platelet-Movie have explicit inclusion approval in repos.csv; execution remains separately gated. Talkvote is unapproved. Dependency versions/hashes and the Dockerfile must be reviewed before action-time
+These plans cover the four snapshots below. The retained pilot 39639203251 records
+Platelet-Movie's successful baseline and Contrail's failed baseline; see REPORT.md.
+No candidate was built, imported, collected or run during this revision. Contrail and
+Platelet-Movie have prior inclusion approval in repos.csv; further execution remains
+separately gated. Talkvote and meow-now are unapproved. Dependency versions/hashes
+and the Dockerfile must be reviewed before action-time
 execution; the workflow records its freshly built immutable image ID.
 
 Use a disposable acquisition environment without host credentials for preparation.
@@ -106,3 +109,99 @@ required preparation, rather than masquerading as an executable worker recipe.
 Before approving talkvote, implement and review a bounded, hashed asset-staging
 extension (or an equally reviewed derived-image worker) and validate it with an owned
 Node fixture. No candidate source or tests have been executed to prepare this plan.
+
+## Additional proposal: ccqw/meow-now
+
+Pinned snapshot: `912b21de0feee6931025ac02d3c838420e3c9b05`, MIT.
+Recipe: `recipes/meow-now.json`; 39 observable call sites in
+`tests/browser/test_smoke.py`, Claude co-authored test commit. No approval or run.
+
+The selected test file starts uvicorn on a random loopback port, constructs
+`Settings(ollama_url=None, ...)`, and uses Chromium's fake microphone/audio flags.
+Its imported Python helpers synthesize audio locally; the HTML embeds its assets
+and uses data URLs. No separate service or remote model is needed by this selected
+path. This is static source evidence, not a successful offline baseline.
+
+Prepare Linux CPython 3.12 wheels for FastAPI (`>=0.110,<1`), uvicorn (`>=0.29,<1`),
+httpx (`>=0.27,<1`), numpy (`>=1.26,<3`) and their resolved dependencies (including
+Starlette, Pydantic/pydantic-core, annotated types/doc as required, anyio, certifi,
+httpcore/h11, idna and click). Include setuptools `>=69` and any build-environment
+requirements. The image supplies pytest, pytest-playwright, Playwright and Chromium.
+The 31-wheel closure is now pinned in `wheelhouse/requirements-meow-now.lock`,
+with measured hashes/licenses in `LOCK_METADATA-meow-now.json` and harness-version
+constraints in `constraints-meow-now.txt`. Both the initial binary download and a
+second `--require-hashes` download succeeded; no install or baseline is claimed.
+Do not install the `dev`
+extra: its pytest `<9` constraint conflicts with this image's pytest 9.
+
+The worker installs the project with its `browser` extra offline inside the
+container. Use the explicit test file, not the directory: an owned synthetic pytest
+probe verified that explicit file selection bypasses this directory-only collection
+guard. This does not execute or validate the real suite. The recipe budget is 1800
+seconds; audio timing and Chromium fake-media behavior remain risks. Candidate
+source/build code must execute only in the approved isolated container, with no
+network. No Node/Vite build or extra asset staging is identified for this snapshot.
+
+The new search did not establish five new suitable offline-ready repositories.
+This is the only new proposed recipe; earlier Contrail/Platelet recipes and the
+blocked talkvote preparation plan remain available. Do not treat those existing
+entries as five new candidates.
+
+Fetch only registry wheels (no target installation) from repository root:
+
+```sh
+bash study/wheelhouse/fetch.sh --profile meow-now --dest wheelhouse-meow-now
+```
+
+On Windows the equivalent is `python study/wheelhouse/fetch.py --profile meow-now
+--dest wheelhouse-meow-now`. The script discards credentials/proxies, uses isolated
+pip with PyPI, requires binary wheels and hashes, then writes LF `MANIFEST.csv`.
+Do not commit wheel binaries. Colorama is explicitly retained in the measured
+inventory even though Linux normally does not need that Windows conditional
+dependency. This is a wheel-resolution check, not target installation validation.
+
+## Rechecked staging lead: alxb1t/isekai
+
+[Test fixture](https://github.com/alxb1t/isekai/blob/b2c7b480263371624f17464c769577a74a113eff/tests/e2e/conftest.py),
+[dependency lock](https://github.com/alxb1t/isekai/blob/b2c7b480263371624f17464c769577a74a113eff/uv.lock),
+[Node manifest](https://github.com/alxb1t/isekai/blob/b2c7b480263371624f17464c769577a74a113eff/ui/package.json).
+
+Pin `b2c7b480263371624f17464c769577a74a113eff`, Apache-2.0, 27 tracked sites
+(13 locator, 12 expect, 2 click). The commit adds `tests/e2e/test_review.py`
+and carries a Claude Opus 5.5 co-author trailer. Its fixture uses fake offline
+wiring: no GPU, Ollama or external model service is required by this selection.
+Relative `/api` calls and vendored Inter fonts do not establish a CDN dependency.
+
+Staging is required: the fixture requires fresh `ui/dist` and compares its age
+against all other files in `ui`; a stale build triggers rebuild. Preserve the
+freshness condition, or prepare Node/npm plus the locked node_modules tree and
+review the build action. Vite 8.3 requires Node 20.19+ or 22.12+.
+The pinned `uv.lock` resolves `gpunit` from Git commit
+`e3b819b7d0951b0a99c2cab630e97ee2fabd059a`; a published registry-wheel-only lock
+does not cover that source dependency. No target build is authorized now, so no
+complete wheel lock or runnable recipe is claimed. This remains a staging-required,
+runtime-unvalidated lead, not excluded for supposedly needing a live GPU service.
+
+## Rechecked hold: mbylinkin/currency_exchange
+
+[Frontend fixture](https://github.com/mbylinkin/currency_exchange/blob/9cd1ed741610dedb48a8d4934c8ffec0987aa31b/e2e/frontend.py),
+[separately pinned frontend tree](https://github.com/zhukovsd/currency-exchange-frontend/tree/24a10a4e9085ddc32a3558cf7f22347f9bbc3e42).
+
+Pin `9cd1ed741610dedb48a8d4934c8ffec0987aa31b`, MIT, 43 tracked sites
+(8 locator, 11 expect, 14 fill, 10 click); the selected tests were added in the
+Claude Opus 5.5 co-authored commit. The `error_toast` helper assertions are missed
+by the current screen, so this is not a count of every browser API call.
+
+`e2e/frontend.py` clones only if `e2e/frontend/index.html` is absent, then always
+checks out `24a10a4e9085ddc32a3558cf7f22347f9bbc3e42` from
+`zhukovsd/currency-exchange-frontend`. Pre-staging a real Git checkout with that
+commit object and index.html can avoid network without changing the fixture;
+a plain source archive cannot satisfy the checkout. The frontend uses local
+assets/API and SQLite migrations, not an external currency service.
+
+The frontend has no LICENSE file/declared repository license; Bootstrap's MIT
+header does not license the custom HTML/JavaScript. Redistribution permission is
+unresolved. The selected suite also contains six strict-xfail cases; do not remove
+them or cherry-pick passing tests. The harness excludes baselines with xfails.
+Hold for fixture-license and xfail-method review; no staged artifact, complete
+wheel lock, or runnable recipe is claimed.
