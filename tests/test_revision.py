@@ -182,6 +182,7 @@ Frame._click = None
     run, report = run_suite(tmp_path, "def test_never(): assert False", "--vandal", conftest=conftest)
     assert run.returncode == 4
     assert "Frame._click" in run.stderr and "1.60.0 and 1.64.0" in run.stderr
+    assert run.stderr.count("1.60.0 and 1.64.0") == 1
     assert report is None
 
 
@@ -258,3 +259,110 @@ def test_slow(page):
     assert "Incomplete run: deadline reached" in html
     assert "completed mutants only" in html
     assert "test_partial.py::test_first" in html and "survived" in html
+
+
+@pytest.mark.parametrize("operation", ["press", "type", "select_option", "hover",
+                                       "focus", "dispatch_event", "set_input_files"])
+def test_remaining_action_defaults(operation):
+    planner = SimpleNamespace(strategies=None)
+    test = {"explicit": None, "targets": {"#q": {"operations": [operation]}}}
+    expected = (["data_sabotage"] if operation == "type" else
+                ["stealth_disable", "ghost_element"] if operation == "hover" else [])
+    assert VandalPlugin.candidates(planner, test, ["#q"]) == [(s, "#q") for s in expected]
+    assert test["untested_targets"] == ([] if expected else ["#q"])
+    test["targets"]["#q"]["operations"] += ["click", "fill"]
+    pairs = VandalPlugin.candidates(planner, test, ["#q"])
+    assert len(pairs) == len(set(pairs))
+
+
+@pytest.mark.parametrize("api", ["sync", "async"])
+def test_asserted_select_option_and_press_are_untested_by_default(tmp_path, api):
+    html = '''<select id="s" onchange="document.querySelector('#selected').textContent=this.value">
+    <option value="a">A</option><option value="b">B</option></select>
+    <input id="q" onkeydown="if(event.key==='Enter') document.querySelector('#searched').textContent='searched'">
+    <p id="selected">waiting</p><p id="searched">waiting</p>'''
+    wait = "await " if api == "async" else ""
+    source = f'''
+import pytest
+from playwright.{api}_api import expect
+{"@pytest.mark.asyncio" if api == "async" else ""}
+{"async " if api == "async" else ""}def test_input(ready):
+    {wait}ready.locator("#s").select_option("b", timeout=1500)
+    {wait}expect(ready.locator("#selected")).to_have_text("b", timeout=500)
+    {wait}ready.locator("#q").press("Enter", timeout=1500)
+    {wait}expect(ready.locator("#searched")).to_have_text("searched", timeout=500)
+'''
+    run, report = run_suite(tmp_path, source, "--vandal", conftest=fixture(api, html))
+    assert run.returncode == 0, run.stdout + run.stderr
+    test = report["tests"][0]
+    assert test["baseline"] == "passed", report
+    assert test["untested_targets"] == ["#s", "#q"]
+    assert report["summary"]["survived"] == 0, report
+    assert report["summary"]["error"] == 0, report
+    assert [(m["strategy"], m["selector"]) for m in test["mutants"]] == [
+        ("data_sabotage", "#selected"), ("data_sabotage", "#searched")]
+    assert all(m["status"] == "killed" for m in test["mutants"]), report
+    for selector in ("#s", "#q"):
+        assert f"Vandal: {selector} was used but no default strategy applies; pass --vandal-strategies" in run.stdout
+
+
+@pytest.mark.parametrize("api", ["sync", "async"])
+@pytest.mark.parametrize("strategy", ["stealth_disable", "ghost_element"])
+def test_hover_strategy_blocks_real_hover(tmp_path, api, strategy):
+    html = '''<button id="b" onmouseover="document.querySelector('#result').textContent='hovered'">Hover</button>
+    <p id="result">waiting</p>'''
+    wait = "await " if api == "async" else ""
+    source = f'''
+import pytest
+from playwright.{api}_api import expect
+{"@pytest.mark.asyncio" if api == "async" else ""}
+@pytest.mark.vandal(targets=["#b"])
+{"async " if api == "async" else ""}def test_hover(ready):
+    {wait}ready.locator("#b").hover(timeout=1500)
+    {wait}expect(ready.locator("#result")).to_have_text("hovered", timeout=500)
+'''
+    run, report = run_suite(tmp_path, source, "--vandal", "--vandal-strategies=" + strategy,
+                           conftest=fixture(api, html))
+    assert run.returncode == 0, run.stdout + run.stderr
+    test = report["tests"][0]
+    assert test["baseline"] == "passed", report
+    assert len(test["mutants"]) == 1, report
+    mutant = test["mutants"][0]
+    assert mutant["status"] == "killed", report
+    assert mutant["kill_reason"] == "action_failed", report
+    assert mutant["controls"] == {"before": "passed", "after": "passed"}
+
+
+@pytest.mark.parametrize("explicit", [False, True])
+def test_untested_defaults_are_separate_from_cap(tmp_path, explicit):
+    # Simulate an observed extension operation without a default policy.
+    conftest = '''
+from vandal.instrumentation import Instrumentation
+original_record = Instrumentation.record
+def record(self, selector, operation, kwargs):
+    original_record(self, selector, "extension_read" if selector == "#q" else operation, kwargs)
+Instrumentation.record = record
+'''
+    source = '''
+def test_flow(page):
+    page.set_content('<input id="q"><button id="b">Go</button>')
+    page.locator("#q").count()
+    page.locator("#b").click(timeout=1500)
+'''
+    args = ["--vandal", "--vandal-max-mutants=1"]
+    if explicit:
+        args.append("--vandal-strategies=logic_sabotage")
+    run, report = run_suite(tmp_path, source, *args, conftest=conftest)
+    assert run.returncode == 0, run.stdout + run.stderr
+    test = report["tests"][0]
+    assert test["untested_targets"] == ([] if explicit else ["#q"])
+    assert test["skipped_by_cap"] == (1 if explicit else 2)
+    warning = "Vandal: #q was used but no default strategy applies; pass --vandal-strategies"
+    assert (warning in run.stdout) == (not explicit)
+    assert "Vandal: #b was used but no default strategy applies" not in run.stdout
+    import jsonschema
+    schema = json.loads((Path(__file__).parents[1] / "docs/report-schema.json").read_text())
+    jsonschema.validate(report, schema)
+    test["untested_targets"] = [1]
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(report, schema)

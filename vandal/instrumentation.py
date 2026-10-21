@@ -43,10 +43,6 @@ OPERATIONS = (
     "get_attribute", "is_visible", "is_enabled", "is_checked", "count", "wait_for",
     "wait_for_selector", "set_input_files",
 )
-FACTORIES = (
-    "locator", "get_by_role", "get_by_text", "get_by_label", "get_by_placeholder",
-    "get_by_test_id", "get_by_title", "get_by_alt_text", "filter", "nth",
-)
 def frame_parts(selector):
     """Split the final frame traversal from a Playwright selector.
 
@@ -273,7 +269,7 @@ class Instrumentation:
                 await asyncio.sleep(0)
         return native
 
-    def wrap(self, original, name, factory=False):
+    def wrap(self, original, name):
         if inspect.iscoroutinefunction(original):
             @functools.wraps(original)
             async def asynchronous(obj, *args, **kwargs):
@@ -313,10 +309,6 @@ class Instrumentation:
         def synchronous(obj, *args, **kwargs):
             if self.busy or self.state.current is None:
                 return original(obj, *args, **kwargs)
-            if factory:
-                result = original(obj, *args, **kwargs)
-                self.record(self.selector(result, (), {}), name, kwargs)
-                return result
             selector = self.selector(obj, args, kwargs) if name not in ("goto", "set_content") else None
             if selector:
                 self.record(selector, name, kwargs)
@@ -372,7 +364,7 @@ class Instrumentation:
                     original = getattr(cls, name, None)
                     if original is not None:
                         self.originals.append((cls, name, original))
-                        setattr(cls, name, self.wrap(original, name, name in FACTORIES))
+                        setattr(cls, name, self.wrap(original, name))
         original = ImplLocator._expect
         self.originals.append((ImplLocator, "_expect", original))
         ImplLocator._expect = self.wrap_expect(original)

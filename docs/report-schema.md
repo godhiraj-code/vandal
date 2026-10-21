@@ -19,6 +19,11 @@ The root object contains:
 Each test contains `nodeid` (including parametrization), `baseline` (`passed`,
 `baseline failing`, or `skipped`), `targets` (ordered selectors), `mutants`, and
 `summary`. Optional `skipped_by_cap` counts candidate mutants omitted by the cap. Tests not reached because of pytest early stopping appear as skipped.
+Optional `untested_targets` lists observed targets with no inferred default
+strategy, before applying the cap. It is empty when explicit strategies cover
+the targets. Cap-skipped candidates and unapplied mutations do not belong in
+this list. A terminal warning suggests passing `--vandal-strategies` for each
+listed target. Neither this list nor cap omissions enter the score denominator.
 
 Each mutant contains `strategy`, `selector`, `status`, `hint`, and `details`.
 Optional `kill_reason` is `assertion` or `action_failed` on a killed mutant. Older

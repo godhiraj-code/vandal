@@ -55,7 +55,13 @@ in that case, including a gate of zero.
 Targets are discovered when actions, reads or Locator assertions run. Constructing
 an unused locator does not create a target. By default, clicks, double-clicks, taps
 and checks use `stealth_disable`, `ghost_element`, and `logic_sabotage`; reads,
-assertions and fills use `data_sabotage`. `ui_shift` and `slow_load` require explicit
+assertions, fills and type use `data_sabotage`. Hover uses `stealth_disable` and
+`ghost_element`, which block the browser's hover action. Press, select_option,
+focus, dispatch_event and set_input_files have no default strategies: pointer
+blocking and click handlers do not reliably sabotage those operations. Targets used only
+through those actions are reported as untested. Observed targets without an inferred strategy
+appear in `untested_targets` with a terminal warning, separately from cap omissions.
+`ui_shift` and `slow_load` require explicit
 selection. Candidates alternate across targets before the cap; `skipped_by_cap`
 reports candidates omitted by that cap. Data sabotage is refreshed when targets
 are resolved again, so later app text changes do not silently undo it.
@@ -169,6 +175,11 @@ If the test fails inside the `async with` block, the mutant is recorded as **kil
 
 - `vandal/core.py`: The heart of the mutation engine (JavaScript-based strategies).
 - `vandal/playwright_ext.py`: Playwright wrapper and context manager.
+- `vandal/pytest_plugin.py`: Suite baselines, mutation workers, selection and scoring gates.
+- `vandal/instrumentation.py`: Playwright target discovery and mutation timing.
+- `vandal/reporting.py`: Versioned JSON reports, summaries and HTML rendering.
+- `vandal/runner.py`: Bounded subprocess execution and process cleanup.
+- `vandal/mcp_server.py`: Optional stdio tools for coding agents.
 - `demo_vandal.py`: A demonstration script showing Vandal in action.
 - `vandal_demo_app.html`: A simple demo application for testing.
 

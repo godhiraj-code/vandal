@@ -2,7 +2,7 @@
 import html
 import json
 import os
-import tempfile
+import uuid
 from pathlib import Path
 
 SCHEMA_VERSION = 1
@@ -55,9 +55,17 @@ def write_report(report, path):
     # Readers always see a complete checkpoint, even if the process is killed.
     temporary = None
     try:
-        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent,
-                                         prefix=".vandal-", delete=False) as stream:
-            temporary = Path(stream.name)
+        # Let the OS apply the current umask without changing the process-wide
+        # mask. NamedTemporaryFile would give the replaced report mode 0600.
+        candidate = path.parent / (".vandal-" + uuid.uuid4().hex)
+        descriptor = os.open(candidate, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o666)
+        temporary = candidate
+        try:
+            stream = os.fdopen(descriptor, "w", encoding="utf-8")
+        except BaseException:
+            os.close(descriptor)
+            raise
+        with stream:
             stream.write(json.dumps(report, indent=2) + "\n")
         os.replace(temporary, path)
     finally:

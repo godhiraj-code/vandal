@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Avoid ineffective pointer/click defaults for press, type, select_option, focus,
+  dispatch_event and set_input_files. Keep data_sabotage for type; infer
+  stealth_disable and ghost_element for hover, backed by browser kill tests.
+- Report actions without defaults as untested separately from cap omissions,
+  respect umask for JSON reports, and close the descriptor if fdopen fails.
+- Remove redundant adapter diagnostics and unused locator factory code; refresh
+  the module overview and remove the internal PR checklist.
+
 - Preserve baseline pytest file logs across mutation workers and label deadline
   HTML reports as incomplete while retaining completed mutant results.
 

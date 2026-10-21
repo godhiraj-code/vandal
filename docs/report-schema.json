@@ -123,6 +123,11 @@
           "skipped_by_cap": {
             "type": "integer",
             "minimum": 0
+          },
+          "untested_targets": {
+            "type": "array",
+            "items": {"type": "string"},
+            "uniqueItems": true
           }
         }
       }
