@@ -1,0 +1,404 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent-written study run record v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "replicate",
+    "app",
+    "agent",
+    "protocol_sha256",
+    "prompt_template_sha256",
+    "prompt_sha256",
+    "task_packet",
+    "harness",
+    "started_at",
+    "ended_at",
+    "generation",
+    "suite_files",
+    "baseline_runs"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "enum": [
+        1
+      ]
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+    },
+    "replicate": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "app": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repo",
+        "commit_sha"
+      ],
+      "properties": {
+        "repo": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+        },
+        "commit_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        }
+      }
+    },
+    "agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version",
+        "version_pin",
+        "artifact_sha256",
+        "surface",
+        "provider",
+        "model",
+        "model_snapshot",
+        "account_plan",
+        "auth_route",
+        "config"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "version_pin": {
+          "type": "string",
+          "enum": [
+            "immutable",
+            "recorded_hosted"
+          ]
+        },
+        "artifact_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "surface": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "provider": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "model_snapshot": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "account_plan": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "auth_route": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        }
+      }
+    },
+    "protocol_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "prompt_template_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "prompt_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "task_packet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "app_name",
+        "app_url",
+        "task_facts"
+      ],
+      "properties": {
+        "app_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "app_url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "task_facts": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20000
+        }
+      }
+    },
+    "harness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "commit_sha",
+        "image_id"
+      ],
+      "properties": {
+        "commit_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "image_id": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "started_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "ended_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "turns",
+        "budget_seconds",
+        "budget_turns",
+        "cost_usd",
+        "input_tokens",
+        "output_tokens",
+        "failure_reason"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "completed",
+            "timeout",
+            "turn_limit",
+            "error",
+            "no_suite"
+          ]
+        },
+        "turns": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 30
+        },
+        "budget_seconds": {
+          "type": "integer",
+          "enum": [
+            1800
+          ]
+        },
+        "budget_turns": {
+          "type": "integer",
+          "enum": [
+            30
+          ]
+        },
+        "cost_usd": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "input_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "output_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "failure_reason": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      }
+    },
+    "suite_files": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "baseline_runs": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "exit_code",
+          "collected",
+          "passed",
+          "failed",
+          "errors",
+          "skipped",
+          "xfailed",
+          "xpassed",
+          "nodeids",
+          "offline",
+          "suite_sha256",
+          "log"
+        ],
+        "properties": {
+          "exit_code": {
+            "type": "integer"
+          },
+          "collected": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "passed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "failed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "errors": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "skipped": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "xfailed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "xpassed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "nodeids": {
+            "type": "array",
+            "maxItems": 100000,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          },
+          "offline": {
+            "type": "boolean"
+          },
+          "suite_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "log": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

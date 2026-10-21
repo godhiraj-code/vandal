@@ -1,0 +1,159 @@
+{
+  "checked_at": "2026-10-21",
+  "execution": "none; GitHub metadata/tree/raw source reads only",
+  "authorship_limit": "Owners, license credits and selected source attribution reviewed. Author-only commit search through github_fetch returned unsupported-endpoint INVALID_ARGUMENT; no author-search coverage claimed, no alternate credentials. Dhiraj must attest no authorship before approval.",
+  "apps": [
+    {
+      "repo": "tastejs/todomvc",
+      "sha": "ff43b02e59dfa604386bb382034b2cd07c2bcd8a",
+      "license": "MIT",
+      "metadata_license": "NOASSERTION",
+      "owner": "tastejs",
+      "tree_truncated": false,
+      "reviewed_files": [
+        {
+          "path": "license.md",
+          "url": "https://github.com/tastejs/todomvc/blob/ff43b02e59dfa604386bb382034b2cd07c2bcd8a/license.md"
+        },
+        {
+          "path": "examples/javascript-es5/index.html",
+          "url": "https://github.com/tastejs/todomvc/blob/ff43b02e59dfa604386bb382034b2cd07c2bcd8a/examples/javascript-es5/index.html"
+        }
+      ]
+    },
+    {
+      "repo": "gabrielecirulli/2048",
+      "sha": "478b6ec346e3787f589e4af751378d06ded4cbbc",
+      "license": "MIT",
+      "metadata_license": "MIT",
+      "owner": "gabrielecirulli",
+      "tree_truncated": false,
+      "reviewed_files": [
+        {
+          "path": "LICENSE.txt",
+          "url": "https://github.com/gabrielecirulli/2048/blob/478b6ec346e3787f589e4af751378d06ded4cbbc/LICENSE.txt"
+        },
+        {
+          "path": "index.html",
+          "url": "https://github.com/gabrielecirulli/2048/blob/478b6ec346e3787f589e4af751378d06ded4cbbc/index.html"
+        },
+        {
+          "path": "README.md",
+          "url": "https://github.com/gabrielecirulli/2048/blob/478b6ec346e3787f589e4af751378d06ded4cbbc/README.md"
+        }
+      ]
+    },
+    {
+      "repo": "impress/impress.js",
+      "sha": "b44b9694b41fd2c076c3d1ad7a0c3e0cea9eb262",
+      "license": "MIT",
+      "metadata_license": "MIT",
+      "owner": "impress",
+      "tree_truncated": false,
+      "reviewed_files": [
+        {
+          "path": "LICENSE",
+          "url": "https://github.com/impress/impress.js/blob/b44b9694b41fd2c076c3d1ad7a0c3e0cea9eb262/LICENSE"
+        },
+        {
+          "path": "examples/2D-navigation/index.html",
+          "url": "https://github.com/impress/impress.js/blob/b44b9694b41fd2c076c3d1ad7a0c3e0cea9eb262/examples/2D-navigation/index.html"
+        },
+        {
+          "path": "README.md",
+          "url": "https://github.com/impress/impress.js/blob/b44b9694b41fd2c076c3d1ad7a0c3e0cea9eb262/README.md"
+        },
+        {
+          "path": "examples/3D-positions/index.html",
+          "url": "https://github.com/impress/impress.js/blob/b44b9694b41fd2c076c3d1ad7a0c3e0cea9eb262/examples/3D-positions/index.html"
+        }
+      ]
+    },
+    {
+      "repo": "TiddlyWiki/TiddlyWiki5",
+      "sha": "999763abb080adc68595dbee7526f315da28a044",
+      "license": "BSD-3-Clause",
+      "metadata_license": "NOASSERTION",
+      "owner": "TiddlyWiki",
+      "tree_truncated": false,
+      "reviewed_files": [
+        {
+          "path": "license",
+          "url": "https://github.com/TiddlyWiki/TiddlyWiki5/blob/999763abb080adc68595dbee7526f315da28a044/license"
+        },
+        {
+          "path": "package.json",
+          "url": "https://github.com/TiddlyWiki/TiddlyWiki5/blob/999763abb080adc68595dbee7526f315da28a044/package.json"
+        },
+        {
+          "path": "readme.md",
+          "url": "https://github.com/TiddlyWiki/TiddlyWiki5/blob/999763abb080adc68595dbee7526f315da28a044/readme.md"
+        },
+        {
+          "path": "editions/server/tiddlywiki.info",
+          "url": "https://github.com/TiddlyWiki/TiddlyWiki5/blob/999763abb080adc68595dbee7526f315da28a044/editions/server/tiddlywiki.info"
+        }
+      ]
+    },
+    {
+      "repo": "usememos/memos",
+      "sha": "334925a5f10c58e17b66dbc67fd4b27ed0d3fa8e",
+      "license": "MIT",
+      "metadata_license": "MIT",
+      "owner": "usememos",
+      "tree_truncated": false,
+      "reviewed_files": [
+        {
+          "path": "LICENSE",
+          "url": "https://github.com/usememos/memos/blob/334925a5f10c58e17b66dbc67fd4b27ed0d3fa8e/LICENSE"
+        },
+        {
+          "path": "README.md",
+          "url": "https://github.com/usememos/memos/blob/334925a5f10c58e17b66dbc67fd4b27ed0d3fa8e/README.md"
+        },
+        {
+          "path": "scripts/Dockerfile",
+          "url": "https://github.com/usememos/memos/blob/334925a5f10c58e17b66dbc67fd4b27ed0d3fa8e/scripts/Dockerfile"
+        },
+        {
+          "path": "server/frontend/dist/index.html",
+          "url": "https://github.com/usememos/memos/blob/334925a5f10c58e17b66dbc67fd4b27ed0d3fa8e/server/frontend/dist/index.html"
+        },
+        {
+          "path": "internal/profile/profile.go",
+          "url": "https://github.com/usememos/memos/blob/334925a5f10c58e17b66dbc67fd4b27ed0d3fa8e/internal/profile/profile.go"
+        },
+        {
+          "path": "cmd/memos/main.go",
+          "url": "https://github.com/usememos/memos/blob/334925a5f10c58e17b66dbc67fd4b27ed0d3fa8e/cmd/memos/main.go"
+        }
+      ]
+    }
+  ],
+  "rejections": [
+    {
+      "repo": "excalidraw/excalidraw",
+      "sha": "1d4dc2c0e6e476911d0760e9c3cf3694f2d43384",
+      "license": "MIT",
+      "reason": "Source includes external font preconnects and analytics and multiple build/provider surfaces. Not selected for initial five; future local-only asset/config review needed."
+    },
+    {
+      "repo": "hakimel/reveal.js",
+      "sha": "e240e175232fa2de660a02bc0d7bf5f655b159bb",
+      "license": "MIT (repository metadata only)",
+      "reason": "Redundant presentation family; avoid inflating app diversity. No deeper source/closure review claimed."
+    },
+    {
+      "repo": "jgraph/drawio",
+      "sha": "17b367b91dbab91804f852645788d7ffb46dcb79",
+      "license": "Apache-2.0 (repository metadata only)",
+      "reason": "Deferred complex editor/dependency/service preparation; not reviewed to offline-ready status."
+    },
+    {
+      "repo": "chvin/react-tetris",
+      "sha": "89435b72f127b67f95870c515a130cbff38fd7cf",
+      "license": "unresolved",
+      "reason": "Metadata did not supply recognized license; source license and build closure not reviewed, so not selected."
+    }
+  ]
+}
