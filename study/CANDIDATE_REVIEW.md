@@ -87,3 +87,45 @@ Combined coverage: **28 requests, 649 overlapping records (469 commit hits and 1
 Current candidates.csv: **16 positive-call review leads (14 test_commit, 2 agent_pr)**. This is not a count of qualified or approved offline suites. New positive-call leads include yuu-clip (above 150) and VitaDrive (CDN requirement), so neither enters repos.proposed.csv. Only **one new qualifying proposal**, meow-now, remains; five genuinely suitable new recipes could not be prepared from this evidence. No failed baseline is inferred from source findings.
 
 The exact query strings, page sizes, commands and transport limits are in [DISCOVERY_COMMANDS.md](DISCOVERY_COMMANDS.md). All returned identities and source hashes are retained in the audit. No target repository was run, installed or imported. Existing approvals and the four proposed rows are unchanged.
+
+## Latest review corrections and ranked preparation list
+
+This section supersedes prior readiness descriptions without rewriting historical
+search observations. No new approval or public execution occurred. The existing
+execution manifest and four proposed rows are unchanged; every discovery/proposal
+row stays `approved=no`. A preparation lead is not automatically runnable.
+
+| Rank / state | Repository / exact SHA | License / tracked calls | Test-specific agent evidence | Offline risk and preparation |
+|---|---|---|---|---|
+| 1 / proposed, runtime unvalidated | ccqw/meow-now `912b21de0feee6931025ac02d3c838420e3c9b05` | MIT / 39 | [Claude co-authored test commit](https://github.com/ccqw/meow-now/commit/912b21de0feee6931025ac02d3c838420e3c9b05) | Local uvicorn and fake audio, Ollama disabled. 31 binary wheels are hash-locked and re-downloaded successfully; 36 applicable Linux 3.12 dependency constraints checked as metadata. Browser timing and target installation remain unvalidated. |
+| 2 / staging required, runtime unvalidated | alxb1t/isekai `b2c7b480263371624f17464c769577a74a113eff` | Apache-2.0 / 27 | [Claude Opus 5.5 co-authored commit adding selected tests](https://github.com/alxb1t/isekai/commit/b2c7b480263371624f17464c769577a74a113eff) | Fake offline wiring, no GPU/Ollama requirement. Needs fresh ui/dist or prepared Node/npm tree and build. Git-pinned gpunit dependency cannot be covered by a registry-wheel-only lock; source builds are prohibited now. No complete lock/runnable recipe supplied. |
+| 3 / offline stageable, method and fixture-license hold | mbylinkin/currency_exchange `9cd1ed741610dedb48a8d4934c8ffec0987aa31b` | Main repo MIT / 43 | [Claude Opus 5.5 co-authored test commit](https://github.com/mbylinkin/currency_exchange/commit/9cd1ed741610dedb48a8d4934c8ffec0987aa31b) | Stage real frontend Git checkout at 24a10a4e9085ddc32a3558cf7f22347f9bbc3e42, not a plain archive. Frontend custom code has no declared license; six strict-xfail cases would be excluded by current baseline policy. Preserve all tests; no cherry-picking. |
+| 4 / source-review lead, not proposed | yyyuanfish/pawse `72040b4a7627490e9ee6e40a9639fb5bdd416d61` | MIT / 110 in inspected test_browser_steps.py selection | [Merged PR #81 with Markdown-linked Generated with Claude Code footer and changed tests](https://github.com/yyyuanfish/pawse/pull/81) | React web/dist freshness guard invokes npm ci/build. Additional speech/WebKit paths and complete dependency/assets closure not reviewed. No full-suite count, complete wheel lock or offline baseline claimed. |
+| 5 / incompatible with current image | dmaticzka/bass-karaoke-player `24116dc8f959a975bdfb2e34d7f04a0b8e0f9feb` | MIT / 43 in selected UI file | [Copilot PR #28 adding E2E tests](https://github.com/dmaticzka/bass-karaoke-player/pull/28) | Local server and prebuilt audio fixtures avoid inference during that flow, but package requires Python >=3.13; current study image is 3.12. Demucs/audio dependencies remain unprepared. No silent version override or lock claimed. |
+| Not qualified by current screen | overnightworks/hopin `efb67f3e153c7349bd2efbe044ef5a160e82fd24` | MIT / 0 tracked | [Merged PR #50, Claude Code footer, adds selected test](https://github.com/overnightworks/hopin/pull/50) | open_person factory produces custom host/guest Page receivers outside current tracking. Do not claim runtime unscoreability from this zero; WebRTC/dependency setup is unvalidated. |
+
+Pinned-source setup details and links are in [OFFLINE.md](recipes/OFFLINE.md).
+Isekai's 27 sites are 13 locator + 12 expect + 2 click; currency's 43 are 8
+locator + 11 tracked expect + 14 fill + 10 click. The latter misses error_toast
+helper assertions. Counts remain conservative syntax screens, not observed runs.
+
+Corrected search coverage: **1000/1636 Copilot hits through page 10 (API cap),
+482/482 Devin hits through page 5, 100/249 corrected Jules hits**. Added two merged
+Claude-footer queries, Cursor head branches, aider/OpenHands signals and Python
+code imports. The pass returned 2282 overlapping records over 23 successful pages;
+two rate-limit attempts recovered after the server-requested cooldown, and a
+separate page-fixture code query failed with connector internal error. See
+[DISCOVERY_COMMANDS.md](DISCOVERY_COMMANDS.md) and
+[discovery-review-corrections.json](discovery-review-corrections.json) for every
+query/page, returned identity and sampled source hash. Search results were inspected
+read-only; no claim is made that all 2282 hits received full source review.
+
+The live find_repos CLI again stopped before network because GITHUB_TOKEN is absent;
+connector results and actual local parser/screen execution are recorded separately.
+Cursor branch names, code presence and generic aider/OpenHands mentions alone remain
+unresolved provenance. The CLI verifies the fetched PR author/body before labelling
+agent involvement; a selected test diff is required. The existing candidate CSV
+still has 14 test_commit and 2 agent_pr review leads, not 16 qualified offline suites.
+No additional fully prepared top candidate was established; do not count five
+complete offline recipes. The prior Platelet result and Contrail baseline failure
+remain historical observations, not reruns in this revision.

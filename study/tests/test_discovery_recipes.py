@@ -27,4 +27,4 @@ def test_new_proposed_recipe_is_valid_without_execution():
     import json
     from pathlib import Path
     recipe = json.loads((Path(__file__).resolve().parents[1] / 'recipes/meow-now.json').read_text())
-    assert validate_recipe(recipe)['seconds'] == 1800
+    assert validate_recipe(recipe)['budget_seconds'] == 1800

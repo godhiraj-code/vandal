@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from study.common import digest, safe_path, write_json
+from study.budget import recipe_seconds
 from study.process import clean_env, run
 
 
@@ -75,11 +76,10 @@ def extract_source(archive, destination, recipe=None):
 
 
 def validate_recipe(recipe):
-    allowed = {"test_paths", "source_paths", "requirements", "install_project", "extras", "pytest_args", "seconds"}
+    allowed = {"test_paths", "source_paths", "requirements", "install_project", "extras", "pytest_args", "seconds", "budget_seconds"}
     if set(recipe) - allowed:
         raise ValueError("unsupported recipe key")
-    if type(recipe.get("seconds", 900)) is not int or not 30 <= recipe.get("seconds", 900) <= 3600:
-        raise ValueError("recipe seconds must be an integer in 30..3600")
+    recipe_seconds(recipe)
     for key in ("test_paths", "source_paths", "requirements", "extras", "pytest_args"):
         if not isinstance(recipe.get(key, []), list) or any(not isinstance(x, str) for x in recipe.get(key, [])):
             raise ValueError("recipe fields must be lists of strings")

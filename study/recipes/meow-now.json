@@ -3,5 +3,5 @@
   "source_paths": ["meow_now", "tests/conftest.py"],
   "install_project": true,
   "extras": ["browser"],
-  "seconds": 1800
+  "budget_seconds": 1800
 }

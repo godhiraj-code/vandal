@@ -176,7 +176,7 @@ def summarize(root, report_path, *, write_fixture_attempts=False):
                "skipped_by_cap", "action_failed_kills", "reason"]
     root.mkdir(parents=True, exist_ok=True)
     with (root / "summary.csv").open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=columns)
+        writer = csv.DictWriter(f, fieldnames=columns, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     title = "Study protocol and results" if any(r["kind"] == "public" and r["status"] == "completed" for r in rows) else "Study protocol (no valid public results)"

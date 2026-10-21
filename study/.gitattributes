@@ -1,5 +1,6 @@
 # The confirmation hashes exact bytes; preserve them on every checkout platform.
 repos.csv -text
+results/summary.csv text eol=lf
 # Preserve downloaded evidence and integrity hashes across checkout platforms.
 results/diagnostic/** -text -whitespace
 results/public/** -text -whitespace

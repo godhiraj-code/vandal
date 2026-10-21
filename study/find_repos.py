@@ -14,10 +14,20 @@ from pathlib import Path
 
 from study.common import FIELDS, LICENSES, SHA, write_json, write_rows
 
-AGENT = re.compile(r"co-authored-by:.*(?:claude|codex|copilot|cursor|devin|jules|anthropic-code-agent)", re.I)
+AGENT = re.compile(r"co-authored-by:.*(?:claude|codex|copilot|cursor|devin|jules|anthropic-code-agent|aider|openhands)", re.I)
 GENERATED = re.compile(r"generated tests|tests? (?:were )?generated(?: by| with)?", re.I)
 QUERIES = ['playwright pytest "Co-Authored-By: Claude"', 'playwright pytest "Co-authored-by: Cursor"', 'playwright pytest "Co-authored-by: Copilot"', 'playwright "generated tests"']
-PR_AUTHORS = ("app/copilot-swe-agent", "app/devin-ai-integration", "google-labs-jules")
+QUERIES += ['playwright pytest "Co-authored-by: aider"', 'playwright pytest "Co-authored-by: OpenHands"']
+PR_AUTHORS = ("app/copilot-swe-agent", "app/devin-ai-integration", "app/google-labs-jules")
+PR_SIGNALS = (
+    'is:pr is:merged "Generated with Claude Code" in:body pytest-playwright',
+    'is:pr is:merged "Generated with Claude Code" in:body playwright pytest',
+    'is:pr head:cursor/ playwright pytest',
+    'is:pr "aider" playwright pytest',
+    'is:pr "OpenHands" playwright pytest',
+)
+CODE_QUERIES = ('language:Python "playwright.sync_api" path:tests',
+                'language:Python "def test_" "page" "pytest" path:tests')
 OBSERVABLE = {"locator", "frame_locator", "expect", "click", "fill", "check", "hover", "inner_text", "input_value"}
 
 
@@ -372,21 +382,44 @@ def search_specs(mode, queries):
     if mode in {"all", "agent-prs"}:
         for author in PR_AUTHORS:
             yield "issues", f"is:pr author:{author} playwright pytest", "agent_pr"
+        for query in PR_SIGNALS:
+            yield "issues", query, "pr_signal"
     if mode in {"all", "guidance"}:
         for name in ("AGENTS.md", "CLAUDE.md"):
             yield "code", f"filename:{name} playwright test", "guidance_only"
+    if mode in {"all", "code"}:
+        for query in CODE_QUERIES:
+            yield "code", query, "code_only"
+
+
+def pr_provenance(pr):
+    """Verify signals in the fetched PR, not merely its search result."""
+    body = pr.get("body") or ""
+    author = (pr.get("user") or {}).get("login", "").lower()
+    bots = {"copilot", "copilot-swe-agent[bot]", "devin-ai-integration[bot]",
+            "google-labs-jules[bot]", "openhands[bot]", "cursor[bot]"}
+    generated = bool(re.search(r"generated with\s+\[?claude code\b", body, re.I)) and bool(pr.get("merged_at"))
+    if author in bots or generated or AGENT.search(body):
+        return "agent_pr", "Visible agent involvement in PR modifying selected tests; review diff, not exclusive-authorship proof."
+    return "guidance_only", "Branch/keyword/code signal only; test-specific agent authorship remains unverified."
 
 
 def discover(api, queries, pages, mode="commits"):
+    if type(pages) is not int or not 1 <= pages <= 10:
+        raise ValueError("pages must be 1..10 (100 results/page, GitHub's 1000-result cap)")
     rows, audit, seen = [], [], set()
     for endpoint, query, kind in search_specs(mode, queries):
         for page in range(1, pages + 1):
             try:
-                hits = api.get("search/" + endpoint, q=query, per_page=30, page=page)
+                hits = api.get("search/" + endpoint, q=query, per_page=100, page=page)
             except (OSError, ValueError) as exc:
                 audit.append({"query": query, "evidence_kind": kind or "test_commit", "error": str(exc)})
+                if isinstance(exc, urllib.error.HTTPError) and exc.code in {403, 429}:
+                    audit.append({"reason": "search stopped on access/rate-limit response; no automatic retries or alternate credentials"})
+                    return rows, audit
                 break
             audit.append({"query": query, "evidence_kind": kind or "test_commit", "page": page,
+                          "per_page": 100, "returned": len(hits.get("items", [])),
                           "incomplete_results": hits.get("incomplete_results", False), "total_count": hits.get("total_count")})
             for item in hits.get("items", []):
                 repo, sha = "", ""
@@ -401,7 +434,8 @@ def discover(api, queries, pages, mode="commits"):
                         repo = item["full_name"]
                     metadata = api.get("repos/" + repo)
                     detail, evidence = None, None
-                    if kind == "agent_pr":
+                    row_kind = kind
+                    if endpoint == "issues":
                         pr = api.get(f"repos/{repo}/pulls/{item['number']}")
                         sha = pr["head"]["sha"]
                         changed = []
@@ -413,11 +447,17 @@ def discover(api, queries, pages, mode="commits"):
                         if pr.get("changed_files", 0) > len(changed):
                             raise ValueError("PR file list truncated")
                         commit = {"sha": sha, "html_url": pr["html_url"], "commit": {"message": ""}, "files": changed}
-                        evidence, detail = pr["html_url"], "Agent-authored PR modifies selected Python browser tests; review diff and attribution."
+                        row_kind, detail = pr_provenance(pr)
+                        evidence = pr["html_url"]
                     else:
-                        if kind == "guidance_only":
+                        if kind in {"guidance_only", "code_only"}:
                             sha = api.get(f"repos/{repo}/commits/{metadata['default_branch']}")["sha"]
                         commit = api.get(f"repos/{repo}/commits/{sha}")
+                        if kind == "code_only":
+                            commit["files"] = [{"filename": item["path"]}]
+                            row_kind = "guidance_only"
+                            evidence = f"https://github.com/{repo}/blob/{sha}/{item['path']}"
+                            detail = "Python browser code presence only; no test-specific agent authorship established."
                         if kind == "guidance_only":
                             commit["files"] = [{"filename": p} for p in tree_tests(api, repo, sha)]
                             if kind == "guidance_only":
@@ -426,7 +466,7 @@ def discover(api, queries, pages, mode="commits"):
                                     continue
                                 evidence = f"https://github.com/{repo}/blob/{sha}/{item['path']}"
                                 detail = "Guidance mentions tests; does not prove selected tests were agent-written."
-                    identity = (repo, sha, kind)
+                    identity = (repo, sha, row_kind)
                     if identity in seen:
                         continue
                     seen.add(identity)
@@ -436,7 +476,7 @@ def discover(api, queries, pages, mode="commits"):
                         continue
                     sources = sources_at(api, repo, sha, test_files(commit))
                     support = supporting_at(api, repo, sha, list(sources), sources)
-                    row = parse_candidate(metadata, commit, license_info, sources, evidence_kind=kind, evidence_url=evidence, detail=detail, supporting_sources=support)
+                    row = parse_candidate(metadata, commit, license_info, sources, evidence_kind=row_kind, evidence_url=evidence, detail=detail, supporting_sources=support)
                     if row:
                         rows.append(row)
                     audit.append({"repo": repo, "sha": sha, "evidence_kind": row["evidence_kind"] if row else kind or "test_commit",
@@ -444,7 +484,12 @@ def discover(api, queries, pages, mode="commits"):
                                   "reason": "person review required" if row else "no recognized license, matching evidence or Python browser tests"})
                 except (OSError, ValueError, KeyError, SyntaxError) as exc:
                     audit.append({"repo": repo, "sha": sha, "evidence_kind": kind or "test_commit", "error": str(exc)})
-            if len(hits.get("items", [])) < 30:
+                    if isinstance(exc, urllib.error.HTTPError) and exc.code in {403, 429}:
+                        audit.append({"reason": "discovery stopped on access/rate-limit response; no automatic retries or alternate credentials"})
+                        return rows, audit
+            if page == 10 and hits.get("total_count", 0) > 1000:
+                audit.append({"query": query, "reason": "GitHub 1000-result search cap; remaining hits not retrieved"})
+            if len(hits.get("items", [])) < 100:
                 break
     return rows, audit
 
@@ -453,8 +498,8 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--output", type=Path, default=Path("study/candidates.csv"))
     p.add_argument("--query", action="append")
-    p.add_argument("--mode", choices=("all", "commits", "agent-prs", "guidance"), default="all")
-    p.add_argument("--pages", type=int, default=3)
+    p.add_argument("--mode", choices=("all", "commits", "agent-prs", "guidance", "code"), default="all")
+    p.add_argument("--pages", type=int, default=10)
     args = p.parse_args()
     if not 1 <= args.pages <= 10:
         p.error("pages must be between 1 and 10")

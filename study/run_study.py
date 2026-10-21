@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from study.common import approval_reason, digest, paths, read_rows, write_json
+from study.budget import cli_seconds, recipe_seconds, validate_run_budget
 from study.process import clean_env, run
 from study.worker import extract_source, validate_recipe
 
@@ -255,7 +256,7 @@ def main():
     p.add_argument("--wheelhouse", type=Path)
     p.add_argument("--confirm", help="exact RUN token; default remains interactive")
     p.add_argument("--print-confirm", action="store_true", help="print manifest token without executing anything")
-    p.add_argument("--seconds", type=int, default=900)
+    p.add_argument("--seconds", type=cli_seconds, default=900)
     args = p.parse_args()
     manifest = args.repos or Path("study/repos.csv")
     if args.print_confirm:
@@ -268,8 +269,6 @@ def main():
             p.error("action-time execution approval not given: confirm mismatch")
     if not args.image or args.wheelhouse is None:
         p.error("--image and --wheelhouse are required for execution")
-    if not 30 <= args.seconds <= 3600:
-        p.error("seconds must be 30..3600")
     if args.owned_fixture:
         # This mode has no source path, manifest, URL or test-selection input.
         # It cannot grant approval to any public candidate.
@@ -316,6 +315,10 @@ def main():
         if recipe["test_paths"] != paths(row["test_paths"]):
             p.error("recipe selection differs from reviewed manifest")
         recipes.append(recipe)
+    try:
+        validate_run_budget(recipes, args.seconds)
+    except ValueError as exc:
+        p.error(str(exc))
     if not re.fullmatch(r"sha256:[0-9a-f]{64}", args.image):
         p.error("image must be a local sha256 image ID")
     manifest_hash = digest(args.repos)
@@ -332,7 +335,7 @@ def main():
         output = args.results / identifier
         output.mkdir(parents=True, exist_ok=False)
         status = run_one(row, recipe, args.image, args.wheelhouse.resolve(), output,
-                         recipe.get("seconds", args.seconds), reviewed_hashes)
+                         recipe_seconds(recipe, args.seconds), reviewed_hashes)
         print(row["repo"], status["status"], status["reason"])
         if not cleanup_confirmed(status):
             p.exit(1, "Container cleanup unconfirmed; stopping before any further repository. Inspect status/cleanup.log.\n")
