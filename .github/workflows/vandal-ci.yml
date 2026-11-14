@@ -14,12 +14,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Playwright 1.65 requires Python 3.10+, so 3.9 runs on 1.64.0.
+        # Playwright 1.61+ requires Python 3.10+, so 3.9 runs on 1.60.0.
         python-version: ["3.10", "3.11", "3.12"]
         playwright-version: ["1.65.2"]
         include:
           - python-version: "3.9"
-            playwright-version: "1.64.0"
+            playwright-version: "1.60.0"
           - python-version: "3.11"
             playwright-version: "1.60.0"
           - python-version: "3.11"
