@@ -6,7 +6,8 @@
   older underscore names, use Frame.click when Frame._click is absent, call
   Selectors.register with the 1.65 positional arguments, and use the public
   Error type for kill classification. Record 1.65.2 as a tested version in CI
-  and docs.
+  and docs. Pin the Linux test job to Ubuntu 24.04 so Python 3.9 and
+  Playwright 1.60.0 can still run after ubuntu-latest moved to 26.04.
 
 - Add an isolated, person-reviewed Playwright mutation study harness with pinned
   candidate evidence, offline container execution, raw-result summaries and owned

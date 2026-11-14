@@ -8,7 +8,9 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    # ubuntu-latest is 26.04, which has no Python 3.9 and cannot install
+    # Chromium for Playwright 1.60.0.
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
