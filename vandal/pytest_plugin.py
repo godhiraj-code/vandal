@@ -40,7 +40,7 @@ def pytest_configure(config):
     except ValueError as exc:
         raise pytest.UsageError(str(exc)) from exc
     except (ImportError, AttributeError) as exc:
-        raise pytest.UsageError(f"{exc} (adapter tested on Playwright 1.60.0 and 1.64.0)") from exc
+        raise pytest.UsageError(f"{exc} (adapter tested on Playwright 1.60.0, 1.64.0 and 1.65.2)") from exc
     option = config.getoption("vandal_strategies")
     strategies = list(dict.fromkeys(option.split(","))) if option is not None else None
     if strategies is not None and (not strategies or any(s not in VandalEngine.MUTATIONS for s in strategies)):
@@ -146,7 +146,7 @@ class VandalPlugin:
     def pytest_runtest_makereport(self, item, call):
         outcome = yield
         report = outcome.get_result()
-        from playwright._impl._errors import Error
+        from playwright.sync_api import Error
         self.tests[item.nodeid]["phases"][report.when] = {
             "outcome": report.outcome,
             "assertion": bool(call.excinfo and isinstance(call.excinfo.value, AssertionError)),

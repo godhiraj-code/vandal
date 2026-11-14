@@ -274,5 +274,5 @@ are not traced, so a no-Playwright-assertion hint is a review prompt, not proof
 that the test contains no assertions.
 
 The adapter validates its required private hooks at --vandal configuration time.
-It has been exercised with Playwright 1.60.0 and 1.64.0; the dependency range is
+It has been exercised with Playwright 1.60.0, 1.64.0 and 1.65.2; the dependency range is
 >=1.60,<2, not a claim that every intervening or future version was tested.
