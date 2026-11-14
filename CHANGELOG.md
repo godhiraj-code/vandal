@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.0 (2026-11-14)
 
 - Support Playwright 1.65: load impl modules under both the new names and the
   older underscore names, use Frame.click when Frame._click is absent, call
