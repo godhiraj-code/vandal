@@ -174,15 +174,33 @@ def test_label(page):
     assert "AUDIT_LABEL=Go" in log and "VANDALIZED_TEXT" not in log, log
 
 
+def test_impl_module_loads_required_private_types():
+    from vandal.instrumentation import check_compatibility, impl_module
+    for name, attr in (
+        ("frame", "Frame"),
+        ("locator", "Locator"),
+        ("selectors", "Selectors"),
+        ("browser_context", "BrowserContext"),
+        ("assertions", "PageAssertions"),
+        ("errors", "Error"),
+    ):
+        assert callable(getattr(impl_module(name), attr))
+    check_compatibility()
+
+
 def test_missing_private_adapter_fails_at_configure(tmp_path):
     conftest = '''
-from playwright._impl._frame import Frame
+try:
+    from playwright._impl.frame import Frame
+except ModuleNotFoundError:
+    from playwright._impl._frame import Frame
 Frame._click = None
+Frame.click = None
 '''
     run, report = run_suite(tmp_path, "def test_never(): assert False", "--vandal", conftest=conftest)
     assert run.returncode == 4
-    assert "Frame._click" in run.stderr and "1.60.0 and 1.64.0" in run.stderr
-    assert run.stderr.count("1.60.0 and 1.64.0") == 1
+    assert "missing Frame." in run.stderr and "1.60.0, 1.64.0 and 1.65.2" in run.stderr
+    assert run.stderr.count("1.60.0, 1.64.0 and 1.65.2") == 1
     assert report is None
 
 

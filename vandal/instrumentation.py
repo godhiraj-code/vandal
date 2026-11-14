@@ -1,6 +1,7 @@
 """Observe Playwright operations and Locator assertions while --vandal is active."""
 import asyncio
 import functools
+import importlib
 import inspect
 import json
 import uuid
@@ -14,17 +15,27 @@ READ_OPERATIONS = set(("fill", "input_value", "inner_text", "text_content",
     "is_enabled", "is_checked", "count", "wait_for", "wait_for_selector"))
 
 
+def impl_module(name):
+    """Load a Playwright impl module on 1.65+ and older underscore names."""
+    try:
+        return importlib.import_module(f"playwright._impl.{name}")
+    except ModuleNotFoundError:
+        return importlib.import_module(f"playwright._impl._{name}")
+
+
 def check_compatibility():
     """Fail before collection when the private adapter cannot be installed."""
     from importlib.metadata import version
-    from playwright._impl._frame import Frame
-    from playwright._impl._locator import Locator
-    from playwright._impl._selectors import Selectors
-    from playwright._impl._browser_context import BrowserContext
-    from playwright._impl._assertions import PageAssertions
+    Frame = impl_module("frame").Frame
+    Locator = impl_module("locator").Locator
+    Selectors = impl_module("selectors").Selectors
+    BrowserContext = impl_module("browser_context").BrowserContext
+    PageAssertions = impl_module("assertions").PageAssertions
     from playwright.sync_api._context_manager import PlaywrightContextManager as Sync
     from playwright.async_api._context_manager import PlaywrightContextManager as Async
-    required = {Frame: ("_click", "_expect", "_query_count", "eval_on_selector_all"),
+    # 1.65 removed Frame._click; Locator clicks now call Frame.click directly.
+    click_hook = "_click" if callable(getattr(Frame, "_click", None)) else "click"
+    required = {Frame: (click_hook, "_expect", "_query_count", "eval_on_selector_all"),
                 Locator: ("_expect",), Selectors: ("register",),
                 BrowserContext: ("expose_binding",), PageAssertions: ("_expect_impl",),
                 Sync: ("__enter__",), Async: ("__aenter__",)}
@@ -32,7 +43,7 @@ def check_compatibility():
                for name in names if not callable(getattr(cls, name, None))]
     if missing:
         raise ValueError(f"Incompatible Playwright {version('playwright')}: missing "
-                         + ", ".join(missing) + ". Adapter tested on Playwright 1.60.0 and 1.64.0; requires >=1.60,<2.")
+                         + ", ".join(missing) + ". Adapter tested on Playwright 1.60.0, 1.64.0 and 1.65.2; requires >=1.60,<2.")
 
 # These are the public operations we observe. Locator selectors use Playwright's
 # internal representation so get_by_role(), chaining and nth() can be replayed.
@@ -189,7 +200,9 @@ class Instrumentation:
             })""".replace("MUTATE", self.mutation_script()).replace(
                 "BINDING", json.dumps(self._binding_name)
             )
-            await selectors.register(self._engine_name, script=script)
+            # 1.65 makes path and content_script required positionals (None is
+            # allowed). 1.60/1.64 accept the same positional form with defaults.
+            await selectors.register(self._engine_name, script, None, None)
             registration[1] = True
 
     def wrap_start(self, original):
@@ -349,9 +362,9 @@ class Instrumentation:
 
     def install(self):
         from playwright import async_api, sync_api
-        from playwright._impl._frame import Frame as ImplFrame
-        from playwright._impl._locator import Locator as ImplLocator
-        from playwright._impl._assertions import PageAssertions
+        ImplFrame = impl_module("frame").Frame
+        ImplLocator = impl_module("locator").Locator
+        PageAssertions = impl_module("assertions").PageAssertions
         from playwright.sync_api._context_manager import PlaywrightContextManager as SyncManager
         from playwright.async_api._context_manager import PlaywrightContextManager as AsyncManager
         for cls, name in ((SyncManager, "__enter__"), (AsyncManager, "__aenter__")):

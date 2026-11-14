@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Support Playwright 1.65: load impl modules under both the new names and the
+  older underscore names, use Frame.click when Frame._click is absent, call
+  Selectors.register with the 1.65 positional arguments, and use the public
+  Error type for kill classification. Record 1.65.2 as a tested version in CI
+  and docs.
+
 - Add an isolated, person-reviewed Playwright mutation study harness with pinned
   candidate evidence, offline container execution, raw-result summaries and owned
   fixture validation. No public repositories are included automatically.
