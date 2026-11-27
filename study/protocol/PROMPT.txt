@@ -1,0 +1,8 @@
+You are testing the web app in this folder. Write an end to end test suite with pytest and pytest-playwright (Python) that would catch real bugs in the app's user facing behavior.
+Rules:
+1. Put all tests in tests_agent/. Include a conftest.py that serves or opens the app locally. No network access is available.
+2. Do not change any file outside tests_agent/.
+3. The suite must pass on the app as it is now. Run it with: python -m pytest tests_agent -q
+4. Tests must be reliable: no fixed sleeps, wait on real page state.
+5. Stop when the suite passes and you believe it covers the important behavior.
+At the end, list the files you wrote.

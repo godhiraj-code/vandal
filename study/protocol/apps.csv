@@ -1,0 +1,4 @@
+app,repo,commit_sha,app_path,license,license_url,recipe,approved,reviewer,reviewed_at
+platelet,tegataiprime/Platelet-Movie,14664611814b126289f291ad24ee294102efb07c,,Apache-2.0,https://github.com/tegataiprime/Platelet-Movie/blob/14664611814b126289f291ad24ee294102efb07c/LICENSE,recipes/platelet.json,yes,Dhiraj Das,2026-11-27T16:06:00Z
+contrail,atdr/contrail,2465e368b7658bd23f0d41f1473c114db3573005,,MIT,https://github.com/atdr/contrail/blob/2465e368b7658bd23f0d41f1473c114db3573005/LICENSE,recipes/contrail.json,yes,Dhiraj Das,2026-11-27T16:06:00Z
+todomvc,tastejs/todomvc,ff43b02e59dfa604386bb382034b2cd07c2bcd8a,examples/javascript-es5/dist,MIT,https://github.com/tastejs/todomvc/blob/ff43b02e59dfa604386bb382034b2cd07c2bcd8a/license.md,recipes/todomvc.json,yes,Dhiraj Das,2026-11-27T16:06:00Z
