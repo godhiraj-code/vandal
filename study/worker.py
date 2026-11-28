@@ -14,6 +14,10 @@ from study.common import digest, safe_path, write_json
 from study.budget import recipe_seconds
 from study.process import clean_env, run
 
+MAX_REPEATS = 10
+MAX_OVERLAY_FILES = 200
+MAX_OVERLAY_BYTES = 4 * 1024 * 1024
+
 
 def extract_source(archive, destination, recipe=None):
     """Skip only inert documentation links in recipe mode; never materialize links."""
@@ -76,7 +80,8 @@ def extract_source(archive, destination, recipe=None):
 
 
 def validate_recipe(recipe):
-    allowed = {"test_paths", "source_paths", "requirements", "install_project", "extras", "pytest_args", "seconds", "budget_seconds"}
+    allowed = {"test_paths", "source_paths", "requirements", "install_project", "extras", "pytest_args", "seconds", "budget_seconds",
+               "repeats", "overlay_root"}
     if set(recipe) - allowed:
         raise ValueError("unsupported recipe key")
     recipe_seconds(recipe)
@@ -87,6 +92,13 @@ def validate_recipe(recipe):
         raise ValueError("recipe requires bounded test selection")
     for path in recipe["test_paths"] + recipe.get("requirements", []) + recipe.get('source_paths', []):
         safe_path(path)
+    repeats = recipe.get("repeats", 1)
+    if type(repeats) is not int or not 1 <= repeats <= MAX_REPEATS:
+        raise ValueError(f"repeats must be an integer in 1..{MAX_REPEATS}")
+    if "overlay_root" in recipe:
+        root = safe_path(recipe["overlay_root"]) if isinstance(recipe["overlay_root"], str) else safe_path("")
+        if any(not path.startswith(root + "/") for path in recipe["test_paths"]):
+            raise ValueError("protocol test selections must live under overlay_root")
     if type(recipe.get("install_project", False)) is not bool:
         raise ValueError("install_project must be boolean")
     import re
@@ -98,6 +110,75 @@ def validate_recipe(recipe):
     if len(args) % 2 or any(args[i] not in {"-m", "-k"} for i in range(0, len(args), 2)):
         raise ValueError("only -m/-k expression pairs are supported")
     return recipe
+
+
+def extract_overlay(archive, destination, root):
+    """Place an agent-written suite under overlay_root. Regular files and
+    directories only; never replaces a file of the pinned application."""
+    safe_path(root)
+    with tarfile.open(archive) as tar:
+        members = tar.getmembers()
+        if len(members) > MAX_OVERLAY_FILES or sum(m.size for m in members) > MAX_OVERLAY_BYTES:
+            raise ValueError("overlay archive exceeds limits")
+        seen = set()
+        for m in members:
+            name = m.name.rstrip("/")
+            safe_path(name)
+            if name in seen or not (m.isfile() or m.isdir()):
+                raise ValueError("overlay contains duplicate or nonregular entry")
+            seen.add(name)
+        base = destination / root
+        parts = Path(root).parts
+        if any(destination.joinpath(*parts[:i]).is_symlink() for i in range(1, len(parts) + 1)):
+            raise ValueError("overlay root traverses a link")
+        if base.exists() and not base.is_dir():
+            raise ValueError("overlay root is not a plain directory")
+        for m in members:
+            target = base / m.name
+            if m.isdir():
+                target.mkdir(parents=True, exist_ok=True)
+            else:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                with tar.extractfile(m) as src, target.open("xb") as dst:
+                    while chunk := src.read(65536):
+                        dst.write(chunk)
+        return sorted(seen)
+
+
+def junit_outcomes(junit):
+    """Map test id to passed/failed/skipped for one JUnit file; None if unreadable."""
+    try:
+        root = ET.parse(junit).getroot()
+    except (OSError, ET.ParseError):
+        return None
+    result = {}
+    for case in root.iter("testcase"):
+        key = case.get("classname", "") + "::" + case.get("name", "")
+        if case.find("failure") is not None or case.find("error") is not None:
+            result[key] = "failed"
+        elif case.find("skipped") is not None:
+            result[key] = "skipped"
+        else:
+            result[key] = "passed"
+    return result
+
+
+def flake_summary(junits):
+    """Repeated baselines on the unchanged app. A test is flaky when it both
+    passed and failed across runs; an unreadable run counts as a failed run."""
+    runs = [junit_outcomes(path) for path in junits]
+    tests = sorted({key for run_ in runs if run_ for key in run_})
+    flaky, always_failed = [], []
+    for key in tests:
+        seen = {run_.get(key, "missing") if run_ else "missing" for run_ in runs}
+        if "passed" in seen and seen - {"passed"}:
+            flaky.append(key)
+        elif "passed" not in seen:
+            always_failed.append(key)
+    green = sum(1 for run_ in runs if run_ and all(v == "passed" for v in run_.values()) and len(run_) == len(tests))
+    return {"runs": len(runs), "green_runs": green, "n_tests": len(tests), "flaky_tests": flaky,
+            "n_flaky": len(flaky), "always_failed_tests": always_failed,
+            "flake_rate": (len(flaky) / len(tests)) if tests else None}
 
 
 def install_summary(result, lock):
@@ -152,12 +233,34 @@ def execute(source, output, recipe, python, seconds, env=None):
     deadline = time.monotonic() + seconds
     # Vandal appends worker flags to the original invocation. A '--' delimiter
     # would turn those flags into paths. Selection paths are validated instead.
-    baseline = run(base + ["-p", "no:vandal", "--junitxml=" + str(output / "baseline.xml")] + selected,
-                   source, output / "baseline.log", max(0.1, deadline - time.monotonic()), env)
+    repeats = recipe.get("repeats", 1)
+    runs, reasons, junits = [], [], []
+    for index in range(repeats):
+        stem = "baseline" if index == 0 else f"baseline-{index + 1}"
+        junit = output / (stem + ".xml")
+        result = run(base + ["-p", "no:vandal", "--junitxml=" + str(junit)] + selected,
+                     source, output / (stem + ".log"), max(0.1, deadline - time.monotonic()), env)
+        runs.append(result)
+        junits.append(junit)
+        reasons.append(baseline_reason(result, junit))
+        if result["timed_out"]:
+            break  # The shared deadline is gone; later runs cannot be fair.
+    baseline = runs[0]
     status = {"status": "skipped", "baseline": baseline, "recipe": recipe}
-    reason = baseline_reason(baseline, output / "baseline.xml")
-    if reason:
-        status["reason"] = reason
+    if repeats > 1:
+        flake = flake_summary(junits)
+        flake["completed_runs"] = len(runs)
+        flake["requested_runs"] = repeats
+        write_json(output / "flake.json", flake)
+        status["baseline_runs"] = runs
+        status["flake"] = flake
+    failed = [r for r in reasons if r]
+    if failed or len(runs) < repeats:
+        if repeats == 1:
+            status["reason"] = failed[0]
+        else:
+            status["reason"] = (f"baseline not green in {len(failed) + repeats - len(runs)} of {repeats} runs; "
+                                f"first problem: {failed[0] if failed else 'deadline before all runs'}")
         return classify_failed_run(status, output)
     guarded = [str(python), str(Path(__file__).with_name('pytest_entry.py'))] + base[3:]
     guarded_env = dict(env or clean_env(), STUDY_RESOURCE_LOG=str(output / 'resources.jsonl'))
@@ -184,11 +287,14 @@ def main():
     started = time.monotonic()
     status = {"status": "skipped", "reason": "worker did not complete"}
     skipped_links = []
+    overlay_files = None
     harness_summary = None
     try:
         shutil.copyfile('/opt/harness.lock', output / 'harness.lock')
         recipe = validate_recipe(json.loads(Path("/input/recipe.json").read_text()))
         skipped_links = extract_source("/input/source.tar", source, recipe)
+        if "overlay_root" in recipe:
+            overlay_files = extract_overlay("/input/overlay.tar", source, recipe["overlay_root"])
         env = clean_env()
         env.update(HOME="/work/home", TMPDIR="/tmp", PLAYWRIGHT_BROWSERS_PATH="/ms-playwright",
                    PIP_NO_INDEX="1", PIP_FIND_LINKS="/deps")
@@ -226,6 +332,8 @@ def main():
     except Exception as exc:
         status.update(status="skipped", reason=f"{type(exc).__name__}: {exc}")
     status['skipped_links'] = skipped_links
+    if overlay_files is not None:
+        status['overlay_files'] = overlay_files
     status['harness_install'] = harness_summary
     status['budget_seconds'] = args.seconds
     classify_failed_run(status, output)

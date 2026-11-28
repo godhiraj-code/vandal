@@ -1,0 +1,62 @@
+{
+  "app": "platelet",
+  "repo": "tegataiprime/Platelet-Movie",
+  "sha": "14664611814b126289f291ad24ee294102efb07c",
+  "agent": "codex",
+  "cli_version": "0.172.0",
+  "model_requested": "gpt-6.2-sol",
+  "model_observed": "gpt-6.2-sol",
+  "speed": "standard (default; no Fast flag passed)",
+  "sandbox": "workspace-write",
+  "network_access": true,
+  "prompt_sha256": "d61f8fd92586e68a6225031fe0b9fff6601da1b2373e8e6074feee45f4f862d4",
+  "prompt_path": "study/protocol/PROMPT.txt (word for word, including 'No network access is available.')",
+  "deviation": "Codex commands had network access because sandbox_workspace_write.network_access=true was required for Chrome to start. The prompt text was not changed.",
+  "note_on_flags": "--approve-for-me cannot be combined with --sandbox; used --sandbox workspace-write only (same as the successful smoke check).",
+  "started_at_ist": "2026-11-28T08:19:31 Asia/Calcutta",
+  "ended_at_ist": "2026-11-28T08:21:37 Asia/Calcutta",
+  "duration_seconds": 126,
+  "time_limit_seconds": 1800,
+  "codex_exit_code": 0,
+  "session_id": "01a2200e-d01a-7a12-beb5-c2940bd62dcc",
+  "token_usage": {
+    "input_tokens": 498432,
+    "cached_input_tokens": 461056,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4206,
+    "reasoning_output_tokens": 268,
+    "source": "turn.completed in events.jsonl"
+  },
+  "files_written": [
+    "tests_agent/conftest.py",
+    "tests_agent/pytest.ini",
+    "tests_agent/test_movie_site.py"
+  ],
+  "codex_claimed": "All 9 Chromium tests passed with python -m pytest tests_agent -q, plus one deprecation warning",
+  "independent_pytest": {
+    "command": "python -m pytest tests_agent -q",
+    "result": "9 passed, 1 warning in 4.76s",
+    "when_ist": "2026-11-28T08:21:53 Asia/Calcutta",
+    "tests": 9
+  },
+  "files_changed_outside_tests_agent": [],
+  "usage_before": {
+    "source": "codex session rate_limits after smoke with network",
+    "used_percent": 0.0,
+    "window_minutes": 10080,
+    "resets_at_unix": 1796026877,
+    "resets_at_ist": "2026-11-30T13:51:17 Asia/Calcutta",
+    "plan_type": "prolite",
+    "session": "01a2200d-433e-7082-97bc-2b979a4919bd"
+  },
+  "usage_after": {
+    "source": "codex session rate_limits at end of platelet run",
+    "used_percent": 0.0,
+    "window_minutes": 10080,
+    "resets_at_unix": 1796026878,
+    "resets_at_ist": "2026-11-30T13:51:18 Asia/Calcutta",
+    "plan_type": "prolite",
+    "session": "01a2200e-d01a-7a12-beb5-c2940bd62dcc",
+    "rate_limit_reached_type": null
+  }
+}

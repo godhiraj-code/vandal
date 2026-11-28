@@ -121,7 +121,42 @@ def inspect_owned_container(name, temporary, output):
         raise RuntimeError("owned container mount inspection failed")
 
 
-def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes, *, owned_fixture=False):
+def stage_overlay(suite, archive):
+    """Deterministic tar of an agent-written suite: regular files only, bounded,
+    no links. The worker places it under the recipe's overlay_root."""
+    from study.worker import MAX_OVERLAY_BYTES, MAX_OVERLAY_FILES
+    from study.common import safe_path
+    suite = Path(suite)
+    if suite.is_symlink() or not suite.is_dir():
+        raise ValueError("suite must be a plain directory")
+    files, total = [], 0
+    for path in sorted(suite.rglob("*")):
+        relative = path.relative_to(suite).as_posix()
+        safe_path(relative)
+        if path.is_symlink():
+            raise ValueError("suite contains a link: " + relative)
+        if "__pycache__" in path.parts or path.suffix == ".pyc":
+            continue
+        if path.is_dir():
+            continue
+        if not path.is_file():
+            raise ValueError("suite contains a nonregular entry: " + relative)
+        total += path.stat().st_size
+        files.append((relative, path))
+    if not files or len(files) > MAX_OVERLAY_FILES or total > MAX_OVERLAY_BYTES:
+        raise ValueError("suite is empty or exceeds overlay limits")
+    import io
+    import tarfile
+    with tarfile.open(archive, "w", format=tarfile.PAX_FORMAT) as tar:
+        for relative, path in files:
+            data = path.read_bytes()
+            info = tarfile.TarInfo(relative)
+            info.size, info.mode, info.mtime = len(data), 0o644, 0
+            tar.addfile(info, io.BytesIO(data))
+    return [relative for relative, _ in files]
+
+
+def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes, *, owned_fixture=False, overlay=None):
     name = "vandal-study-" + uuid.uuid4().hex
     container_attempted = False
     deadline = time.monotonic() + seconds
@@ -150,6 +185,11 @@ def run_one(row, recipe, image, wheelhouse, output, seconds, reviewed_hashes, *,
             acquisition = acquire_owned_fixture if owned_fixture else acquire
             acquisition(row, temporary, output, min(max(0.1, deadline - time.monotonic()), 120))
             status["source_sha256"] = digest(inputs / "source.tar")
+            if ("overlay_root" in recipe) != (overlay is not None):
+                raise ValueError("overlay recipe and suite must be supplied together")
+            if overlay is not None:
+                status["overlay_files"] = stage_overlay(overlay, inputs / "overlay.tar")
+                status["overlay_sha256"] = digest(inputs / "overlay.tar")
             remaining = int(deadline - time.monotonic())
             if remaining < 1:
                 raise RuntimeError("repository deadline exhausted during acquisition")
